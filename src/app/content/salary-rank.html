@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="내 월급이 대한민국, 전세계에서 상위 몇 퍼센트인지 1초만에 확인하세요. 통계청 공식 데이터 기반 정확한 소득 순위 계산. 연령별, 지역별 비교 가능!">
+    <meta name="keywords" content="연봉순위, 월급순위, 소득순위, 연봉비교, 평균연봉, 연봉상위몇퍼센트, 내연봉순위, 한국평균연봉, 연령별연봉, 소득분포">
+    <meta name="author" content="금융계산기">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://moneylife.kr/salary-rank.html">
+    <title>내 연봉 대한민국 상위 몇%? 소득 순위 테스트 | 금융계산기</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moneylife.kr/salary-rank.html">
+    <meta property="og:title" content="내 연봉 대한민국 상위 몇%? 소득 순위 테스트">
+    <meta property="og:description" content="통계청 공식 데이터 기반! 내 월급이 대한민국, 전세계에서 상위 몇 퍼센트인지 확인하세요.">
+    <meta property="og:site_name" content="금융계산기">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:image" content="https://moneylife.kr/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="내 연봉 대한민국 상위 몇%? 소득 순위 테스트">
+    <meta name="twitter:description" content="통계청 공식 데이터 기반! 내 월급이 대한민국, 전세계에서 상위 몇 퍼센트인지 확인하세요.">
+    <meta name="twitter:image" content="https://moneylife.kr/images/og-image.jpg">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MN9KGF64');</script>
+    <!-- End Google Tag Manager -->
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/salary-rank.css">
+    
+    <!-- Kakao SDK -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    
+    <!-- 구조화된 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "연봉 순위 테스트",
+      "applicationCategory": "FinanceApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      },
+      "description": "통계청 공식 데이터 기반 대한민국 소득 순위 계산기. 내 월급이 상위 몇 퍼센트인지 1초만에 확인하세요."
+    }
+    </script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN9KGF64"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">💰</span>
+                    <span class="logo-text">금융계산기</span>
+                </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="index.html">홈</a>
+                <a href="salary-rank.html" class="active">연봉 순위</a>
+                <a href="content/index.html">콘텐츠</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div class="mobile-dropdown">
+        <div class="mobile-menu-header">
+            <h3>메뉴</h3>
+            <button class="mobile-menu-close">✕</button>
+        </div>
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-section">
+                <h4>금융 계산기</h4>
+                <ul>
+                    <li><a href="salary-calculator.html">💰 급여 계산기</a></li>
+                    <li><a href="loan-calculator.html">🏦 대출 계산기</a></li>
+                    <li><a href="mortgage-calculator.html">🏠 주택담보대출</a></li>
+                    <li><a href="compound-interest-calculator.html">📈 복리 이자</a></li>
+                    <li><a href="pension-calculator.html">👴 연금 계산기</a></li>
+                    <li><a href="severance-calculator.html">💼 퇴직금 계산기</a></li>
+                    <li><a href="income-tax-calculator.html">📊 종합소득세</a></li>
+                    <li><a href="capital-gains-tax-calculator.html">🏘️ 양도소득세</a></li>
+                    <li><a href="venture-investment-calculator.html">🚀 벤처투자 세제혜택</a></li>
+                </ul>
+            </div>
+            <div class="mobile-menu-section">
+                <h4>특별 기능</h4>
+                <ul>
+                    <li><a href="salary-rank.html">🏆 연봉 순위 테스트</a></li>
+                </ul>
+            </div>
+            <div class="mobile-menu-section">
+                <h4>콘텐츠</h4>
+                <ul>
+                    <li><a href="content/index.html">📚 금융 가이드</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <main class="salary-rank-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>🏆 내 연봉, 대한민국 상위 몇 %?</h1>
+                <p class="subtitle">통계청 공식 데이터 기반 정확한 소득 순위 확인</p>
+                <div class="data-source">
+                    📊 데이터 출처: 통계청 가계금융복지조사(2024) / 국세청 근로소득 통계(2023)
+                </div>
+            </div>
+
+            <!-- 입력 섹션 -->
+            <section class="rank-calculator" id="calculatorSection">
+                <div class="calculator-card">
+                    <div class="card-header">
+                        <h2>💸 내 소득 순위 계산하기</h2>
+                        <p>간단한 정보만 입력하면 1초만에 확인!</p>
+                    </div>
+
+                    <form id="salaryRankForm" class="rank-form">
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">📋</span>
+                                <span class="label-text">급여 유형</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="salaryType" value="after" checked>
+                                    <span class="radio-label">세후 (실수령액)</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="salaryType" value="before">
+                                    <span class="radio-label">세전 (총급여)</span>
+                                </label>
+                            </div>
+                            <small class="help-text" id="salaryTypeHelp">통장에 들어오는 실제 금액을 입력하세요</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monthlySalary">
+                                <span class="label-icon">💰</span>
+                                <span class="label-text" id="salaryLabel">월 실수령액</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="number" 
+                                    id="monthlySalary" 
+                                    name="monthlySalary" 
+                                    placeholder="예: 2500000" 
+                                    min="0" 
+                                    step="10000"
+                                    required
+                                >
+                                <span class="input-unit">원</span>
+                            </div>
+                            <small class="help-text" id="salaryHelp">세금과 4대보험을 제외한 실제 받는 금액을 입력하세요</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">👤</span>
+                                <span class="label-text">나이대</span>
+                                <span class="optional">(선택)</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="ageGroup" value="all" checked>
+                                    <span class="radio-label">전체</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ageGroup" value="20s">
+                                    <span class="radio-label">20대</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ageGroup" value="30s">
+                                    <span class="radio-label">30대</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ageGroup" value="40s">
+                                    <span class="radio-label">40대</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ageGroup" value="50s">
+                                    <span class="radio-label">50대</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">📍</span>
+                                <span class="label-text">지역</span>
+                                <span class="optional">(선택)</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="region" value="all" checked>
+                                    <span class="radio-label">전체</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="region" value="seoul">
+                                    <span class="radio-label">서울</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="region" value="metro">
+                                    <span class="radio-label">수도권</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="region" value="other">
+                                    <span class="radio-label">기타</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-calculate">
+                            <span class="btn-icon">🚀</span>
+                            <span class="btn-text">내 순위 확인하기</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 결과 섹션 -->
+            <section class="rank-result" id="resultSection" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h2>🎉 당신의 소득 랭킹</h2>
+                        <div class="result-salary">
+                            월 <span id="resultSalary">0</span>원
+                            <small>(연봉 약 <span id="resultAnnual">0</span>만원)</small>
+                        </div>
+                    </div>
+
+                    <div class="rank-section">
+                        <div class="rank-item korea">
+                            <div class="rank-header">
+                                <h3>🇰🇷 대한민국</h3>
+                                <div class="rank-badge" id="koreaRank">상위 0%</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="koreaProgress" style="width: 0%"></div>
+                            </div>
+                            <p class="rank-description" id="koreaDesc">100명 중 0번째</p>
+                        </div>
+
+                        <div class="rank-item world">
+                            <div class="rank-header">
+                                <h3>🌏 전세계</h3>
+                                <div class="rank-badge" id="worldRank">상위 0%</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="worldProgress" style="width: 0%"></div>
+                            </div>
+                            <p class="rank-description" id="worldDesc">세계 인구 중 상위권!</p>
+                        </div>
+
+                        <div class="rank-item age" id="ageRankSection" style="display: none;">
+                            <div class="rank-header">
+                                <h3 id="ageRankTitle">👥 내 또래</h3>
+                                <div class="rank-badge" id="ageRank">상위 0%</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="ageProgress" style="width: 0%"></div>
+                            </div>
+                            <p class="rank-description" id="ageDesc">또래 평균 대비</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-secondary" id="btnRecalculate">
+                            🔄 다시 계산하기
+                        </button>
+                        <button class="btn-primary" id="btnShareImage">
+                            📸 이미지 카드 만들기
+                        </button>
+                    </div>
+                    
+                    <!-- 이미지 카드 프리뷰 및 공유 섭션 -->
+                    <div id="imageCardSection" style="display: none; margin-top: 2rem;">
+                        <h3 style="text-align: center; margin-bottom: 1rem;">🎉 내 연봉 순위 카드</h3>
+                        <div style="max-width: 400px; margin: 0 auto;">
+                            <canvas id="rankImageCanvas" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"></canvas>
+                        </div>
+                        <div class="action-buttons" style="margin-top: 1.5rem;">
+                            <button class="btn-primary" id="btnKakaoShare">
+                                📤 카카오톡 공유
+                            </button>
+                            <button class="btn-secondary" id="btnDownloadImage">
+                                💾 이미지 저장
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- 추가 정보 섹션 -->
+                    <div class="additional-info">
+                        <div class="info-card">
+                            <h4>💡 더 정확한 계산을 원하신다면?</h4>
+                            <p>4대보험, 세금을 포함한 상세 급여 계산</p>
+                            <a href="salary-calculator.html" class="info-link">급여 계산기 바로가기 →</a>
+                        </div>
+
+                        <div class="info-card">
+                            <h4>📊 내 또래는 얼마 받을까?</h4>
+                            <p>연령별, 직군별 평균 연봉 통계</p>
+                            <a href="content/salary-ranking.html" class="info-link">연봉 통계 보기 →</a>
+                        </div>
+
+                        <div class="info-card">
+                            <h4>💰 2025 연봉 실수령액표</h4>
+                            <p>연봉별 실수령액 한눈에 보기</p>
+                            <a href="content/salary-table-2025.html" class="info-link">실수령액표 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 통계 정보 섹션 -->
+            <section class="statistics-section">
+                <h2>📈 대한민국 소득 분포 현황</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💼</div>
+                        <div class="stat-value">3,744만원</div>
+                        <div class="stat-label">전체 평균 연봉</div>
+                        <div class="stat-source">출처: 국세청 2023</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-value">3,000만원</div>
+                        <div class="stat-label">중위 소득</div>
+                        <div class="stat-source">출처: 통계청 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-value">상위 10%</div>
+                        <div class="stat-label">연봉 6,000만원 이상</div>
+                        <div class="stat-source">출처: 국세청 2023</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value">2,067만명</div>
+                        <div class="stat-label">근로소득자 수</div>
+                        <div class="stat-source">출처: 국세청 2023</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ 섹션 -->
+            <section class="faq-section">
+                <h2>❓ 자주 묻는 질문</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            <span class="faq-icon">Q.</span>
+                            월 실수령액과 세전 급여의 차이는?
+                        </h3>
+                        <div class="faq-answer">
+                            <span class="faq-icon">A.</span>
+                            <p>세전 급여는 4대보험과 세금을 제외하기 전 금액이고, 실수령액은 실제로 통장에 들어오는 금액입니다. 일반적으로 실수령액은 세전 급여의 85~90% 정도입니다.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            <span class="faq-icon">Q.</span>
+                            데이터는 얼마나 정확한가요?
+                        </h3>
+                        <div class="faq-answer">
+                            <span class="faq-icon">A.</span>
+                            <p>통계청 가계금융복지조사(2024)와 국세청 근로소득 통계(2023)를 기반으로 제작되었습니다. 실제 대한민국 2,067만 근로소득자의 데이터를 반영한 정확한 통계입니다.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            <span class="faq-icon">Q.</span>
+                            상위 1%는 얼마부터인가요?
+                        </h3>
+                        <div class="faq-answer">
+                            <span class="faq-icon">A.</span>
+                            <p>국세청 통계에 따르면 연봉 약 1억 5,000만원(월 실수령액 약 900만원) 이상이 상위 1%에 해당합니다.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            <span class="faq-icon">Q.</span>
+                            내 정보가 저장되나요?
+                        </h3>
+                        <div class="faq-answer">
+                            <span class="faq-icon">A.</span>
+                            <p>아니요. 모든 계산은 브라우저에서만 이루어지며, 입력하신 정보는 서버에 전송되거나 저장되지 않습니다. 개인정보 걱정 없이 안심하고 이용하세요.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            <span class="faq-icon">Q.</span>
+                            프리랜서도 계산할 수 있나요?
+                        </h3>
+                        <div class="faq-answer">
+                            <span class="faq-icon">A.</span>
+                            <p>네, 가능합니다. 월 평균 실수령액을 입력하시면 됩니다. 다만 프리랜서는 소득 변동이 크므로 최근 3~6개월 평균을 사용하시는 것을 추천합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 관련 계산기 -->
+            <section class="related-calculators">
+                <h2>🔗 관련 계산기</h2>
+                <div class="calculator-grid">
+                    <a href="salary-calculator.html" class="calc-card">
+                        <div class="calc-icon">💰</div>
+                        <h3>급여 계산기</h3>
+                        <p>실수령액 정확히 계산</p>
+                    </a>
+                    <a href="loan-calculator.html" class="calc-card">
+                        <div class="calc-icon">🏦</div>
+                        <h3>대출 계산기</h3>
+                        <p>월 상환액 계산</p>
+                    </a>
+                    <a href="income-tax-calculator.html" class="calc-card">
+                        <div class="calc-icon">📊</div>
+                        <h3>종합소득세</h3>
+                        <p>세금 계산 및 절세</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>금융계산기</h3>
+                    <p>스마트한 금융, 더 나은 삶</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <ul>
+                        <li><a href="index.html">홈</a></li>
+                        <li><a href="salary-rank.html">연봉 순위</a></li>
+                        <li><a href="content/index.html">콘텐츠</a></li>
+                        <li><a href="privacy-policy.html">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 금융계산기. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모바일 하단 네비게이션 바 (앱 스타일) -->
+    <nav class="mobile-bottom-nav" aria-label="모바일 메인 메뉴">
+        <a href="index.html" class="nav-item" aria-label="홈">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div class="nav-label">홈</div>
+        </a>
+        <a href="calculators.html" class="nav-item active" aria-label="계산기">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="8" y1="10" x2="16" y2="10"></line>
+                <line x1="8" y1="14" x2="16" y2="14"></line>
+                <line x1="8" y1="18" x2="16" y2="18"></line>
+            </svg>
+            <div class="nav-label">계산기</div>
+        </a>
+        <a href="content/index.html" class="nav-item" aria-label="콘텐츠">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <div class="nav-label">콘텐츠</div>
+        </a>
+    </nav>
+
+    <script src="js/common.js"></script>
+    <script src="js/salary-rank.js"></script>
+    <script src="js/rank-image-generator.js"></script>
+    <script>
+        // 하단 네비게이션 활성화 상태 자동 설정
+        (function() {
+            const pathname = window.location.pathname;
+            const filename = pathname.split('/').pop() || 'index.html';
+            
+            const navItems = document.querySelectorAll('.mobile-bottom-nav .nav-item');
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                
+                // 홈 페이지
+                if ((filename === 'index.html' || filename === '' || pathname === '/') && 
+                    !pathname.includes('/content/') &&
+                    (href === 'index.html' || href === '/' || href === '../index.html')) {
+                    item.classList.add('active');
+                }
+                // 계산기 목록 페이지 또는 개별 계산기 페이지
+                else if ((filename === 'calculators.html' || filename.includes('calculator') || filename.includes('rank')) && 
+                         href === 'calculators.html') {
+                    item.classList.add('active');
+                }
+                // 콘텐츠 페이지
+                else if (pathname.includes('/content/') && href.includes('content/index.html')) {
+                    item.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

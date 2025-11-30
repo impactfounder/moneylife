@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="연금 계산기 - 은퇴 후 필요한 연금액을 계산하고 국민연금, 개인연금을 합리적으로 설계하세요">
+    <meta name="keywords" content="연금계산기, 국민연금, 개인연금, 노후준비, 은퇴설계, 연금수령액">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://moneylife.kr/pension-calculator.html">
+    <title>연금 계산기 - 노후 준비 시뮬레이션 | 금융계산기</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moneylife.kr/pension-calculator.html">
+    <meta property="og:title" content="연금 계산기 - 노후 준비 시뮬레이션">
+    <meta property="og:description" content="은퇴 후 필요한 연금액을 계산하고 국민연금, 개인연금을 합리적으로 설계하세요">
+    <meta property="og:site_name" content="금융계산기">
+    
+    <!-- 구조화된 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "연금 계산기",
+      "url": "https://moneylife.kr/pension-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      },
+      "description": "은퇴 후 필요한 연금액을 계산하고 국민연금, 개인연금을 합리적으로 설계. 노후 준비를 위한 필수 도구입니다.",
+      "featureList": ["연금 계산", "국민연금 계산", "개인연금 설계", "노후 자금 시뮬레이션"]
+    }
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515762248094919"
+     crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        /* 🔥 최우선 순위: 모바일에서 헤더 즉시 숨김 (FOUC 방지) */
+        @media (max-width: 768px) {
+            .header,
+            header,
+            .header-container,
+            header nav,
+            .mobile-menu-btn,
+            .mobile-dropdown {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            body {
+                padding-top: 0 !important;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MN9KGF64');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN9KGF64"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="8" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="8" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="8" cy="16" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="16" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="16" r="0.75" fill="currentColor"/>
+                    <rect x="8" y="18.5" width="8" height="1.5" rx="0.5" fill="currentColor"/>
+                </svg>
+                <span>금융계산기</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="content/index.html">콘텐츠</a></li>
+                    <li><a href="loan-calculator.html">대출</a></li>
+                    <li><a href="salary-calculator.html">급여</a></li>
+                    <li><a href="compound-interest-calculator.html">복리이자</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">🎯 연금 계산기</h1>
+            <p class="page-subtitle">
+                은퇴 후 필요한 생활비와 연금 수령액을 계산하여 노후를 준비하세요.
+            </p>
+        </div>
+
+        <div class="layout-grid">
+            <div class="main-content">
+                <div class="card">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">노후 설계 정보</h2>
+                    
+                    <form id="pensionForm">
+                        <div class="form-group">
+                            <label class="form-label" for="currentAge">현재 나이</label>
+                            <input type="number" id="currentAge" class="form-input" 
+                                   placeholder="예: 35" value="35" min="20" max="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="retirementAge">은퇴 희망 나이</label>
+                            <input type="number" id="retirementAge" class="form-input" 
+                                   placeholder="예: 65" value="65" min="40" max="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="lifeExpectancy">기대 수명</label>
+                            <input type="number" id="lifeExpectancy" class="form-input" 
+                                   placeholder="예: 90" value="90" min="60" max="120" required>
+                            <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
+                                한국인 평균 기대수명: 남성 80세, 여성 86세
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="monthlyExpense">월 희망 생활비 (은퇴 후)</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="monthlyExpense" class="form-input" 
+                                       placeholder="예: 3,000,000" value="3,000,000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="nationalPension">예상 국민연금 (월)</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="nationalPension" class="form-input" 
+                                       placeholder="예: 1,000,000" value="1,000,000" required>
+                            </div>
+                            <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
+                                2025년 평균 국민연금 수령액: 약 64만원 (국민연금공단 통계)
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="currentSavings">현재 노후 자금</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="currentSavings" class="form-input" 
+                                       placeholder="예: 50,000,000" value="50,000,000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="monthlyContribution">월 적립 금액</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="monthlyContribution" class="form-input" 
+                                       placeholder="예: 500,000" value="500,000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="expectedReturn">예상 연 수익률 (%)</label>
+                            <input type="number" id="expectedReturn" class="form-input" 
+                                   placeholder="예: 4" value="4" step="0.1" min="0" max="20" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">계산하기</button>
+                    </form>
+                </div>
+
+                <div id="resultSection" class="hidden">
+                    <div class="result-card">
+                        <div id="mainResult"></div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">노후 자금 분석</h3>
+                        <div id="detailResult"></div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">자산 증가 및 소진 추이</h3>
+                        <div style="height: 400px;">
+                            <canvas id="pensionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.125rem;">관련 계산기</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="compound-interest-calculator.html" style="color: var(--primary-color); text-decoration: none;">
+                                📈 복리이자
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="severance-calculator.html" style="color: var(--primary-color); text-decoration: none;">
+                                🎁 퇴직금 계산기
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card mt-3" style="background: #fef3c7;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.125rem; color: #92400e;">💡 노후 준비 팁</h3>
+                    <ul style="color: #92400e; font-size: 0.875rem; line-height: 1.8; padding-left: 1.2rem;">
+                        <li>가능한 한 일찍 시작하세요</li>
+                        <li>다양한 연금 상품을 활용하세요</li>
+                        <li>인플레이션을 고려하세요</li>
+                        <li>의료비 예비자금도 준비하세요</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <section class="card mt-4">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">연금 계산기 가이드</h2>
+            
+            <h3 style="font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">노후 준비, 얼마나 필요할까?</h3>
+            <p style="line-height: 1.8; color: var(--text-secondary);">
+                일반적으로 은퇴 후 현역 시절 소득의 70~80% 수준의 생활비가 필요하다고 합니다.
+                물가 상승률(인플레이션)을 고려하면 실제로는 더 많은 금액이 필요할 수 있습니다.
+            </p>
+
+            <h3 style="font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">3층 연금 시스템 <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 400;">(2025년 기준)</span></h3>
+            <p style="line-height: 1.8; color: var(--text-secondary);">
+                <strong>1층:</strong> 국민연금 (공적 연금) - 2025년 평균 수령액 약 64만원<br>
+                <strong>2층:</strong> 퇴직연금 (DC형, DB형) - 근로자퇴직급여보장법<br>
+                <strong>3층:</strong> 개인연금 (연금저축, IRP 등) - 세액공제 최대 연 900만원<br><br>
+                세 가지를 모두 활용하여 안정적인 노후를 준비하는 것이 중요합니다.
+            </p>
+
+            <h3 style="font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">연금 준비 시 고려사항</h3>
+            <ul style="line-height: 1.8; color: var(--text-secondary); padding-left: 1.5rem;">
+                <li>조기 은퇴를 원한다면 더 많은 준비가 필요합니다</li>
+                <li>의료비, 주거비 등 추가 비용을 고려해야 합니다</li>
+                <li>인플레이션으로 화폐 가치가 하락합니다</li>
+                <li>건강 상태와 가족 상황을 고려하세요</li>
+            </ul>
+
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-light); border-left: 4px solid var(--primary-color); border-radius: 4px;">
+                <h4 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-primary);">📚 참고자료</h4>
+                <ul style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; padding-left: 1.2rem;">
+                    <li>국민연금공단 - <a href="https://www.nps.or.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">국민연금 수령액 조회 (2025년 평균 64만원)</a></li>
+                    <li>금융감독원 - <a href="https://www.fss.or.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">연금저축 가이드</a></li>
+                    <li>퇴직연금종합안내 - <a href="https://pension.fss.or.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">퇴직연금 정보</a></li>
+                    <li>보건복지부 - <a href="https://www.mohw.go.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">노후준비 정책</a></li>
+                </ul>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.75rem; font-style: italic;">
+                    * 본 계산기는 2025년 기준 연금제도를 반영하였습니다. 국민연금 수령액은 가입기간 및 소득에 따라 달라집니다.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>금융 계산기</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                        스마트한 재무 설계를 위한<br>
+                        무료 금융 계산 서비스
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 금융계산기. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모바일 하단 네비게이션 바 (앱 스타일) -->
+    <nav class="mobile-bottom-nav" aria-label="모바일 메인 메뉴">
+        <a href="index.html" class="nav-item" aria-label="홈">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div class="nav-label">홈</div>
+        </a>
+        <a href="calculators.html" class="nav-item active" aria-label="계산기">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="8" y1="10" x2="16" y2="10"></line>
+                <line x1="8" y1="14" x2="16" y2="14"></line>
+                <line x1="8" y1="18" x2="16" y2="18"></line>
+            </svg>
+            <div class="nav-label">계산기</div>
+        </a>
+        <a href="content/index.html" class="nav-item" aria-label="콘텐츠">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <div class="nav-label">콘텐츠</div>
+        </a>
+    </nav>
+    
+    <script src="js/common.js"></script>
+    <script>
+        // 하단 네비게이션 활성화 상태 자동 설정
+        (function() {
+            const pathname = window.location.pathname;
+            const filename = pathname.split('/').pop() || 'index.html';
+            
+            console.log('📍 현재 페이지:', pathname, '파일명:', filename);
+            
+            const navItems = document.querySelectorAll('.mobile-bottom-nav .nav-item');
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                
+                if ((filename === 'index.html' || filename === '' || pathname === '/') && 
+                    !pathname.includes('/content/') &&
+                    (href === 'index.html' || href === '/' || href === '../index.html')) {
+                    item.classList.add('active');
+                    console.log('✅ 홈 활성화');
+                }
+                else if ((filename === 'calculators.html' || filename.includes('calculator') || filename.includes('rank')) && 
+                         href === 'calculators.html') {
+                    item.classList.add('active');
+                    console.log('✅ 계산기 활성화');
+                }
+                else if (pathname.includes('/content/') && href.includes('content/index.html')) {
+                    item.classList.add('active');
+                    console.log('✅ 콘텐츠 활성화');
+                }
+            });
+        })();
+    </script>
+    <script>
+        // 페이지 로드 시 통계 기록
+        document.addEventListener('DOMContentLoaded', function() {
+            trackCalculatorUsage('pension');
+        });
+
+        let pensionChart = null;
+
+        setupNumberInputs(['monthlyExpense', 'nationalPension', 'currentSavings', 'monthlyContribution']);
+
+        document.getElementById('pensionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculatePension();
+        });
+
+        function calculatePension() {
+            const currentAge = parseInt(document.getElementById('currentAge').value);
+            const retirementAge = parseInt(document.getElementById('retirementAge').value);
+            const lifeExpectancy = parseInt(document.getElementById('lifeExpectancy').value);
+            const monthlyExpense = parseNumber(document.getElementById('monthlyExpense').value);
+            const nationalPension = parseNumber(document.getElementById('nationalPension').value);
+            const currentSavings = parseNumber(document.getElementById('currentSavings').value);
+            const monthlyContribution = parseNumber(document.getElementById('monthlyContribution').value);
+            const expectedReturn = parseFloat(document.getElementById('expectedReturn').value);
+
+            if (retirementAge <= currentAge) {
+                alert('은퇴 나이는 현재 나이보다 커야 합니다.');
+                return;
+            }
+
+            if (lifeExpectancy <= retirementAge) {
+                alert('기대 수명은 은퇴 나이보다 커야 합니다.');
+                return;
+            }
+
+            // 은퇴까지 기간
+            const yearsToRetirement = retirementAge - currentAge;
+            const monthsToRetirement = yearsToRetirement * 12;
+
+            // 은퇴 시점의 자산 계산 (복리)
+            const monthlyRate = expectedReturn / 100 / 12;
+            let retirementSavings = currentSavings;
+
+            for (let i = 0; i < monthsToRetirement; i++) {
+                retirementSavings = retirementSavings * (1 + monthlyRate) + monthlyContribution;
+            }
+
+            // 은퇴 후 기간
+            const retirementYears = lifeExpectancy - retirementAge;
+            const retirementMonths = retirementYears * 12;
+
+            // 월별 부족액 (생활비 - 국민연금)
+            const monthlyShortfall = monthlyExpense - nationalPension;
+
+            // 총 필요 금액
+            const totalNeeded = monthlyShortfall * retirementMonths;
+
+            // 부족/여유 금액
+            const surplus = retirementSavings - totalNeeded;
+
+            // 연금으로 받을 수 있는 월 금액
+            const monthlyPensionFromSavings = retirementSavings / retirementMonths;
+            const totalMonthlyPension = monthlyPensionFromSavings + nationalPension;
+
+            // 차트 데이터 생성
+            const chartData = generateChartData(
+                currentAge, retirementAge, lifeExpectancy,
+                currentSavings, monthlyContribution, monthlyRate,
+                monthlyShortfall
+            );
+
+            displayResults({
+                retirementSavings,
+                totalNeeded,
+                surplus,
+                monthlyPensionFromSavings,
+                totalMonthlyPension,
+                nationalPension,
+                monthlyExpense,
+                yearsToRetirement,
+                retirementYears,
+                chartData
+            });
+
+            document.getElementById('resultSection').classList.remove('hidden');
+
+            // 계산 완료 통계 기록
+            trackCalculation('pension');
+        }
+
+        function generateChartData(currentAge, retirementAge, lifeExpectancy, 
+                                   currentSavings, monthlyContribution, monthlyRate, monthlyShortfall) {
+            const data = [];
+            let age = currentAge;
+            let savings = currentSavings;
+
+            // 은퇴 전 (자산 증가)
+            while (age < retirementAge) {
+                data.push({ age, savings });
+                for (let i = 0; i < 12; i++) {
+                    savings = savings * (1 + monthlyRate) + monthlyContribution;
+                }
+                age++;
+            }
+
+            // 은퇴 후 (자산 소진)
+            while (age <= lifeExpectancy) {
+                data.push({ age, savings });
+                savings -= monthlyShortfall * 12;
+                if (savings < 0) savings = 0;
+                age++;
+            }
+
+            return data;
+        }
+
+        function displayResults(data) {
+            let statusColor = data.surplus >= 0 ? '#10b981' : '#ef4444';
+            let statusText = data.surplus >= 0 ? '목표 달성 가능' : '추가 준비 필요';
+
+            const mainHTML = `
+                <div class="result-title">은퇴 시점 예상 자산</div>
+                <div class="result-value">${formatCurrency(data.retirementSavings)}</div>
+                <div class="result-detail">
+                    <div class="result-detail-item">
+                        <span>총 필요 금액</span>
+                        <strong>${formatCurrency(data.totalNeeded)}</strong>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>부족/여유 금액</span>
+                        <strong style="color: ${statusColor};">${formatCurrency(Math.abs(data.surplus))}</strong>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>상태</span>
+                        <strong style="color: ${statusColor};">${statusText}</strong>
+                    </div>
+                </div>
+            `;
+            document.getElementById('mainResult').innerHTML = mainHTML;
+
+            const detailHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="text-align: center; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">예상 총 월연금</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">
+                            ${formatCurrency(data.totalMonthlyPension)}
+                        </div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            국민연금 ${formatCurrency(data.nationalPension)}<br>
+                            + 개인자산 ${formatCurrency(data.monthlyPensionFromSavings)}
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">은퇴까지 기간</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">
+                            ${data.yearsToRetirement}년
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: var(--bg-light); border-radius: 8px;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">은퇴 후 기간</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">
+                            ${data.retirementYears}년
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: ${data.surplus >= 0 ? '#ecfdf5' : '#fef2f2'}; border-radius: 8px; padding: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; color: ${statusColor};">💡 분석 결과</h4>
+                    <p style="line-height: 1.8; color: var(--text-secondary);">
+                        ${data.surplus >= 0 
+                            ? `현재 계획대로라면 은퇴 후 ${data.retirementYears}년 동안 월 ${formatCurrency(data.monthlyExpense)}의 생활비를 충당할 수 있습니다. 여유분 ${formatCurrency(data.surplus)}은 비상 자금으로 활용하세요.`
+                            : `현재 계획으로는 ${formatCurrency(Math.abs(data.surplus))}이 부족합니다. 월 적립금을 늘리거나 은퇴 시기를 늦추거나 은퇴 후 생활비를 줄이는 것을 고려하세요.`
+                        }
+                    </p>
+                </div>
+            `;
+            document.getElementById('detailResult').innerHTML = detailHTML;
+
+            drawChart(data.chartData);
+        }
+
+        function drawChart(chartData) {
+            if (pensionChart) pensionChart.destroy();
+
+            const labels = chartData.map(d => `${d.age}세`);
+            const savings = chartData.map(d => d.savings);
+
+            const ctx = document.getElementById('pensionChart');
+            pensionChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '예상 자산',
+                        data: savings,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '자산: ' + formatCurrency(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('load', function() {
+            calculatePension();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="주택담보대출 계산기 - LTV, DTI 비율과 월 상환액을 정확하게 계산하세요. 내 집 마련을 위한 필수 도구">
+    <meta name="keywords" content="주택담보대출, 주담대계산기, LTV, DTI, 주택대출, 아파트대출, 내집마련">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://moneylife.kr/mortgage-calculator.html">
+    <title>주택담보대출 계산기 - LTV/DTI 계산 | 금융계산기</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moneylife.kr/mortgage-calculator.html">
+    <meta property="og:title" content="주택담보대출 계산기 - LTV/DTI 계산">
+    <meta property="og:description" content="LTV, DTI 비율과 월 상환액을 정확하게 계산하세요. 내 집 마련을 위한 필수 도구">
+    <meta property="og:site_name" content="금융계산기">
+    
+    <!-- 구조화된 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "주택담보대출 계산기",
+      "url": "https://moneylife.kr/mortgage-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      },
+      "description": "주택담보대출 LTV, DTI 비율과 월 상환액을 정확하게 계산. 내 집 마련을 위한 필수 도구입니다.",
+      "featureList": ["LTV 계산", "DTI 계산", "월상환액 계산", "주택대출 시뮬레이션"]
+    }
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515762248094919"
+     crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MN9KGF64');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN9KGF64"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="8" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="8" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="8" cy="16" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="16" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="16" r="0.75" fill="currentColor"/>
+                    <rect x="8" y="18.5" width="8" height="1.5" rx="0.5" fill="currentColor"/>
+                </svg>
+                <span>금융계산기</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="content/index.html">콘텐츠</a></li>
+                    <li><a href="loan-calculator.html">대출</a></li>
+                    <li><a href="compound-interest-calculator.html">복리이자</a></li>
+                    <li><a href="salary-calculator.html">급여</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">🏠 주택담보대출 계산기</h1>
+            <p class="page-subtitle">
+                주택 가격, 담보비율(LTV), 금리를 입력하면 대출 가능 금액과 월 상환액을 계산합니다.
+            </p>
+        </div>
+
+        <div class="layout-grid">
+            <div class="main-content">
+                <div class="card">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">주택 및 대출 정보</h2>
+                    
+                    <form id="mortgageForm">
+                        <div class="form-group">
+                            <label class="form-label" for="housePrice">주택 가격</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="housePrice" class="form-input" 
+                                       placeholder="예: 500,000,000" value="500,000,000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="downPayment">자기자본 (계약금 + 중도금)</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="downPayment" class="form-input" 
+                                       placeholder="예: 100,000,000" value="100,000,000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="ltv">LTV (담보인정비율) (%)</label>
+                            <input type="number" id="ltv" class="form-input" 
+                                   placeholder="예: 70" value="70" step="1" min="0" max="100" required>
+                            <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
+                                일반적으로 50~80% (규제지역은 40~60%)
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="interestRate">연 이자율 (%)</label>
+                            <input type="number" id="interestRate" class="form-input" 
+                                   placeholder="예: 3.5" value="3.5" step="0.01" min="0" max="30" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="loanPeriod">대출 기간 (년)</label>
+                            <input type="number" id="loanPeriod" class="form-input" 
+                                   placeholder="예: 30" value="30" min="1" max="50" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="annualIncome">연 소득 (DTI 계산용, 선택)</label>
+                            <div class="input-unit" data-unit="원">
+                                <input type="text" id="annualIncome" class="form-input" 
+                                       placeholder="예: 60,000,000" value="60,000,000">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">계산하기</button>
+                    </form>
+                </div>
+
+                <div id="resultSection" class="hidden">
+                    <div class="result-card">
+                        <div id="mainResult"></div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">대출 상세 정보</h3>
+                        <div id="detailResult"></div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">자금 구성 비율</h3>
+                        <div style="height: 300px;">
+                            <canvas id="fundChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.125rem;">관련 계산기</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="loan-calculator.html" style="color: var(--primary-color); text-decoration: none;">
+                                💳 대출 계산기
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="compound-interest-calculator.html" style="color: var(--primary-color); text-decoration: none;">
+                                📈 복리이자
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card mt-3" style="background: #fef3c7;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.125rem; color: #92400e;">💡 주담대 팁</h3>
+                    <ul style="color: #92400e; font-size: 0.875rem; line-height: 1.8; padding-left: 1.2rem;">
+                        <li>LTV가 높을수록 대출액이 많습니다</li>
+                        <li>규제지역은 LTV가 낮게 적용됩니다</li>
+                        <li>신규주택은 LTV가 더 높을 수 있습니다</li>
+                        <li>여러 은행의 조건을 비교하세요</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <section class="card mt-4">
+            <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">주택담보대출 계산기 가이드</h2>
+            
+            <h3 style="font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">LTV(Loan To Value)란? <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 400;">(2025년 기준)</span></h3>
+            <p style="line-height: 1.8; color: var(--text-secondary);">
+                LTV는 주택 가격 대비 대출 가능 비율입니다. 예를 들어 5억원 주택에 LTV 70%라면 최대 3.5억원까지 대출받을 수 있습니다.
+                규제지역과 비규제지역, 주택 유형에 따라 LTV 한도가 다르게 적용됩니다.<br><br>
+                <strong>2025년 기준:</strong> 비규제지역 최대 70%, 규제지역(투기과열지구 등) 최대 50~60%, 생애최초 주택구입자는 최대 80%까지 가능합니다.
+            </p>
+
+            <h3 style="font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">DTI(Debt To Income)란? <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 400;">(2025년 기준)</span></h3>
+            <p style="line-height: 1.8; color: var(--text-secondary);">
+                DTI는 연 소득 대비 연간 원리금 상환액의 비율입니다. DTI 40%는 연소득 6,000만원인 사람이 
+                연간 2,400만원(월 200만원)까지 대출 상환에 사용할 수 있다는 의미입니다.<br><br>
+                <strong>2025년 기준:</strong> 비규제지역 DTI 제한 없음, 규제지역은 일반적으로 40~60% 적용됩니다.
+            </p>
+
+            <h3 style="font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">주택담보대출 준비사항</h3>
+            <ul style="line-height: 1.8; color: var(--text-secondary); padding-left: 1.5rem;">
+                <li>충분한 자기자본(계약금 10~20% + 중도금)</li>
+                <li>안정적인 소득 증빙 자료</li>
+                <li>신용등급 관리 (1~3등급 유리)</li>
+                <li>규제지역 여부 확인</li>
+                <li>금융기관별 금리 및 수수료 비교</li>
+            </ul>
+
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-light); border-left: 4px solid var(--primary-color); border-radius: 4px;">
+                <h4 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-primary);">📚 참고자료</h4>
+                <ul style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; padding-left: 1.2rem;">
+                    <li>국토교통부 - <a href="https://www.molit.go.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">주택정책 안내</a></li>
+                    <li>주택도시보증공사(HUG) - <a href="https://www.khug.or.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">주택금융 정보</a></li>
+                    <li>금융감독원 - <a href="https://www.fss.or.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">주택담보대출 가이드</a></li>
+                    <li>한국주택금융공사 - <a href="https://www.hf.go.kr" target="_blank" rel="noopener" style="color: var(--primary-color);">보금자리론 안내</a></li>
+                </ul>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.75rem; font-style: italic;">
+                    * 본 계산기는 2025년 기준 주택금융규제를 반영하였습니다. LTV/DTI는 지역 및 주택 유형에 따라 변동될 수 있습니다.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>금융 계산기</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                        스마트한 재무 설계를 위한<br>
+                        무료 금융 계산 서비스
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 금융계산기. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script>
+        // 페이지 로드 시 통계 기록
+        document.addEventListener('DOMContentLoaded', function() {
+            trackCalculatorUsage('mortgage');
+        });
+
+        let fundChart = null;
+        
+        setupNumberInputs(['housePrice', 'downPayment', 'annualIncome']);
+
+        document.getElementById('mortgageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateMortgage();
+        });
+
+        function calculateMortgage() {
+            const housePrice = parseNumber(document.getElementById('housePrice').value);
+            const downPayment = parseNumber(document.getElementById('downPayment').value);
+            const ltv = parseFloat(document.getElementById('ltv').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value);
+            const loanPeriod = parseInt(document.getElementById('loanPeriod').value);
+            const annualIncome = parseNumber(document.getElementById('annualIncome').value);
+
+            if (!validatePositiveNumber(housePrice, '주택 가격')) return;
+            if (!validatePositiveNumber(ltv, 'LTV')) return;
+            if (!validatePositiveNumber(interestRate, '이자율')) return;
+            if (!validatePositiveNumber(loanPeriod, '대출 기간')) return;
+
+            // LTV 기준 최대 대출액
+            const maxLoanByLTV = housePrice * (ltv / 100);
+            
+            // 실제 필요 대출액
+            const neededLoan = housePrice - downPayment;
+            
+            // 실제 대출 가능액 (둘 중 작은 값)
+            const actualLoan = Math.min(maxLoanByLTV, Math.max(0, neededLoan));
+
+            // 월 상환액 계산 (원리금균등상환)
+            const monthlyRate = interestRate / 100 / 12;
+            const totalMonths = loanPeriod * 12;
+            const monthlyPayment = actualLoan * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / 
+                                   (Math.pow(1 + monthlyRate, totalMonths) - 1);
+            
+            const totalPayment = monthlyPayment * totalMonths;
+            const totalInterest = totalPayment - actualLoan;
+
+            // DTI 계산
+            let dti = 0;
+            let dtiStatus = '';
+            if (annualIncome > 0) {
+                const annualPayment = monthlyPayment * 12;
+                dti = (annualPayment / annualIncome) * 100;
+                if (dti <= 40) {
+                    dtiStatus = '우수 (대출 가능성 높음)';
+                } else if (dti <= 60) {
+                    dtiStatus = '보통 (조건부 가능)';
+                } else {
+                    dtiStatus = '주의 (대출 어려움)';
+                }
+            }
+
+            displayResults({
+                housePrice,
+                downPayment,
+                actualLoan,
+                maxLoanByLTV,
+                monthlyPayment,
+                totalInterest,
+                ltv,
+                dti,
+                dtiStatus,
+                annualIncome
+            });
+
+            document.getElementById('resultSection').classList.remove('hidden');
+
+            // 계산 완료 통계 기록
+            trackCalculation('mortgage');
+        }
+
+        function displayResults(data) {
+            const mainHTML = `
+                <div class="result-title">월 상환액</div>
+                <div class="result-value">${formatCurrency(data.monthlyPayment)}</div>
+                <div class="result-detail">
+                    <div class="result-detail-item">
+                        <span>주택 가격</span>
+                        <strong>${formatCurrency(data.housePrice)}</strong>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>대출 금액</span>
+                        <strong>${formatCurrency(data.actualLoan)}</strong>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>자기자본</span>
+                        <strong>${formatCurrency(data.downPayment)}</strong>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>총 이자</span>
+                        <strong>${formatCurrency(data.totalInterest)}</strong>
+                    </div>
+                </div>
+            `;
+            document.getElementById('mainResult').innerHTML = mainHTML;
+
+            let detailHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <div style="text-align: center; padding: 1rem; background: var(--bg-light); border-radius: 8px;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">실제 LTV</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">
+                            ${((data.actualLoan / data.housePrice) * 100).toFixed(2)}%
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: var(--bg-light); border-radius: 8px;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">최대 대출 가능액</div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-color);">
+                            ${formatCurrency(data.maxLoanByLTV)}
+                        </div>
+                    </div>
+            `;
+
+            if (data.annualIncome > 0) {
+                detailHTML += `
+                    <div style="text-align: center; padding: 1rem; background: var(--bg-light); border-radius: 8px;">
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">DTI</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">
+                            ${data.dti.toFixed(2)}%
+                        </div>
+                        <div style="font-size: 0.875rem; margin-top: 0.25rem; color: var(--text-secondary);">
+                            ${data.dtiStatus}
+                        </div>
+                    </div>
+                `;
+            }
+
+            detailHTML += '</div>';
+            document.getElementById('detailResult').innerHTML = detailHTML;
+
+            drawFundChart(data);
+        }
+
+        function drawFundChart(data) {
+            if (fundChart) fundChart.destroy();
+
+            fundChart = createPieChart('fundChart',
+                ['자기자본', '대출금'],
+                [data.downPayment, data.actualLoan],
+                ['#10b981', '#2563eb']
+            );
+        }
+
+        window.addEventListener('load', function() {
+            calculateMortgage();
+        });
+    </script>
+
+    <!-- 모바일 하단 네비게이션 바 (앱 스타일) -->
+    <nav class="mobile-bottom-nav" aria-label="모바일 메인 메뉴">
+        <a href="index.html" class="nav-item" aria-label="홈">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div class="nav-label">홈</div>
+        </a>
+        <a href="calculators.html" class="nav-item active" aria-label="계산기">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="8" y1="10" x2="16" y2="10"></line>
+                <line x1="8" y1="14" x2="16" y2="14"></line>
+                <line x1="8" y1="18" x2="16" y2="18"></line>
+            </svg>
+            <div class="nav-label">계산기</div>
+        </a>
+        <a href="content/index.html" class="nav-item" aria-label="콘텐츠">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <div class="nav-label">콘텐츠</div>
+        </a>
+    </nav>
+    
+    <script>
+        // 하단 네비게이션 활성화 상태 자동 설정
+        (function() {
+            const pathname = window.location.pathname;
+            const filename = pathname.split('/').pop() || 'index.html';
+            
+            const navItems = document.querySelectorAll('.mobile-bottom-nav .nav-item');
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                
+                // 홈 페이지
+                if ((filename === 'index.html' || filename === '' || pathname === '/') && 
+                    !pathname.includes('/content/') &&
+                    (href === 'index.html' || href === '/' || href === '../index.html')) {
+                    item.classList.add('active');
+                }
+                // 계산기 목록 페이지 또는 개별 계산기 페이지
+                else if ((filename === 'calculators.html' || filename.includes('calculator') || filename.includes('rank')) && 
+                         href === 'calculators.html') {
+                    item.classList.add('active');
+                }
+                // 콘텐츠 페이지
+                else if (pathname.includes('/content/') && href.includes('content/index.html')) {
+                    item.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

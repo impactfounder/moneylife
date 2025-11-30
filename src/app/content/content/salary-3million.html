@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="월급 300만원 실수령액은 정확히 얼마일까? 4대보험, 세금 공제 후 실제 통장에 들어오는 금액을 상세히 계산해드립니다. 2025년 최신 세율 반영.">
+    <meta name="keywords" content="월급 300만원, 실수령액, 월급 실수령액, 세후 월급, 월 300 실수령, 4대보험 공제, 소득세 계산">
+    <meta name="author" content="금융계산기">
+    <link rel="canonical" href="https://moneylife.kr/content/salary-3million.html">
+    <title>월급 300만원 실수령액은? 4대보험·세금 빼면 얼마? (2025) | 금융계산기</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://moneylife.kr/content/salary-3million.html">
+    <meta property="og:title" content="월급 300만원 실수령액은? 세금 빼면 얼마?">
+    <meta property="og:description" content="4대보험, 소득세, 지방소득세 공제 후 실제 받는 금액 공개. 2025년 최신 세율 적용.">
+    <meta property="og:image" content="https://moneylife.kr/images/og-image.jpg">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515762248094919"
+     crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        /* 🔥 최우선 순위: 모바일에서 헤더 즉시 숨김 (FOUC 방지) */
+        @media (max-width: 768px) {
+            .header,
+            header,
+            .header-container,
+            header nav,
+            .mobile-menu-btn,
+            .mobile-dropdown {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            body {
+                padding-top: 0 !important;
+            }
+        }
+        
+        .content-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+            background: white;
+        }
+        
+        .breadcrumb {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        .content-header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 2rem;
+        }
+        
+        .content-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .content-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .highlight-box h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .highlight-box .big-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 1rem 0;
+        }
+        
+        .content-body {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .content-body h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .content-body h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 2rem 0 1rem;
+        }
+        
+        .content-body p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .deduction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .deduction-table th,
+        .deduction-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .deduction-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .deduction-table tr:last-child {
+            background: #fef3c7;
+            font-weight: 700;
+        }
+        
+        .deduction-table .amount {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+        
+        .tip-box {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .tip-box h4 {
+            color: #92400e;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .related-posts {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e5e7eb;
+        }
+        
+        .related-posts h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .related-card {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+        
+        .related-card h4 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .related-card p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content-page {
+                padding: 1rem;
+            }
+            
+            .content-title {
+                font-size: 1.75rem;
+            }
+            
+            .content-body {
+                font-size: 1rem;
+            }
+            
+            .highlight-box .big-number {
+                font-size: 2rem;
+            }
+            
+            .deduction-table {
+                font-size: 0.875rem;
+            }
+            
+            .deduction-table th,
+            .deduction-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MN9KGF64');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN9KGF64"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="8" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="10" r="0.75" fill="currentColor"/>
+                    <circle cx="8" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="13" r="0.75" fill="currentColor"/>
+                    <circle cx="8" cy="16" r="0.75" fill="currentColor"/>
+                    <circle cx="12" cy="16" r="0.75" fill="currentColor"/>
+                    <circle cx="16" cy="16" r="0.75" fill="currentColor"/>
+                    <rect x="8" y="18.5" width="8" height="1.5" rx="0.5" fill="currentColor"/>
+                </svg>
+                <span>금융계산기</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#calculators">계산기</a></li>
+                    <li><a href="../content/index.html">콘텐츠</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-page">
+        <div class="breadcrumb">
+            <a href="../index.html">홈</a> > <a href="index.html">콘텐츠</a> > 월급 300만원 실수령액
+        </div>
+
+        <article>
+            <header class="content-header">
+                <h1 class="content-title">💰 월급 300만원 실수령액은?<br>4대보험·세금 빼면 얼마?</h1>
+                <div class="content-meta">
+                    <span>📅 2025년 최신</span>
+                    <span>⏱️ 5분 읽기</span>
+                    <span>✍️ 금융계산기</span>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <h3>💡 핵심 요약</h3>
+                <p style="margin: 0;">세전 월급 <strong>300만원</strong>을 받으면, 4대보험과 세금을 제외한 실수령액은...</p>
+                <div class="big-number">약 2,680,000원</div>
+                <p style="margin: 0; color: #6b7280; font-size: 0.95rem;">
+                    ※ 1인 가구, 부양가족 없음 기준 (공제액 약 32만원)
+                </p>
+            </div>
+
+            <div class="content-body">
+                <h2>🧮 상세 공제 내역</h2>
+                
+                <p>
+                    많은 직장인들이 궁금해하는 <strong>"월급 300만원이면 실제로 얼마를 받을까?"</strong>에 대한 정확한 답변입니다. 
+                    2025년 최신 세율과 4대보험 요율을 적용하여 계산했습니다.
+                </p>
+
+                <table class="deduction-table">
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>요율</th>
+                            <th class="amount">공제액</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>세전 월급</strong></td>
+                            <td>-</td>
+                            <td class="amount">3,000,000원</td>
+                        </tr>
+                        <tr>
+                            <td>국민연금</td>
+                            <td>4.5%</td>
+                            <td class="amount">-135,000원</td>
+                        </tr>
+                        <tr>
+                            <td>건강보험</td>
+                            <td>3.545%</td>
+                            <td class="amount">-106,350원</td>
+                        </tr>
+                        <tr>
+                            <td>장기요양보험</td>
+                            <td>12.95% (건강보험의)</td>
+                            <td class="amount">-13,772원</td>
+                        </tr>
+                        <tr>
+                            <td>고용보험</td>
+                            <td>0.9%</td>
+                            <td class="amount">-27,000원</td>
+                        </tr>
+                        <tr>
+                            <td>소득세 (간이세액)</td>
+                            <td>-</td>
+                            <td class="amount">-30,330원</td>
+                        </tr>
+                        <tr>
+                            <td>지방소득세</td>
+                            <td>소득세의 10%</td>
+                            <td class="amount">-3,033원</td>
+                        </tr>
+                        <tr>
+                            <td><strong>✅ 실수령액</strong></td>
+                            <td>-</td>
+                            <td class="amount" style="color: #2563eb; font-size: 1.2rem;">2,684,515원</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tip-box">
+                    <h4>💡 알아두세요!</h4>
+                    <ul style="margin: 0; padding-left: 1.5rem;">
+                        <li>위 금액은 <strong>1인 가구, 부양가족 없음</strong> 기준입니다</li>
+                        <li>부양가족이 있으면 소득세가 줄어들어 실수령액이 증가합니다</li>
+                        <li>비과세 항목(식대, 차량유지비 등)이 있으면 실수령액이 더 많아집니다</li>
+                        <li>회사마다 추가 복리후생 공제가 있을 수 있습니다</li>
+                    </ul>
+                </div>
+
+                <h2>📊 연봉으로 환산하면?</h2>
+                
+                <p>
+                    월급 300만원을 12개월로 계산하면 <strong>연봉 3,600만원</strong>입니다. 
+                    하지만 실제로는 상여금, 성과급 등이 포함되어 급여명세서상 연봉은 더 높게 표시될 수 있습니다.
+                </p>
+
+                <ul>
+                    <li><strong>월 실수령액:</strong> 약 268만원</li>
+                    <li><strong>연 실수령액:</strong> 약 3,214만원</li>
+                    <li><strong>공제액 총합:</strong> 연간 약 386만원</li>
+                </ul>
+
+                <h2>🎯 이런 분들에게 유용해요</h2>
+                
+                <p>이 정보가 특히 도움이 되는 경우:</p>
+                
+                <ul>
+                    <li>✅ 첫 직장 입사를 앞둔 신입사원</li>
+                    <li>✅ 연봉 협상을 준비하는 이직 준비생</li>
+                    <li>✅ 생활비 계획을 세우는 사회 초년생</li>
+                    <li>✅ 대출 한도를 확인하려는 직장인</li>
+                </ul>
+
+                <h2>💳 월 268만원으로 할 수 있는 것들</h2>
+                
+                <p>실수령액 268만원으로 가능한 생활 수준:</p>
+                
+                <h3>🏠 주거비 (월 60-80만원)</h3>
+                <ul>
+                    <li>서울 외곽 원룸/투룸 월세</li>
+                    <li>수도권 지역 오피스텔</li>
+                </ul>
+
+                <h3>🍽️ 식비 (월 40-50만원)</h3>
+                <ul>
+                    <li>주중 회사 점심 (회사 지원)</li>
+                    <li>주말 외식 1-2회 가능</li>
+                    <li>자취 시 식재료비 포함</li>
+                </ul>
+
+                <h3>💰 저축 (월 50-80만원)</h3>
+                <ul>
+                    <li>비상금 마련</li>
+                    <li>청약통장, 연금저축 가능</li>
+                    <li>자산 형성 시작 단계</li>
+                </ul>
+
+                <h3>🎮 여가·자기계발 (월 30-40만원)</h3>
+                <ul>
+                    <li>OTT, 헬스장 등 구독 서비스</li>
+                    <li>취미 생활</li>
+                    <li>온라인 강의, 도서 구매</li>
+                </ul>
+
+                <div class="tip-box">
+                    <h4>🔥 월급 300만원대 직장인 절세 팁</h4>
+                    <p><strong>1. 연금저축</strong> - 연 400만원까지 세액공제 16.5%</p>
+                    <p><strong>2. ISA 계좌</strong> - 수익의 일부 비과세 혜택</p>
+                    <p><strong>3. 주택청약저축</strong> - 연 240만원까지 소득공제</p>
+                    <p style="margin-bottom: 0;"><strong>4. 신용카드 소득공제</strong> - 총급여 25% 초과 사용분 공제</p>
+                </div>
+
+                <h2>🚀 더 높은 실수령액을 원한다면?</h2>
+                
+                <p>실수령액을 늘리는 합법적인 방법들:</p>
+
+                <h3>1. 비과세 항목 최대한 활용</h3>
+                <ul>
+                    <li>식대 (월 20만원까지 비과세)</li>
+                    <li>자가운전보조금 (월 20만원까지)</li>
+                    <li>육아수당, 출산지원금 등</li>
+                </ul>
+
+                <h3>2. 부양가족 등록</h3>
+                <ul>
+                    <li>부모님, 자녀 등 부양가족 추가 시 소득세 감소</li>
+                    <li>1인당 연 150만원 공제</li>
+                </ul>
+
+                <h3>3. 연말정산 공제 항목 챙기기</h3>
+                <ul>
+                    <li>의료비, 교육비, 기부금</li>
+                    <li>신용카드·체크카드 사용액</li>
+                    <li>청약저축, 연금저축</li>
+                </ul>
+
+                <h2>❓ 자주 묻는 질문 (FAQ)</h2>
+
+                <h3>Q. 세전 300만원과 세후 300만원의 차이는?</h3>
+                <p>
+                    <strong>세전 300만원:</strong> 실수령액 약 268만원<br>
+                    <strong>세후 300만원 받으려면:</strong> 세전 약 335만원 필요
+                </p>
+
+                <h3>Q. 4대보험 가입 안 하면 더 받나요?</h3>
+                <p>
+                    원칙적으로 직장 가입 대상자는 의무 가입입니다. 
+                    프리랜서나 사업자의 경우 지역가입자로 별도 납부해야 합니다.
+                </p>
+
+                <h3>Q. 회사마다 실수령액이 다른 이유는?</h3>
+                <p>
+                    회사의 복리후생 제도, 비과세 항목, 추가 공제 항목에 따라 차이가 발생합니다. 
+                    정확한 금액은 급여명세서를 확인하세요.
+                </p>
+            </div>
+
+            <div class="cta-box">
+                <h3>💰 내 월급 실수령액 정확히 계산하기</h3>
+                <p style="margin-bottom: 1rem;">부양가족, 비과세 항목까지 고려한 정확한 계산을 원하시나요?</p>
+                <a href="../salary-calculator.html" class="cta-button">급여 계산기로 바로 계산하기 →</a>
+            </div>
+
+            <div class="related-posts">
+                <h3>📚 함께 읽으면 좋은 글</h3>
+                <div class="related-grid">
+                    <a href="annual-salary-100m.html" class="related-card">
+                        <h4>💎 연봉 1억 실수령액은?</h4>
+                        <p>고소득자의 실수령액과 세금 구조 분석</p>
+                    </a>
+                    <a href="salary-table-2025.html" class="related-card">
+                        <h4>📋 2025 연봉별 실수령표</h4>
+                        <p>3천만원~3억원까지 한눈에 비교</p>
+                    </a>
+                    <a href="salary-ranking.html" class="related-card">
+                        <h4>📊 내 연봉 순위는?</h4>
+                        <p>대한민국 상위 몇 %인지 확인하기</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>금융계산기</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-top: 0.5rem;">Smart Finance, Better Life</p>
+                </div>
+                <div class="footer-section">
+                    <h3>정보</h3>
+                    <ul class="footer-links">
+                        <li><a href="../privacy-policy.html">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 금융계산기. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모바일 하단 네비게이션 바 (앱 스타일) -->
+    <nav class="mobile-bottom-nav" aria-label="모바일 메인 메뉴">
+        <a href="../index.html" class="nav-item" aria-label="홈">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <div class="nav-label">홈</div>
+        </a>
+        <a href="../calculators.html" class="nav-item" aria-label="계산기">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="8" y1="10" x2="16" y2="10"></line>
+                <line x1="8" y1="14" x2="16" y2="14"></line>
+                <line x1="8" y1="18" x2="16" y2="18"></line>
+            </svg>
+            <div class="nav-label">계산기</div>
+        </a>
+        <a href="index.html" class="nav-item active" aria-label="콘텐츠">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <div class="nav-label">콘텐츠</div>
+        </a>
+    </nav>
+    
+    <script>
+        // 하단 네비게이션 활성화 상태 자동 설정
+        (function() {
+            const pathname = window.location.pathname;
+            const filename = pathname.split('/').pop() || 'index.html';
+            
+            const navItems = document.querySelectorAll('.mobile-bottom-nav .nav-item');
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                
+                // 홈 페이지
+                if ((filename === 'index.html' || filename === '' || pathname === '/') && 
+                    !pathname.includes('/content/') &&
+                    (href === 'index.html' || href === '/' || href === '../index.html')) {
+                    item.classList.add('active');
+                }
+                // 계산기 목록 페이지 또는 개별 계산기 페이지
+                else if ((filename === 'calculators.html' || filename.includes('calculator') || filename.includes('rank')) && 
+                         href.includes('calculators.html')) {
+                    item.classList.add('active');
+                }
+                // 콘텐츠 페이지
+                else if (pathname.includes('/content/') && 
+                         (href.includes('content/index.html') || (href === 'index.html' && pathname.includes('/content/')))) {
+                    item.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
