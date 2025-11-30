@@ -40,18 +40,19 @@ export interface TierInfo {
 }
 
 // ============================================
-// 계산기 타입
+// 계산기 타입 (수정됨: page.tsx의 id와 일치시킴)
 // ============================================
 
 export type CalculatorType =
-  | 'salary'
-  | 'loan'
-  | 'mortgage'
-  | 'compound-interest'
-  | 'pension'
-  | 'severance'
-  | 'income-tax'
-  | 'capital-gains-tax'
+  | 'salary-rank'
+  | 'salary-calculator'
+  | 'loan-calculator'
+  | 'mortgage-calculator'
+  | 'compound-interest-calculator'
+  | 'pension-calculator'
+  | 'severance-calculator'
+  | 'income-tax-calculator'
+  | 'capital-gains-tax-calculator'
   | 'venture-investment';
 
 export interface Calculator {
@@ -61,6 +62,7 @@ export interface Calculator {
   description: string;
   href: string;
   popular?: boolean;
+  badge?: string; // badge 속성 추가
 }
 
 // ============================================
@@ -202,8 +204,9 @@ export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
 }
 
+// InputProps 수정: 선택적 속성 허용
 export interface InputProps {
-  label: string;
+  label?: string;
   value: string | number;
   onChange: (value: string) => void;
   type?: 'text' | 'number' | 'email' | 'tel';

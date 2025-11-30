@@ -50,8 +50,8 @@ export default function MortgageCalculator() {
               <Input
                 type="number"
                 value={input.propertyPrice}
-                onChange={(e) =>
-                  setInput({ ...input, propertyPrice: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, propertyPrice: Number(value) })
                 }
                 min={0}
                 step={10000000}
@@ -65,8 +65,8 @@ export default function MortgageCalculator() {
               <Input
                 type="number"
                 value={input.loanAmount}
-                onChange={(e) =>
-                  setInput({ ...input, loanAmount: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, loanAmount: Number(value) })
                 }
                 min={0}
                 step={10000000}
@@ -80,8 +80,8 @@ export default function MortgageCalculator() {
               <Input
                 type="number"
                 value={input.interestRate}
-                onChange={(e) =>
-                  setInput({ ...input, interestRate: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, interestRate: Number(value) })
                 }
                 min={0}
                 max={20}
@@ -96,8 +96,8 @@ export default function MortgageCalculator() {
               <Input
                 type="number"
                 value={input.loanPeriod}
-                onChange={(e) =>
-                  setInput({ ...input, loanPeriod: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, loanPeriod: Number(value) })
                 }
                 min={1}
                 max={50}
@@ -131,10 +131,10 @@ export default function MortgageCalculator() {
               <Input
                 type="number"
                 value={input.additionalMonthlyPayment || 0}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
-                    additionalMonthlyPayment: Number(e.target.value)
+                    additionalMonthlyPayment: Number(value)
                   })
                 }
                 min={0}

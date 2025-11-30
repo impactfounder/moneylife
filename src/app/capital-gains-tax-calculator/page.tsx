@@ -53,10 +53,10 @@ export default function CapitalGainsTaxCalculator() {
               <Input
                 type="number"
                 value={input.acquisitionPrice}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
-                    acquisitionPrice: Number(e.target.value)
+                    acquisitionPrice: Number(value)
                   })
                 }
                 min={0}
@@ -71,8 +71,8 @@ export default function CapitalGainsTaxCalculator() {
               <Input
                 type="number"
                 value={input.transferPrice}
-                onChange={(e) =>
-                  setInput({ ...input, transferPrice: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, transferPrice: Number(value) })
                 }
                 min={0}
                 step={10000000}
@@ -86,10 +86,10 @@ export default function CapitalGainsTaxCalculator() {
               <Input
                 type="number"
                 value={input.acquisitionExpense}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
-                    acquisitionExpense: Number(e.target.value)
+                    acquisitionExpense: Number(value)
                   })
                 }
                 min={0}
@@ -107,10 +107,10 @@ export default function CapitalGainsTaxCalculator() {
               <Input
                 type="number"
                 value={input.transferExpense}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
-                    transferExpense: Number(e.target.value)
+                    transferExpense: Number(value)
                   })
                 }
                 min={0}
@@ -126,8 +126,8 @@ export default function CapitalGainsTaxCalculator() {
               <Input
                 type="number"
                 value={input.holdingPeriod}
-                onChange={(e) =>
-                  setInput({ ...input, holdingPeriod: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, holdingPeriod: Number(value) })
                 }
                 min={0}
                 max={50}

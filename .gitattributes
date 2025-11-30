@@ -15,3 +15,4 @@ next-env.d.ts linguist-generated=true
 *.zip linguist-vendored
 repomix-output.xml linguist-vendored
 
+

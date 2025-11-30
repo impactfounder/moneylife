@@ -118,8 +118,8 @@ export default function Home() {
     const annualSalary = Math.round(salary * 12 / 10000)
 
     setResult({
-      koreaRank: koreaRankResult.percentage,
-      worldRank: worldRankResult.percentage,
+      koreaRank: koreaRankResult.percentile,
+      worldRank: worldRankResult.percentile,
       actualSalary: salary,
       annualSalary
     })

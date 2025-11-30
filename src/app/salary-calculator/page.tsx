@@ -7,7 +7,8 @@ import { Footer } from '@/components/Footer'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
-import { calculateSalary, formatNumber } from '@/lib/salary-calculator'
+import { calculateSalary } from '@/lib/salary-calculator'
+import { formatNumber } from '@/lib/calculations' // ✅ 경로 수정됨
 import type { SalaryResult } from '@/types'
 
 export default function SalaryCalculatorPage() {
@@ -53,7 +54,7 @@ export default function SalaryCalculatorPage() {
               💰 급여 계산기
             </h1>
             <p className="text-lg text-gray-600">
-              세전 급여에서 4대보험과 세금을 제외한 실수령액을 정확히 계산합니다
+              세전 급여에서 4대보험과 세금을 제외한 실수령액을 정확하게 계산합니다
             </p>
             <p className="text-sm text-gray-500 mt-2">
               📅 2025년 기준 | 국민연금 상한액 265,500원 적용
@@ -137,7 +138,7 @@ export default function SalaryCalculatorPage() {
               </Card>
 
               {/* 공제 내역 */}
-              <Card title="📊 공제 내역" subtitle="총 공제액: ₩" + formatNumber(result.totalDeductions)}>
+              <Card title="📊 공제 내역" subtitle={"총 공제액: " + formatNumber(result.totalDeductions) + "원"}>
                 <div className="space-y-4">
                   <DeductionItem
                     icon="🏥"

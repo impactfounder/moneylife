@@ -47,8 +47,8 @@ export default function PensionCalculator() {
               <Input
                 type="number"
                 value={input.currentAge}
-                onChange={(e) =>
-                  setInput({ ...input, currentAge: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, currentAge: Number(value) })
                 }
                 min={20}
                 max={70}
@@ -63,10 +63,10 @@ export default function PensionCalculator() {
               <Input
                 type="number"
                 value={input.averageMonthlyIncome}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
-                    averageMonthlyIncome: Number(e.target.value)
+                    averageMonthlyIncome: Number(value)
                   })
                 }
                 min={0}
@@ -81,8 +81,8 @@ export default function PensionCalculator() {
               <Input
                 type="number"
                 value={input.joinedYears}
-                onChange={(e) =>
-                  setInput({ ...input, joinedYears: Number(e.target.value) })
+                onChange={(value) =>
+                  setInput({ ...input, joinedYears: Number(value) })
                 }
                 min={0}
                 max={40}
@@ -97,10 +97,10 @@ export default function PensionCalculator() {
               <Input
                 type="number"
                 value={input.expectedRetirementAge}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
-                    expectedRetirementAge: Number(e.target.value)
+                    expectedRetirementAge: Number(value)
                   })
                 }
                 min={50}

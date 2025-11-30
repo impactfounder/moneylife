@@ -54,8 +54,8 @@ export default function IncomeTaxCalculator() {
             <Input
               type="number"
               value={input.totalIncome}
-              onChange={(e) =>
-                setInput({ ...input, totalIncome: Number(e.target.value) })
+              onChange={(value) =>
+                setInput({ ...input, totalIncome: Number(value) })
               }
               min={0}
               step={1000000}
@@ -73,12 +73,12 @@ export default function IncomeTaxCalculator() {
               <Input
                 type="number"
                 value={input.deductions.personalDeduction}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
                     deductions: {
                       ...input.deductions,
-                      personalDeduction: Number(e.target.value)
+                      personalDeduction: Number(value)
                     }
                   })
                 }
@@ -97,12 +97,12 @@ export default function IncomeTaxCalculator() {
               <Input
                 type="number"
                 value={input.deductions.insurancePremium}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
                     deductions: {
                       ...input.deductions,
-                      insurancePremium: Number(e.target.value)
+                      insurancePremium: Number(value)
                     }
                   })
                 }
@@ -118,12 +118,12 @@ export default function IncomeTaxCalculator() {
               <Input
                 type="number"
                 value={input.deductions.medicalExpense}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
                     deductions: {
                       ...input.deductions,
-                      medicalExpense: Number(e.target.value)
+                      medicalExpense: Number(value)
                     }
                   })
                 }
@@ -139,12 +139,12 @@ export default function IncomeTaxCalculator() {
               <Input
                 type="number"
                 value={input.deductions.educationExpense}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
                     deductions: {
                       ...input.deductions,
-                      educationExpense: Number(e.target.value)
+                      educationExpense: Number(value)
                     }
                   })
                 }
@@ -160,12 +160,12 @@ export default function IncomeTaxCalculator() {
               <Input
                 type="number"
                 value={input.deductions.donationExpense}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
                     deductions: {
                       ...input.deductions,
-                      donationExpense: Number(e.target.value)
+                      donationExpense: Number(value)
                     }
                   })
                 }
@@ -181,12 +181,12 @@ export default function IncomeTaxCalculator() {
               <Input
                 type="number"
                 value={input.deductions.cardExpense}
-                onChange={(e) =>
+                onChange={(value) =>
                   setInput({
                     ...input,
                     deductions: {
                       ...input.deductions,
-                      cardExpense: Number(e.target.value)
+                      cardExpense: Number(value)
                     }
                   })
                 }

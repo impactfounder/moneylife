@@ -14,15 +14,19 @@ export function Input({
   step,
   helpText,
   error,
-}: InputProps) {
+}: Partial<InputProps> & { onChange: (value: string) => void; value: string | number }) { 
+  // InputProps를 Partial로 만들고 필수값만 재정의하여 유연성 확보
+
   return (
     <div className="w-full">
-      <label className="block mb-2">
-        <span className="text-gray-700 font-semibold flex items-center gap-1">
-          {label}
-          {required && <span className="text-danger">*</span>}
-        </span>
-      </label>
+      {label && (
+        <label className="block mb-2">
+          <span className="text-gray-700 font-semibold flex items-center gap-1">
+            {label}
+            {required && <span className="text-danger">*</span>}
+          </span>
+        </label>
+      )}
       
       <div className="relative">
         <input

@@ -117,7 +117,7 @@ export function estimateGrossSalary(netSalary: number): number {
   const estimatedGross = netSalary / 0.82
   
   // 정확한 계산으로 재검증
-  const result = calculateSalary({ grossSalary: estimatedGross })
+  const result = calculateSalary({ grossSalary: estimatedGross, dependents: 0, childrenUnder20: 0 })
   
   if (Math.abs(result.netSalary - netSalary) < 10000) {
     return Math.round(estimatedGross)
@@ -129,7 +129,7 @@ export function estimateGrossSalary(netSalary: number): number {
   
   for (let i = 0; i < 20; i++) {
     const mid = (low + high) / 2
-    const testResult = calculateSalary({ grossSalary: mid })
+    const testResult = calculateSalary({ grossSalary: mid, dependents: 0, childrenUnder20: 0 })
     
     if (Math.abs(testResult.netSalary - netSalary) < 1000) {
       return Math.round(mid)
