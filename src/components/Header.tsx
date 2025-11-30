@@ -22,14 +22,11 @@ export function Header() {
           <Link href="/" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
             홈
           </Link>
-          <Link href="/salary-rank" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
-            연봉 순위
-          </Link>
           <Link href="/content" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
             콘텐츠
           </Link>
           <Link href="/#calculators" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
-            계산기 목록
+            계산기
           </Link>
         </nav>
 
@@ -60,13 +57,7 @@ export function Header() {
             >
               🏠 홈
             </Link>
-            <Link
-              href="/salary-rank"
-              className="px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              🏆 연봉 순위
-            </Link>
+
             <Link
               href="/content"
               className="px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors font-medium"
@@ -79,7 +70,7 @@ export function Header() {
               className="px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              🧮 계산기 목록
+              🧮 계산기
             </Link>
           </nav>
         </div>

@@ -21,15 +21,6 @@ import {
 
 const calculators: Calculator[] = [
   {
-    id: 'salary-rank',
-    name: '연봉 순위 테스트',
-    icon: '🏆',
-    description: '내 연봉이 대한민국, 전세계 상위 몇 %인지 1초만에 확인하세요',
-    href: '/salary-rank',
-    popular: true,
-    badge: '바이럴'
-  },
-  {
     id: 'salary-calculator',
     name: '급여 계산기',
     icon: '💰',
