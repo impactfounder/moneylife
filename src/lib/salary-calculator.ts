@@ -115,32 +115,32 @@ function calculateSimplifiedIncomeTax(
 export function estimateGrossSalary(netSalary: number): number {
   // 간단한 역산 공식 (평균 공제율 약 18%)
   const estimatedGross = netSalary / 0.82
-  
+
   // 정확한 계산으로 재검증
   const result = calculateSalary({ grossSalary: estimatedGross, dependents: 0, childrenUnder20: 0 })
-  
+
   if (Math.abs(result.netSalary - netSalary) < 10000) {
     return Math.round(estimatedGross)
   }
-  
+
   // 이진 탐색으로 정확한 값 찾기
   let low = netSalary
   let high = netSalary * 1.5
-  
+
   for (let i = 0; i < 20; i++) {
     const mid = (low + high) / 2
     const testResult = calculateSalary({ grossSalary: mid, dependents: 0, childrenUnder20: 0 })
-    
+
     if (Math.abs(testResult.netSalary - netSalary) < 1000) {
       return Math.round(mid)
     }
-    
+
     if (testResult.netSalary < netSalary) {
       low = mid
     } else {
       high = mid
     }
   }
-  
+
   return Math.round((low + high) / 2)
 }

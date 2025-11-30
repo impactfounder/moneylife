@@ -10,38 +10,35 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#2563eb',
-          dark: '#1e40af',
-          light: '#60a5fa',
+          DEFAULT: '#0f172a', // Slate-900 (Premium Dark)
+          dark: '#020617',    // Slate-950
+          light: '#334155',   // Slate-700
         },
         secondary: {
-          DEFAULT: '#10b981',
-          dark: '#059669',
-          light: '#34d399',
+          DEFAULT: '#0d9488', // Teal-600 (Professional Accent)
+          dark: '#0f766e',    // Teal-700
+          light: '#14b8a6',   // Teal-500
         },
-        warning: {
-          DEFAULT: '#f59e0b',
-          dark: '#d97706',
-          light: '#fbbf24',
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
         },
-        danger: {
-          DEFAULT: '#ef4444',
-          dark: '#dc2626',
-          light: '#f87171',
-        },
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        'card': '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
+        'card-hover': '0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05)',
       },
-      fontFamily: {
-        sans: [
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Pretendard',
-          'Apple SD Gothic Neo',
-          'sans-serif',
-        ],
-      },
-      boxShadow: {
-        'card': '0 2px 8px rgba(0, 0, 0, 0.1)',
-        'card-hover': '0 4px 16px rgba(0, 0, 0, 0.15)',
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-mesh': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       },
     },
   },

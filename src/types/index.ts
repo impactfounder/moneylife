@@ -53,7 +53,7 @@ export type CalculatorType =
   | 'severance-calculator'
   | 'income-tax-calculator'
   | 'capital-gains-tax-calculator'
-  | 'venture-investment';
+  | 'venture-investment-tax-calculator';
 
 export interface Calculator {
   id: CalculatorType;
@@ -94,6 +94,8 @@ export interface PercentileData {
   p50: number;
   p75: number;
   p90: number;
+  p95: number;
+  p99: number;
 }
 
 // ============================================
