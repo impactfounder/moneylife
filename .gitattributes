@@ -1,0 +1,17 @@
+# GitHub 언어 감지 설정
+# TypeScript를 주요 언어로 설정
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# HTML 파일은 언어 통계에서 제외 (선택사항)
+*.html linguist-documentation
+
+# 설정 파일들 제외
+*.config.js linguist-generated=false
+*.config.ts linguist-generated=false
+next-env.d.ts linguist-generated=true
+
+# 빌드 산출물 제외
+*.zip linguist-vendored
+repomix-output.xml linguist-vendored
+
