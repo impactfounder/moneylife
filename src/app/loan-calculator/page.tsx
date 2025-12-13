@@ -90,8 +90,7 @@ export default function LoanCalculatorPage() {
               {/* 계산기 카드 */}
               <div className="w-full max-w-lg">
                 <div className="glass-effect rounded-3xl p-8 shadow-2xl border border-white/50 relative overflow-hidden bg-white/80 backdrop-blur-xl">
-                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
-
+                  
                   {!showResult ? (
                     <form onSubmit={handleCalculate} className="space-y-6">
                       {/* 대출 금액 */}

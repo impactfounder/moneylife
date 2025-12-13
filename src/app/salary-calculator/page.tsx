@@ -4,9 +4,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { Card } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateSalary } from '@/lib/salary-calculator'
@@ -15,14 +12,24 @@ import type { SalaryResult } from '@/types'
 
 export default function SalaryCalculatorPage() {
   const [grossSalary, setGrossSalary] = useState('')
-  const [dependents, setDependents] = useState('0')
+  const [dependents, setDependents] = useState('1')
   const [childrenUnder20, setChildrenUnder20] = useState('0')
   const [result, setResult] = useState<SalaryResult | null>(null)
+  const [showResult, setShowResult] = useState(false)
+
+  const handleFormatInput = (value: string, setter: (v: string) => void) => {
+    const numbers = value.replace(/[^0-9]/g, '')
+    if (numbers) {
+      setter(formatNumber(parseInt(numbers)))
+    } else {
+      setter('')
+    }
+  }
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const gross = parseInt(grossSalary)
+    const gross = parseInt(grossSalary.replace(/,/g, '')) * 10000 // 만원 -> 원
     if (!gross || gross <= 0) {
       alert('세전 급여를 입력해주세요')
       return
@@ -30,16 +37,18 @@ export default function SalaryCalculatorPage() {
 
     const calcResult = calculateSalary({
       grossSalary: gross,
-      dependents: parseInt(dependents) || 0,
+      dependents: parseInt(dependents) || 1,
       childrenUnder20: parseInt(childrenUnder20) || 0,
     })
 
     setResult(calcResult)
+    setShowResult(true)
   }
 
   const handleReset = () => {
+    setShowResult(false)
     setGrossSalary('')
-    setDependents('0')
+    setDependents('1')
     setChildrenUnder20('0')
     setResult(null)
   }
@@ -48,213 +57,254 @@ export default function SalaryCalculatorPage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-gradient-to-b from-green-50 to-white py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
-          {/* 헤더 */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              💰 급여 계산기
-            </h1>
-            <p className="text-lg text-gray-600">
-              세전 급여에서 4대보험과 세금을 제외한 실수령액을 정확하게 계산합니다
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              📅 2025년 기준 | 국민연금 상한액 265,500원 적용
-            </p>
+      <main className="min-h-screen">
+        {/* 히어로 섹션 */}
+        <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden bg-slate-50">
+          {/* 배경 그라데이션 */}
+          <div className="absolute inset-0 w-full h-full">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-green-400/10 blur-[100px]"></div>
+            <div className="absolute top-[10%] right-[-5%] w-[30%] h-[30%] rounded-full bg-emerald-400/10 blur-[100px]"></div>
+            <div className="absolute bottom-[-10%] left-[20%] w-[30%] h-[30%] rounded-full bg-teal-400/10 blur-[100px]"></div>
           </div>
 
-          {/* 입력 폼 */}
-          <Card title="📝 급여 정보 입력" subtitle="세전 급여(총급여)를 입력하세요">
-            <form onSubmit={handleCalculate} className="space-y-6">
-              <Input
-                label="💵 세전 급여 (월)"
-                value={grossSalary}
-                onChange={setGrossSalary}
-                type="number"
-                placeholder="예: 3500000"
-                unit="원"
-                required
-                min={0}
-                step={10000}
-                helpText="4대보험과 세금을 제외하기 전 금액"
-              />
-
-              <Input
-                label="👨‍👩‍👧‍👦 부양가족 수"
-                value={dependents}
-                onChange={setDependents}
-                type="number"
-                placeholder="0"
-                unit="명"
-                min={0}
-                max={10}
-                helpText="본인 제외, 배우자 및 부모님 등 (세금 공제)"
-              />
-
-              <Input
-                label="👶 20세 이하 자녀 수"
-                value={childrenUnder20}
-                onChange={setChildrenUnder20}
-                type="number"
-                placeholder="0"
-                unit="명"
-                min={0}
-                max={10}
-                helpText="자녀세액공제 대상 (추가 공제)"
-              />
-
-              <div className="flex gap-4">
-                <Button type="submit" className="flex-1" size="lg">
-                  💰 실수령액 계산하기
-                </Button>
-                <Button type="button" onClick={handleReset} variant="secondary" size="lg">
-                  🔄 초기화
-                </Button>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-col items-center justify-center">
+              {/* 타이틀 영역 */}
+              <div className="text-center mb-10">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
+                  2025년 4대보험 요율 적용
+                </div>
+                <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+                  급여 실수령액 계산기
+                </h1>
+                <p className="text-lg text-slate-600 max-w-xl mx-auto">
+                  세전 급여에서 4대보험과 세금을 제외한 실수령액을 계산합니다
+                </p>
               </div>
-            </form>
-          </Card>
 
-          {/* 결과 표시 */}
-          {result && (
-            <div className="mt-8 space-y-6 animate-fade-in">
-              {/* 결과 요약 */}
-              <Card className="bg-gradient-to-r from-primary to-blue-600 text-white">
-                <div className="text-center">
-                  <p className="text-sm opacity-90 mb-2">월 실수령액</p>
-                  <h2 className="text-5xl font-bold mb-2">
-                    {formatNumber(result.netSalary)}원
-                  </h2>
-                  <p className="text-sm opacity-90">
-                    세전 {formatNumber(result.grossSalary)}원 →{' '}
-                    <span className="font-semibold">
-                      약 {((result.netSalary / result.grossSalary) * 100).toFixed(1)}% 수령
-                    </span>
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-white/20">
-                    <p className="text-sm">
-                      연봉 약 <span className="font-bold text-lg">{result.annualGross}만원</span> →
-                      실수령 <span className="font-bold text-lg">{result.annualNet}만원</span>
-                    </p>
-                  </div>
+              {/* 계산기 카드 */}
+              <div className="w-full max-w-lg">
+                <div className="glass-effect rounded-3xl p-8 shadow-2xl border border-white/50 relative overflow-hidden bg-white/80 backdrop-blur-xl">
+                  {!showResult ? (
+                    <form onSubmit={handleCalculate} className="space-y-6">
+                      {/* 세전 급여 */}
+                      <div>
+                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                          세전 급여 (월)
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            value={grossSalary}
+                            onChange={(e) => handleFormatInput(e.target.value, setGrossSalary)}
+                            placeholder="예: 350"
+                            className="w-full px-4 py-4 text-2xl font-bold text-center border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:ring-2 focus:ring-slate-200 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900"
+                          />
+                          <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
+                            만원
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-400 mt-2 text-center">
+                          예: 월 350만원 = 350
+                        </p>
+                      </div>
+
+                      {/* 부양가족 수 */}
+                      <div>
+                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                          부양가족 수 (본인 포함)
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="number"
+                            value={dependents}
+                            onChange={(e) => setDependents(e.target.value)}
+                            placeholder="1"
+                            min="1"
+                            max="10"
+                            className="w-full px-4 py-4 text-2xl font-bold text-center border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:ring-2 focus:ring-slate-200 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900"
+                          />
+                          <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
+                            명
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 20세 이하 자녀 수 */}
+                      <div>
+                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                          20세 이하 자녀 수
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="number"
+                            value={childrenUnder20}
+                            onChange={(e) => setChildrenUnder20(e.target.value)}
+                            placeholder="0"
+                            min="0"
+                            max="10"
+                            className="w-full px-4 py-4 text-2xl font-bold text-center border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:ring-2 focus:ring-slate-200 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900"
+                          />
+                          <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
+                            명
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 계산 버튼 */}
+                      <button
+                        type="submit"
+                        className="w-full bg-slate-900 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-slate-200 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-300 transition-all duration-300 transform hover:-translate-y-0.5"
+                      >
+                        실수령액 계산하기
+                      </button>
+                    </form>
+                  ) : (
+                    <div className="space-y-6">
+                      {/* 결과 헤더 */}
+                      <div className="text-center">
+                        <p className="text-sm text-slate-500 mb-2">월 실수령액</p>
+                        <div className="text-5xl font-black text-slate-900 mb-2 tracking-tighter">
+                          {formatNumber(Math.round(result!.netSalary / 10000))}
+                          <span className="text-2xl font-bold text-slate-500 ml-1">만원</span>
+                        </div>
+                        <p className="text-sm text-slate-400">
+                          세전 대비 약 {((result!.netSalary / result!.grossSalary) * 100).toFixed(1)}% 수령
+                        </p>
+                      </div>
+
+                      {/* 상세 결과 */}
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
+                          <span className="text-slate-600 font-medium">세전 급여</span>
+                          <span className="text-lg font-bold text-slate-900">
+                            {formatNumber(Math.round(result!.grossSalary / 10000))}만원
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center p-4 bg-red-50 rounded-xl">
+                          <span className="text-slate-600 font-medium">총 공제액</span>
+                          <span className="text-lg font-bold text-red-600">
+                            -{formatNumber(Math.round(result!.totalDeductions / 10000))}만원
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center p-4 bg-blue-50 rounded-xl">
+                          <span className="text-slate-600 font-medium">실수령액</span>
+                          <span className="text-xl font-bold text-blue-600">
+                            {formatNumber(Math.round(result!.netSalary / 10000))}만원
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* 공제 상세 내역 */}
+                      <div className="pt-4 border-t border-slate-200">
+                        <p className="text-sm font-bold text-slate-700 mb-3">공제 상세 내역</p>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">국민연금</span>
+                            <span className="text-slate-700">-{formatNumber(result!.nationalPension)}원</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">건강보험</span>
+                            <span className="text-slate-700">-{formatNumber(result!.healthInsurance)}원</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">장기요양보험</span>
+                            <span className="text-slate-700">-{formatNumber(result!.longTermCare)}원</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">고용보험</span>
+                            <span className="text-slate-700">-{formatNumber(result!.employmentInsurance)}원</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">소득세</span>
+                            <span className="text-slate-700">-{formatNumber(result!.incomeTax)}원</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">지방소득세</span>
+                            <span className="text-slate-700">-{formatNumber(result!.localIncomeTax)}원</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 버튼 */}
+                      <div className="flex gap-3">
+                        <button
+                          onClick={handleReset}
+                          className="flex-1 py-3.5 border-2 border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-colors"
+                        >
+                          다시 계산
+                        </button>
+                        <Link
+                          href="/salary-rank"
+                          className="flex-1 bg-slate-900 text-white py-3.5 rounded-xl font-bold hover:bg-slate-800 transition-colors text-center shadow-lg shadow-slate-200"
+                        >
+                          연봉 순위 확인
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </Card>
 
-              {/* 공제 내역 */}
-              <Card title="📊 공제 내역" subtitle={"총 공제액: " + formatNumber(result.totalDeductions) + "원"}>
-                <div className="space-y-4">
-                  <DeductionItem
-                    icon="🏥"
-                    label="국민연금 (4.5%)"
-                    amount={result.nationalPension}
-                    color="bg-blue-100 text-blue-700"
-                  />
-                  <DeductionItem
-                    icon="⚕️"
-                    label="건강보험 (3.545%)"
-                    amount={result.healthInsurance}
-                    color="bg-green-100 text-green-700"
-                  />
-                  <DeductionItem
-                    icon="👴"
-                    label="장기요양 (12.95% of 건강보험)"
-                    amount={result.longTermCare}
-                    color="bg-purple-100 text-purple-700"
-                  />
-                  <DeductionItem
-                    icon="💼"
-                    label="고용보험 (0.9%)"
-                    amount={result.employmentInsurance}
-                    color="bg-yellow-100 text-yellow-700"
-                  />
-                  <div className="border-t border-gray-200 my-4" />
-                  <DeductionItem
-                    icon="📝"
-                    label="소득세"
-                    amount={result.incomeTax}
-                    color="bg-red-100 text-red-700"
-                  />
-                  <DeductionItem
-                    icon="🏛️"
-                    label="지방소득세 (10% of 소득세)"
-                    amount={result.localIncomeTax}
-                    color="bg-orange-100 text-orange-700"
-                  />
-                </div>
-              </Card>
-
-              {/* 도움말 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="bg-blue-50">
-                  <h4 className="font-bold text-gray-900 mb-2">💡 TIP: 연봉 협상</h4>
-                  <p className="text-sm text-gray-600 mb-3">
-                    희망 실수령액이 있다면 세전 급여로 역계산하세요!
-                  </p>
-                  <p className="text-sm text-primary font-semibold">
-                    실수령 {formatNumber(result.netSalary)}원 →
-                    세전 약 {formatNumber(result.grossSalary)}원 필요
-                  </p>
-                </Card>
-
-                <Card className="bg-green-50">
-                  <h4 className="font-bold text-gray-900 mb-2">🏆 내 연봉 순위</h4>
-                  <p className="text-sm text-gray-600 mb-3">
-                    내 연봉이 대한민국 상위 몇 %인지 확인해보세요
-                  </p>
-                  <Link
-                    href="/salary-rank"
-                    className="text-secondary font-semibold text-sm hover:underline"
-                  >
-                    연봉 순위 테스트 →
-                  </Link>
-                </Card>
+                {/* 안내 문구 */}
+                <p className="text-center text-xs text-slate-400 mt-4">
+                  * 2025년 4대보험 요율 및 간이세액표 기준
+                </p>
               </div>
             </div>
-          )}
+          </div>
+        </section>
 
-          {/* 안내사항 */}
-          <Card className="mt-8 bg-gray-50">
-            <h3 className="font-bold text-gray-900 mb-4">📌 계산 기준 안내</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>✓ 2025년 4대보험 요율 적용</li>
-              <li>✓ 국민연금 상한액: 265,500원 (월 5,900,000원 초과 시)</li>
-              <li>✓ 간이세액표 기준 소득세 계산</li>
-              <li>✓ 부양가족 및 자녀 공제 반영</li>
-              <li>✓ 실제 급여와 차이가 있을 수 있으니 참고용으로 활용하세요</li>
-            </ul>
-          </Card>
+        {/* 계산 기준 안내 */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="bg-slate-900 rounded-2xl p-8 text-white">
+              <h2 className="text-xl font-bold mb-6 text-center">계산 기준 안내</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">2025년 4대보험 요율 적용</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">국민연금 상한액: 월 617만원</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">건강보험료율: 7.09% (근로자 3.545%)</span>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">장기요양보험료율: 건강보험의 12.95%</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">고용보험료율: 0.9%</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">간이세액표 기준 소득세 계산</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-slate-400 mt-6 text-center">
+                출처: 국민건강보험공단, 국세청 간이세액표 (2025년)
+              </p>
+            </div>
+          </div>
+        </section>
 
-          {/* 관련 금융 가이드 */}
-          <RelatedGuides posts={getPostsByCalculator('/salary-calculator')} />
-        </div>
+        {/* 관련 가이드 */}
+        <section className="py-16 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <RelatedGuides posts={getPostsByCalculator('/salary-calculator')} />
+          </div>
+        </section>
       </main>
 
       <Footer />
     </>
-  )
-}
-
-function DeductionItem({
-  icon,
-  label,
-  amount,
-  color,
-}: {
-  icon: string
-  label: string
-  amount: number
-  color: string
-}) {
-  return (
-    <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
-      <div className="flex items-center gap-3">
-        <span className={`text-2xl w-10 h-10 flex items-center justify-center rounded-lg ${color}`}>
-          {icon}
-        </span>
-        <span className="text-gray-700 font-medium">{label}</span>
-      </div>
-      <span className="text-lg font-bold text-gray-900">
-        -{formatNumber(amount)}원
-      </span>
-    </div>
   )
 }
