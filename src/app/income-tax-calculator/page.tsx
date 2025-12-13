@@ -13,6 +13,18 @@ import {
   type IncomeTaxResult
 } from '@/lib/income-tax-calculator'
 import { formatNumber } from '@/lib/calculations'
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from 'chart.js'
+import { Pie, Bar } from 'react-chartjs-2'
+
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement)
 
 export default function IncomeTaxCalculatorPage() {
   const [totalIncome, setTotalIncome] = useState('')
@@ -68,6 +80,62 @@ export default function IncomeTaxCalculatorPage() {
     setInsurancePremium('')
     setCardExpense('')
     setResult(null)
+  }
+
+  // 파이 차트 데이터 (세금 vs 순소득)
+  const pieChartData = result ? {
+    labels: ['종합소득세', '순소득 (세후)'],
+    datasets: [{
+      data: [
+        Math.round(result.finalTax / 10000),
+        Math.round((result.totalIncome - result.finalTax) / 10000)
+      ],
+      backgroundColor: ['#ef4444', '#10b981'],
+      borderWidth: 0,
+    }],
+  } : null
+
+  // 바 차트 데이터 (세율 구간별 세금)
+  const barChartData = result && result.breakdown.length > 0 ? {
+    labels: result.breakdown.map(item => item.bracket),
+    datasets: [{
+      label: '구간별 세금',
+      data: result.breakdown.map(item => Math.round(item.tax / 10000)),
+      backgroundColor: [
+        '#22c55e', '#84cc16', '#eab308', '#f97316', '#ef4444', '#dc2626', '#b91c1c', '#991b1b'
+      ],
+      borderRadius: 8,
+    }],
+  } : null
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+      },
+    },
+  }
+
+  const barChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function(value: number | string) {
+            return formatNumber(Number(value)) + '만'
+          }
+        }
+      }
+    }
   }
 
   return (
@@ -233,21 +301,6 @@ export default function IncomeTaxCalculatorPage() {
                         </div>
                       </div>
 
-                      {/* 세율 구간 */}
-                      {result!.breakdown.length > 0 && (
-                        <div className="pt-4 border-t border-slate-200">
-                          <p className="text-sm font-bold text-slate-700 mb-3">세율 구간별 상세</p>
-                          <div className="space-y-2 max-h-32 overflow-y-auto">
-                            {result!.breakdown.map((item, index) => (
-                              <div key={index} className="flex justify-between text-sm">
-                                <span className="text-slate-500">{item.bracket} ({item.rate}%)</span>
-                                <span className="text-slate-700 font-medium">{formatNumber(Math.round(item.tax / 10000))}만원</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
                       {/* 버튼 */}
                       <div className="flex gap-3">
                         <button
@@ -271,6 +324,197 @@ export default function IncomeTaxCalculatorPage() {
                 <p className="text-center text-xs text-slate-400 mt-4">
                   * 간이 계산이며, 실제 세금은 상황에 따라 달라질 수 있습니다
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 차트 섹션 */}
+        {showResult && result && (
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">세금 분석</h2>
+
+              {/* 요약 카드 */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">총 소득</p>
+                  <p className="text-xl font-bold text-slate-900">
+                    {formatNumber(Math.round(result.totalIncome / 10000))}만원
+                  </p>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">과세표준</p>
+                  <p className="text-xl font-bold text-blue-600">
+                    {formatNumber(Math.round(result.taxableIncome / 10000))}만원
+                  </p>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">결정세액</p>
+                  <p className="text-xl font-bold text-red-600">
+                    {formatNumber(Math.round(result.finalTax / 10000))}만원
+                  </p>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">실효세율</p>
+                  <p className="text-xl font-bold text-purple-600">{result.effectiveTaxRate.toFixed(2)}%</p>
+                </div>
+              </div>
+
+              {/* 차트 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {pieChartData && (
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 text-center">세금 vs 순소득</h3>
+                    <div className="h-64">
+                      <Pie data={pieChartData} options={chartOptions} />
+                    </div>
+                  </div>
+                )}
+
+                {barChartData && (
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 text-center">구간별 세금</h3>
+                    <div className="h-64">
+                      <Bar data={barChartData} options={barChartOptions} />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* 세율 구간 상세 */}
+              {result.breakdown.length > 0 && (
+                <div className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
+                  <h3 className="text-lg font-bold text-slate-900 p-4 border-b">세율 구간별 상세</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead className="bg-slate-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left font-bold text-slate-700">과세표준 구간</th>
+                          <th className="px-4 py-3 text-center font-bold text-slate-700">세율</th>
+                          <th className="px-4 py-3 text-right font-bold text-slate-700">세금</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {result.breakdown.map((item, index) => (
+                          <tr key={index} className="hover:bg-slate-50 transition-colors">
+                            <td className="px-4 py-3 font-medium text-slate-900">{item.bracket}</td>
+                            <td className="px-4 py-3 text-center text-blue-600 font-semibold">{item.rate}%</td>
+                            <td className="px-4 py-3 text-right font-bold text-slate-900">
+                              {formatNumber(Math.round(item.tax / 10000))}만원
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* 종합소득세 가이드 */}
+        <section className="py-16 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">종합소득세 가이드</h2>
+
+            <div className="space-y-8">
+              {/* 종합소득세란 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">종합소득세란?</h3>
+                <p className="text-slate-600 mb-4">
+                  종합소득세는 1년 동안 발생한 모든 소득을 합산하여 과세하는 세금입니다.
+                  근로소득, 사업소득, 이자소득, 배당소득, 연금소득, 기타소득 등이 포함됩니다.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div className="bg-slate-50 rounded-xl p-3 text-center">
+                    <span className="text-sm text-slate-600">근로소득</span>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-3 text-center">
+                    <span className="text-sm text-slate-600">사업소득</span>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-3 text-center">
+                    <span className="text-sm text-slate-600">이자소득</span>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-3 text-center">
+                    <span className="text-sm text-slate-600">배당소득</span>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-3 text-center">
+                    <span className="text-sm text-slate-600">연금소득</span>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-3 text-center">
+                    <span className="text-sm text-slate-600">기타소득</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 주요 공제 항목 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">주요 공제 항목</h3>
+                <div className="space-y-4">
+                  <div className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                    <h4 className="font-bold text-blue-700 mb-2">인적공제</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• 본인: 150만원</li>
+                      <li>• 배우자: 150만원</li>
+                      <li>• 부양가족: 1인당 150만원</li>
+                      <li>• 경로우대(70세↑): 1인당 100만원 추가</li>
+                    </ul>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
+                    <h4 className="font-bold text-green-700 mb-2">특별소득공제</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• 보험료공제: 연 100만원 한도</li>
+                      <li>• 의료비공제: 총급여 3% 초과분</li>
+                      <li>• 교육비공제: 자녀 1인당 연 900만원</li>
+                      <li>• 주택자금공제: 청약저축, 주담대이자</li>
+                    </ul>
+                  </div>
+                  <div className="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-500">
+                    <h4 className="font-bold text-purple-700 mb-2">세액공제</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• 연금저축/IRP: 연 최대 700만원 (13.2~16.5%)</li>
+                      <li>• 신용카드공제: 총급여 25% 초과분</li>
+                      <li>• 기부금공제: 정치자금, 종교단체 등</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* 절세 팁 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">절세 전략</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-amber-50 rounded-xl p-4">
+                    <h4 className="font-bold text-amber-700 mb-2">연금저축/IRP 활용</h4>
+                    <p className="text-sm text-slate-600">
+                      연금저축과 IRP에 납입하면 세액공제를 받을 수 있습니다.
+                      총 급여 5,500만원 이하: 16.5%, 초과: 13.2% 공제
+                    </p>
+                  </div>
+                  <div className="bg-blue-50 rounded-xl p-4">
+                    <h4 className="font-bold text-blue-700 mb-2">부양가족 등록</h4>
+                    <p className="text-sm text-slate-600">
+                      소득이 없는 부모님, 자녀 등을 부양가족으로 등록하면
+                      1인당 150만원의 공제를 받을 수 있습니다.
+                    </p>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4">
+                    <h4 className="font-bold text-green-700 mb-2">신용카드 전략</h4>
+                    <p className="text-sm text-slate-600">
+                      총급여 25% 초과분부터 공제됩니다.
+                      체크카드, 현금영수증이 공제율이 더 높습니다.
+                    </p>
+                  </div>
+                  <div className="bg-purple-50 rounded-xl p-4">
+                    <h4 className="font-bold text-purple-700 mb-2">의료비/교육비 증빙</h4>
+                    <p className="text-sm text-slate-600">
+                      의료비는 총급여 3% 초과분부터 공제됩니다.
+                      영수증을 철저히 챙기세요.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -309,8 +553,29 @@ export default function IncomeTaxCalculatorPage() {
           </div>
         </section>
 
+        {/* 참고자료 */}
+        <section className="py-12 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h3 className="text-lg font-bold text-slate-900 mb-4">참고자료</h3>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://www.nts.go.kr" target="_blank" rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-slate-100 rounded-lg text-sm text-slate-600 transition-colors border border-slate-200">
+                국세청
+              </a>
+              <a href="https://www.hometax.go.kr" target="_blank" rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-slate-100 rounded-lg text-sm text-slate-600 transition-colors border border-slate-200">
+                홈택스
+              </a>
+              <a href="https://www.moef.go.kr" target="_blank" rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-slate-100 rounded-lg text-sm text-slate-600 transition-colors border border-slate-200">
+                기획재정부
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* 관련 가이드 */}
-        <section className="py-16 bg-slate-50">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/income-tax-calculator')} />
           </div>

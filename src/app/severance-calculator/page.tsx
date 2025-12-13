@@ -9,6 +9,18 @@ import { getPostsByCalculator } from '@/data/posts'
 import { calculateSeverance } from '@/lib/severance-calculator'
 import { formatNumber } from '@/lib/calculations'
 import type { SeveranceResult } from '@/types'
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from 'chart.js'
+import { Pie, Bar } from 'react-chartjs-2'
+
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement)
 
 export default function SeveranceCalculatorPage() {
   const [startDate, setStartDate] = useState('')
@@ -56,6 +68,64 @@ export default function SeveranceCalculatorPage() {
     setEndDate('')
     setAverageSalary('')
     setResult(null)
+  }
+
+  // 파이 차트 데이터 (실수령 vs 세금)
+  const pieChartData = result && result.workingDays >= 365 ? {
+    labels: ['실수령 퇴직금', '퇴직소득세'],
+    datasets: [{
+      data: [
+        Math.round(result.netSeverance / 10000),
+        Math.round(result.severanceTax / 10000)
+      ],
+      backgroundColor: ['#10b981', '#ef4444'],
+      borderWidth: 0,
+    }],
+  } : null
+
+  // 바 차트 데이터 (세전/세금/실수령 비교)
+  const barChartData = result && result.workingDays >= 365 ? {
+    labels: ['세전 퇴직금', '퇴직소득세', '실수령 퇴직금'],
+    datasets: [{
+      data: [
+        Math.round(result.severancePay / 10000),
+        Math.round(result.severanceTax / 10000),
+        Math.round(result.netSeverance / 10000)
+      ],
+      backgroundColor: ['#3b82f6', '#ef4444', '#10b981'],
+      borderWidth: 0,
+      borderRadius: 8,
+    }],
+  } : null
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+      },
+    },
+  }
+
+  const barChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function(value: number | string) {
+            return formatNumber(Number(value)) + '만'
+          }
+        }
+      }
+    }
   }
 
   return (
@@ -232,6 +302,176 @@ export default function SeveranceCalculatorPage() {
           </div>
         </section>
 
+        {/* 차트 섹션 */}
+        {showResult && result && result.workingDays >= 365 && (
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">퇴직금 분석</h2>
+
+              {/* 요약 카드 */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">근속 기간</p>
+                  <p className="text-xl font-bold text-slate-900">{result.workingYears}년</p>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">3개월 평균임금</p>
+                  <p className="text-xl font-bold text-blue-600">
+                    {formatNumber(parseInt(averageSalary.replace(/,/g, '')))}만원
+                  </p>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">퇴직소득세</p>
+                  <p className="text-xl font-bold text-red-600">
+                    {formatNumber(Math.round(result.severanceTax / 10000))}만원
+                  </p>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-sm text-slate-500 mb-1">세금 비율</p>
+                  <p className="text-xl font-bold text-purple-600">
+                    {result.severancePay > 0 ? ((result.severanceTax / result.severancePay) * 100).toFixed(1) : 0}%
+                  </p>
+                </div>
+              </div>
+
+              {/* 차트 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {pieChartData && (
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 text-center">실수령 vs 세금</h3>
+                    <div className="h-64">
+                      <Pie data={pieChartData} options={chartOptions} />
+                    </div>
+                  </div>
+                )}
+
+                {barChartData && (
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 text-center">금액 비교</h3>
+                    <div className="h-64">
+                      <Bar data={barChartData} options={barChartOptions} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 퇴직금 가이드 */}
+        <section className="py-16 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">퇴직금 가이드</h2>
+
+            <div className="space-y-8">
+              {/* 퇴직금 계산 방법 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">퇴직금 계산 방법</h3>
+                <div className="bg-slate-50 rounded-xl p-4 mb-4">
+                  <p className="text-center font-mono text-slate-700">
+                    퇴직금 = <span className="text-blue-600 font-bold">1일 평균임금</span> × <span className="text-green-600 font-bold">30일</span> × <span className="text-purple-600 font-bold">(재직일수 ÷ 365)</span>
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-blue-50 rounded-xl p-4">
+                    <h4 className="font-bold text-blue-700 mb-2">1일 평균임금</h4>
+                    <p className="text-sm text-slate-600">
+                      퇴직 전 3개월간 지급받은 임금 총액을 그 기간의 총 일수로 나눈 금액
+                    </p>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4">
+                    <h4 className="font-bold text-green-700 mb-2">30일</h4>
+                    <p className="text-sm text-slate-600">
+                      1년 근무 시 30일분의 평균임금을 퇴직금으로 지급
+                    </p>
+                  </div>
+                  <div className="bg-purple-50 rounded-xl p-4">
+                    <h4 className="font-bold text-purple-700 mb-2">재직일수</h4>
+                    <p className="text-sm text-slate-600">
+                      입사일부터 퇴사일까지의 총 일수 (휴직 기간 포함)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 퇴직소득세 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">퇴직소득세 이해하기</h3>
+                <div className="space-y-4">
+                  <div className="bg-slate-50 rounded-xl p-4">
+                    <h4 className="font-bold text-slate-900 mb-2">근속연수공제</h4>
+                    <p className="text-sm text-slate-600 mb-2">
+                      근속 기간에 따라 퇴직금에서 일정 금액을 공제합니다.
+                    </p>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• 5년 이하: 연 30만원</li>
+                      <li>• 10년 이하: 150만원 + (5년 초과 연수 × 50만원)</li>
+                      <li>• 20년 이하: 400만원 + (10년 초과 연수 × 80만원)</li>
+                      <li>• 20년 초과: 1,200만원 + (20년 초과 연수 × 120만원)</li>
+                    </ul>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-4">
+                    <h4 className="font-bold text-slate-900 mb-2">퇴직소득세 계산</h4>
+                    <p className="text-sm text-slate-600">
+                      퇴직소득 = (퇴직금 - 근속연수공제) ÷ 근속연수 × 12<br/>
+                      환산급여에 기본세율을 적용하여 산출세액 결정
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 퇴직금 수령 방법 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">퇴직금 수령 방법 비교</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-slate-50 rounded-xl p-4 border-l-4 border-blue-500">
+                    <h4 className="font-bold text-slate-900 mb-2">일시금 수령</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• 퇴직 시 한번에 전액 수령</li>
+                      <li>• 퇴직소득세 즉시 납부</li>
+                      <li>• 목돈 필요 시 유리</li>
+                    </ul>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl p-4 border-l-4 border-green-500">
+                    <h4 className="font-bold text-slate-900 mb-2">IRP(개인형퇴직연금) 이체</h4>
+                    <ul className="text-sm text-slate-600 space-y-1">
+                      <li>• 퇴직소득세 30~40% 감면</li>
+                      <li>• 연금으로 분할 수령 가능</li>
+                      <li>• 추가 운용 수익 기대</li>
+                      <li>• 55세 이후 연금 수령</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* 퇴직연금 유형 */}
+              <div className="bg-white rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">퇴직연금 유형</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-amber-50 rounded-xl p-4">
+                    <h4 className="font-bold text-amber-700 mb-2">DB형 (확정급여형)</h4>
+                    <p className="text-sm text-slate-600">
+                      퇴직 시 받을 급여가 미리 확정. 회사가 운용 책임, 근로자는 안정적 수령
+                    </p>
+                  </div>
+                  <div className="bg-blue-50 rounded-xl p-4">
+                    <h4 className="font-bold text-blue-700 mb-2">DC형 (확정기여형)</h4>
+                    <p className="text-sm text-slate-600">
+                      회사 납입금이 확정. 근로자가 직접 운용, 수익률에 따라 퇴직금 변동
+                    </p>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4">
+                    <h4 className="font-bold text-green-700 mb-2">IRP (개인형)</h4>
+                    <p className="text-sm text-slate-600">
+                      개인이 추가 납입 가능. 세액공제 혜택, 자유로운 운용 가능
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 계산 기준 안내 */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -274,8 +514,29 @@ export default function SeveranceCalculatorPage() {
           </div>
         </section>
 
+        {/* 참고자료 */}
+        <section className="py-12 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h3 className="text-lg font-bold text-slate-900 mb-4">참고자료</h3>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://www.moel.go.kr" target="_blank" rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-slate-100 rounded-lg text-sm text-slate-600 transition-colors border border-slate-200">
+                고용노동부
+              </a>
+              <a href="https://www.nts.go.kr" target="_blank" rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-slate-100 rounded-lg text-sm text-slate-600 transition-colors border border-slate-200">
+                국세청
+              </a>
+              <a href="https://www.nps.or.kr" target="_blank" rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-slate-100 rounded-lg text-sm text-slate-600 transition-colors border border-slate-200">
+                국민연금공단
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* 관련 가이드 */}
-        <section className="py-16 bg-slate-50">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/severance-calculator')} />
           </div>
