@@ -32,9 +32,11 @@ const config: Config = {
           900: '#0f172a',
           950: '#020617',
         },
+      },
+      boxShadow: {
         '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
         'card': '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
-        'card-hover': '0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05)',
+        'card-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
