@@ -466,7 +466,7 @@ export default function CapitalGainsTaxCalculatorPage() {
               <div className="bg-white rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">1세대 1주택 비과세 요건</h3>
                 <div className="space-y-4">
-                  <div className="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
+                  <div className="bg-green-50 rounded-xl p-4">
                     <h4 className="font-bold text-green-700 mb-2">기본 요건</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 1세대 1주택 (부수토지 포함)</li>
@@ -475,7 +475,7 @@ export default function CapitalGainsTaxCalculatorPage() {
                       <li>• 12억원 초과 시 초과분만 과세</li>
                     </ul>
                   </div>
-                  <div className="bg-amber-50 rounded-xl p-4 border-l-4 border-amber-500">
+                  <div className="bg-amber-50 rounded-xl p-4">
                     <h4 className="font-bold text-amber-700 mb-2">주의사항</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 일시적 2주택: 종전주택 3년 내 양도 시 비과세</li>
@@ -515,7 +515,7 @@ export default function CapitalGainsTaxCalculatorPage() {
               <div className="bg-white rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">다주택자 중과세</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-red-50 rounded-xl p-4 border-l-4 border-red-500">
+                  <div className="bg-red-50 rounded-xl p-4">
                     <h4 className="font-bold text-red-700 mb-2">조정대상지역 다주택자</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 2주택: 기본세율 + 20%p</li>
@@ -523,7 +523,7 @@ export default function CapitalGainsTaxCalculatorPage() {
                       <li>• 장기보유공제 배제</li>
                     </ul>
                   </div>
-                  <div className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                  <div className="bg-blue-50 rounded-xl p-4">
                     <h4 className="font-bold text-blue-700 mb-2">중과 배제 대상</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 수도권 외 지역 주택</li>

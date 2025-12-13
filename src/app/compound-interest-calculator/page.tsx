@@ -514,28 +514,28 @@ export default function CompoundInterestPage() {
               <div className="bg-white rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">복리 극대화 전략</h3>
                 <div className="space-y-4">
-                  <div className="bg-amber-50 rounded-xl p-4 border-l-4 border-amber-500">
+                  <div className="bg-amber-50 rounded-xl p-4">
                     <h4 className="font-bold text-amber-700 mb-2">1. 일찍 시작하라</h4>
                     <p className="text-sm text-slate-600">
                       복리 효과는 시간이 지날수록 커집니다. 20대에 시작하면 30대에 시작하는 것보다
                       은퇴 시 자산이 2~3배 이상 차이날 수 있습니다.
                     </p>
                   </div>
-                  <div className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                  <div className="bg-blue-50 rounded-xl p-4">
                     <h4 className="font-bold text-blue-700 mb-2">2. 꾸준히 적립하라</h4>
                     <p className="text-sm text-slate-600">
                       매월 일정 금액을 적립하는 적립식 투자는 시장 변동성을 줄이고
                       평균 매입 단가를 낮출 수 있습니다.
                     </p>
                   </div>
-                  <div className="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
+                  <div className="bg-green-50 rounded-xl p-4">
                     <h4 className="font-bold text-green-700 mb-2">3. 재투자하라</h4>
                     <p className="text-sm text-slate-600">
                       배당금, 이자 등 투자 수익을 인출하지 말고 재투자하세요.
                       복리 효과를 극대화할 수 있습니다.
                     </p>
                   </div>
-                  <div className="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-500">
+                  <div className="bg-purple-50 rounded-xl p-4">
                     <h4 className="font-bold text-purple-700 mb-2">4. 비용을 최소화하라</h4>
                     <p className="text-sm text-slate-600">
                       수수료, 세금 등 투자 비용은 장기적으로 큰 차이를 만듭니다.

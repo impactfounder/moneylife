@@ -424,7 +424,7 @@ export default function SeveranceCalculatorPage() {
               <div className="bg-white rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">퇴직금 수령 방법 비교</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-slate-50 rounded-xl p-4 border-l-4 border-blue-500">
+                  <div className="bg-slate-50 rounded-xl p-4">
                     <h4 className="font-bold text-slate-900 mb-2">일시금 수령</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 퇴직 시 한번에 전액 수령</li>
@@ -432,7 +432,7 @@ export default function SeveranceCalculatorPage() {
                       <li>• 목돈 필요 시 유리</li>
                     </ul>
                   </div>
-                  <div className="bg-slate-50 rounded-xl p-4 border-l-4 border-green-500">
+                  <div className="bg-slate-50 rounded-xl p-4">
                     <h4 className="font-bold text-slate-900 mb-2">IRP(개인형퇴직연금) 이체</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 퇴직소득세 30~40% 감면</li>

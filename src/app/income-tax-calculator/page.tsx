@@ -453,7 +453,7 @@ export default function IncomeTaxCalculatorPage() {
               <div className="bg-white rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">주요 공제 항목</h3>
                 <div className="space-y-4">
-                  <div className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                  <div className="bg-blue-50 rounded-xl p-4">
                     <h4 className="font-bold text-blue-700 mb-2">인적공제</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 본인: 150만원</li>
@@ -462,7 +462,7 @@ export default function IncomeTaxCalculatorPage() {
                       <li>• 경로우대(70세↑): 1인당 100만원 추가</li>
                     </ul>
                   </div>
-                  <div className="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
+                  <div className="bg-green-50 rounded-xl p-4">
                     <h4 className="font-bold text-green-700 mb-2">특별소득공제</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 보험료공제: 연 100만원 한도</li>
@@ -471,7 +471,7 @@ export default function IncomeTaxCalculatorPage() {
                       <li>• 주택자금공제: 청약저축, 주담대이자</li>
                     </ul>
                   </div>
-                  <div className="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-500">
+                  <div className="bg-purple-50 rounded-xl p-4">
                     <h4 className="font-bold text-purple-700 mb-2">세액공제</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 연금저축/IRP: 연 최대 700만원 (13.2~16.5%)</li>

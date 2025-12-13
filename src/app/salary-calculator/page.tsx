@@ -489,7 +489,7 @@ export default function SalaryCalculatorPage() {
               </div>
 
               {/* 참고자료 */}
-              <div className="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-500">
+              <div className="bg-blue-50 rounded-xl p-6">
                 <h4 className="font-bold text-slate-800 mb-4">참고자료</h4>
                 <ul className="space-y-2 text-sm text-slate-600">
                   <li>

@@ -466,7 +466,7 @@ export default function PensionCalculatorPage() {
               <div className="bg-white rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">수령 시기별 연금액 변화</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-red-50 rounded-xl p-4 border-l-4 border-red-500">
+                  <div className="bg-red-50 rounded-xl p-4">
                     <h4 className="font-bold text-red-700 mb-2">조기 수령 (60~64세)</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 1년당 6% 감액</li>
@@ -474,7 +474,7 @@ export default function PensionCalculatorPage() {
                       <li>• 평생 감액된 금액 수령</li>
                     </ul>
                   </div>
-                  <div className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                  <div className="bg-blue-50 rounded-xl p-4">
                     <h4 className="font-bold text-blue-700 mb-2">정상 수령 (65세)</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 기본 연금액 100% 수령</li>
@@ -482,7 +482,7 @@ export default function PensionCalculatorPage() {
                       <li>• 출생년도별 수령 나이 상이</li>
                     </ul>
                   </div>
-                  <div className="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
+                  <div className="bg-green-50 rounded-xl p-4">
                     <h4 className="font-bold text-green-700 mb-2">연기 수령 (66~70세)</h4>
                     <ul className="text-sm text-slate-600 space-y-1">
                       <li>• 1년당 7.2% 증액</li>

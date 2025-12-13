@@ -546,13 +546,13 @@ export default function MortgageCalculatorPage() {
               <div className="bg-slate-50 rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">금리 유형 선택</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-xl p-4 border-l-4 border-blue-500">
+                  <div className="bg-white rounded-xl p-4">
                     <h4 className="font-bold text-slate-900 mb-2">고정금리</h4>
                     <p className="text-sm text-slate-600">
                       대출 기간 동안 금리가 변동되지 않습니다. 금리 상승기에 유리하며, 안정적인 상환 계획이 가능합니다.
                     </p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 border-l-4 border-green-500">
+                  <div className="bg-white rounded-xl p-4">
                     <h4 className="font-bold text-slate-900 mb-2">변동금리</h4>
                     <p className="text-sm text-slate-600">
                       기준금리에 따라 금리가 변동됩니다. 초기 금리가 낮고, 금리 하락기에 유리합니다.
