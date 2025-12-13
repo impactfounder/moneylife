@@ -1,8 +1,17 @@
 import { MetadataRoute } from 'next'
+import { blogPosts } from '@/data/posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://moneylife.kr'
   const currentDate = new Date().toISOString().split('T')[0]
+
+  // 가이드(블로그) 페이지들 동적 생성
+  const guidePages = blogPosts.map((post) => ({
+    url: `${baseUrl}/guide/${post.slug}`,
+    lastModified: post.publishedAt,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
 
   return [
     // 홈페이지
@@ -147,5 +156,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // 가이드 허브
+    {
+      url: `${baseUrl}/guide`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    // 가이드 포스트들
+    ...guidePages,
   ]
 }
