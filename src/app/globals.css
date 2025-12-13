@@ -95,7 +95,7 @@
   /* 입력 필드 */
   .input-base {
     @apply w-full px-4 py-3 border border-gray-300 rounded-lg;
-    @apply focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply focus:outline-none focus:border-slate-400 focus:ring-0;
     @apply transition-base;
   }
 
