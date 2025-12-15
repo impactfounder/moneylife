@@ -1,12 +1,10 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Card } from '@/components/ui/Card'
-
-export const metadata = {
-  title: '금융 콘텐츠 - 재테크 가이드 | moneylife.kr',
-  description: '연봉, 급여, 투자, 세금에 대한 유용한 금융 콘텐츠를 제공합니다.',
-}
 
 const contents = [
   {
@@ -23,7 +21,7 @@ const contents = [
     description: '연령대별, 지역별 상세 연봉 순위 데이터',
     icon: '📊',
     href: '/content/salary-ranking',
-    category: '연봉'
+    category: '급여'
   },
   {
     id: 3,
@@ -55,7 +53,7 @@ const contents = [
     description: '고소득자의 세금 부담과 실제 생활',
     icon: '💎',
     href: '/content/annual-salary-100m',
-    category: '연봉'
+    category: '급여'
   },
   {
     id: 7,
@@ -163,48 +161,82 @@ const contents = [
   }
 ]
 
+const categories = ['전체', '급여', '대출', '부동산', '투자', '연금', '세금']
+
 export default function ContentPage() {
+  const [selectedCategory, setSelectedCategory] = useState('전체')
+
+  const filteredContents = selectedCategory === '전체'
+    ? contents
+    : contents.filter(content => content.category === selectedCategory)
+
   return (
     <>
       <Header />
-      
+
       <main className="min-h-screen bg-gray-50">
         {/* 히어로 섹션 */}
-        <section className="bg-white py-20">
+        <section className="bg-white py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              📚 금융 콘텐츠
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              금융 콘텐츠
             </h1>
-            <p className="text-lg md:text-xl text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               재테크에 도움이 되는 유용한 정보를 제공합니다
             </p>
           </div>
         </section>
 
-        {/* 콘텐츠 그리드 */}
-        <section className="py-16">
+        {/* 카테고리 필터 */}
+        <section className="bg-white border-b border-slate-200 sticky top-16 z-40">
           <div className="container mx-auto px-4">
+            <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                    selectedCategory === category
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 콘텐츠 그리드 */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <div className="mb-6">
+              <span className="text-sm text-slate-500">
+                {filteredContents.length}개의 콘텐츠
+              </span>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {contents.map((content) => (
+              {filteredContents.map((content) => (
                 <Link key={content.id} href={content.href}>
                   <Card className="h-full hover:scale-105 transition-transform cursor-pointer">
                     <div className="p-6">
                       <div className="flex items-start justify-between mb-4">
-                        <span className="text-5xl">{content.icon}</span>
+                        <span className="text-4xl">{content.icon}</span>
                         <span className="bg-slate-100 text-slate-600 text-xs font-bold px-3 py-1 rounded-full">
                           {content.category}
                         </span>
                       </div>
-                      
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">
                         {content.title}
                       </h3>
-                      
+
                       <p className="text-gray-600 text-sm leading-relaxed">
                         {content.description}
                       </p>
-                      
-                      <div className="mt-4 flex items-center text-primary font-semibold text-sm">
+
+                      <div className="mt-4 flex items-center text-slate-600 font-medium text-sm">
                         자세히 보기
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -231,12 +263,12 @@ export default function ContentPage() {
               href="/"
               className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-100 transition-colors shadow-lg"
             >
-              💰 계산기로 돌아가기
+              계산기로 돌아가기
             </Link>
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </>
   )
