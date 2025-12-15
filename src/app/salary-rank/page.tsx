@@ -74,7 +74,7 @@ export default function SalaryRankPage() {
     <>
       <Header />
       
-      <main className="min-h-screen bg-slate-50 py-12">
+      <main className="min-h-screen bg-white py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* 헤더 */}
           <div className="text-center mb-12">
@@ -301,7 +301,7 @@ export default function SalaryRankPage() {
 
               {/* 추가 정보 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="bg-blue-50">
+                <Card>
                   <h4 className="font-bold text-gray-900 mb-2">💡 더 정확한 계산</h4>
                   <p className="text-sm text-gray-600 mb-3">
                     4대보험, 세금을 포함한 상세 급여 계산
@@ -314,7 +314,7 @@ export default function SalaryRankPage() {
                   </Link>
                 </Card>
 
-                <Card className="bg-green-50">
+                <Card>
                   <h4 className="font-bold text-gray-900 mb-2">📊 평균 연봉</h4>
                   <p className="text-sm text-gray-600 mb-3">
                     연령별, 직군별 평균 연봉 통계
