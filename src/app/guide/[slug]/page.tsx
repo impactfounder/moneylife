@@ -35,6 +35,9 @@ export async function generateMetadata({ params }: Props) {
       type: 'article',
       publishedTime: post.publishedAt,
     },
+    alternates: {
+      canonical: `/guide/${post.slug}`,
+    },
   }
 }
 

@@ -23,9 +23,6 @@ export const metadata: Metadata = {
   creator: 'moneylife.kr',
   publisher: 'moneylife.kr',
   metadataBase: new URL('https://moneylife.kr'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: '금융계산기 - moneylife.kr',
     description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에!',
@@ -82,10 +79,10 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-MN9KGF64');`,
           }}
         />
-        
+
         {/* Kakao SDK */}
         <script src="https://developers.kakao.com/sdk/js/kakao.js" async />
-        
+
         {/* Pretendard Font (Optional) */}
         <link
           rel="stylesheet"
@@ -104,7 +101,7 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        
+
         {children}
       </body>
     </html>
