@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/opengraph-image',
+        url: 'https://moneylife.kr/og-image.png',
         width: 1200,
         height: 630,
         alt: '금융계산기 - moneylife.kr',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '금융계산기 - moneylife.kr',
     description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에!',
-    images: ['/opengraph-image'],
+    images: ['https://moneylife.kr/og-image.png'],
   },
   robots: {
     index: true,

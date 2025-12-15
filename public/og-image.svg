@@ -1,0 +1,70 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3f2"/>
+      <stop offset="25%" style="stop-color:#fdf4ff"/>
+      <stop offset="75%" style="stop-color:#f0f9ff"/>
+      <stop offset="100%" style="stop-color:#ecfdf5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Left side: Text -->
+  <text x="80" y="250" font-family="Arial, sans-serif" font-size="72" font-weight="800" fill="#1e293b">금융계산기</text>
+  <text x="80" y="320" font-family="Arial, sans-serif" font-size="28" fill="#64748b">스마트한 금융, 더 나은 삶.</text>
+  <text x="80" y="360" font-family="Arial, sans-serif" font-size="28" fill="#64748b">대출, 급여, 세금 등 모든 금융 계산을 1초만에!</text>
+  <text x="80" y="430" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#3b82f6">moneylife.kr</text>
+
+  <!-- Right side: Calculator Card -->
+  <g transform="translate(720, 115)">
+    <!-- Card shadow -->
+    <rect x="5" y="5" width="380" height="400" rx="32" fill="rgba(0,0,0,0.08)"/>
+    <!-- Card -->
+    <rect x="0" y="0" width="380" height="400" rx="32" fill="white"/>
+
+    <!-- Calculator Display -->
+    <rect x="40" y="40" width="300" height="80" rx="16" fill="#1e293b"/>
+    <text x="300" y="95" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#4ade80" text-anchor="end">3,500,000</text>
+
+    <!-- Calculator Buttons Row 1 -->
+    <rect x="40" y="140" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="68" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">7</text>
+
+    <rect x="108" y="140" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="136" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">8</text>
+
+    <rect x="176" y="140" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="204" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">9</text>
+
+    <rect x="244" y="140" width="56" height="56" rx="14" fill="#3b82f6"/>
+    <text x="272" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="white" text-anchor="middle">+</text>
+
+    <!-- Calculator Buttons Row 2 -->
+    <rect x="40" y="208" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="68" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">4</text>
+
+    <rect x="108" y="208" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="136" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">5</text>
+
+    <rect x="176" y="208" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="204" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">6</text>
+
+    <rect x="244" y="208" width="56" height="56" rx="14" fill="#10b981"/>
+    <text x="272" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="white" text-anchor="middle">=</text>
+
+    <!-- Calculator Buttons Row 3 -->
+    <rect x="40" y="276" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="68" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">1</text>
+
+    <rect x="108" y="276" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="136" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">2</text>
+
+    <rect x="176" y="276" width="56" height="56" rx="14" fill="#f1f5f9"/>
+    <text x="204" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">3</text>
+
+    <rect x="244" y="276" width="56" height="56" rx="14" fill="#f59e0b"/>
+    <text x="272" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="white" text-anchor="middle">%</text>
+  </g>
+</svg>
