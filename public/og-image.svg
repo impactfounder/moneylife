@@ -1,70 +1,140 @@
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fef3f2"/>
-      <stop offset="25%" style="stop-color:#fdf4ff"/>
-      <stop offset="75%" style="stop-color:#f0f9ff"/>
-      <stop offset="100%" style="stop-color:#ecfdf5"/>
+      <stop offset="0%" style="stop-color:#fef7f7"/>
+      <stop offset="50%" style="stop-color:#fdf4ff"/>
+      <stop offset="100%" style="stop-color:#f0f9ff"/>
     </linearGradient>
+    <linearGradient id="calcBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="coin1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fcd34d"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="coin2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fde68a"/>
+      <stop offset="100%" style="stop-color:#fbbf24"/>
+    </linearGradient>
+    <linearGradient id="chart1" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#93c5fd"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="chart2" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#86efac"/>
+      <stop offset="100%" style="stop-color:#22c55e"/>
+    </linearGradient>
+    <linearGradient id="chart3" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#fca5a5"/>
+      <stop offset="100%" style="stop-color:#ef4444"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+    <filter id="shadowSmall" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
   </defs>
 
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
 
+  <!-- Decorative circles -->
+  <circle cx="150" cy="100" r="60" fill="#fce7f3" opacity="0.5"/>
+  <circle cx="1050" cy="550" r="80" fill="#dbeafe" opacity="0.5"/>
+  <circle cx="200" cy="500" r="40" fill="#d1fae5" opacity="0.5"/>
+
   <!-- Left side: Text -->
-  <text x="80" y="250" font-family="Arial, sans-serif" font-size="72" font-weight="800" fill="#1e293b">금융계산기</text>
-  <text x="80" y="320" font-family="Arial, sans-serif" font-size="28" fill="#64748b">스마트한 금융, 더 나은 삶.</text>
-  <text x="80" y="360" font-family="Arial, sans-serif" font-size="28" fill="#64748b">대출, 급여, 세금 등 모든 금융 계산을 1초만에!</text>
-  <text x="80" y="430" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#3b82f6">moneylife.kr</text>
+  <text x="80" y="240" font-family="Arial, sans-serif" font-size="64" font-weight="800" fill="#1e293b">금융계산기</text>
+  <text x="80" y="300" font-family="Arial, sans-serif" font-size="26" fill="#64748b">스마트한 금융, 더 나은 삶.</text>
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="26" fill="#64748b">대출, 급여, 세금 등 모든 금융 계산을 1초만에!</text>
+  <text x="80" y="420" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#3b82f6">moneylife.kr</text>
 
-  <!-- Right side: Calculator Card -->
-  <g transform="translate(720, 115)">
-    <!-- Card shadow -->
-    <rect x="5" y="5" width="380" height="400" rx="32" fill="rgba(0,0,0,0.08)"/>
-    <!-- Card -->
-    <rect x="0" y="0" width="380" height="400" rx="32" fill="white"/>
+  <!-- Right side: 3D Style Illustration -->
+  <g transform="translate(650, 80)">
 
-    <!-- Calculator Display -->
-    <rect x="40" y="40" width="300" height="80" rx="16" fill="#1e293b"/>
-    <text x="300" y="95" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#4ade80" text-anchor="end">3,500,000</text>
+    <!-- Floating coins (back) -->
+    <g filter="url(#shadowSmall)">
+      <ellipse cx="420" cy="120" rx="35" ry="12" fill="#b45309" opacity="0.3"/>
+      <ellipse cx="420" cy="110" rx="35" ry="35" fill="url(#coin1)"/>
+      <text x="420" y="120" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#92400e" text-anchor="middle">$</text>
+    </g>
 
-    <!-- Calculator Buttons Row 1 -->
-    <rect x="40" y="140" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="68" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">7</text>
+    <!-- Main Calculator (3D style) -->
+    <g filter="url(#shadow)">
+      <!-- Calculator body shadow/depth -->
+      <rect x="55" y="95" width="280" height="380" rx="24" fill="#e2e8f0"/>
+      <!-- Calculator body -->
+      <rect x="50" y="90" width="280" height="380" rx="24" fill="url(#calcBody)" stroke="#e2e8f0" stroke-width="1"/>
 
-    <rect x="108" y="140" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="136" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">8</text>
+      <!-- Display -->
+      <rect x="75" y="120" width="230" height="70" rx="12" fill="#1e293b"/>
+      <text x="280" y="168" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#4ade80" text-anchor="end">3,500,000</text>
 
-    <rect x="176" y="140" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="204" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">9</text>
+      <!-- Buttons -->
+      <g>
+        <!-- Row 1 -->
+        <rect x="75" y="210" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="100" y="244" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">7</text>
+        <rect x="135" y="210" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="160" y="244" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">8</text>
+        <rect x="195" y="210" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="220" y="244" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">9</text>
+        <rect x="255" y="210" width="50" height="50" rx="10" fill="#3b82f6"/>
+        <text x="280" y="244" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="white" text-anchor="middle">+</text>
 
-    <rect x="244" y="140" width="56" height="56" rx="14" fill="#3b82f6"/>
-    <text x="272" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="white" text-anchor="middle">+</text>
+        <!-- Row 2 -->
+        <rect x="75" y="270" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="100" y="304" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">4</text>
+        <rect x="135" y="270" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="160" y="304" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">5</text>
+        <rect x="195" y="270" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="220" y="304" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">6</text>
+        <rect x="255" y="270" width="50" height="50" rx="10" fill="#10b981"/>
+        <text x="280" y="304" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="white" text-anchor="middle">=</text>
 
-    <!-- Calculator Buttons Row 2 -->
-    <rect x="40" y="208" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="68" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">4</text>
+        <!-- Row 3 -->
+        <rect x="75" y="330" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="100" y="364" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">1</text>
+        <rect x="135" y="330" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="160" y="364" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">2</text>
+        <rect x="195" y="330" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="220" y="364" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">3</text>
+        <rect x="255" y="330" width="50" height="50" rx="10" fill="#f59e0b"/>
+        <text x="280" y="364" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="white" text-anchor="middle">%</text>
 
-    <rect x="108" y="208" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="136" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">5</text>
+        <!-- Row 4 -->
+        <rect x="75" y="390" width="110" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="130" y="424" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">0</text>
+        <rect x="195" y="390" width="50" height="50" rx="10" fill="#f1f5f9"/>
+        <text x="220" y="424" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155" text-anchor="middle">.</text>
+        <rect x="255" y="390" width="50" height="50" rx="10" fill="#ef4444"/>
+        <text x="280" y="424" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="white" text-anchor="middle">C</text>
+      </g>
+    </g>
 
-    <rect x="176" y="208" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="204" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">6</text>
+    <!-- Chart card (floating) -->
+    <g filter="url(#shadowSmall)" transform="translate(-30, 180)">
+      <rect x="0" y="0" width="120" height="140" rx="16" fill="white"/>
+      <rect x="20" y="90" width="20" height="30" rx="4" fill="url(#chart1)"/>
+      <rect x="50" y="60" width="20" height="60" rx="4" fill="url(#chart2)"/>
+      <rect x="80" y="75" width="20" height="45" rx="4" fill="url(#chart3)"/>
+      <text x="60" y="35" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#64748b" text-anchor="middle">수익 분석</text>
+    </g>
 
-    <rect x="244" y="208" width="56" height="56" rx="14" fill="#10b981"/>
-    <text x="272" y="246" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="white" text-anchor="middle">=</text>
+    <!-- Floating coins (front) -->
+    <g filter="url(#shadowSmall)" transform="translate(320, 350)">
+      <ellipse cx="30" cy="35" rx="28" ry="10" fill="#b45309" opacity="0.3"/>
+      <ellipse cx="30" cy="25" rx="28" ry="28" fill="url(#coin2)"/>
+      <text x="30" y="33" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#92400e" text-anchor="middle">W</text>
+    </g>
 
-    <!-- Calculator Buttons Row 3 -->
-    <rect x="40" y="276" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="68" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">1</text>
+    <g filter="url(#shadowSmall)" transform="translate(360, 280)">
+      <ellipse cx="22" cy="27" rx="22" ry="8" fill="#b45309" opacity="0.3"/>
+      <ellipse cx="22" cy="20" rx="22" ry="22" fill="url(#coin1)"/>
+      <text x="22" y="27" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#92400e" text-anchor="middle">$</text>
+    </g>
 
-    <rect x="108" y="276" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="136" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">2</text>
-
-    <rect x="176" y="276" width="56" height="56" rx="14" fill="#f1f5f9"/>
-    <text x="204" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#334155" text-anchor="middle">3</text>
-
-    <rect x="244" y="276" width="56" height="56" rx="14" fill="#f59e0b"/>
-    <text x="272" y="314" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="white" text-anchor="middle">%</text>
   </g>
 </svg>
