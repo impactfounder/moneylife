@@ -42,6 +42,7 @@ export function Footer() {
             © {currentYear} MONEYLIFE. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-slate-500">
+            <Link href="/about" className="hover:text-slate-300 transition-colors">서비스 소개</Link>
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">개인정보처리방침</Link>
             <Link href="/terms" className="hover:text-slate-300 transition-colors">이용약관</Link>
           </div>
