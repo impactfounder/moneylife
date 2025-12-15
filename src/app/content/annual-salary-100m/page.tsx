@@ -7,13 +7,16 @@ export const metadata: Metadata = {
   title: '연봉 1억 실수령액은 얼마? (2025년 최신) | moneylife.kr',
   description: '2025년 기준 연봉 1억원의 실수령액은 약 7,200만원입니다. 4대보험과 세금을 제외한 월급과 연봉을 계산해드립니다.',
   keywords: '연봉 1억, 실수령액, 연봉 계산, 2025년 연봉, 세후 급여, 연봉 1억 세금',
+  alternates: {
+    canonical: '/content/annual-salary-100m',
+  },
 }
 
 export default function AnnualSalary100M() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       <main className="container mx-auto px-4 py-8 md:py-12">
         {/* 🎯 Hero Section */}
         <section className="mb-12 text-center">
@@ -47,7 +50,7 @@ export default function AnnualSalary100M() {
         {/* 📊 상세 계산 */}
         <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📊 연봉 1억원 상세 계산</h2>
-          
+
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-blue-900 mb-4">💰 세전 기준</h3>
@@ -135,7 +138,7 @@ export default function AnnualSalary100M() {
         {/* 💡 연봉 1억 현실 */}
         <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💡 연봉 1억의 현실</h2>
-          
+
           <div className="space-y-6">
             <div className="border-l-4 border-blue-500 bg-blue-50 p-6 rounded-r-xl">
               <h3 className="font-semibold text-blue-900 mb-3">📊 연봉 1억은 상위 몇 %?</h3>
@@ -176,7 +179,7 @@ export default function AnnualSalary100M() {
         {/* 📈 연봉 구간별 비교 */}
         <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📈 고연봉 구간 비교</h2>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm">
               <thead>
@@ -231,7 +234,7 @@ export default function AnnualSalary100M() {
         {/* 🛠️ 유용한 도구 */}
         <section className="bg-gradient-to-r from-primary-light to-secondary-light rounded-2xl p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🛠️ 연봉 관련 유용한 계산기</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             <Link href="/salary-calculator" className="block bg-white p-6 rounded-xl hover:shadow-lg transition-shadow">
               <div className="text-3xl mb-3">💰</div>
@@ -275,7 +278,7 @@ export default function AnnualSalary100M() {
           </Link>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   )
