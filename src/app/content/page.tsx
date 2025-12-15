@@ -190,14 +190,14 @@ export default function ContentPage() {
         {/* 카테고리 필터 */}
         <section className="bg-white border-b border-slate-200 sticky top-16 z-40">
           <div className="container mx-auto px-4">
-            <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
+            <div className="flex justify-center gap-3 py-6 overflow-x-auto scrollbar-hide">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                  className={`px-6 py-3 rounded-full font-bold whitespace-nowrap transition-all ${
                     selectedCategory === category
-                      ? 'bg-slate-900 text-white'
+                      ? 'bg-slate-900 text-white shadow-md'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
