@@ -96,6 +96,70 @@ const contents = [
     icon: '💸',
     href: '/content/tax-saving',
     category: '세금'
+  },
+  {
+    id: 12,
+    title: '급여명세서 공제항목 완벽 해설',
+    description: '국민연금, 건강보험, 소득세... 공제 항목별 계산법과 절세 팁',
+    icon: '📋',
+    href: '/content/salary-deduction-guide',
+    category: '급여'
+  },
+  {
+    id: 13,
+    title: '연봉 vs 월급, 실수령액 차이',
+    description: '같은 연봉인데 실수령액이 다른 이유와 최적의 급여 구조',
+    icon: '💵',
+    href: '/content/salary-vs-monthly-pay',
+    category: '급여'
+  },
+  {
+    id: 14,
+    title: '대출 상환방식 비교',
+    description: '원리금균등, 원금균등, 체증식 - 나에게 유리한 상환방식은?',
+    icon: '📊',
+    href: '/content/loan-repayment-method-comparison',
+    category: '대출'
+  },
+  {
+    id: 15,
+    title: '대출 중도상환, 언제가 유리할까?',
+    description: '중도상환수수료 계산법과 최적의 상환 타이밍',
+    icon: '⏰',
+    href: '/content/prepayment-strategy',
+    category: '대출'
+  },
+  {
+    id: 16,
+    title: '2025년 은행별 대출금리 비교',
+    description: '주요 은행 신용대출, 주담대 금리 한눈에 비교',
+    icon: '🏦',
+    href: '/content/bank-loan-rate-comparison',
+    category: '대출'
+  },
+  {
+    id: 17,
+    title: 'LTV, DTI, DSR 완벽 정리',
+    description: '주택담보대출 핵심 규제와 대출 한도 계산법',
+    icon: '🏠',
+    href: '/content/ltv-dti-dsr-explained',
+    category: '대출'
+  },
+  {
+    id: 18,
+    title: '주담대 갈아타기 가이드',
+    description: '대환대출 적정 시기와 절차, 비용 계산법',
+    icon: '🔄',
+    href: '/content/mortgage-refinancing',
+    category: '대출'
+  },
+  {
+    id: 19,
+    title: '생애최초 주택구입자 대출 혜택',
+    description: '2025년 생애최초 특례 조건과 혜택 총정리',
+    icon: '🏡',
+    href: '/content/first-time-buyer-loans',
+    category: '대출'
   }
 ]
 

@@ -8,14 +8,13 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="text-2xl">💰</span>
-              <span className="font-bold text-xl tracking-tight">금융계산기</span>
+            <div className="mb-2">
+              <span className="font-black text-2xl tracking-tight text-white">MONEYLIFE</span>
             </div>
+            <p className="text-slate-500 text-xs mb-4">스마트 금융계산기</p>
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-md">
               복잡한 금융 계산을 쉽고 정확하게.<br />
               2025년 최신 세법과 법령을 반영하여 신뢰할 수 있는 결과를 제공합니다.
-              여러분의 현명한 금융 생활을 응원합니다.
             </p>
           </div>
 
@@ -40,7 +39,7 @@ export function Footer() {
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
-            © {currentYear} 금융계산기. All rights reserved.
+            © {currentYear} MONEYLIFE. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-slate-500">
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">개인정보처리방침</Link>

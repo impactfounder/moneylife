@@ -11,8 +11,10 @@ export function Header() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* 로고 */}
         <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-2xl transition-transform duration-300 group-hover:scale-110">💰</span>
-          <span className="font-bold text-xl text-slate-800 tracking-tight group-hover:text-slate-900 transition-colors">
+          <span className="font-black text-xl text-slate-900 tracking-tight">
+            MONEYLIFE
+          </span>
+          <span className="text-slate-400 font-medium text-sm hidden sm:inline">
             금융계산기
           </span>
         </Link>

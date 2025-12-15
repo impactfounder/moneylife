@@ -75,18 +75,25 @@ export default function ContentDetailPage({ params }: PageProps) {
                 remarkPlugins={[remarkGfm]}
                 components={{
                   h2: ({ children, ...props }) => {
-                    const id = props.id || String(children).toLowerCase().replace(/\s+/g, '-')
+                    // Remove {#id} pattern from heading text
+                    const text = String(children).replace(/\s*\{#[\w-]+\}\s*$/, '')
+                    const idMatch = String(children).match(/\{#([\w-]+)\}/)
+                    const id = idMatch ? idMatch[1] : props.id || text.toLowerCase().replace(/\s+/g, '-')
                     return (
                       <h2 id={id} className="text-2xl font-bold text-slate-900 mt-12 mb-6 pb-3 border-b border-slate-200">
-                        {children}
+                        {text}
                       </h2>
                     )
                   },
-                  h3: ({ children }) => (
-                    <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">
-                      {children}
-                    </h3>
-                  ),
+                  h3: ({ children }) => {
+                    // Remove {#id} pattern from heading text
+                    const text = String(children).replace(/\s*\{#[\w-]+\}\s*$/, '')
+                    return (
+                      <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">
+                        {text}
+                      </h3>
+                    )
+                  },
                   p: ({ children }) => (
                     <p className="text-slate-700 leading-relaxed mb-4">
                       {children}
