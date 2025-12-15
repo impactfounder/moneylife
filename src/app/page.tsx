@@ -15,6 +15,7 @@ import {
   convertBeforeToAfter,
   convertAfterToBefore,
 } from '@/lib/calculations'
+import { getRecentPosts } from '@/data/posts'
 
 // Metadata는 'use client' 컴포넌트에서는 사용 불가
 // layout.tsx에서 관리됨
@@ -158,8 +159,8 @@ export default function Home() {
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]"></div>
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+          <div className="container mx-auto px-4 relative z-10 max-w-6xl">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
               <div className="lg:w-1/2 text-center lg:text-left">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-8 animate-fade-in border border-slate-200">
                   💰 2025년 최신 세법 완벽 반영
@@ -193,8 +194,6 @@ export default function Home() {
               {/* 빠른 연봉 순위 계산기 (카드 형태) */}
               <div className="lg:w-1/2 w-full max-w-md animate-fade-in" style={{ animationDelay: '300ms' }}>
                 <div className="glass-effect rounded-3xl p-8 shadow-2xl border border-white/50 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-slate-700 to-slate-500"></div>
-
                   {/* 뱃지 */}
                   {/* 뱃지 제거됨 */}
 
@@ -305,8 +304,13 @@ export default function Home() {
         </section>
 
         {/* 계산기 그리드 */}
-        <section id="calculators" className="pb-32 pt-10 bg-slate-50/50">
+        <section id="calculators" className="pb-20 pt-10 bg-slate-50/50">
           <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto mb-10">
+              <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                🧮 계산기
+              </h2>
+            </div>
             <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
               {calculators.map((calc, index) => (
                 <Link
@@ -338,6 +342,51 @@ export default function Home() {
                   )}
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 인기 콘텐츠 섹션 */}
+        <section className="pb-32 bg-slate-50/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center justify-between mb-10">
+                <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                  📚 인기 콘텐츠
+                </h2>
+                <Link
+                  href="/content"
+                  className="text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors"
+                >
+                  전체보기 →
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {getRecentPosts(3).map((post, index) => (
+                  <Link
+                    key={post.slug}
+                    href={`/content/${post.slug}`}
+                    className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 hover:border-slate-200 animate-fade-in"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-3xl">{post.thumbnail}</span>
+                      <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-slate-900 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-slate-500 text-sm line-clamp-2">
+                      {post.description}
+                    </p>
+                    <div className="mt-4 text-xs text-slate-400">
+                      {post.readTime} 읽기
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>
