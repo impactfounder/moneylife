@@ -54,6 +54,32 @@ export default async function GuidePage({ params }: Props) {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.description,
+            image: ['https://moneylife.kr/og-image.png'],
+            datePublished: post.publishedAt,
+            author: {
+              '@type': 'Organization',
+              name: 'MoneyLife',
+              url: 'https://moneylife.kr',
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'MoneyLife',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://moneylife.kr/og-image.png',
+              },
+            },
+          }),
+        }}
+      />
       <main className="min-h-screen bg-white">
         {/* 히어로 섹션 */}
         <div className="bg-gradient-to-b from-slate-50 to-white py-12 md:py-16">
