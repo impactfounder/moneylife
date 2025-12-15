@@ -32,7 +32,7 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-6 text-slate-200">문의하기</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li><a href="mailto:contact@moneylife.kr" className="hover:text-white transition-colors">contact@moneylife.kr</a></li>
+              <li><a href="mailto:jaewook@mvmt.city" className="hover:text-white transition-colors">jaewook@mvmt.city</a></li>
               <li><span className="text-slate-500">제휴 및 광고 문의 환영</span></li>
             </ul>
           </div>

@@ -1,20 +1,21 @@
 import Link from 'next/link'
-import { BlogPost } from '@/data/posts'
+import type { BlogPost } from '@/data/posts'
 
-interface RelatedGuidesProps {
+interface RelatedTipsProps {
   posts: BlogPost[]
   title?: string
 }
 
-export function RelatedGuides({ posts, title = '이 계산기와 함께 보면 좋은 글' }: RelatedGuidesProps) {
-  if (posts.length === 0) return null
+export function RelatedTips({ posts, title = "이 계산기와 함께 보면 좋은 글" }: RelatedTipsProps) {
+  if (!posts || posts.length === 0) {
+    return null
+  }
 
   return (
     <section className="mt-16 pt-12 border-t border-slate-200">
       <h2 className="text-xl font-bold text-slate-900 mb-8">
         {title}
       </h2>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {posts.slice(0, 3).map((post) => (
           <Link
@@ -39,19 +40,6 @@ export function RelatedGuides({ posts, title = '이 계산기와 함께 보면 �
             </div>
           </Link>
         ))}
-      </div>
-
-      {/* 더보기 링크 */}
-      <div className="mt-8 text-center">
-        <Link
-          href="/content"
-          className="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors"
-        >
-          더 많은 콘텐츠 보기
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
       </div>
     </section>
   )
