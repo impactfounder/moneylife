@@ -9,7 +9,9 @@
       "Bash(git push:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Unify all calculator pages with modern centered design\n\n- Remove blue top bar from loan calculator\n- Apply consistent glass-effect card design to all calculators\n- Change currency unit from 원 to 만원 for better readability\n- Add prominent \"계산 기준 안내\" section with sources\n- Centered layout with soft gradient backgrounds\n- Modern typography and spacing\n\nAffected pages:\n- salary-calculator\n- loan-calculator\n- mortgage-calculator\n- severance-calculator\n- pension-calculator\n- compound-interest-calculator\n- income-tax-calculator\n- capital-gains-tax-calculator\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit:*)",
-      "Bash(git ls-tree:*)"
+      "Bash(git ls-tree:*)",
+      "Bash(timeout:*)",
+      "Bash(curl:*)"
     ]
   }
 }

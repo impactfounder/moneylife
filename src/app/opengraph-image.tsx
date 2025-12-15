@@ -17,9 +17,12 @@ export default async function Image() {
           height: '100%',
           width: '100%',
           display: 'flex',
-          backgroundColor: '#f8fafc',
-          backgroundImage: 'linear-gradient(135deg, #fdf4ff 0%, #fae8ff 30%, #e0f2fe 70%, #f0f9ff 100%)',
-          padding: '40px 60px',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          backgroundColor: '#fafbfc',
+          background: 'linear-gradient(135deg, #fef3f2 0%, #fdf4ff 25%, #f0f9ff 75%, #ecfdf5 100%)',
+          padding: '60px 80px',
         }}
       >
         {/* 왼쪽: 텍스트 영역 */}
@@ -28,43 +31,38 @@ export default async function Image() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            flex: 1,
-            paddingRight: '40px',
+            maxWidth: '550px',
           }}
         >
-          {/* 타이틀 */}
           <div
             style={{
-              fontSize: 56,
+              fontSize: 72,
               fontWeight: 800,
-              color: '#0f172a',
-              marginBottom: 16,
-              letterSpacing: '-0.02em',
-              lineHeight: 1.2,
+              color: '#1e293b',
+              marginBottom: 24,
+              lineHeight: 1.1,
             }}
           >
             금융계산기
           </div>
 
-          {/* 서브타이틀 */}
+          <div
+            style={{
+              fontSize: 28,
+              color: '#64748b',
+              marginBottom: 40,
+              lineHeight: 1.6,
+            }}
+          >
+            스마트한 금융, 더 나은 삶.
+            대출, 급여, 세금 등 모든 금융 계산을 1초만에!
+          </div>
+
           <div
             style={{
               fontSize: 24,
-              color: '#64748b',
-              marginBottom: 32,
-              lineHeight: 1.5,
-            }}
-          >
-            스마트한 금융, 더 나은 삶. 대출, 급여,{'\n'}
-            세금 등 모든 금융 계산을 1초만에!
-          </div>
-
-          {/* URL */}
-          <div
-            style={{
-              fontSize: 20,
               color: '#3b82f6',
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             moneylife.kr
@@ -75,24 +73,20 @@ export default async function Image() {
         <div
           style={{
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '500px',
-            position: 'relative',
           }}
         >
-          {/* 메인 계산기 */}
+          {/* 메인 카드 */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
               backgroundColor: 'white',
-              borderRadius: '24px',
-              padding: '30px',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
-              width: '280px',
-              position: 'relative',
-              zIndex: 2,
+              borderRadius: 32,
+              padding: 40,
+              boxShadow: '0 32px 64px -16px rgba(0, 0, 0, 0.12)',
             }}
           >
             {/* 계산기 화면 */}
@@ -100,139 +94,45 @@ export default async function Image() {
               style={{
                 display: 'flex',
                 backgroundColor: '#1e293b',
-                borderRadius: '12px',
-                padding: '20px',
-                marginBottom: '20px',
+                borderRadius: 16,
+                padding: '24px 32px',
+                marginBottom: 24,
                 justifyContent: 'flex-end',
                 alignItems: 'center',
               }}
             >
-              <span style={{ color: '#4ade80', fontSize: 36, fontWeight: 700 }}>
-                ₩ 3,500,000
+              <span style={{ color: '#4ade80', fontSize: 42, fontWeight: 700 }}>
+                3,500,000
               </span>
             </div>
 
-            {/* 계산기 버튼들 */}
+            {/* 버튼 그리드 */}
             <div
               style={{
                 display: 'flex',
-                flexWrap: 'wrap',
-                gap: '10px',
+                flexDirection: 'column',
+                gap: 12,
               }}
             >
-              {['7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '-', '0', '.', '=', '+'].map((btn, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: 'flex',
-                    width: '50px',
-                    height: '50px',
-                    backgroundColor: ['÷', '×', '-', '+', '='].includes(btn) ? '#3b82f6' : '#f1f5f9',
-                    color: ['÷', '×', '-', '+', '='].includes(btn) ? 'white' : '#334155',
-                    borderRadius: '12px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 20,
-                    fontWeight: 600,
-                  }}
-                >
-                  {btn}
-                </div>
-              ))}
+              <div style={{ display: 'flex', gap: 12 }}>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>7</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>8</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>9</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#3b82f6', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: 'white' }}>+</div>
+              </div>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>4</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>5</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>6</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#10b981', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: 'white' }}>=</div>
+              </div>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>1</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>2</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f1f5f9', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: '#334155' }}>3</div>
+                <div style={{ display: 'flex', width: 56, height: 56, backgroundColor: '#f59e0b', borderRadius: 14, alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 600, color: 'white' }}>%</div>
+              </div>
             </div>
-          </div>
-
-          {/* 차트 카드 (왼쪽 위) */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              position: 'absolute',
-              top: '20px',
-              left: '-20px',
-              backgroundColor: 'white',
-              borderRadius: '16px',
-              padding: '16px',
-              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-              zIndex: 3,
-            }}
-          >
-            {/* 미니 바 차트 */}
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '6px', height: '60px' }}>
-              <div style={{ width: '16px', height: '30px', backgroundColor: '#93c5fd', borderRadius: '4px' }} />
-              <div style={{ width: '16px', height: '45px', backgroundColor: '#60a5fa', borderRadius: '4px' }} />
-              <div style={{ width: '16px', height: '35px', backgroundColor: '#3b82f6', borderRadius: '4px' }} />
-              <div style={{ width: '16px', height: '55px', backgroundColor: '#2563eb', borderRadius: '4px' }} />
-            </div>
-            <span style={{ fontSize: 12, color: '#64748b', marginTop: '8px' }}>수익 분석</span>
-          </div>
-
-          {/* 코인 아이콘들 */}
-          <div
-            style={{
-              display: 'flex',
-              position: 'absolute',
-              top: '60px',
-              right: '20px',
-              fontSize: 40,
-              zIndex: 1,
-            }}
-          >
-            🪙
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              position: 'absolute',
-              bottom: '100px',
-              right: '0px',
-              fontSize: 32,
-              zIndex: 1,
-            }}
-          >
-            💰
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              position: 'absolute',
-              bottom: '40px',
-              left: '20px',
-              fontSize: 36,
-              zIndex: 1,
-            }}
-          >
-            📊
-          </div>
-
-          {/* 파이 차트 (오른쪽 아래) */}
-          <div
-            style={{
-              display: 'flex',
-              position: 'absolute',
-              bottom: '30px',
-              right: '40px',
-              width: '100px',
-              height: '100px',
-              borderRadius: '50%',
-              background: 'conic-gradient(#3b82f6 0% 40%, #10b981 40% 70%, #f59e0b 70% 100%)',
-              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-              zIndex: 3,
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                borderRadius: '50%',
-              }}
-            />
           </div>
         </div>
       </div>
