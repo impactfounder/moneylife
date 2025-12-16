@@ -110,19 +110,19 @@ export default function MortgageRefinanceGuide() {
                   </thead>
                   <tbody>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">신용점수</td>
-                      <td className="border border-slate-200 px-4 py-3">NICE, KCB 앱 (무료 조회)</td>
-                      <td className="border border-slate-200 px-4 py-3 text-red-600">★★★★★</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">신용점수</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center">NICE, KCB 앱 (무료 조회)</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center text-red-600">★★★★★</td>
                     </tr>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">연소득</td>
-                      <td className="border border-slate-200 px-4 py-3">근로소득 원천징수영수증</td>
-                      <td className="border border-slate-200 px-4 py-3 text-teal-700">★★★★☆</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">연소득</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center">근로소득 원천징수영수증</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center text-teal-700">★★★★☆</td>
                     </tr>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">DSR</td>
-                      <td className="border border-slate-200 px-4 py-3">전체 대출 원리금/연소득</td>
-                      <td className="border border-slate-200 px-4 py-3 text-red-600">★★★★★</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">DSR</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center">전체 대출 원리금/연소득</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center text-red-600">★★★★★</td>
                     </tr>
                   </tbody>
                 </table>
@@ -159,19 +159,19 @@ export default function MortgageRefinanceGuide() {
                   </thead>
                   <tbody>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">월 상환액</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">월 상환액</td>
                       <td className="border border-slate-200 px-4 py-3 text-right">190만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right">177만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold">▼ 13만원/월</td>
                     </tr>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">연간 이자</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">연간 이자</td>
                       <td className="border border-slate-200 px-4 py-3 text-right">1,350만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right">1,140만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold">▼ 210만원/년</td>
                     </tr>
                     <tr className="bg-green-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">20년 총 이자</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">20년 총 이자</td>
                       <td className="border border-slate-200 px-4 py-3 text-right">1억 5,600만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right">1억 2,400만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold text-base">▼ 3,200만원</td>
@@ -232,25 +232,25 @@ export default function MortgageRefinanceGuide() {
                   </thead>
                   <tbody>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">KB국민</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center">4.2%</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center">-0.8%</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center text-green-700 font-bold">3.4%</td>
-                      <td className="border border-slate-200 px-4 py-3">주거래 우대 많음</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">KB국민</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">4.2%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">-0.8%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold">3.4%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center">주거래 우대 많음</td>
                     </tr>
                     <tr className="hover:bg-slate-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">신한은행</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center">4.3%</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center">-0.9%</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center text-green-700 font-bold">3.4%</td>
-                      <td className="border border-slate-200 px-4 py-3">신용우수자 금리 좋음</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">신한은행</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">4.3%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">-0.9%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold">3.4%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center">신용우수자 금리 좋음</td>
                     </tr>
                     <tr className="bg-green-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">카카오뱅크</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center">3.9%</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center">-0.5%</td>
-                      <td className="border border-slate-200 px-4 py-3 text-center text-green-700 font-bold">3.4%</td>
-                      <td className="border border-slate-200 px-4 py-3">비대면, 심사 빠름</td>
+                      <td className="border border-slate-200 px-4 py-3 font-semibold text-center">카카오뱅크</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">3.9%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">-0.5%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold">3.4%</td>
+                      <td className="border border-slate-200 px-4 py-3 text-center">비대면, 심사 빠름</td>
                     </tr>
                   </tbody>
                 </table>

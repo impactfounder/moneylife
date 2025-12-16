@@ -63,44 +63,44 @@ export default function PensionVsIRP() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">가입 대상</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">누구나 가능</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">근로자, 자영업자, 공무원 등</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">가입 대상</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">누구나 가능</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">근로자, 자영업자, 공무원 등</td>
                 </tr>
                 <tr className="bg-blue-50">
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">세액공제 한도</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">세액공제 한도</td>
                   <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-right text-blue-700 font-bold">연 600만원</td>
                   <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-right text-blue-700 font-bold">연 900만원<br />(연금저축 포함)</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">세액공제율</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">세액공제율</td>
                   <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-right">16.5% or 13.2%</td>
                   <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-right">16.5% or 13.2%</td>
                 </tr>
                 <tr className="bg-green-50">
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">최대 공제액</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">최대 공제액</td>
                   <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-right text-green-700 font-bold">99만원</td>
                   <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-right text-green-700 font-bold">148.5만원</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">투자 상품</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">펀드, 보험, ETF</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">펀드, ETF, 예금 (원리금보장형 30% 이상)</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">투자 상품</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">펀드, 보험, ETF</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">펀드, ETF, 예금 (원리금보장형 30% 이상)</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">중도 인출</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">가능 (기타소득세 16.5%)</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">원칙적 불가 (예외 있음)</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">중도 인출</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">가능 (기타소득세 16.5%)</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">원칙적 불가 (예외 있음)</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">수령 시기</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">만 55세 이상</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">만 55세 이상</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">수령 시기</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">만 55세 이상</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">만 55세 이상</td>
                 </tr>
                 <tr className="bg-yellow-50">
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-left">추천 대상</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">유연한 운용 원함</td>
-                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-left">세액공제 최대화</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap text-center">추천 대상</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">유연한 운용 원함</td>
+                  <td className="border border-slate-200 px-2 sm:px-4 py-2 sm:py-3 text-center">세액공제 최대화</td>
                 </tr>
               </tbody>
             </table>
