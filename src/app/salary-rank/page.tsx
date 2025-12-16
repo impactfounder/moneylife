@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
@@ -16,9 +17,23 @@ import {
 } from '@/lib/calculations'
 import type { RankResult, AgeGroup } from '@/types'
 
-export default function SalaryRankPage() {
+function SalaryRankContent() {
+  const searchParams = useSearchParams()
   const [salaryInput, setSalaryInput] = useState('')
   const [salaryType, setSalaryType] = useState<'before' | 'after'>('after')
+
+  // URL 파라미터에서 값 읽어오기
+  useEffect(() => {
+    const salaryParam = searchParams.get('salary')
+    const typeParam = searchParams.get('type')
+
+    if (salaryParam) {
+      setSalaryInput(salaryParam)
+    }
+    if (typeParam === 'before' || typeParam === 'after') {
+      setSalaryType(typeParam)
+    }
+  }, [searchParams])
   const [ageGroup, setAgeGroup] = useState<AgeGroup>('all')
 
   const [result, setResult] = useState<{
@@ -133,11 +148,11 @@ export default function SalaryRankPage() {
                       value={salaryInput}
                       onChange={(e) => setSalaryInput(e.target.value)}
                       placeholder="예: 300"
-                      className="w-full px-4 py-4 text-lg text-center border-2 border-slate-200 rounded-xl focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-100 transition-all"
+                      className="w-full px-4 py-4 text-2xl font-bold text-center border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:ring-2 focus:ring-slate-200 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900"
                       required
                       min={0}
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">
+                    <span className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                       만원
                     </span>
                   </div>
@@ -154,8 +169,8 @@ export default function SalaryRankPage() {
                   <label className="block text-sm font-semibold text-slate-700 mb-3 text-center">
                     나이대 <span className="text-slate-400 font-normal">(선택)</span>
                   </label>
-                  <div className="grid grid-cols-4 gap-2">
-                    {(['all', '20s', '30s', '40s'] as AgeGroup[]).map((age) => (
+                  <div className="grid grid-cols-3 gap-2">
+                    {(['all', '20s', '30s', '40s', '50s', '60s'] as AgeGroup[]).map((age) => (
                       <button
                         key={age}
                         type="button"
@@ -166,23 +181,7 @@ export default function SalaryRankPage() {
                             : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                         }`}
                       >
-                        {age === 'all' ? '전체' : age === '20s' ? '20대' : age === '30s' ? '30대' : '40대'}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 mt-2">
-                    {(['50s', '60s'] as AgeGroup[]).map((age) => (
-                      <button
-                        key={age}
-                        type="button"
-                        onClick={() => setAgeGroup(age)}
-                        className={`py-2.5 px-3 rounded-xl font-semibold text-sm transition-all ${
-                          ageGroup === age
-                            ? 'bg-slate-900 text-white shadow-lg'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
-                      >
-                        {age === '50s' ? '50대' : '60대'}
+                        {age === 'all' ? '전체' : age === '20s' ? '20대' : age === '30s' ? '30대' : age === '40s' ? '40대' : age === '50s' ? '50대' : '60대'}
                       </button>
                     ))}
                   </div>
@@ -325,5 +324,17 @@ export default function SalaryRankPage() {
 
       <Footer />
     </>
+  )
+}
+
+export default function SalaryRankPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-slate-100 to-white flex items-center justify-center">
+        <div className="text-slate-500">로딩 중...</div>
+      </div>
+    }>
+      <SalaryRankContent />
+    </Suspense>
   )
 }

@@ -257,7 +257,7 @@ export default function Home() {
                       {/* 결과 표시 */}
                       <div className="text-center">
                         <div className="text-sm text-slate-500 mb-2 font-medium">
-                          월 {formatNumber(result?.actualSalary || 0)}만원 (연봉 약 {result?.annualSalary || 0}백만원)
+                          월 {formatNumber(result?.actualSalary || 0)}원 (연봉 약 {formatNumber(result?.annualSalary || 0)}만원)
                         </div>
                         <div className="text-6xl font-black text-slate-900 mb-2 tracking-tighter">
                           상위 {result?.koreaRank || 0}%
@@ -275,7 +275,7 @@ export default function Home() {
                           다시 계산
                         </button>
                         <Link
-                          href="/salary-rank"
+                          href={`/salary-rank?salary=${salaryInput.replace(/,/g, '')}&type=${salaryType}`}
                           className="flex-1 bg-slate-900 text-white py-3.5 rounded-xl font-bold hover:bg-slate-800 transition-colors text-center shadow-lg shadow-slate-200"
                         >
                           상세 분석 보기
