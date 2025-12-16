@@ -136,15 +136,21 @@ export default function ContentDetailPage({ params }: PageProps) {
                     <thead className="bg-slate-100">{children}</thead>
                   ),
                   th: ({ children }) => (
-                    <th className="border border-slate-200 px-4 py-3 text-left font-semibold text-slate-700">
+                    <th className="border border-slate-200 px-4 py-3 text-center font-semibold text-slate-700">
                       {children}
                     </th>
                   ),
-                  td: ({ children }) => (
-                    <td className="border border-slate-200 px-4 py-3 text-slate-700">
-                      {children}
-                    </td>
-                  ),
+                  td: ({ children }) => {
+                    // 숫자/금액 데이터는 우측정렬, 텍스트는 좌측정렬
+                    const content = String(children)
+                    const isNumeric = /^[\d,\.\-+%*만원억원천원]+$/.test(content.replace(/\s/g, '')) ||
+                                      /^\*\*[\d,]+\*\*$/.test(content.replace(/\s/g, ''))
+                    return (
+                      <td className={`border border-slate-200 px-4 py-3 text-slate-700 ${isNumeric ? 'text-right' : ''}`}>
+                        {children}
+                      </td>
+                    )
+                  },
                   blockquote: ({ children }) => (
                     <blockquote className="border-l-4 border-slate-300 pl-4 my-6 text-slate-600 italic">
                       {children}
