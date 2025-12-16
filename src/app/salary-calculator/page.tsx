@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateSalary } from '@/lib/salary-calculator'
@@ -390,6 +391,13 @@ export default function SalaryCalculatorPage() {
               </div>
             </section>
 
+            {/* 광고 배치 - 결과 섹션 아래 */}
+            <section className="py-8 bg-white">
+              <div className="container mx-auto px-4 max-w-4xl">
+                <AdUnit className="my-4" />
+              </div>
+            </section>
+
             {/* 연간 급여 요약 */}
             <section className="py-16 bg-white">
               <div className="container mx-auto px-4 max-w-4xl">
@@ -567,6 +575,13 @@ export default function SalaryCalculatorPage() {
         <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/salary-calculator')} />
+          </div>
+        </section>
+
+        {/* 광고 배치 - Footer 위 */}
+        <section className="py-8 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="my-4" />
           </div>
         </section>
       </main>

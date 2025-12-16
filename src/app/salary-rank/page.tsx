@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AdUnit } from '@/components/AdUnit'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
@@ -299,6 +300,11 @@ export default function SalaryRankPage() {
                 </Button>
               </div>
 
+              {/* 광고 배치 - 결과 섹션 아래 */}
+              <div className="my-6">
+                <AdUnit />
+              </div>
+
               {/* 추가 정보 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card>
@@ -332,6 +338,11 @@ export default function SalaryRankPage() {
 
           {/* 관련 가이드 섹션 */}
           <RelatedGuides posts={getPostsByCalculator('/salary-rank')} />
+
+          {/* 광고 배치 - Footer 위 */}
+          <div className="my-8">
+            <AdUnit />
+          </div>
         </div>
       </main>
 
