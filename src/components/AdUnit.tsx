@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // TypeScript 타입 선언
 declare global {
@@ -22,8 +22,17 @@ export function AdUnit({
 }: AdUnitProps) {
   const adRef = useRef<HTMLModElement>(null)
   const isAdPushed = useRef(false)
+  const [isProduction, setIsProduction] = useState(false)
 
   useEffect(() => {
+    // 프로덕션 환경인지 확인
+    setIsProduction(process.env.NODE_ENV === 'production')
+  }, [])
+
+  useEffect(() => {
+    // 개발 환경이면 광고 로드 안함
+    if (!isProduction) return
+
     // 이미 광고가 푸시되었으면 중복 실행 방지
     if (isAdPushed.current) return
 
@@ -35,7 +44,12 @@ export function AdUnit({
     } catch (error) {
       console.error('AdSense error:', error)
     }
-  }, [])
+  }, [isProduction])
+
+  // 개발 환경에서는 아무것도 렌더링하지 않음
+  if (!isProduction) {
+    return null
+  }
 
   return (
     <div className={`ad-container ${className}`}>
@@ -44,7 +58,7 @@ export function AdUnit({
         className="adsbygoogle"
         style={{
           display: 'block',
-          minHeight: '100px',
+          minHeight: '90px',
           width: '100%'
         }}
         data-ad-client="ca-pub-2515762248094919"

@@ -14,10 +14,10 @@ export default function PensionStrategy() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <main className="container mx-auto px-4 py-8 md:py-12">
+      <main className="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
         {/* 🎯 Hero Section */}
-        <section className="mb-12">
-          <div className="inline-block bg-primary-light text-primary-dark px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <section className="mb-12 text-center">
+          <div className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             💼 은퇴준비
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -30,27 +30,27 @@ export default function PensionStrategy() {
         </section>
 
         {/* 📌 핵심 요약 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🎯 퇴직연금 핵심 요약</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-6">
-            <div className="p-6 bg-primary-light rounded-xl">
-              <div className="text-3xl font-bold text-primary mb-2">900만원</div>
-              <div className="text-sm text-gray-700">연간 세액공제 한도 (IRP 추가 납입)</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">900만원</div>
+              <div className="text-sm">연간 세액공제 한도 (IRP 추가 납입)</div>
             </div>
-            <div className="p-6 bg-secondary-light rounded-xl">
-              <div className="text-3xl font-bold text-secondary mb-2">16.5%</div>
-              <div className="text-sm text-gray-700">세액공제율 (총급여 5,500만원 이하)</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">16.5%</div>
+              <div className="text-sm">세액공제율 (총급여 5,500만원 이하)</div>
             </div>
-            <div className="p-6 bg-warning-light rounded-xl">
-              <div className="text-3xl font-bold text-warning mb-2">148.5만원</div>
-              <div className="text-sm text-gray-700">최대 연간 절세 금액 (900만원 × 16.5%)</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">148.5만원</div>
+              <div className="text-sm">최대 연간 절세 금액 (900만원 × 16.5%)</div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
-            <h3 className="font-semibold text-blue-900 mb-3">✅ 퇴직연금 운용의 3가지 원칙</h3>
-            <ul className="space-y-2 text-gray-700 text-sm">
+          <div className="bg-white/20 backdrop-blur border-l-4 border-white p-6 rounded-r-xl">
+            <h3 className="font-semibold mb-3">✅ 퇴직연금 운용의 3가지 원칙</h3>
+            <ul className="space-y-2 text-sm">
               <li>• <strong>절대 방치하지 마세요</strong> - 예금만 넣어두면 인플레이션 대비 실질 수익률 마이너스</li>
               <li>• <strong>장기 투자하세요</strong> - 20~30년 투자 기간이므로 복리 효과 극대화 가능</li>
               <li>• <strong>세액공제 한도 채우세요</strong> - 연 900만원 한도까지 납입하면 최대 148.5만원 돌려받음</li>
@@ -59,7 +59,7 @@ export default function PensionStrategy() {
         </section>
 
         {/* 📝 Step 1: 유형별 이해 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📝 Step 1: 퇴직연금 유형 이해하기</h2>
           
           <div className="space-y-8">
@@ -69,7 +69,7 @@ export default function PensionStrategy() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">구분</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">DB형 (확정급여)</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">DC형 (확정기여)</th>
@@ -167,7 +167,7 @@ export default function PensionStrategy() {
         </section>
 
         {/* 💰 Step 2: 세액공제 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💰 Step 2: IRP 세액공제 극대화</h2>
 
           <div className="space-y-8">
@@ -197,7 +197,7 @@ export default function PensionStrategy() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">연간 납입액</th>
                       <th className="border border-gray-300 px-4 py-3 text-right">총급여 5,500만원 이하</th>
                       <th className="border border-gray-300 px-4 py-3 text-right">총급여 5,500만원 초과</th>
@@ -266,7 +266,7 @@ export default function PensionStrategy() {
         </section>
 
         {/* 📈 Step 3: 투자 전략 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📈 Step 3: 퇴직연금 투자 전략</h2>
 
           <div className="space-y-8">
@@ -391,7 +391,7 @@ export default function PensionStrategy() {
         </section>
 
         {/* ⚠️ Step 4: 주의사항 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">⚠️ Step 4: 퇴직연금 운용 주의사항</h2>
 
           <div className="space-y-6">
@@ -413,7 +413,7 @@ export default function PensionStrategy() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-white">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">수령 방법</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">세율</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">추천 대상</th>
@@ -483,7 +483,7 @@ export default function PensionStrategy() {
         </section>
 
         {/* 📌 체크리스트 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📌 퇴직연금 운용 체크리스트</h2>
           
           <div className="space-y-3">
@@ -515,7 +515,7 @@ export default function PensionStrategy() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-gradient-to-r from-primary to-secondary text-white rounded-2xl p-12">
+        <section className="text-center bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-2xl p-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             지금 바로 퇴직연금 수익률을 확인하세요
           </h2>
@@ -525,13 +525,13 @@ export default function PensionStrategy() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/compound-interest-calculator"
-              className="inline-block bg-white text-primary px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
+              className="inline-block bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
             >
               📈 복리 이자 계산하기
             </Link>
             <Link
               href="/severance-calculator"
-              className="inline-block bg-primary-dark text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all"
+              className="inline-block bg-orange-700 text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all"
             >
               💰 퇴직금 계산하기
             </Link>

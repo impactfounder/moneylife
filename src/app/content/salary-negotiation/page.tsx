@@ -14,10 +14,10 @@ export default function SalaryNegotiationGuide() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <main className="container mx-auto px-4 py-8 md:py-12">
+      <main className="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
         {/* 🎯 Hero Section */}
-        <section className="mb-12">
-          <div className="inline-block bg-primary-light text-primary-dark px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <section className="mb-12 text-center">
+          <div className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             💰 급여
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -30,26 +30,26 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* 📌 핵심 요약 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🎯 핵심 요약</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-primary-light rounded-xl">
-              <div className="text-3xl font-bold text-primary mb-2">20-30%</div>
-              <div className="text-sm text-gray-700">이직 시 평균 연봉 인상률</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">20-30%</div>
+              <div className="text-sm">이직 시 평균 연봉 인상률</div>
             </div>
-            <div className="p-6 bg-secondary-light rounded-xl">
-              <div className="text-3xl font-bold text-secondary mb-2">10-15%</div>
-              <div className="text-sm text-gray-700">내부 승진 시 평균 인상률</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">10-15%</div>
+              <div className="text-sm">내부 승진 시 평균 인상률</div>
             </div>
-            <div className="p-6 bg-warning-light rounded-xl">
-              <div className="text-3xl font-bold text-warning mb-2">3-6개월</div>
-              <div className="text-sm text-gray-700">연봉 협상 준비 권장 기간</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">3-6개월</div>
+              <div className="text-sm">연봉 협상 준비 권장 기간</div>
             </div>
           </div>
         </section>
 
         {/* 📝 Step 1: 협상 준비 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📝 Step 1: 협상 준비</h2>
           
           <div className="space-y-8">
@@ -103,7 +103,7 @@ export default function SalaryNegotiationGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">구분</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">금액</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">설명</th>
@@ -133,7 +133,7 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* 💬 Step 2: 실전 화법 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💬 Step 2: 실전 화법</h2>
 
           <div className="space-y-8">
@@ -190,7 +190,7 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* ⏰ Step 3: 타이밍 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">⏰ Step 3: 협상 타이밍</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -265,7 +265,7 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* 🎁 Step 4: 연봉 외 협상 포인트 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🎁 Step 4: 연봉 외 협상 포인트</h2>
           
           <p className="text-gray-700 mb-6">
@@ -316,7 +316,7 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* 📊 연봉 협상 시나리오별 전략 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📊 시나리오별 전략</h2>
 
           <div className="space-y-6">
@@ -387,7 +387,7 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* 📌 최종 체크리스트 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📌 협상 전 최종 체크리스트</h2>
           
           <div className="space-y-3">
@@ -423,7 +423,7 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-gradient-to-r from-primary to-secondary text-white rounded-2xl p-12">
+        <section className="text-center bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-2xl p-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             지금 바로 내 연봉 순위를 확인하세요
           </h2>
@@ -433,13 +433,13 @@ export default function SalaryNegotiationGuide() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/salary-rank"
-              className="inline-block bg-white text-primary px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
+              className="inline-block bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
             >
               🏆 내 연봉 순위 확인
             </Link>
             <Link
               href="/salary-calculator"
-              className="inline-block bg-primary-dark text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all"
+              className="inline-block bg-orange-700 text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all"
             >
               💰 급여 계산하기
             </Link>

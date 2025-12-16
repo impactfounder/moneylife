@@ -17,10 +17,10 @@ export default function AnnualSalary100M() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <main className="container mx-auto px-4 py-8 md:py-12">
+      <main className="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
         {/* 🎯 Hero Section */}
         <section className="mb-12 text-center">
-          <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             💵 연봉
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -32,7 +32,7 @@ export default function AnnualSalary100M() {
         </section>
 
         {/* 📌 핵심 요약 */}
-        <section className="bg-gradient-to-br from-purple-500 to-indigo-700 text-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🎯 한 줄 요약</h2>
           <div className="space-y-4">
             <div className="bg-white bg-opacity-20 rounded-xl p-6">
@@ -48,7 +48,7 @@ export default function AnnualSalary100M() {
         </section>
 
         {/* 📊 상세 계산 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📊 연봉 1억원 상세 계산</h2>
 
           <div className="space-y-6">
@@ -136,7 +136,7 @@ export default function AnnualSalary100M() {
         </section>
 
         {/* 💡 연봉 1억 현실 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💡 연봉 1억의 현실</h2>
 
           <div className="space-y-6">
@@ -177,13 +177,13 @@ export default function AnnualSalary100M() {
         </section>
 
         {/* 📈 연봉 구간별 비교 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📈 고연봉 구간 비교</h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm">
               <thead>
-                <tr className="bg-gray-100">
+                <tr className="bg-amber-50">
                   <th className="border border-gray-300 px-4 py-3 text-left">연봉 (세전)</th>
                   <th className="border border-gray-300 px-4 py-3 text-right">실수령 (연)</th>
                   <th className="border border-gray-300 px-4 py-3 text-right">실수령 (월)</th>
@@ -263,7 +263,7 @@ export default function AnnualSalary100M() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-2xl p-12">
+        <section className="text-center bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-2xl p-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             내 연봉 실수령액이 궁금하신가요?
           </h2>
@@ -272,7 +272,7 @@ export default function AnnualSalary100M() {
           </p>
           <Link
             href="/salary-calculator"
-            className="inline-block bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
+            className="inline-block bg-white text-yellow-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
           >
             💰 급여 계산하기
           </Link>

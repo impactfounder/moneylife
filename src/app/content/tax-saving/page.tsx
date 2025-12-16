@@ -14,10 +14,10 @@ export default function TaxSavingGuide() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <main className="container mx-auto px-4 py-8 md:py-12">
+      <main className="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
         {/* 🎯 Hero Section */}
-        <section className="mb-12">
-          <div className="inline-block bg-danger-light text-danger-dark px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <section className="mb-12 text-center">
+          <div className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             💸 세금
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -30,27 +30,27 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* 📌 핵심 요약 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🎯 절세 핵심 요약</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-6">
-            <div className="p-6 bg-primary-light rounded-xl">
-              <div className="text-3xl font-bold text-primary mb-2">최대 1,000만원</div>
-              <div className="text-sm text-gray-700">연말정산 환급 가능 금액 (직장인)</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">최대 1,000만원</div>
+              <div className="text-sm">연말정산 환급 가능 금액 (직장인)</div>
             </div>
-            <div className="p-6 bg-secondary-light rounded-xl">
-              <div className="text-3xl font-bold text-secondary mb-2">148.5만원</div>
-              <div className="text-sm text-gray-700">IRP 900만원 납입 시 세액공제 (16.5%)</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">148.5만원</div>
+              <div className="text-sm">IRP 900만원 납입 시 세액공제 (16.5%)</div>
             </div>
-            <div className="p-6 bg-warning-light rounded-xl">
-              <div className="text-3xl font-bold text-warning mb-2">30%</div>
-              <div className="text-sm text-gray-700">연금 수령 시 퇴직소득세 감면율</div>
+            <div className="p-6 bg-white/20 backdrop-blur rounded-xl">
+              <div className="text-3xl font-bold mb-2">30%</div>
+              <div className="text-sm">연금 수령 시 퇴직소득세 감면율</div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
-            <h3 className="font-semibold text-blue-900 mb-3">✅ 2025년 달라진 세법</h3>
-            <ul className="space-y-2 text-gray-700 text-sm">
+          <div className="bg-white/20 backdrop-blur border-l-4 border-white/50 p-6 rounded-r-xl">
+            <h3 className="font-semibold mb-3">✅ 2025년 달라진 세법</h3>
+            <ul className="space-y-2 text-sm">
               <li>• <strong>근로소득 과세표준 조정</strong> - 세금 구간 8단계 유지</li>
               <li>• <strong>신용카드 소득공제 한도</strong> - 총급여 7천만원 이하 300만원, 초과 250만원</li>
               <li>• <strong>월세 세액공제</strong> - 총급여 7천만원 이하 15%, 초과 12%</li>
@@ -60,7 +60,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* 📝 Step 1: 연말정산 절세 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📝 Step 1: 연말정산 절세 (직장인)</h2>
           
           <div className="space-y-8">
@@ -109,7 +109,7 @@ export default function TaxSavingGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">항목</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">공제율/한도</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">조건</th>
@@ -152,7 +152,7 @@ export default function TaxSavingGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">항목</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">공제율</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">최대 공제액</th>
@@ -192,7 +192,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* 💡 Step 2: 실전 절세 전략 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💡 Step 2: 실전 절세 전략</h2>
 
           <div className="space-y-8">
@@ -294,7 +294,7 @@ export default function TaxSavingGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">구분</th>
                       <th className="border border-gray-300 px-4 py-3 text-right">납입 한도</th>
                       <th className="border border-gray-300 px-4 py-3 text-right">세액공제 한도</th>
@@ -332,7 +332,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* 💸 Step 3: 종합소득세 절세 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💸 Step 3: 종합소득세 절세 (프리랜서/사업자)</h2>
 
           <div className="space-y-6">
@@ -376,7 +376,7 @@ export default function TaxSavingGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">구분</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">간편장부</th>
                       <th className="border border-gray-300 px-4 py-3 text-left">복식부기</th>
@@ -411,7 +411,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* 🏠 Step 4: 양도소득세 절세 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🏠 Step 4: 양도소득세 절세 (부동산)</h2>
 
           <div className="space-y-6">
@@ -454,7 +454,7 @@ export default function TaxSavingGuide() {
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-amber-50">
                       <th className="border border-gray-300 px-4 py-3 text-left">보유 기간</th>
                       <th className="border border-gray-300 px-4 py-3 text-right">공제율 (1주택자)</th>
                       <th className="border border-gray-300 px-4 py-3 text-right">공제율 (다주택자)</th>
@@ -493,7 +493,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* ⚠️ Step 5: 주의사항 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">⚠️ Step 5: 절세 시 주의사항</h2>
 
           <div className="space-y-6">
@@ -560,7 +560,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* 📌 체크리스트 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
+        <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">📌 연말 절세 체크리스트</h2>
           
           <div className="space-y-3">
@@ -596,7 +596,7 @@ export default function TaxSavingGuide() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-gradient-to-r from-danger to-primary text-white rounded-2xl p-12">
+        <section className="text-center bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-2xl p-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             지금 바로 세금 계산해보세요
           </h2>
@@ -606,13 +606,13 @@ export default function TaxSavingGuide() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/income-tax-calculator"
-              className="inline-block bg-white text-danger px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
+              className="inline-block bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
             >
               💸 종합소득세 계산하기
             </Link>
             <Link
               href="/capital-gains-tax-calculator"
-              className="inline-block bg-danger-dark text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all"
+              className="inline-block bg-orange-700 text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all"
             >
               🏠 양도소득세 계산하기
             </Link>
