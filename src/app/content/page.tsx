@@ -158,6 +158,54 @@ const contents = [
     icon: '🏡',
     href: '/content/first-time-buyer-loans',
     category: '대출'
+  },
+  {
+    id: 20,
+    title: '2025년 연봉 실수령액 표',
+    description: '3000만원부터 1억까지, 4대보험 적용 실수령액 완벽 정리',
+    icon: '💰',
+    href: '/content/2025-salary-net-income-table',
+    category: '급여'
+  },
+  {
+    id: 21,
+    title: '연말정산 환급 많이 받는 법',
+    description: '놓치기 쉬운 공제 항목과 절세 전략 총정리',
+    icon: '🧾',
+    href: '/content/year-end-tax-adjustment-tips',
+    category: '세금'
+  },
+  {
+    id: 22,
+    title: '퇴직금 IRP 수령 시 세금 계산',
+    description: '퇴직금 수령 방식에 따른 세금 차이와 절세 방법',
+    icon: '💼',
+    href: '/content/retirement-severance-irp-tax',
+    category: '연금'
+  },
+  {
+    id: 23,
+    title: '30대 평균 연봉과 실수령액',
+    description: '30대 직장인 평균 급여와 나의 위치 확인하기',
+    icon: '👔',
+    href: '/content/30s-average-salary-korea',
+    category: '급여'
+  },
+  {
+    id: 24,
+    title: '국민연금 수령 나이와 예상 수령액',
+    description: '출생연도별 수령 시기와 예상 연금액 계산',
+    icon: '👴',
+    href: '/content/national-pension-receive-age',
+    category: '연금'
+  },
+  {
+    id: 25,
+    title: '부동산 양도소득세 계산법',
+    description: '주택 매도 시 양도세 계산과 비과세 요건 총정리',
+    icon: '🏘️',
+    href: '/content/capital-gains-tax-real-estate',
+    category: '세금'
   }
 ]
 
@@ -187,8 +235,8 @@ export default function ContentPage() {
           </div>
         </section>
 
-        {/* 카테고리 필터 */}
-        <section className="bg-white border-b border-slate-200 sticky top-16 z-40">
+        {/* 카테고리 필터 - Header(64px) + Ticker(28px on desktop) */}
+        <section className="bg-white border-b border-slate-200 sticky top-16 md:top-[92px] z-40">
           <div className="container mx-auto px-4">
             <div className="flex justify-center gap-3 py-6 overflow-x-auto scrollbar-hide">
               {categories.map((category) => (
@@ -228,20 +276,13 @@ export default function ContentPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {content.title}
                       </h3>
 
                       <p className="text-gray-600 text-sm leading-relaxed">
                         {content.description}
                       </p>
-
-                      <div className="mt-4 flex items-center text-slate-600 font-medium text-sm">
-                        자세히 보기
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
                     </div>
                   </Card>
                 </Link>
