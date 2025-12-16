@@ -127,7 +127,7 @@ export default function ContentDetailPage({ params }: PageProps) {
                   ),
                   table: ({ children }) => (
                     <div className="overflow-x-auto my-6">
-                      <table className="min-w-full border-collapse border border-slate-200 text-sm">
+                      <table className="w-full border-collapse border border-slate-200 text-sm table-fixed">
                         {children}
                       </table>
                     </div>
@@ -143,10 +143,23 @@ export default function ContentDetailPage({ params }: PageProps) {
                   td: ({ children }) => {
                     // 숫자/금액 데이터는 우측정렬, 텍스트는 중앙정렬
                     const content = String(children)
-                    const isNumeric = /^[\d,.\-+%*만원억원천원]+$/.test(content.replace(/\s/g, '')) ||
-                                      /^\*\*[\d,]+\*\*$/.test(content.replace(/\s/g, ''))
+                    const hasNumber = /[\d,]+/.test(content)
+                    const hasUnit = /만원|억원|천원|원|%/.test(content)
+                    const isNumericCell = hasNumber && (hasUnit || /^[\d,.\-+%]+$/.test(content.replace(/\s/g, '')))
+
+                    // 금액 셀: 숫자와 단위를 분리하여 정렬
+                    if (isNumericCell && hasUnit) {
+                      return (
+                        <td className="border border-slate-200 px-4 py-3 text-slate-700 text-right whitespace-nowrap">
+                          <span className="inline-block min-w-[60px] text-right tabular-nums">
+                            {children}
+                          </span>
+                        </td>
+                      )
+                    }
+
                     return (
-                      <td className={`border border-slate-200 px-4 py-3 text-slate-700 ${isNumeric ? 'text-right' : 'text-center'}`}>
+                      <td className={`border border-slate-200 px-4 py-3 text-slate-700 ${isNumericCell ? 'text-right tabular-nums' : 'text-center'}`}>
                         {children}
                       </td>
                     )
