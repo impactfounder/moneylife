@@ -15,7 +15,7 @@ export default function Salary3MillionPage() {
 
       <main className="min-h-screen bg-slate-50">
         {/* 히어로 섹션 */}
-        <section className="bg-gradient-to-b from-gray-50 to-white py-16">
+        <section className="bg-gradient-to-b from-slate-50 to-white py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <div className="text-center">
               <div className="inline-block bg-slate-100 text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -95,7 +95,7 @@ export default function Salary3MillionPage() {
                       <span className="text-slate-700">전체 근로자 중</span>
                       <span className="text-xl font-bold text-amber-600">상위 40-50%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div className="w-full bg-slate-200 rounded-full h-3">
                       <div className="bg-amber-600 h-3 rounded-full" style={{ width: '50%' }}></div>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ export default function Salary3MillionPage() {
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 p-4 rounded-lg border border-gray-100">
+                  <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
                     <h3 className="font-semibold text-slate-900 mb-3">10년 후 자산 시뮬레이션 (월 30만원 저축)</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
@@ -227,7 +227,7 @@ export default function Salary3MillionPage() {
                         <th className="px-4 py-3 text-right text-slate-700">저축 가능</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
                         <td className="px-4 py-3 font-semibold text-slate-900">서울</td>
                         <td className="px-4 py-3 text-right text-slate-700">80만원</td>

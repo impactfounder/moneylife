@@ -10,38 +10,38 @@ const contents = [
   {
     id: 1,
     title: '월급 300만원의 현실',
-    description: '2025년 월급 300만원의 구매력과 생활 수준을 분석합니다',
+    description: '2025년 기준 월급 300만원의 실수령액, 생활비, 저축 가능 금액을 상세히 분석합니다',
     icon: '💰',
     href: '/content/salary-3million',
     category: '급여'
   },
   {
     id: 2,
-    title: '2025년 연봉 순위표',
-    description: '연령대별, 지역별 상세 연봉 순위 데이터',
+    title: '내 연봉, 상위 몇 %?',
+    description: '2025년 한국 근로자 연봉 순위표. 내 연봉이 상위 몇 %인지 확인하세요',
     icon: '📊',
     href: '/content/salary-ranking',
     category: '급여'
   },
   {
     id: 3,
-    title: '2025년 급여 실수령액표',
-    description: '세전 급여별 실수령액 총정리',
+    title: '2025년 연봉별 실수령액 표',
+    description: '연봉 3천만원부터 3억원까지 실수령액 한눈에 비교',
     icon: '💵',
     href: '/content/salary-table',
     category: '급여'
   },
   {
     id: 4,
-    title: 'ISA 계좌 완벽 가이드 (2025)',
-    description: '절세와 투자를 동시에! ISA 계좌 활용법',
+    title: 'ISA 계좌 완벽 가이드',
+    description: 'ISA 계좌의 모든 것. 가입 조건, 세제 혜택, 투자 전략까지',
     icon: '📈',
     href: '/content/isa-guide',
     category: '투자'
   },
   {
     id: 5,
-    title: '연금저축 vs IRP 비교 (2025)',
+    title: '연금저축 vs IRP 비교',
     description: '노후 준비의 핵심, 어떤 것을 선택할까?',
     icon: '🏦',
     href: '/content/pension-vs-irp',
@@ -97,40 +97,40 @@ const contents = [
   },
   {
     id: 12,
-    title: '급여명세서 공제항목 완벽 해설',
-    description: '국민연금, 건강보험, 소득세... 공제 항목별 계산법과 절세 팁',
+    title: '연봉 협상 전 꼭 알아야 할 5가지 공제 항목',
+    description: '4대보험과 세금 공제 항목 정리. 실수령액 정확히 계산하기',
     icon: '📋',
     href: '/content/salary-deduction-guide',
     category: '급여'
   },
   {
     id: 13,
-    title: '연봉 vs 월급, 실수령액 차이',
-    description: '같은 연봉인데 실수령액이 다른 이유와 최적의 급여 구조',
+    title: '연봉 vs 월급, 뭐가 더 유리할까?',
+    description: '퇴직금, 상여금 포함 여부에 따른 실제 수령액 차이',
     icon: '💵',
     href: '/content/salary-vs-monthly-pay',
     category: '급여'
   },
   {
     id: 14,
-    title: '대출 상환방식 비교',
-    description: '원리금균등, 원금균등, 체증식 - 나에게 유리한 상환방식은?',
+    title: '원리금균등 vs 원금균등 vs 체증식',
+    description: '대출 상환 방식에 따른 총 이자 차이 비교 분석',
     icon: '📊',
     href: '/content/loan-repayment-method-comparison',
     category: '대출'
   },
   {
     id: 15,
-    title: '대출 중도상환, 언제가 유리할까?',
-    description: '중도상환수수료 계산법과 최적의 상환 타이밍',
+    title: '대출 이자 100만원 아끼는 중도상환 전략',
+    description: '중도상환수수료, 최적 타이밍, 전략적 상환 방법',
     icon: '⏰',
     href: '/content/prepayment-strategy',
     category: '대출'
   },
   {
     id: 16,
-    title: '2025년 은행별 대출금리 비교',
-    description: '주요 은행 신용대출, 주담대 금리 한눈에 비교',
+    title: '2025년 은행별 신용대출 금리 비교',
+    description: '주요 은행별 신용대출 금리와 우대금리 조건',
     icon: '🏦',
     href: '/content/bank-loan-rate-comparison',
     category: '대출'
@@ -145,7 +145,7 @@ const contents = [
   },
   {
     id: 18,
-    title: '주담대 갈아타기 가이드',
+    title: '2025년 주담대 갈아타기, 지금이 적기일까?',
     description: '대환대출 적정 시기와 절차, 비용 계산법',
     icon: '🔄',
     href: '/content/mortgage-refinancing',
@@ -153,31 +153,31 @@ const contents = [
   },
   {
     id: 19,
-    title: '생애최초 주택구입자 대출 혜택',
-    description: '2025년 생애최초 특례 조건과 혜택 총정리',
+    title: '생애최초 주택구입자를 위한 특례대출 총정리',
+    description: '디딤돌대출, 보금자리론 등 우대 조건과 신청 방법',
     icon: '🏡',
     href: '/content/first-time-buyer-loans',
     category: '대출'
   },
   {
     id: 20,
-    title: '2025년 연봉 실수령액 표',
-    description: '3000만원부터 1억까지, 4대보험 적용 실수령액 완벽 정리',
+    title: '2025년 연봉 실수령액 표 - 완벽 정리',
+    description: '3000만원부터 1억까지 4대보험 적용 실수령액',
     icon: '💰',
     href: '/content/2025-salary-net-income-table',
     category: '급여'
   },
   {
     id: 21,
-    title: '연말정산 환급 많이 받는 법',
-    description: '놓치기 쉬운 공제 항목과 절세 전략 총정리',
+    title: '연말정산 환급 극대화하는 법',
+    description: '신용카드, 의료비, 교육비 공제부터 연금저축까지',
     icon: '🧾',
     href: '/content/year-end-tax-adjustment-tips',
     category: '세금'
   },
   {
     id: 22,
-    title: '퇴직금 IRP 수령 시 세금 계산',
+    title: '퇴직금 IRP로 받으면 세금 얼마나 줄어들까?',
     description: '퇴직금 수령 방식에 따른 세금 차이와 절세 방법',
     icon: '💼',
     href: '/content/retirement-severance-irp-tax',
@@ -185,24 +185,24 @@ const contents = [
   },
   {
     id: 23,
-    title: '30대 평균 연봉과 실수령액',
-    description: '30대 직장인 평균 급여와 나의 위치 확인하기',
+    title: '30대 평균 연봉은 얼마?',
+    description: '2025년 30대 직장인의 평균 연봉과 중위 소득 분석',
     icon: '👔',
     href: '/content/30s-average-salary-korea',
     category: '급여'
   },
   {
     id: 24,
-    title: '국민연금 수령 나이와 예상 수령액',
-    description: '출생연도별 수령 시기와 예상 연금액 계산',
+    title: '국민연금 언제부터 받을 수 있나?',
+    description: '출생연도별 수령 시작 나이와 예상 연금액 계산',
     icon: '👴',
     href: '/content/national-pension-receive-age',
     category: '연금'
   },
   {
     id: 25,
-    title: '부동산 양도소득세 계산법',
-    description: '주택 매도 시 양도세 계산과 비과세 요건 총정리',
+    title: '부동산 양도소득세 계산법 완벽 정리',
+    description: '1세대 1주택 비과세 요건, 장기보유특별공제 총정리',
     icon: '🏘️',
     href: '/content/capital-gains-tax-real-estate',
     category: '세금'
@@ -222,14 +222,14 @@ export default function ContentPage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-slate-50">
         {/* 히어로 섹션 */}
         <section className="bg-white py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
               금융 콘텐츠
             </h1>
-            <p className="text-base md:text-lg text-gray-600">
+            <p className="text-base md:text-lg text-slate-600">
               재테크에 도움이 되는 유용한 정보를 제공합니다
             </p>
           </div>
@@ -276,11 +276,11 @@ export default function ContentPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-slate-900 mb-2">
                         {content.title}
                       </h3>
 
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p className="text-slate-600 text-sm leading-relaxed">
                         {content.description}
                       </p>
                     </div>

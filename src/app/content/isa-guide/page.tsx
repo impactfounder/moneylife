@@ -338,7 +338,7 @@ export default function ISAGuide() {
                   <th className="px-4 py-3 text-left font-semibold text-slate-700">추천 대상</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-slate-100">
                 <tr className="hover:bg-slate-50">
                   <td className="px-4 py-3 font-medium">미래에셋증권</td>
                   <td className="px-4 py-3 text-slate-700">ETF 종류 많음, UI 편리</td>
@@ -375,7 +375,7 @@ export default function ISAGuide() {
 
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-1">증권사 선택 및 앱 설치</h3>
                 <p className="text-sm text-slate-600">미래에셋, 삼성, NH, 키움, 토스 등에서 선택</p>
@@ -383,7 +383,7 @@ export default function ISAGuide() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-1">소득 증빙 서류 준비</h3>
                 <p className="text-sm text-slate-600">근로소득 원천징수영수증 or 소득금액증명원 (국세청 홈택스 발급)</p>
@@ -391,7 +391,7 @@ export default function ISAGuide() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-1">ISA 계좌 신청</h3>
                 <p className="text-sm text-slate-600">앱에서 &apos;ISA 계좌 개설&apos; 메뉴 → 서민형/일반형 선택</p>
@@ -399,7 +399,7 @@ export default function ISAGuide() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-1">본인 인증 및 서류 업로드</h3>
                 <p className="text-sm text-slate-600">휴대폰 인증 + 신분증 촬영 + 소득 서류 첨부</p>
@@ -407,7 +407,7 @@ export default function ISAGuide() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">5</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">5</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-1">승인 대기 (1~3일)</h3>
                 <p className="text-sm text-slate-600">증권사 심사 후 계좌 개설 완료 알림</p>

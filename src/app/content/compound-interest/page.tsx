@@ -225,7 +225,7 @@ export default function CompoundInterestGuide() {
 
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-2">빠르게 시작하라</h3>
                 <div className="bg-slate-50 rounded-xl p-4 text-sm text-slate-700">
@@ -241,7 +241,7 @@ export default function CompoundInterestGuide() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-2">꾸준히 투자하라</h3>
                 <div className="bg-slate-50 rounded-xl p-4 text-sm text-slate-700">
@@ -256,7 +256,7 @@ export default function CompoundInterestGuide() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+              <div className="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
               <div className="flex-1 pt-1">
                 <h3 className="font-semibold text-slate-900 mb-2">재투자하라</h3>
                 <div className="bg-slate-50 rounded-xl p-4 text-sm text-slate-700">
