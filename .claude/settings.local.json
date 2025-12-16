@@ -17,7 +17,10 @@
       "Bash(findstr:*)",
       "Bash(test:*)",
       "Bash(git config:*)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(find:*)",
+      "Bash(done)",
+      "Bash(ls:*)"
     ]
   }
 }

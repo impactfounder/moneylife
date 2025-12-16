@@ -13,21 +13,21 @@ export default function Salary3MillionPage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-slate-50">
         {/* 히어로 섹션 */}
         <section className="bg-gradient-to-b from-gray-50 to-white py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <div className="text-center">
-              <div className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <div className="inline-block bg-slate-100 text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 💰 급여 분석
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                 월급 300만원의 현실
               </h1>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-slate-600 mb-6">
                 2025년 기준 월급 300만원의 구매력과 생활 수준 분석
               </p>
-              <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center justify-center gap-4 text-sm text-slate-500">
                 <span>📅 2025년 1월 기준</span>
                 <span>•</span>
                 <span>⏱️ 10분 소요</span>
@@ -42,7 +42,7 @@ export default function Salary3MillionPage() {
             <article>
 
               {/* 실수령액 계산 */}
-              <section className="mb-12 bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl shadow-lg p-8">
+              <section className="mb-12 bg-gradient-to-br from-teal-600 to-teal-700 text-white rounded-2xl shadow-sm border border-slate-200 p-8">
                 <div className="bg-white/20 backdrop-blur rounded-xl p-6">
                   <h2 className="text-2xl font-bold mb-4">
                     📊 월급 300만원, 실수령액은?
@@ -85,14 +85,14 @@ export default function Salary3MillionPage() {
               </section>
 
               {/* 대한민국 순위 */}
-              <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
                   📈 대한민국에서 월급 300만원은?
                 </h2>
                 <div className="space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-gray-700">전체 근로자 중</span>
+                      <span className="text-slate-700">전체 근로자 중</span>
                       <span className="text-xl font-bold text-amber-600">상위 40-50%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-3">
@@ -100,14 +100,14 @@ export default function Salary3MillionPage() {
                     </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600 mb-1">20대 평균</div>
-                      <div className="text-lg font-bold text-gray-900">약 230만원</div>
+                    <div className="bg-slate-50 p-4 rounded-lg">
+                      <div className="text-sm text-slate-600 mb-1">20대 평균</div>
+                      <div className="text-lg font-bold text-slate-900">약 230만원</div>
                       <div className="text-xs text-green-600 mt-1">↑ 평균 이상</div>
                     </div>
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600 mb-1">30대 평균</div>
-                      <div className="text-lg font-bold text-gray-900">약 350만원</div>
+                    <div className="bg-slate-50 p-4 rounded-lg">
+                      <div className="text-sm text-slate-600 mb-1">30대 평균</div>
+                      <div className="text-lg font-bold text-slate-900">약 350만원</div>
                       <div className="text-xs text-red-600 mt-1">↓ 평균 이하</div>
                     </div>
                   </div>
@@ -115,53 +115,53 @@ export default function Salary3MillionPage() {
               </section>
 
               {/* 생활비 분석 */}
-              <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
                   🏠 월급 300만원으로 서울 생활 가능할까?
                 </h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-3">월 고정 지출 (서울 1인 가구 기준)</h3>
+                    <h3 className="font-semibold text-slate-900 mb-3">월 고정 지출 (서울 1인 가구 기준)</h3>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700">월세 (원룸, 보증금 500만원)</span>
-                        <span className="font-semibold text-gray-900">800,000원</span>
+                        <span className="text-slate-700">월세 (원룸, 보증금 500만원)</span>
+                        <span className="font-semibold text-slate-900">800,000원</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700">식비 (외식 포함)</span>
-                        <span className="font-semibold text-gray-900">500,000원</span>
+                        <span className="text-slate-700">식비 (외식 포함)</span>
+                        <span className="font-semibold text-slate-900">500,000원</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700">교통비</span>
-                        <span className="font-semibold text-gray-900">150,000원</span>
+                        <span className="text-slate-700">교통비</span>
+                        <span className="font-semibold text-slate-900">150,000원</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700">통신비 (휴대폰 + 인터넷)</span>
-                        <span className="font-semibold text-gray-900">80,000원</span>
+                        <span className="text-slate-700">통신비 (휴대폰 + 인터넷)</span>
+                        <span className="font-semibold text-slate-900">80,000원</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700">공과금 (전기/수도/가스)</span>
-                        <span className="font-semibold text-gray-900">100,000원</span>
+                        <span className="text-slate-700">공과금 (전기/수도/가스)</span>
+                        <span className="font-semibold text-slate-900">100,000원</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700">생활용품 및 기타</span>
-                        <span className="font-semibold text-gray-900">150,000원</span>
+                        <span className="text-slate-700">생활용품 및 기타</span>
+                        <span className="font-semibold text-slate-900">150,000원</span>
                       </div>
-                      <div className="border-t border-gray-200 pt-2 mt-2">
+                      <div className="border-t border-slate-200 pt-2 mt-2">
                         <div className="flex justify-between font-bold">
-                          <span className="text-gray-900">총 고정 지출</span>
+                          <span className="text-slate-900">총 고정 지출</span>
                           <span className="text-red-600">1,780,000원</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                  <div className="bg-slate-50 p-4 rounded-lg border border-amber-200">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold text-gray-900">지출 후 잔액</span>
+                      <span className="font-semibold text-slate-900">지출 후 잔액</span>
                       <span className="text-xl font-bold text-amber-600">약 893,000원</span>
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-slate-600">
                       여가/교제비, 의료비, 긴급 예비비 등으로 사용 가능
                     </p>
                   </div>
@@ -169,42 +169,42 @@ export default function Salary3MillionPage() {
               </section>
 
               {/* 저축 가능 금액 */}
-              <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
                   💰 저축 가능 금액은?
                 </h2>
                 <div className="space-y-4">
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="bg-amber-50 p-4 rounded-lg border border-amber-200 shadow-sm">
-                      <div className="text-sm text-gray-600 mb-1">절약형</div>
+                    <div className="bg-slate-50 p-4 rounded-lg border border-amber-200 shadow-sm">
+                      <div className="text-sm text-slate-600 mb-1">절약형</div>
                       <div className="text-2xl font-bold text-emerald-600">50만원</div>
-                      <div className="text-xs text-gray-500 mt-1">외식/여가 최소화</div>
+                      <div className="text-xs text-slate-500 mt-1">외식/여가 최소화</div>
                     </div>
-                    <div className="bg-amber-50 p-4 rounded-lg border border-amber-200 shadow-sm">
-                      <div className="text-sm text-gray-600 mb-1">보통형</div>
+                    <div className="bg-slate-50 p-4 rounded-lg border border-amber-200 shadow-sm">
+                      <div className="text-sm text-slate-600 mb-1">보통형</div>
                       <div className="text-2xl font-bold text-amber-600">30만원</div>
-                      <div className="text-xs text-gray-500 mt-1">적당한 소비</div>
+                      <div className="text-xs text-slate-500 mt-1">적당한 소비</div>
                     </div>
-                    <div className="bg-amber-50 p-4 rounded-lg border border-amber-200 shadow-sm">
-                      <div className="text-sm text-gray-600 mb-1">여유형</div>
+                    <div className="bg-slate-50 p-4 rounded-lg border border-amber-200 shadow-sm">
+                      <div className="text-sm text-slate-600 mb-1">여유형</div>
                       <div className="text-2xl font-bold text-purple-600">10만원</div>
-                      <div className="text-xs text-gray-500 mt-1">취미/여가 활동</div>
+                      <div className="text-xs text-slate-500 mt-1">취미/여가 활동</div>
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                    <h3 className="font-semibold text-gray-900 mb-3">10년 후 자산 시뮬레이션 (월 30만원 저축)</h3>
+                  <div className="bg-slate-50 p-4 rounded-lg border border-gray-100">
+                    <h3 className="font-semibold text-slate-900 mb-3">10년 후 자산 시뮬레이션 (월 30만원 저축)</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-700">단순 저축 (이자 0%)</span>
-                        <span className="font-semibold text-gray-900">3,600만원</span>
+                        <span className="text-slate-700">단순 저축 (이자 0%)</span>
+                        <span className="font-semibold text-slate-900">3,600만원</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-700">예금 (연 3%)</span>
+                        <span className="text-slate-700">예금 (연 3%)</span>
                         <span className="font-semibold text-amber-600">약 4,200만원</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-700">적립식 펀드 (연 5%)</span>
+                        <span className="text-slate-700">적립식 펀드 (연 5%)</span>
                         <span className="font-semibold text-emerald-600">약 4,700만원</span>
                       </div>
                     </div>
@@ -213,43 +213,43 @@ export default function Salary3MillionPage() {
               </section>
 
               {/* 지역별 비교 */}
-              <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
                   🗺️ 지역별 생활 수준 비교
                 </h2>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
-                    <thead className="bg-amber-50">
+                    <thead className="bg-slate-50">
                       <tr>
-                        <th className="px-4 py-3 text-left text-gray-700">지역</th>
-                        <th className="px-4 py-3 text-right text-gray-700">평균 월세</th>
-                        <th className="px-4 py-3 text-right text-gray-700">월 생활비</th>
-                        <th className="px-4 py-3 text-right text-gray-700">저축 가능</th>
+                        <th className="px-4 py-3 text-left text-slate-700">지역</th>
+                        <th className="px-4 py-3 text-right text-slate-700">평균 월세</th>
+                        <th className="px-4 py-3 text-right text-slate-700">월 생활비</th>
+                        <th className="px-4 py-3 text-right text-slate-700">저축 가능</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                       <tr>
-                        <td className="px-4 py-3 font-semibold text-gray-900">서울</td>
-                        <td className="px-4 py-3 text-right text-gray-700">80만원</td>
+                        <td className="px-4 py-3 font-semibold text-slate-900">서울</td>
+                        <td className="px-4 py-3 text-right text-slate-700">80만원</td>
                         <td className="px-4 py-3 text-right text-red-600">178만원</td>
                         <td className="px-4 py-3 text-right text-amber-600">30-50만원</td>
                       </tr>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-900">경기 (수도권)</td>
-                        <td className="px-4 py-3 text-right text-gray-700">60만원</td>
-                        <td className="px-4 py-3 text-right text-gray-700">158만원</td>
+                      <tr className="bg-slate-50">
+                        <td className="px-4 py-3 font-semibold text-slate-900">경기 (수도권)</td>
+                        <td className="px-4 py-3 text-right text-slate-700">60만원</td>
+                        <td className="px-4 py-3 text-right text-slate-700">158만원</td>
                         <td className="px-4 py-3 text-right text-amber-600">50-70만원</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3 font-semibold text-gray-900">부산/대구</td>
-                        <td className="px-4 py-3 text-right text-gray-700">50만원</td>
-                        <td className="px-4 py-3 text-right text-gray-700">148만원</td>
+                        <td className="px-4 py-3 font-semibold text-slate-900">부산/대구</td>
+                        <td className="px-4 py-3 text-right text-slate-700">50만원</td>
+                        <td className="px-4 py-3 text-right text-slate-700">148만원</td>
                         <td className="px-4 py-3 text-right text-emerald-600">60-80만원</td>
                       </tr>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-900">지방 중소도시</td>
-                        <td className="px-4 py-3 text-right text-gray-700">40만원</td>
-                        <td className="px-4 py-3 text-right text-gray-700">138만원</td>
+                      <tr className="bg-slate-50">
+                        <td className="px-4 py-3 font-semibold text-slate-900">지방 중소도시</td>
+                        <td className="px-4 py-3 text-right text-slate-700">40만원</td>
+                        <td className="px-4 py-3 text-right text-slate-700">138만원</td>
                         <td className="px-4 py-3 text-right text-emerald-600">70-90만원</td>
                       </tr>
                     </tbody>
@@ -258,37 +258,37 @@ export default function Salary3MillionPage() {
               </section>
 
               {/* 결론 */}
-              <section className="bg-white rounded-2xl shadow-lg p-8 mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
                   💡 결론: 월급 300만원으로 살 수 있을까?
                 </h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">✅</span>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">지방 중소도시</h3>
-                      <p className="text-sm text-gray-600">여유 있는 생활 가능, 월 70-90만원 저축 가능</p>
+                      <h3 className="font-semibold text-slate-900 mb-1">지방 중소도시</h3>
+                      <p className="text-sm text-slate-600">여유 있는 생활 가능, 월 70-90만원 저축 가능</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">⚠️</span>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">서울</h3>
-                      <p className="text-sm text-gray-600">절약하면 생활 가능, 월 30-50만원 저축 가능</p>
+                      <h3 className="font-semibold text-slate-900 mb-1">서울</h3>
+                      <p className="text-sm text-slate-600">절약하면 생활 가능, 월 30-50만원 저축 가능</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">🚨</span>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">주의사항</h3>
-                      <p className="text-sm text-gray-600">경조사비, 의료비 등 변동비 발생 시 저축 어려움</p>
+                      <h3 className="font-semibold text-slate-900 mb-1">주의사항</h3>
+                      <p className="text-sm text-slate-600">경조사비, 의료비 등 변동비 발생 시 저축 어려움</p>
                     </div>
                   </div>
                 </div>
               </section>
 
               {/* CTA */}
-              <section className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white text-center rounded-2xl shadow-lg p-8 mb-12">
+              <section className="bg-slate-900 text-white text-center rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
                 <h3 className="text-2xl font-bold mb-4">
                   💰 내 월급 실수령액 계산해보기
                 </h3>
@@ -297,7 +297,7 @@ export default function Salary3MillionPage() {
                 </p>
                 <Link
                   href="/salary-calculator"
-                  className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all hover:scale-105 shadow-lg"
+                  className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all hover:scale-105 shadow-sm border border-slate-200"
                 >
                   급여 계산기 사용하기
                 </Link>

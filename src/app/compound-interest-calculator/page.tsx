@@ -581,12 +581,12 @@ export default function CompoundInterestPage() {
                       <tr>
                         <td className="px-4 py-3 font-medium">국내 주식 (KOSPI)</td>
                         <td className="px-4 py-3 text-center text-blue-600">7~10%</td>
-                        <td className="px-4 py-3 text-center"><span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">높음</span></td>
+                        <td className="px-4 py-3 text-center"><span className="bg-teal-100 text-teal-700 px-2 py-1 rounded text-xs">높음</span></td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-medium">미국 주식 (S&P 500)</td>
                         <td className="px-4 py-3 text-center text-blue-600">8~12%</td>
-                        <td className="px-4 py-3 text-center"><span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">높음</span></td>
+                        <td className="px-4 py-3 text-center"><span className="bg-teal-100 text-teal-700 px-2 py-1 rounded text-xs">높음</span></td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-medium">부동산 (REITs)</td>

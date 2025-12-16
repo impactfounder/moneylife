@@ -30,26 +30,26 @@ export default function SalaryTable2025() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <Header />
-      
-      <main className="container mx-auto px-4 py-8 md:py-12">
-        {/* 🎯 Hero Section */}
-        <section className="mb-12 text-center">
-          <div className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            💵 급여
+
+      <main className="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
+        {/* Hero Section */}
+        <section className="mb-10">
+          <div className="inline-block bg-slate-100 text-slate-600 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 border border-slate-200">
+            급여
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
             2025년 연봉별 실수령액 표
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-slate-600 leading-relaxed">
             연봉 3천만원부터 3억원까지 한눈에 비교
           </p>
         </section>
 
-        {/* 📌 핵심 요약 */}
-        <section className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl shadow-card p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6">🎯 알아두면 유용한 팁</h2>
+        {/* 핵심 요약 */}
+        <section className="bg-gradient-to-br from-teal-600 to-teal-700 text-white rounded-2xl shadow-lg p-8 mb-10">
+          <h2 className="text-2xl font-bold mb-6">알아두면 유용한 팁</h2>
           <ul className="space-y-3 text-lg">
             <li className="flex items-start">
               <span className="mr-3">✓</span>
@@ -70,37 +70,37 @@ export default function SalaryTable2025() {
           </ul>
         </section>
 
-        {/* 📊 연봉별 실수령액 표 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6">📊 2025년 연봉별 실수령액 상세표</h2>
+        {/* 연봉별 실수령액 표 */}
+        <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">2025년 연봉별 실수령액 상세표</h2>
           
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-sm">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="bg-gray-100">
-                  <th className="border border-gray-300 px-4 py-3 text-center">연봉<br/>(세전)</th>
-                  <th className="border border-gray-300 px-4 py-3 text-center">월급<br/>(세전)</th>
-                  <th className="border border-gray-300 px-4 py-3 text-center bg-green-50">연봉<br/>(실수령)</th>
-                  <th className="border border-gray-300 px-4 py-3 text-center bg-green-50">월급<br/>(실수령)</th>
-                  <th className="border border-gray-300 px-4 py-3 text-center">공제액<br/>(연)</th>
+                <tr className="bg-slate-50">
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">연봉<br/>(세전)</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">월급<br/>(세전)</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200 bg-teal-50">연봉<br/>(실수령)</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200 bg-teal-50">월급<br/>(실수령)</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">공제액<br/>(연)</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-100">
                 {salaryData.map((data, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                    <td className="border border-gray-300 px-4 py-3 text-center font-semibold">
+                  <tr key={index} className="hover:bg-slate-50 transition-colors">
+                    <td className="px-4 py-3 text-center font-semibold text-slate-900">
                       {data.annual.toLocaleString()}만원
                     </td>
-                    <td className="border border-gray-300 px-4 py-3 text-center">
+                    <td className="px-4 py-3 text-center text-slate-700">
                       {data.monthly}만원
                     </td>
-                    <td className="border border-gray-300 px-4 py-3 text-center text-green-700 font-bold bg-green-50">
+                    <td className="px-4 py-3 text-center text-teal-700 font-bold bg-teal-50/50">
                       {data.netAnnual.toLocaleString()}만원
                     </td>
-                    <td className="border border-gray-300 px-4 py-3 text-center text-green-700 font-bold bg-green-50">
+                    <td className="px-4 py-3 text-center text-teal-700 font-bold bg-teal-50/50">
                       {data.netMonthly}만원
                     </td>
-                    <td className="border border-gray-300 px-4 py-3 text-center text-red-600">
+                    <td className="px-4 py-3 text-center text-slate-500">
                       {data.deduction.toLocaleString()}만원
                     </td>
                   </tr>
@@ -109,21 +109,21 @@ export default function SalaryTable2025() {
             </table>
           </div>
 
-          <div className="mt-6 space-y-2 text-sm text-gray-600">
+          <div className="mt-6 space-y-2 text-sm text-slate-500">
             <p>* 2025년 세율표 기준 (국민연금 4.5%, 건강보험 3.545%, 고용보험 0.9%, 소득세, 지방소득세)</p>
             <p>* 단일 근로자, 부양가족 없음 가정</p>
             <p>* 실제 금액은 부양가족, 공제항목에 따라 다를 수 있음</p>
           </div>
         </section>
 
-        {/* 💡 구간별 특징 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6">💡 구간별 특징 분석</h2>
-          
-          <div className="space-y-6">
-            <div className="border-l-4 border-blue-500 bg-blue-50 p-6 rounded-r-xl">
-              <h3 className="font-semibold text-blue-900 mb-3">💰 3천만원 ~ 5천만원 (저소득 구간)</h3>
-              <div className="text-gray-700 text-sm space-y-2">
+        {/* 구간별 특징 */}
+        <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">구간별 특징 분석</h2>
+
+          <div className="space-y-4">
+            <div className="bg-slate-50 rounded-xl p-4">
+              <h3 className="font-semibold text-slate-900 mb-3">3천만원 ~ 5천만원 (저소득 구간)</h3>
+              <div className="text-slate-700 text-sm space-y-2">
                 <p>• 실수령액 비율: <strong>약 85~90%</strong></p>
                 <p>• 공제액: 약 300~700만원</p>
                 <p>• 특징: 4대보험 비중이 높고, 소득세 비중 낮음</p>
@@ -131,9 +131,9 @@ export default function SalaryTable2025() {
               </div>
             </div>
 
-            <div className="border-l-4 border-yellow-500 bg-yellow-50 p-6 rounded-r-xl">
-              <h3 className="font-semibold text-yellow-900 mb-3">💵 5천만원 ~ 8천만원 (중산층 구간)</h3>
-              <div className="text-gray-700 text-sm space-y-2">
+            <div className="bg-slate-50 rounded-xl p-4">
+              <h3 className="font-semibold text-slate-900 mb-3">5천만원 ~ 8천만원 (중산층 구간)</h3>
+              <div className="text-slate-700 text-sm space-y-2">
                 <p>• 실수령액 비율: <strong>약 80~85%</strong></p>
                 <p>• 공제액: 약 700~1,700만원</p>
                 <p>• 특징: 소득세가 본격적으로 증가하는 구간</p>
@@ -141,9 +141,9 @@ export default function SalaryTable2025() {
               </div>
             </div>
 
-            <div className="border-l-4 border-red-500 bg-red-50 p-6 rounded-r-xl">
-              <h3 className="font-semibold text-red-900 mb-3">💸 1억원 이상 (고소득 구간)</h3>
-              <div className="text-gray-700 text-sm space-y-2">
+            <div className="bg-slate-50 rounded-xl p-4">
+              <h3 className="font-semibold text-slate-900 mb-3">1억원 이상 (고소득 구간)</h3>
+              <div className="text-slate-700 text-sm space-y-2">
                 <p>• 실수령액 비율: <strong>약 72~75%</strong></p>
                 <p>• 공제액: 2,500만원 이상</p>
                 <p>• 특징: 소득세 비중 급격히 증가 (24~35% 세율)</p>
@@ -153,91 +153,80 @@ export default function SalaryTable2025() {
           </div>
         </section>
 
-        {/* 📈 실수령액 높이는 방법 */}
-        <section className="bg-white rounded-2xl shadow-card p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6">📈 실수령액 높이는 방법</h2>
-          
-          <div className="space-y-6">
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl">
-              <h3 className="font-semibold text-green-900 mb-4">✅ 합법적인 절세 전략</h3>
-              <div className="grid md:grid-cols-2 gap-4 text-sm">
-                <div className="bg-white p-4 rounded">
-                  <h4 className="font-semibold mb-2">1️⃣ 연금저축 + IRP</h4>
-                  <p className="text-gray-700">
-                    연 900만원 납입 시 최대 148.5만원 세액공제<br />
-                    <Link href="/content/pension-strategy" className="text-primary underline">→ 자세히 보기</Link>
-                  </p>
-                </div>
-                <div className="bg-white p-4 rounded">
-                  <h4 className="font-semibold mb-2">2️⃣ 월세 세액공제</h4>
-                  <p className="text-gray-700">
-                    월세의 15% 또는 12% 세액공제<br />
-                    (무주택 세대주, 연 750만원 한도)
-                  </p>
-                </div>
-                <div className="bg-white p-4 rounded">
-                  <h4 className="font-semibold mb-2">3️⃣ 체크카드 사용</h4>
-                  <p className="text-gray-700">
-                    신용카드(15%) vs 체크카드(30%) 공제율<br />
-                    연말 3개월은 체크카드 집중 사용
-                  </p>
-                </div>
-                <div className="bg-white p-4 rounded">
-                  <h4 className="font-semibold mb-2">4️⃣ 주택청약저축</h4>
-                  <p className="text-gray-700">
-                    연 240만원 소득공제 (무주택 세대주)<br />
-                    총급여 7천만원 이하만 가능
-                  </p>
-                </div>
+        {/* 실수령액 높이는 방법 */}
+        <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">실수령액 높이는 방법</h2>
+
+          <div className="space-y-4">
+            <h3 className="font-semibold text-slate-900">합법적인 절세 전략</h3>
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <div className="bg-slate-50 p-4 rounded-xl">
+                <h4 className="font-semibold text-slate-900 mb-2">연금저축 + IRP</h4>
+                <p className="text-slate-700">
+                  연 900만원 납입 시 최대 148.5만원 세액공제<br />
+                  <Link href="/content/pension-strategy" className="text-teal-600 hover:text-teal-700">→ 자세히 보기</Link>
+                </p>
+              </div>
+              <div className="bg-slate-50 p-4 rounded-xl">
+                <h4 className="font-semibold text-slate-900 mb-2">월세 세액공제</h4>
+                <p className="text-slate-700">
+                  월세의 15% 또는 12% 세액공제<br />
+                  (무주택 세대주, 연 750만원 한도)
+                </p>
+              </div>
+              <div className="bg-slate-50 p-4 rounded-xl">
+                <h4 className="font-semibold text-slate-900 mb-2">체크카드 사용</h4>
+                <p className="text-slate-700">
+                  신용카드(15%) vs 체크카드(30%) 공제율<br />
+                  연말 3개월은 체크카드 집중 사용
+                </p>
+              </div>
+              <div className="bg-slate-50 p-4 rounded-xl">
+                <h4 className="font-semibold text-slate-900 mb-2">주택청약저축</h4>
+                <p className="text-slate-700">
+                  연 240만원 소득공제 (무주택 세대주)<br />
+                  총급여 7천만원 이하만 가능
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 🛠️ 유용한 도구 */}
-        <section className="bg-gradient-to-r from-primary-light to-secondary-light rounded-2xl p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6">🛠️ 연봉 관련 유용한 계산기</h2>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <Link href="/salary-calculator" className="block bg-white p-6 rounded-xl hover:shadow-lg transition-shadow">
-              <div className="text-3xl mb-3">💰</div>
-              <h3 className="font-semibold text-lg mb-2">급여 계산기</h3>
-              <p className="text-sm text-gray-600">
-                정확한 실수령액 계산
-              </p>
+        {/* 관련 계산기 */}
+        <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">관련 계산기</h2>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link href="/salary-calculator" className="block p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
+              <h3 className="font-semibold text-slate-900 mb-1">급여 계산기</h3>
+              <p className="text-sm text-slate-600">정확한 실수령액 계산</p>
             </Link>
 
-            <Link href="/income-tax-calculator" className="block bg-white p-6 rounded-xl hover:shadow-lg transition-shadow">
-              <div className="text-3xl mb-3">💸</div>
-              <h3 className="font-semibold text-lg mb-2">종합소득세 계산기</h3>
-              <p className="text-sm text-gray-600">
-                2025년 세율표로 계산
-              </p>
+            <Link href="/income-tax-calculator" className="block p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
+              <h3 className="font-semibold text-slate-900 mb-1">종합소득세 계산기</h3>
+              <p className="text-sm text-slate-600">2025년 세율표로 계산</p>
             </Link>
 
-            <Link href="/content/tax-saving" className="block bg-white p-6 rounded-xl hover:shadow-lg transition-shadow">
-              <div className="text-3xl mb-3">🎯</div>
-              <h3 className="font-semibold text-lg mb-2">절세 전략 가이드</h3>
-              <p className="text-sm text-gray-600">
-                합법적 절세 방법
-              </p>
+            <Link href="/content/tax-saving" className="block p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
+              <h3 className="font-semibold text-slate-900 mb-1">절세 전략 가이드</h3>
+              <p className="text-sm text-slate-600">합법적 절세 방법</p>
             </Link>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-2xl p-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            내 정확한 실수령액이 궁금하신가요?
+        <section className="bg-slate-900 rounded-2xl p-8 text-center">
+          <h2 className="text-2xl font-bold text-white mb-3">
+            직접 계산해보세요
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-slate-400 mb-6">
             급여 계산기로 4대보험, 세금 빠진 정확한 금액 확인하세요
           </p>
           <Link
             href="/salary-calculator"
-            className="inline-block bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-shadow"
+            className="inline-block bg-white text-slate-900 px-8 py-3 rounded-xl font-semibold hover:bg-slate-100 transition-colors"
           >
-            💰 급여 계산하기
+            급여 계산하기 →
           </Link>
         </section>
       </main>

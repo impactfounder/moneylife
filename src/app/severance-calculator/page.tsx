@@ -139,7 +139,7 @@ export default function SeveranceCalculatorPage() {
           {/* 배경 그라데이션 */}
           <div className="absolute inset-0 w-full h-full">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-amber-400/10 blur-[100px]"></div>
-            <div className="absolute top-[10%] right-[-5%] w-[30%] h-[30%] rounded-full bg-orange-400/10 blur-[100px]"></div>
+            <div className="absolute top-[10%] right-[-5%] w-[30%] h-[30%] rounded-full bg-teal-400/10 blur-[100px]"></div>
             <div className="absolute bottom-[-10%] left-[20%] w-[30%] h-[30%] rounded-full bg-yellow-400/10 blur-[100px]"></div>
           </div>
 
