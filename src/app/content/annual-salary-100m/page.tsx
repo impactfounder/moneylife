@@ -273,11 +273,11 @@ export default function AnnualSalary100M() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-slate-900 rounded-2xl p-8 text-center">
+        <section className="bg-slate-900 text-white rounded-2xl p-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             내 연봉 실수령액이 궁금하신가요?
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-lg text-slate-300 mb-8">
             급여 계산기로 정확한 금액을 확인하세요
           </p>
           <Link

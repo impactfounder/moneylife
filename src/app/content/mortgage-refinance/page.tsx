@@ -388,11 +388,11 @@ export default function MortgageRefinanceGuide() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-slate-900 rounded-2xl p-8 text-center">
+        <section className="bg-slate-900 text-white rounded-2xl p-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             지금 바로 주담대 절감 효과를 확인하세요
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-lg text-slate-300 mb-8">
             금리 0.5%만 낮춰도 20년간 수천만원 절약!
           </p>
           <Link

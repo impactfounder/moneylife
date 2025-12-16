@@ -433,11 +433,11 @@ export default function SalaryNegotiationGuide() {
         </section>
 
         {/* CTA */}
-        <section className="text-center bg-slate-900 rounded-2xl p-8 text-center">
+        <section className="bg-slate-900 text-white rounded-2xl p-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             지금 바로 내 연봉 순위를 확인하세요
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-lg text-slate-300 mb-8">
             협상 전 정확한 시장 위치 파악이 첫 걸음입니다
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
