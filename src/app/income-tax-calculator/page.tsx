@@ -6,6 +6,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import {
   calculateIncomeTax,
@@ -317,6 +318,12 @@ export default function IncomeTaxCalculatorPage() {
                           양도세 계산기
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/income-tax-calculator')}
+                        title="소득세에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -45,6 +46,15 @@ export default function SalaryTable2025() {
           <p className="text-lg text-slate-600 leading-relaxed">
             연봉 3천만원부터 3억원까지 한눈에 비교
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/salary-calculator"
+            calculatorName="급여 실수령액 계산기"
+            description="내 연봉으로 정확한 실수령액 확인하기"
+          />
         </section>
 
         {/* 핵심 요약 */}

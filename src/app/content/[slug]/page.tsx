@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { getPostBySlug, blogPosts } from '@/data/posts'
 
 interface PageProps {
@@ -43,6 +44,17 @@ export default function ContentDetailPage({ params }: PageProps) {
                 <span>⏱️ {post.readTime} 읽기</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="py-6">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <CalculatorCTA
+              calculatorPath={post.relatedCalculator}
+              calculatorName={post.relatedCalculatorName}
+              description="이 글과 관련된 계산기로 확인해보세요"
+            />
           </div>
         </section>
 

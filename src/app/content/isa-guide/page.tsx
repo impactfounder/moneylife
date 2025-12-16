@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -26,6 +27,15 @@ export default function ISAGuide() {
           <p className="text-lg text-slate-600 leading-relaxed">
             ISA는 대한민국 최강의 절세 계좌입니다. 2025년 기준 최신 정보로 똑똑하게 활용하세요.
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/compound-interest-calculator"
+            calculatorName="복리 계산기"
+            description="ISA로 투자하면 얼마나 불어날까?"
+          />
         </section>
 
         {/* ISA란? */}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -27,6 +28,15 @@ export default function SalaryNegotiationGuide() {
             연봉 협상은 커리어에서 가장 중요한 순간입니다.<br />
             체계적인 준비와 전략으로 원하는 연봉을 받아내세요.
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/salary-calculator"
+            calculatorName="급여 실수령액 계산기"
+            description="협상 전 내 실수령액 확인하기"
+          />
         </section>
 
         {/* 📌 핵심 요약 */}

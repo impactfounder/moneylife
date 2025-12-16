@@ -6,6 +6,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateSalary } from '@/lib/salary-calculator'
 import { formatNumber } from '@/lib/calculations'
@@ -291,6 +292,12 @@ export default function SalaryCalculatorPage() {
                           연봉 순위 확인
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/salary-calculator')}
+                        title="급여에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>

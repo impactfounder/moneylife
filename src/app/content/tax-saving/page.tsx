@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -27,6 +28,15 @@ export default function TaxSavingGuide() {
             "합법적 절세는 권리입니다"<br />
             2025년 최신 세법 기준으로 최대한 세금을 줄이는 모든 방법을 정리했습니다.
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/income-tax-calculator"
+            calculatorName="종합소득세 계산기"
+            description="내 예상 세금 확인하기"
+          />
         </section>
 
         {/* 📌 핵심 요약 */}

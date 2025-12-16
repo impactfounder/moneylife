@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -26,6 +27,15 @@ export default function CompoundInterestGuide() {
           <p className="text-lg text-slate-600 leading-relaxed">
             &ldquo;복리는 세상에서 가장 강력한 힘이다&rdquo; - 아인슈타인
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/compound-interest-calculator"
+            calculatorName="복리 계산기"
+            description="내 투자금이 얼마나 불어날지 확인하기"
+          />
         </section>
 
         {/* 복리란? */}

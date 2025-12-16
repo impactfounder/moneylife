@@ -6,6 +6,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateSeverance } from '@/lib/severance-calculator'
 import { formatNumber } from '@/lib/calculations'
@@ -290,6 +291,12 @@ export default function SeveranceCalculatorPage() {
                           연금 계산기
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/severance-calculator')}
+                        title="퇴직금에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -26,6 +27,15 @@ export default function SalaryRanking() {
           <p className="text-lg text-slate-600 leading-relaxed">
             2025년 한국 근로자 연봉 순위표
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/salary-rank"
+            calculatorName="연봉 순위 확인"
+            description="내 연봉이 상위 몇 %인지 확인하기"
+          />
         </section>
 
         {/* 핵심 요약 */}

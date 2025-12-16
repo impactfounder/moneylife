@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -26,6 +27,15 @@ export default function MortgageRefinanceGuide() {
           <p className="text-lg text-slate-600">
             금리 0.5%p 낮추면 20년간 수백만원 절감!
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/mortgage-calculator"
+            calculatorName="주담대 계산기"
+            description="대출 이자 절감액 계산하기"
+          />
         </section>
 
         {/* 핵심 요약 */}

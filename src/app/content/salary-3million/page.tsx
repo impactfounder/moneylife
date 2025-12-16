@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 
 export const metadata = {
   title: '월급 300만원의 현실 - 2025년 구매력 분석 | moneylife.kr',
@@ -33,6 +34,17 @@ export default function Salary3MillionPage() {
                 <span>⏱️ 10분 소요</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="py-6">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <CalculatorCTA
+              calculatorPath="/salary-calculator"
+              calculatorName="급여 실수령액 계산기"
+              description="내 월급 실수령액이 궁금하다면?"
+            />
           </div>
         </section>
 

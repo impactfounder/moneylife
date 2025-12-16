@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -27,6 +28,15 @@ export default function PensionStrategy() {
             퇴직연금은 노후 자산의 핵심입니다.<br />
             방치하지 말고, 제대로 운용해서 수익률을 극대화하세요.
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/pension-calculator"
+            calculatorName="국민연금 계산기"
+            description="예상 연금 수령액 확인하기"
+          />
         </section>
 
         {/* 📌 핵심 요약 */}

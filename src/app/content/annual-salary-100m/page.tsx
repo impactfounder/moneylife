@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -29,6 +30,15 @@ export default function AnnualSalary100M() {
           <p className="text-lg text-slate-600">
             2025년 기준 4대보험, 세금 빼면 얼마?
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/salary-calculator"
+            calculatorName="급여 실수령액 계산기"
+            description="내 연봉 실수령액이 궁금하다면?"
+          />
         </section>
 
         {/* 📌 핵심 요약 */}

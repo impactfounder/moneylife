@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -27,6 +28,15 @@ export default function PensionVsIRP() {
             2025년 최신 기준으로 연금저축과 IRP의 모든 것을 비교합니다.<br />
             나에게 맞는 연금은 무엇일까요?
           </p>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="mb-8">
+          <CalculatorCTA
+            calculatorPath="/pension-calculator"
+            calculatorName="국민연금 계산기"
+            description="내 연금 예상액 확인하기"
+          />
         </section>
 
         {/* 📌 핵심 요약 */}
