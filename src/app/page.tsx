@@ -175,20 +175,6 @@ export default function Home() {
                   복잡한 금융 계산, 이제 전문가처럼 쉽고 정확하게.<br className="hidden lg:block" />
                   연봉부터 세금까지 모든 계산을 한 곳에서 해결하세요.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-in" style={{ animationDelay: '200ms' }}>
-                  <button
-                    onClick={() => document.getElementById('calculators')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 hover:shadow-xl hover:-translate-y-1"
-                  >
-                    모든 계산기 보기
-                  </button>
-                  <Link
-                    href="/salary-rank"
-                    className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all hover:border-slate-300"
-                  >
-                    내 연봉 순위 확인
-                  </Link>
-                </div>
               </div>
 
               {/* 빠른 연봉 순위 계산기 (카드 형태) */}
