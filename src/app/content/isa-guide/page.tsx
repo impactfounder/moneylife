@@ -73,8 +73,8 @@ export default function ISAGuide() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">구분</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">조건</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">구분</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">조건</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -103,10 +103,10 @@ export default function ISAGuide() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">구분</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">일반형 ISA</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">서민형 ISA</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">농어민 ISA</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">구분</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">일반형 ISA</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">서민형 ISA</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">농어민 ISA</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -178,10 +178,10 @@ export default function ISAGuide() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">연 수익</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700 border-b-2 border-slate-200">ISA (서민형)</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700 border-b-2 border-slate-200">일반 계좌</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700 border-b-2 border-slate-200">절세 금액</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">연 수익</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">ISA (서민형)</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">일반 계좌</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">절세 금액</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -343,9 +343,9 @@ export default function ISAGuide() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700">증권사</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700">장점</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700">추천 대상</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700">증권사</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700">장점</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700">추천 대상</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">

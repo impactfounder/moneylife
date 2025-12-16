@@ -120,9 +120,9 @@ export default function TaxSavingGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">항목</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">공제율/한도</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">조건</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">항목</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">공제율/한도</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">조건</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -163,9 +163,9 @@ export default function TaxSavingGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">항목</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">공제율</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">최대 공제액</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">항목</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">공제율</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">최대 공제액</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -305,10 +305,10 @@ export default function TaxSavingGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">구분</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">납입 한도</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">세액공제 한도</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">최대 공제액</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">구분</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">납입 한도</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">세액공제 한도</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">최대 공제액</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -387,9 +387,9 @@ export default function TaxSavingGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">구분</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">간편장부</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">복식부기</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">구분</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">간편장부</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">복식부기</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -465,9 +465,9 @@ export default function TaxSavingGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">보유 기간</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">공제율 (1주택자)</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">공제율 (다주택자)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">보유 기간</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">공제율 (1주택자)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">공제율 (다주택자)</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -88,9 +88,9 @@ export default function CompoundInterestGuide() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700">연 수익률</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700">원금 2배 기간</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700">예시</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700">연 수익률</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700">원금 2배 기간</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700">예시</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -140,10 +140,10 @@ export default function CompoundInterestGuide() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-slate-50">
-                    <th className="px-4 py-3 text-left font-semibold text-slate-700">수익률</th>
-                    <th className="px-4 py-3 text-right font-semibold text-slate-700">총 납입액</th>
-                    <th className="px-4 py-3 text-right font-semibold text-slate-700">20년 후 자산</th>
-                    <th className="px-4 py-3 text-right font-semibold text-slate-700">수익 금액</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">수익률</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">총 납입액</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">20년 후 자산</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">수익 금액</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -188,10 +188,10 @@ export default function CompoundInterestGuide() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-slate-50">
-                    <th className="px-4 py-3 text-left font-semibold text-slate-700">수익률</th>
-                    <th className="px-4 py-3 text-right font-semibold text-slate-700">총 납입액</th>
-                    <th className="px-4 py-3 text-right font-semibold text-slate-700">30년 후 자산</th>
-                    <th className="px-4 py-3 text-right font-semibold text-slate-700">수익 배수</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">수익률</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">총 납입액</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">30년 후 자산</th>
+                    <th className="px-4 py-3 text-center font-semibold text-slate-700">수익 배수</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">

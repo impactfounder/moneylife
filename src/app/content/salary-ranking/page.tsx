@@ -69,9 +69,9 @@ export default function SalaryRanking() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">상위 %</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700 border-b-2 border-slate-200">연봉 (세전)</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">평가</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">상위 %</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">연봉 (세전)</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">평가</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -132,9 +132,9 @@ export default function SalaryRanking() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">연령대</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700 border-b-2 border-slate-200">중위 연봉</th>
-                  <th className="px-4 py-3 text-left font-semibold text-slate-700 border-b-2 border-slate-200">특징</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">연령대</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">중위 연봉</th>
+                  <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">특징</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">

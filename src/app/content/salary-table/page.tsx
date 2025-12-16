@@ -98,19 +98,19 @@ export default function SalaryTable2025() {
               <tbody className="divide-y divide-slate-100">
                 {salaryData.map((data, index) => (
                   <tr key={index} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-4 py-3 text-center font-semibold text-slate-900">
+                    <td className="px-4 py-3 text-right font-semibold text-slate-900">
                       {data.annual.toLocaleString()}만원
                     </td>
-                    <td className="px-4 py-3 text-center text-slate-700">
+                    <td className="px-4 py-3 text-right text-slate-700">
                       {data.monthly}만원
                     </td>
-                    <td className="px-4 py-3 text-center text-teal-700 font-bold bg-teal-50/50">
+                    <td className="px-4 py-3 text-right text-teal-700 font-bold bg-teal-50/50">
                       {data.netAnnual.toLocaleString()}만원
                     </td>
-                    <td className="px-4 py-3 text-center text-teal-700 font-bold bg-teal-50/50">
+                    <td className="px-4 py-3 text-right text-teal-700 font-bold bg-teal-50/50">
                       {data.netMonthly}만원
                     </td>
-                    <td className="px-4 py-3 text-center text-slate-500">
+                    <td className="px-4 py-3 text-right text-slate-500">
                       {data.deduction.toLocaleString()}만원
                     </td>
                   </tr>

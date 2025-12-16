@@ -80,10 +80,10 @@ export default function PensionStrategy() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">구분</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">DB형 (확정급여)</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">DC형 (확정기여)</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">IRP (개인형)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">구분</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">DB형 (확정급여)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">DC형 (확정기여)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">IRP (개인형)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -208,24 +208,24 @@ export default function PensionStrategy() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">연간 납입액</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">총급여 5,500만원 이하</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right">총급여 5,500만원 초과</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">연간 납입액</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">총급여 5,500만원 이하</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">총급여 5,500만원 초과</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-slate-200 px-4 py-3">300만원</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">300만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-primary font-bold">49.5만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-secondary font-bold">39.6만원</td>
                     </tr>
                     <tr>
-                      <td className="border border-slate-200 px-4 py-3">600만원</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">600만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-primary font-bold">99만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-secondary font-bold">79.2만원</td>
                     </tr>
                     <tr className="bg-green-50">
-                      <td className="border border-slate-200 px-4 py-3 font-semibold">900만원 (최대)</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right font-semibold">900만원 (최대)</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold text-base">148.5만원</td>
                       <td className="border border-slate-200 px-4 py-3 text-right text-green-700 font-bold text-base">118.8만원</td>
                     </tr>
@@ -424,9 +424,9 @@ export default function PensionStrategy() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">수령 방법</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">세율</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">추천 대상</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">수령 방법</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">세율</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">추천 대상</th>
                     </tr>
                   </thead>
                   <tbody>

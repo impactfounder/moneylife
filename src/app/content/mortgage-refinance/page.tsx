@@ -103,9 +103,9 @@ export default function MortgageRefinanceGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left font-semibold">항목</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left font-semibold">확인 방법</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left font-semibold">중요도</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">항목</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">확인 방법</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">중요도</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,10 +151,10 @@ export default function MortgageRefinanceGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left font-semibold">구분</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right font-semibold">현재 (4.5%)</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right font-semibold">전환 후 (3.8%)</th>
-                      <th className="border border-slate-200 px-4 py-3 text-right font-semibold">절감액</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">구분</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">현재 (4.5%)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">전환 후 (3.8%)</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">절감액</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -223,11 +223,11 @@ export default function MortgageRefinanceGuide() {
                 <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left font-semibold">은행</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">은행</th>
                       <th className="border border-slate-200 px-4 py-3 text-center font-semibold">기준금리</th>
                       <th className="border border-slate-200 px-4 py-3 text-center font-semibold">최대 우대</th>
                       <th className="border border-slate-200 px-4 py-3 text-center font-semibold">최저 금리</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left font-semibold">특징</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center font-semibold">특징</th>
                     </tr>
                   </thead>
                   <tbody>

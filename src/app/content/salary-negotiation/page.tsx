@@ -114,25 +114,25 @@ export default function SalaryNegotiationGuide() {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="bg-slate-50">
-                      <th className="border border-slate-200 px-4 py-3 text-left">구분</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">금액</th>
-                      <th className="border border-slate-200 px-4 py-3 text-left">설명</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">구분</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">금액</th>
+                      <th className="border border-slate-200 px-4 py-3 text-center">설명</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td className="border border-slate-200 px-4 py-3 font-semibold">🎯 목표 연봉</td>
-                      <td className="border border-slate-200 px-4 py-3">6,000만원</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">6,000만원</td>
                       <td className="border border-slate-200 px-4 py-3">최상의 협상 결과</td>
                     </tr>
                     <tr>
                       <td className="border border-slate-200 px-4 py-3 font-semibold">✅ 수용 연봉</td>
-                      <td className="border border-slate-200 px-4 py-3">5,500만원</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">5,500만원</td>
                       <td className="border border-slate-200 px-4 py-3">협상 가능한 최소선</td>
                     </tr>
                     <tr>
                       <td className="border border-slate-200 px-4 py-3 font-semibold">❌ 거절 연봉</td>
-                      <td className="border border-slate-200 px-4 py-3">5,000만원 이하</td>
+                      <td className="border border-slate-200 px-4 py-3 text-right">5,000만원 이하</td>
                       <td className="border border-slate-200 px-4 py-3">이하면 이직 고려</td>
                     </tr>
                   </tbody>

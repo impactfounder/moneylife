@@ -194,39 +194,39 @@ export default function AnnualSalary100M() {
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="border border-slate-200 px-4 py-3 text-left">연봉 (세전)</th>
-                  <th className="border border-slate-200 px-4 py-3 text-right">실수령 (연)</th>
-                  <th className="border border-slate-200 px-4 py-3 text-right">실수령 (월)</th>
-                  <th className="border border-slate-200 px-4 py-3 text-right">공제율</th>
+                  <th className="border border-slate-200 px-4 py-3 text-center">연봉 (세전)</th>
+                  <th className="border border-slate-200 px-4 py-3 text-center">실수령 (연)</th>
+                  <th className="border border-slate-200 px-4 py-3 text-center">실수령 (월)</th>
+                  <th className="border border-slate-200 px-4 py-3 text-center">공제율</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-slate-200 px-4 py-3 font-semibold">8,000만원</td>
+                  <td className="border border-slate-200 px-4 py-3 text-right font-semibold">8,000만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">6,283만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">524만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">21.5%</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-4 py-3 font-semibold">9,000만원</td>
+                  <td className="border border-slate-200 px-4 py-3 text-right font-semibold">9,000만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">6,879만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">573만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">23.6%</td>
                 </tr>
                 <tr className="bg-purple-50">
-                  <td className="border border-slate-200 px-4 py-3 font-semibold">1억원</td>
+                  <td className="border border-slate-200 px-4 py-3 text-right font-semibold">1억원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right text-purple-700 font-bold">7,448만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right text-purple-700 font-bold">621만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right text-red-600 font-bold">25.5%</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-4 py-3 font-semibold">1억 2천만원</td>
+                  <td className="border border-slate-200 px-4 py-3 text-right font-semibold">1억 2천만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">8,516만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">710만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">29.0%</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-4 py-3 font-semibold">1억 5천만원</td>
+                  <td className="border border-slate-200 px-4 py-3 text-right font-semibold">1억 5천만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">1억 318만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">860만원</td>
                   <td className="border border-slate-200 px-4 py-3 text-right">31.2%</td>

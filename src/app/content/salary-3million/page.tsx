@@ -233,10 +233,10 @@ export default function Salary3MillionPage() {
                   <table className="w-full text-sm">
                     <thead className="bg-slate-50">
                       <tr>
-                        <th className="px-4 py-3 text-left text-slate-700">지역</th>
-                        <th className="px-4 py-3 text-right text-slate-700">평균 월세</th>
-                        <th className="px-4 py-3 text-right text-slate-700">월 생활비</th>
-                        <th className="px-4 py-3 text-right text-slate-700">저축 가능</th>
+                        <th className="px-4 py-3 text-center text-slate-700">지역</th>
+                        <th className="px-4 py-3 text-center text-slate-700">평균 월세</th>
+                        <th className="px-4 py-3 text-center text-slate-700">월 생활비</th>
+                        <th className="px-4 py-3 text-center text-slate-700">저축 가능</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
