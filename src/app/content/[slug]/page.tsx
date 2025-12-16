@@ -141,12 +141,12 @@ export default function ContentDetailPage({ params }: PageProps) {
                     </th>
                   ),
                   td: ({ children }) => {
-                    // 숫자/금액 데이터는 우측정렬, 텍스트는 좌측정렬
+                    // 숫자/금액 데이터는 우측정렬, 텍스트는 중앙정렬
                     const content = String(children)
-                    const isNumeric = /^[\d,\.\-+%*만원억원천원]+$/.test(content.replace(/\s/g, '')) ||
+                    const isNumeric = /^[\d,.\-+%*만원억원천원]+$/.test(content.replace(/\s/g, '')) ||
                                       /^\*\*[\d,]+\*\*$/.test(content.replace(/\s/g, ''))
                     return (
-                      <td className={`border border-slate-200 px-4 py-3 text-slate-700 ${isNumeric ? 'text-right' : ''}`}>
+                      <td className={`border border-slate-200 px-4 py-3 text-slate-700 ${isNumeric ? 'text-right' : 'text-center'}`}>
                         {children}
                       </td>
                     )
