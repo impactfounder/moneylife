@@ -21,7 +21,8 @@
       "Bash(find:*)",
       "Bash(done)",
       "Bash(ls:*)",
-      "Bash(git diff:*)"
+      "Bash(git diff:*)",
+      "Bash(cd:*)"
     ]
   }
 }

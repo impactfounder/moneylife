@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 // TypeScript 타입 선언
 declare global {
@@ -15,19 +15,15 @@ interface AdUnitProps {
   className?: string
 }
 
+// 빌드타임 상수로 환경 체크 (불필요한 상태 관리 제거)
+const isProduction = process.env.NODE_ENV === 'production'
+
 export function AdUnit({
   slot = 'auto',
   format = 'auto',
   className = ''
 }: AdUnitProps) {
-  const adRef = useRef<HTMLModElement>(null)
   const isAdPushed = useRef(false)
-  const [isProduction, setIsProduction] = useState(false)
-
-  useEffect(() => {
-    // 프로덕션 환경인지 확인
-    setIsProduction(process.env.NODE_ENV === 'production')
-  }, [])
 
   useEffect(() => {
     // 개발 환경이면 광고 로드 안함
@@ -36,25 +32,47 @@ export function AdUnit({
     // 이미 광고가 푸시되었으면 중복 실행 방지
     if (isAdPushed.current) return
 
-    try {
-      // adsbygoogle 배열이 없으면 초기화
-      window.adsbygoogle = window.adsbygoogle || []
-      window.adsbygoogle.push({})
-      isAdPushed.current = true
-    } catch (error) {
-      console.error('AdSense error:', error)
-    }
-  }, [isProduction])
+    // adsbygoogle 스크립트 로드 대기
+    const timer = setTimeout(() => {
+      try {
+        // adsbygoogle 배열이 없으면 초기화
+        window.adsbygoogle = window.adsbygoogle || []
+        window.adsbygoogle.push({})
+        isAdPushed.current = true
+      } catch (error) {
+        console.error('AdSense error:', error)
+      }
+    }, 100) // 스크립트 로드 대기
 
-  // 개발 환경에서는 아무것도 렌더링하지 않음
+    return () => clearTimeout(timer)
+  }, [])
+
+  // 개발 환경에서는 플레이스홀더 표시
   if (!isProduction) {
-    return null
+    return (
+      <div
+        className={`ad-container ${className}`}
+        style={{
+          minHeight: '90px',
+          width: '100%',
+          backgroundColor: '#f1f5f9',
+          border: '2px dashed #cbd5e1',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#64748b',
+          fontSize: '14px'
+        }}
+      >
+        [광고 영역 - 프로덕션에서만 표시]
+      </div>
+    )
   }
 
   return (
     <div className={`ad-container ${className}`}>
       <ins
-        ref={adRef}
         className="adsbygoogle"
         style={{
           display: 'block',
