@@ -119,14 +119,15 @@ function MarketTicker() {
   ]
 
   return (
-    <div className="hidden md:block bg-slate-900 py-1.5 border-t border-slate-700">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center gap-8 text-sm">
-          {tickerItems.map((item, index) => (
-            <div key={index} className="flex items-center gap-1.5">
-              <span className="text-slate-400 font-medium">{item.label}</span>
-              <span className="text-white font-bold">{item.price}</span>
-              <span style={getChangeStyle(item.change)} className="text-sm">
+    <div className="hidden md:block bg-slate-900 py-1.5 border-t border-slate-700 overflow-hidden">
+      <div className="ticker-container">
+        <div className="ticker-track">
+          {/* 무한 스크롤을 위해 항목을 2번 반복 */}
+          {[...tickerItems, ...tickerItems].map((item, index) => (
+            <div key={index} className="ticker-item flex items-center gap-1.5 px-4">
+              <span className="text-slate-400 font-medium whitespace-nowrap">{item.label}</span>
+              <span className="text-white font-bold whitespace-nowrap">{item.price}</span>
+              <span style={getChangeStyle(item.change)} className="text-sm whitespace-nowrap">
                 {formatChange(item.change)}
               </span>
             </div>
