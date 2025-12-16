@@ -43,16 +43,19 @@ function SalaryRankContent() {
     actualSalary: number
     annualSalary: number
   } | null>(null)
+  const [error, setError] = useState<string>('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
 
     // 만원 단위 입력을 원 단위로 변환
-    let salary = parseInt(salaryInput) * 10000
-    if (!salary || salary <= 0) {
-      alert('월 급여를 입력해주세요')
+    const parsedSalary = parseInt(salaryInput)
+    if (!parsedSalary || isNaN(parsedSalary) || parsedSalary <= 0) {
+      setError('월 급여를 입력해주세요')
       return
     }
+    let salary = parsedSalary * 10000
 
     // 세전인 경우 세후로 변환
     if (salaryType === 'before') {
@@ -173,6 +176,11 @@ function SalaryRankContent() {
                             : '세금과 4대보험 제외 전 금액'
                           }
                         </p>
+                        {error && (
+                          <p className="text-sm text-red-500 mt-2 text-center font-medium animate-fade-in">
+                            {error}
+                          </p>
+                        )}
                       </div>
 
                       {/* 나이대 */}
@@ -180,13 +188,13 @@ function SalaryRankContent() {
                         <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
                           나이대 <span className="text-slate-400 font-normal">(선택)</span>
                         </label>
-                        <div className="grid grid-cols-3 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {(['all', '20s', '30s', '40s', '50s', '60s'] as AgeGroup[]).map((age) => (
                             <button
                               key={age}
                               type="button"
                               onClick={() => setAgeGroup(age)}
-                              className={`py-2.5 px-3 rounded-xl font-semibold text-sm transition-all ${
+                              className={`py-3 px-3 rounded-xl font-semibold text-sm transition-all ${
                                 ageGroup === age
                                   ? 'bg-slate-900 text-white shadow-lg'
                                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -278,7 +286,7 @@ function SalaryRankContent() {
                     )}
 
                     {/* 액션 버튼 */}
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <button
                         onClick={handleRecalculate}
                         className="flex-1 py-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition-all"

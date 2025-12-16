@@ -91,18 +91,20 @@ export default function Home() {
     actualSalary: number
     annualSalary: number
   } | null>(null)
+  const [error, setError] = useState<string>('')
 
   const handleQuickCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
 
-    let salary = parseInt(salaryInput.replace(/,/g, ''))
-    if (!salary || salary <= 0) {
-      alert('월 급여를 입력해주세요')
+    const parsedSalary = parseInt(salaryInput.replace(/,/g, ''))
+    if (!parsedSalary || isNaN(parsedSalary) || parsedSalary <= 0) {
+      setError('월 급여를 입력해주세요')
       return
     }
 
     // 만원 단위 -> 원 단위 변환
-    salary = salary * 10000
+    const salary = parsedSalary * 10000
 
     // 통계 비교를 위해 '세전(Gross)' 기준으로 통일
     let grossSalary = salary
@@ -242,6 +244,11 @@ export default function Home() {
                         <p className="text-xs text-slate-400 mt-3 text-center">
                           {salaryType === 'after' ? '실제 통장에 입금되는 금액' : '4대보험·세금 공제 전 금액'}
                         </p>
+                        {error && (
+                          <p className="text-sm text-red-500 mt-2 text-center font-medium animate-fade-in">
+                            {error}
+                          </p>
+                        )}
                       </div>
 
                       {/* 제출 버튼 */}
@@ -267,7 +274,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <button
                           onClick={handleReset}
                           className="flex-1 py-3.5 border-2 border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-colors"
