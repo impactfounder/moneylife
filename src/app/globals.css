@@ -186,47 +186,6 @@
 }
 
 /* ============================================
-   시세 티커 마퀴 애니메이션
-   ============================================ */
-
-.ticker-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.ticker-track {
-  display: flex;
-  width: fit-content;
-  animation: ticker-scroll 30s linear infinite;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-.ticker-item {
-  flex-shrink: 0;
-}
-
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* 큰 화면에서는 애니메이션 없이 중앙 정렬 */
-@media (min-width: 1280px) {
-  .ticker-track {
-    animation: none;
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-/* ============================================
    프린트 스타일
    ============================================ */
 
