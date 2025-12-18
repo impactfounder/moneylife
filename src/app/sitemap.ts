@@ -156,6 +156,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // 2025 버전 페이지들 (검색엔진에서 트래픽 있는 URL)
+    {
+      url: `${baseUrl}/content/isa-account-guide-2025`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/content/salary-table-2025`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/content/pension-vs-irp-2025`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // 가이드 허브
     {
       url: `${baseUrl}/guide`,

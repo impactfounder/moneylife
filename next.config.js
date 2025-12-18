@@ -42,22 +42,6 @@ const nextConfig = {
         destination: '/:path+',
         permanent: true,
       },
-      // 레거시 URL 리다이렉트 (이전 URL -> 현재 URL)
-      {
-        source: '/content/isa-account-guide-2025',
-        destination: '/content/isa-guide',
-        permanent: true,
-      },
-      {
-        source: '/content/salary-table-2025',
-        destination: '/content/salary-table',
-        permanent: true,
-      },
-      {
-        source: '/content/pension-vs-irp-2025',
-        destination: '/content/pension-vs-irp',
-        permanent: true,
-      },
     ]
   },
 
