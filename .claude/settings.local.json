@@ -16,7 +16,15 @@
       "Bash(npm run dev:*)",
       "Bash(findstr:*)",
       "Bash(netstat:*)",
-      "Bash(nslookup:*)"
+      "Bash(nslookup:*)",
+      "Bash(test:*)",
+      "Bash(git config:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(find:*)",
+      "Bash(done)",
+      "Bash(ls:*)",
+      "Bash(git diff:*)",
+      "Bash(cd:*)"
     ]
   }
 }

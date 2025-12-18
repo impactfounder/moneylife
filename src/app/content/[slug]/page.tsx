@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { getPostBySlug, blogPosts } from '@/data/posts'
 
 interface PageProps {
@@ -23,34 +24,46 @@ export default function ContentDetailPage({ params }: PageProps) {
     <>
       <Header />
 
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-slate-50">
         {/* 히어로 섹션 */}
-        <section className="bg-white py-16 border-b border-slate-100">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">
-                  {post.category}
-                </span>
-                <span className="text-slate-400 text-sm">{post.readTime} 읽기</span>
-                <span className="text-slate-400 text-sm">{post.publishedAt}</span>
+        <section className="bg-gradient-to-b from-slate-50 to-white py-16">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="text-center">
+              <div className="inline-block bg-slate-100 text-slate-600 border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                {post.thumbnail} {post.category}
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">
                 {post.title}
               </h1>
-              <p className="text-lg text-slate-600">
+              <p className="text-lg text-slate-600 mb-6">
                 {post.description}
               </p>
+              <div className="flex items-center justify-center gap-4 text-sm text-slate-500">
+                <span>📅 {post.publishedAt}</span>
+                <span>•</span>
+                <span>⏱️ {post.readTime} 읽기</span>
+              </div>
             </div>
+          </div>
+        </section>
+
+        {/* 상단 계산기 CTA */}
+        <section className="py-6">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <CalculatorCTA
+              calculatorPath={post.relatedCalculator}
+              calculatorName={post.relatedCalculatorName}
+              description="이 글과 관련된 계산기로 확인해보세요"
+            />
           </div>
         </section>
 
         {/* 목차 */}
         {post.toc && post.toc.length > 0 && (
-          <section className="bg-slate-50 py-8 border-b border-slate-100">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto">
-                <h2 className="text-lg font-bold text-slate-900 mb-4">목차</h2>
+          <section className="py-8">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <h2 className="text-lg font-bold text-slate-900 mb-4">📑 목차</h2>
                 <nav className="space-y-2">
                   {post.toc.map((item) => (
                     <a
@@ -58,7 +71,7 @@ export default function ContentDetailPage({ params }: PageProps) {
                       href={`#${item.id}`}
                       className="block text-slate-600 hover:text-slate-900 transition-colors"
                     >
-                      {item.title}
+                      • {item.title}
                     </a>
                   ))}
                 </nav>
@@ -69,8 +82,8 @@ export default function ContentDetailPage({ params }: PageProps) {
 
         {/* 본문 */}
         <section className="py-12">
-          <div className="container mx-auto px-4">
-            <article className="max-w-3xl mx-auto prose prose-slate prose-lg">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <article className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 prose prose-slate prose-lg">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -114,7 +127,7 @@ export default function ContentDetailPage({ params }: PageProps) {
                   ),
                   table: ({ children }) => (
                     <div className="overflow-x-auto my-6">
-                      <table className="min-w-full border-collapse border border-slate-200 text-sm">
+                      <table className="w-full border-collapse border border-slate-200 text-sm table-fixed">
                         {children}
                       </table>
                     </div>
@@ -123,15 +136,34 @@ export default function ContentDetailPage({ params }: PageProps) {
                     <thead className="bg-slate-100">{children}</thead>
                   ),
                   th: ({ children }) => (
-                    <th className="border border-slate-200 px-4 py-3 text-left font-semibold text-slate-700">
+                    <th className="border border-slate-200 px-4 py-3 text-center font-semibold text-slate-700">
                       {children}
                     </th>
                   ),
-                  td: ({ children }) => (
-                    <td className="border border-slate-200 px-4 py-3 text-slate-700">
-                      {children}
-                    </td>
-                  ),
+                  td: ({ children }) => {
+                    // 숫자/금액 데이터는 우측정렬, 텍스트는 중앙정렬
+                    const content = String(children)
+                    const hasNumber = /[\d,]+/.test(content)
+                    const hasUnit = /만원|억원|천원|원|%/.test(content)
+                    const isNumericCell = hasNumber && (hasUnit || /^[\d,.\-+%]+$/.test(content.replace(/\s/g, '')))
+
+                    // 금액 셀: 숫자와 단위를 분리하여 정렬
+                    if (isNumericCell && hasUnit) {
+                      return (
+                        <td className="border border-slate-200 px-4 py-3 text-slate-700 text-right whitespace-nowrap">
+                          <span className="inline-block min-w-[60px] text-right tabular-nums">
+                            {children}
+                          </span>
+                        </td>
+                      )
+                    }
+
+                    return (
+                      <td className={`border border-slate-200 px-4 py-3 text-slate-700 ${isNumericCell ? 'text-right tabular-nums' : 'text-center'}`}>
+                        {children}
+                      </td>
+                    )
+                  },
                   blockquote: ({ children }) => (
                     <blockquote className="border-l-4 border-slate-300 pl-4 my-6 text-slate-600 italic">
                       {children}
@@ -175,23 +207,21 @@ export default function ContentDetailPage({ params }: PageProps) {
         </section>
 
         {/* 관련 계산기 CTA */}
-        <section className="py-12 bg-slate-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
-                  직접 계산해보세요
-                </h3>
-                <p className="text-slate-600 mb-6">
-                  {post.relatedCalculatorName}로 정확한 수치를 확인하세요
-                </p>
-                <Link
-                  href={post.relatedCalculator}
-                  className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-semibold hover:bg-slate-800 transition-colors"
-                >
-                  {post.relatedCalculatorName} 바로가기
-                </Link>
-              </div>
+        <section className="py-12">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="bg-slate-900 text-white rounded-2xl p-8 text-center">
+              <h3 className="text-2xl font-bold mb-3">
+                직접 계산해보세요
+              </h3>
+              <p className="text-slate-300 mb-6">
+                {post.relatedCalculatorName}로 정확한 수치를 확인하세요
+              </p>
+              <Link
+                href={post.relatedCalculator}
+                className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-100 transition-colors shadow-lg"
+              >
+                {post.relatedCalculatorName} 바로가기 →
+              </Link>
             </div>
           </div>
         </section>

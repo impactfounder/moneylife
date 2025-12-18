@@ -10,7 +10,7 @@ export interface SalaryData {
   region?: Region;
 }
 
-export type AgeGroup = '20s' | '30s' | '40s' | '50s' | 'all';
+export type AgeGroup = '20s' | '30s' | '40s' | '50s' | '60s' | 'all';
 export type Region = 'seoul' | 'metro' | 'other' | 'all';
 
 export interface RankResult {
@@ -85,6 +85,7 @@ export interface StatisticsData {
     '30s': PercentileData;
     '40s': PercentileData;
     '50s': PercentileData;
+    '60s': PercentileData;
   };
 }
 

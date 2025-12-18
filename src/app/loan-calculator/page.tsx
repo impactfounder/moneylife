@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateLoan } from '@/lib/loan-calculator'
 import { formatNumber } from '@/lib/calculations'
@@ -31,6 +33,8 @@ export default function LoanCalculatorPage() {
   const [method, setMethod] = useState<'equal-principal-interest' | 'equal-principal'>('equal-principal-interest')
   const [result, setResult] = useState<LoanResult | null>(null)
   const [showResult, setShowResult] = useState(false)
+  const [error, setError] = useState<string>('')
+  const [showAllSchedule, setShowAllSchedule] = useState(false)
 
   const handleFormatInput = (value: string, setter: (v: string) => void) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -43,13 +47,22 @@ export default function LoanCalculatorPage() {
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
 
     const loanAmount = parseInt(amount.replace(/,/g, '')) * 10000 // 만원 -> 원
     const rate = parseFloat(interestRate)
     const period = parseInt(years) * 12 // 년 -> 개월
 
-    if (!loanAmount || !rate || !period) {
-      alert('모든 값을 입력해주세요')
+    if (!loanAmount || isNaN(loanAmount) || loanAmount <= 0) {
+      setError('대출 금액을 입력해주세요')
+      return
+    }
+    if (!rate || isNaN(rate) || rate <= 0) {
+      setError('이자율을 입력해주세요')
+      return
+    }
+    if (!period || isNaN(period) || period <= 0) {
+      setError('대출 기간을 입력해주세요')
       return
     }
 
@@ -70,6 +83,7 @@ export default function LoanCalculatorPage() {
     setInterestRate('')
     setYears('')
     setResult(null)
+    setShowAllSchedule(false)
   }
 
   // 파이 차트 데이터 (원금 vs 이자)
@@ -269,6 +283,13 @@ export default function LoanCalculatorPage() {
                         </div>
                       </div>
 
+                      {/* 에러 메시지 */}
+                      {error && (
+                        <p className="text-sm text-red-500 text-center font-medium animate-fade-in">
+                          {error}
+                        </p>
+                      )}
+
                       {/* 계산 버튼 */}
                       <button
                         type="submit"
@@ -318,7 +339,7 @@ export default function LoanCalculatorPage() {
                       </div>
 
                       {/* 버튼 */}
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <button
                           onClick={handleReset}
                           className="flex-1 py-3.5 border-2 border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-colors"
@@ -332,6 +353,12 @@ export default function LoanCalculatorPage() {
                           주담대 계산기
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/loan-calculator')}
+                        title="대출에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>
@@ -374,39 +401,46 @@ export default function LoanCalculatorPage() {
               </div>
             </section>
 
+            {/* 광고 배치 - 결과 섹션 아래 */}
+            <section className="py-8 bg-white">
+              <div className="container mx-auto px-4 max-w-4xl">
+                <AdUnit className="my-4" />
+              </div>
+            </section>
+
             {/* 상환 요약 */}
             <section className="py-16 bg-slate-50">
               <div className="container mx-auto px-4 max-w-4xl">
                 <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">
                   상환 요약
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                   <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
                     <p className="text-slate-500 text-sm mb-2">대출 원금</p>
-                    <p className="text-2xl font-black text-slate-900">
+                    <p className="text-xl md:text-2xl font-black text-slate-900">
                       {amount}
-                      <span className="text-base font-bold text-slate-500 ml-1">만원</span>
+                      <span className="text-sm md:text-base font-bold text-slate-500 ml-1">만원</span>
                     </p>
                   </div>
                   <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
                     <p className="text-slate-500 text-sm mb-2">연 이자율</p>
-                    <p className="text-2xl font-black text-blue-600">
+                    <p className="text-xl md:text-2xl font-black text-blue-600">
                       {interestRate}
-                      <span className="text-base font-bold text-blue-400 ml-1">%</span>
+                      <span className="text-sm md:text-base font-bold text-blue-400 ml-1">%</span>
                     </p>
                   </div>
                   <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
                     <p className="text-slate-500 text-sm mb-2">총 이자</p>
-                    <p className="text-2xl font-black text-red-600">
+                    <p className="text-xl md:text-2xl font-black text-red-600">
                       {formatNumber(Math.round(result.totalInterest / 10000))}
-                      <span className="text-base font-bold text-red-400 ml-1">만원</span>
+                      <span className="text-sm md:text-base font-bold text-red-400 ml-1">만원</span>
                     </p>
                   </div>
                   <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
                     <p className="text-slate-500 text-sm mb-2">이자 비율</p>
-                    <p className="text-2xl font-black text-purple-600">
+                    <p className="text-xl md:text-2xl font-black text-purple-600">
                       {((result.totalInterest / (parseInt(amount.replace(/,/g, '')) * 10000)) * 100).toFixed(1)}
-                      <span className="text-base font-bold text-purple-400 ml-1">%</span>
+                      <span className="text-sm md:text-base font-bold text-purple-400 ml-1">%</span>
                     </p>
                   </div>
                 </div>
@@ -420,33 +454,46 @@ export default function LoanCalculatorPage() {
                   월별 상환 스케줄
                 </h2>
                 <div className="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead className="bg-slate-50">
-                        <tr>
-                          <th className="px-4 py-3 text-left font-bold text-slate-700">회차</th>
-                          <th className="px-4 py-3 text-right font-bold text-slate-700">원금</th>
-                          <th className="px-4 py-3 text-right font-bold text-slate-700">이자</th>
-                          <th className="px-4 py-3 text-right font-bold text-slate-700">상환액</th>
-                          <th className="px-4 py-3 text-right font-bold text-slate-700">잔액</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100">
-                        {result.schedule.slice(0, 12).map((item) => (
-                          <tr key={item.month} className="hover:bg-slate-50 transition-colors">
-                            <td className="px-4 py-3 font-medium text-slate-900">{item.month}개월</td>
-                            <td className="px-4 py-3 text-right text-slate-700">{formatNumber(Math.round(item.principal / 10000))}만</td>
-                            <td className="px-4 py-3 text-right text-red-500">{formatNumber(Math.round(item.interest / 10000))}만</td>
-                            <td className="px-4 py-3 text-right font-bold text-slate-900">{formatNumber(Math.round(item.payment / 10000))}만</td>
-                            <td className="px-4 py-3 text-right text-slate-500">{formatNumber(Math.round(item.balance / 10000))}만</td>
+                  {/* 테이블 스크롤 힌트 */}
+                  <div className="relative">
+                    <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 md:hidden"></div>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm min-w-[500px]">
+                        <thead className="bg-slate-50">
+                          <tr>
+                            <th className="px-4 py-3 text-left font-bold text-slate-700">회차</th>
+                            <th className="px-4 py-3 text-right font-bold text-slate-700">원금</th>
+                            <th className="px-4 py-3 text-right font-bold text-slate-700">이자</th>
+                            <th className="px-4 py-3 text-right font-bold text-slate-700">상환액</th>
+                            <th className="px-4 py-3 text-right font-bold text-slate-700">잔액</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {(showAllSchedule ? result.schedule : result.schedule.slice(0, 12)).map((item) => (
+                            <tr key={item.month} className="hover:bg-slate-50 transition-colors">
+                              <td className="px-4 py-3 font-medium text-slate-900">{item.month}개월</td>
+                              <td className="px-4 py-3 text-right text-slate-700">{formatNumber(Math.round(item.principal / 10000))}만원</td>
+                              <td className="px-4 py-3 text-right text-red-500">{formatNumber(Math.round(item.interest / 10000))}만원</td>
+                              <td className="px-4 py-3 text-right font-bold text-slate-900">{formatNumber(Math.round(item.payment / 10000))}만원</td>
+                              <td className="px-4 py-3 text-right text-slate-500">{formatNumber(Math.round(item.balance / 10000))}만원</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   {result.schedule.length > 12 && (
-                    <div className="p-4 bg-slate-50 text-center text-sm text-slate-500">
-                      ... 외 {result.schedule.length - 12}개월
+                    <div className="p-4 bg-slate-50 text-center">
+                      <button
+                        onClick={() => setShowAllSchedule(!showAllSchedule)}
+                        className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                      >
+                        {showAllSchedule ? (
+                          <>▲ 접기</>
+                        ) : (
+                          <>▼ 전체 {result.schedule.length}개월 보기</>
+                        )}
+                      </button>
                     </div>
                   )}
                 </div>
@@ -589,6 +636,13 @@ export default function LoanCalculatorPage() {
         <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/loan-calculator')} />
+          </div>
+        </section>
+
+        {/* 광고 배치 - Footer 위 */}
+        <section className="py-8 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="my-4" />
           </div>
         </section>
       </main>

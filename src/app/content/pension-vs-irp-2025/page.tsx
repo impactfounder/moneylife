@@ -7,22 +7,22 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: '연금저축 vs IRP 비교 2025 | moneylife.kr',
   description: '연금저축 vs IRP 완벽 비교 2025! 세액공제 한도, 수익률, 추천 대상까지 한눈에 정리. 어떤 연금이 나에게 유리할까?',
-  keywords: '연금저축, IRP, 개인형퇴직연금, 연금저축 세액공제, IRP 세액공제, 연금 비교',
+  keywords: '연금저축, IRP, 개인형퇴직연금, 연금저축 세액공제, IRP 세액공제, 연금 비교, 2025',
 }
 
-export default function PensionVsIRP() {
+export default function PensionVsIRP2025() {
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />
-      
+
       <main className="container mx-auto px-2 sm:px-4 py-6 md:py-12 max-w-4xl">
-        {/* 🎯 Hero Section */}
+        {/* Hero Section */}
         <section className="mb-8 sm:mb-12 text-center px-2">
           <div className="inline-block bg-slate-100 text-slate-600 border border-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
-            💼 연금
+            연금
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">
-            연금저축 vs IRP 완벽 비교
+            연금저축 vs IRP 완벽 비교 2025
           </h1>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
             2025년 최신 기준으로 연금저축과 IRP를 비교합니다.
@@ -38,9 +38,9 @@ export default function PensionVsIRP() {
           />
         </section>
 
-        {/* 📌 핵심 요약 */}
+        {/* 핵심 요약 */}
         <section className="bg-slate-900 text-white rounded-xl sm:rounded-2xl shadow-sm p-4 sm:p-8 mb-8 sm:mb-12">
-          <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6">🎯 한 줄 요약</h2>
+          <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6">한 줄 요약</h2>
           <div className="text-sm sm:text-xl font-semibold space-y-2 sm:space-y-3">
             <p>✅ <strong>연금저축 600만</strong> + <strong>IRP 300만</strong> = <strong>900만원</strong> 세액공제</p>
             <p>✅ 최대 <strong>148.5만원</strong> 환급 (총급여 5,500만 이하)</p>
@@ -48,9 +48,9 @@ export default function PensionVsIRP() {
           </div>
         </section>
 
-        {/* 📊 핵심 비교표 */}
+        {/* 핵심 비교표 */}
         <section className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-8 mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">📊 연금저축 vs IRP 핵심 비교</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">연금저축 vs IRP 핵심 비교</h2>
 
           <div className="overflow-x-auto -mx-4 sm:mx-0">
             <table className="w-full border-collapse text-sm">
@@ -111,13 +111,13 @@ export default function PensionVsIRP() {
           </p>
         </section>
 
-        {/* 💰 세액공제 계산 */}
+        {/* 세액공제 계산 */}
         <section className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-8 mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">💰 세액공제 금액 계산</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">세액공제 금액 계산</h2>
 
           <div className="space-y-4 sm:space-y-6">
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 sm:p-6 rounded-xl">
-              <h3 className="text-base sm:text-lg font-semibold text-blue-900 mb-3 sm:mb-4">📊 총급여 5,500만원 이하 (16.5%)</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-blue-900 mb-3 sm:mb-4">총급여 5,500만원 이하 (16.5%)</h3>
               <div className="overflow-x-auto -mx-3 sm:mx-0">
                 <table className="w-full border-collapse text-sm">
                   <thead>
@@ -149,7 +149,7 @@ export default function PensionVsIRP() {
             </div>
 
             <div className="bg-gradient-to-r from-slate-50 to-slate-100 p-3 sm:p-6 rounded-xl">
-              <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 sm:mb-4">📊 총급여 5,500만원 초과 (13.2%)</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 sm:mb-4">총급여 5,500만원 초과 (13.2%)</h3>
               <div className="overflow-x-auto -mx-3 sm:mx-0">
                 <table className="w-full border-collapse text-sm">
                   <thead>
@@ -182,9 +182,9 @@ export default function PensionVsIRP() {
           </div>
         </section>
 
-        {/* 💡 추천 전략 */}
+        {/* 추천 전략 */}
         <section className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-8 mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">💡 상황별 추천 전략</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">상황별 추천 전략</h2>
 
           <div className="space-y-4 sm:space-y-6">
             <div className="border-l-4 border-green-500 bg-green-50 p-4 sm:p-6 rounded-r-xl">
@@ -255,7 +255,7 @@ export default function PensionVsIRP() {
             </div>
 
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 sm:p-6 rounded-r-xl">
-              <h3 className="font-semibold text-blue-900 mb-2 sm:mb-3 text-sm sm:text-base">💡 연금 수령 시</h3>
+              <h3 className="font-semibold text-blue-900 mb-2 sm:mb-3 text-sm sm:text-base">연금 수령 시</h3>
               <p className="text-slate-700 text-xs sm:text-sm">
                 • 55세 이상 + 5년 이상 유지 시 수령 가능<br />
                 • 연금소득세: 3.3~5.5% (일반 15.4%보다 유리)
@@ -264,9 +264,9 @@ export default function PensionVsIRP() {
           </div>
         </section>
 
-        {/* 🛠️ 유용한 도구 */}
+        {/* 유용한 도구 */}
         <section className="bg-slate-100 rounded-xl sm:rounded-2xl p-4 sm:p-8 mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">🛠️ 연금 관련 유용한 계산기</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">연금 관련 유용한 계산기</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
             <Link href="/pension-calculator" className="block bg-white p-4 sm:p-6 rounded-xl hover:shadow-sm border border-slate-200 transition-shadow">
@@ -314,18 +314,18 @@ export default function PensionVsIRP() {
               href="/pension-calculator"
               className="inline-block bg-white text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:shadow-xl transition-shadow text-sm sm:text-base"
             >
-              💼 국민연금 계산하기
+              국민연금 계산하기
             </Link>
             <Link
               href="/content/pension-strategy"
               className="inline-block bg-slate-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-slate-700 transition-all text-sm sm:text-base"
             >
-              📈 운용 전략 보기
+              운용 전략 보기
             </Link>
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   )

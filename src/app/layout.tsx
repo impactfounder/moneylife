@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -57,8 +58,36 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Google Search Console에서 받은 코드
+    google: 'your-google-verification-code', // Google Search Console에서 받은 코드로 교체 필요
   },
+}
+
+// JSON-LD 구조화 데이터
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'moneylife.kr',
+  url: 'https://moneylife.kr',
+  logo: 'https://moneylife.kr/logo.png',
+  description: '금융 계산기 및 재테크 정보 제공 - 급여계산기, 대출계산기, 연봉순위 등',
+  sameAs: []
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '금융계산기 - moneylife.kr',
+  url: 'https://moneylife.kr',
+  description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에!',
+  publisher: {
+    '@type': 'Organization',
+    name: 'moneylife.kr'
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://moneylife.kr/search?q={search_term_string}',
+    'query-input': 'required name=search_term_string'
+  }
 }
 
 export default function RootLayout({
@@ -69,26 +98,27 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-MN9KGF64');`,
-          }}
-        />
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-        {/* Kakao SDK */}
-        <script src="https://developers.kakao.com/sdk/js/kakao.js" async />
-
-        {/* Pretendard Font (Optional) */}
+        {/* Pretendard Font */}
         <link
           rel="stylesheet"
           as="style"
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
+
+        {/* JSON-LD 구조화 데이터 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className="antialiased">
@@ -103,6 +133,32 @@ export default function RootLayout({
         </noscript>
 
         {children}
+
+        {/* Google Tag Manager - afterInteractive for better performance */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MN9KGF64');`,
+          }}
+        />
+
+        {/* Kakao SDK - lazyOnload for non-critical script */}
+        <Script
+          src="https://developers.kakao.com/sdk/js/kakao.js"
+          strategy="lazyOnload"
+        />
+
+        {/* Google AdSense - lazyOnload for better initial page load */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515762248094919"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   )

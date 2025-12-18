@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import {
   calculatePension,
@@ -348,6 +350,12 @@ export default function PensionCalculatorPage() {
                           퇴직금 계산기
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/pension-calculator')}
+                        title="연금에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>
@@ -422,6 +430,15 @@ export default function PensionCalculatorPage() {
                   </div>
                 </div>
               )}
+            </div>
+          </section>
+        )}
+
+        {/* 광고 배치 - 차트 섹션 아래 */}
+        {showResult && result && (
+          <section className="py-8 bg-white">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <AdUnit className="my-4" />
             </div>
           </section>
         )}
@@ -619,6 +636,13 @@ export default function PensionCalculatorPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/pension-calculator')} />
+          </div>
+        </section>
+
+        {/* 광고 배치 - Footer 위 */}
+        <section className="py-8 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="my-4" />
           </div>
         </section>
       </main>

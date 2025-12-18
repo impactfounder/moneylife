@@ -91,18 +91,20 @@ export default function Home() {
     actualSalary: number
     annualSalary: number
   } | null>(null)
+  const [error, setError] = useState<string>('')
 
   const handleQuickCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
 
-    let salary = parseInt(salaryInput.replace(/,/g, ''))
-    if (!salary || salary <= 0) {
-      alert('월 급여를 입력해주세요')
+    const parsedSalary = parseInt(salaryInput.replace(/,/g, ''))
+    if (!parsedSalary || isNaN(parsedSalary) || parsedSalary <= 0) {
+      setError('월 급여를 입력해주세요')
       return
     }
 
     // 만원 단위 -> 원 단위 변환
-    salary = salary * 10000
+    const salary = parsedSalary * 10000
 
     // 통계 비교를 위해 '세전(Gross)' 기준으로 통일
     let grossSalary = salary
@@ -175,20 +177,6 @@ export default function Home() {
                   복잡한 금융 계산, 이제 전문가처럼 쉽고 정확하게.<br className="hidden lg:block" />
                   연봉부터 세금까지 모든 계산을 한 곳에서 해결하세요.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-in" style={{ animationDelay: '200ms' }}>
-                  <button
-                    onClick={() => document.getElementById('calculators')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 hover:shadow-xl hover:-translate-y-1"
-                  >
-                    모든 계산기 보기
-                  </button>
-                  <Link
-                    href="/salary-rank"
-                    className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all hover:border-slate-300"
-                  >
-                    내 연봉 순위 확인
-                  </Link>
-                </div>
               </div>
 
               {/* 빠른 연봉 순위 계산기 (카드 형태) */}
@@ -256,6 +244,11 @@ export default function Home() {
                         <p className="text-xs text-slate-400 mt-3 text-center">
                           {salaryType === 'after' ? '실제 통장에 입금되는 금액' : '4대보험·세금 공제 전 금액'}
                         </p>
+                        {error && (
+                          <p className="text-sm text-red-500 mt-2 text-center font-medium animate-fade-in">
+                            {error}
+                          </p>
+                        )}
                       </div>
 
                       {/* 제출 버튼 */}
@@ -271,7 +264,7 @@ export default function Home() {
                       {/* 결과 표시 */}
                       <div className="text-center">
                         <div className="text-sm text-slate-500 mb-2 font-medium">
-                          월 {formatNumber(result?.actualSalary || 0)}만원 (연봉 약 {result?.annualSalary || 0}백만원)
+                          월 {formatNumber(result?.actualSalary || 0)}원 (연봉 약 {formatNumber(result?.annualSalary || 0)}만원)
                         </div>
                         <div className="text-6xl font-black text-slate-900 mb-2 tracking-tighter">
                           상위 {result?.koreaRank || 0}%
@@ -281,7 +274,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <button
                           onClick={handleReset}
                           className="flex-1 py-3.5 border-2 border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-colors"
@@ -289,7 +282,7 @@ export default function Home() {
                           다시 계산
                         </button>
                         <Link
-                          href="/salary-rank"
+                          href={`/salary-rank?salary=${salaryInput.replace(/,/g, '')}&type=${salaryType}`}
                           className="flex-1 bg-slate-900 text-white py-3.5 rounded-xl font-bold hover:bg-slate-800 transition-colors text-center shadow-lg shadow-slate-200"
                         >
                           상세 분석 보기

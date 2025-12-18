@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateCompoundInterest } from '@/lib/compound-calculator'
 import { formatNumber } from '@/lib/calculations'
@@ -362,6 +364,12 @@ export default function CompoundInterestPage() {
                           연금 계산기
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/compound-interest-calculator')}
+                        title="복리 투자에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>
@@ -475,6 +483,15 @@ export default function CompoundInterestPage() {
           </section>
         )}
 
+        {/* 광고 배치 - 차트 섹션 아래 */}
+        {showResult && result && (
+          <section className="py-8 bg-white">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <AdUnit className="my-4" />
+            </div>
+          </section>
+        )}
+
         {/* 복리 가이드 */}
         <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -571,12 +588,12 @@ export default function CompoundInterestPage() {
                       <tr>
                         <td className="px-4 py-3 font-medium">국내 주식 (KOSPI)</td>
                         <td className="px-4 py-3 text-center text-blue-600">7~10%</td>
-                        <td className="px-4 py-3 text-center"><span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">높음</span></td>
+                        <td className="px-4 py-3 text-center"><span className="bg-teal-100 text-teal-700 px-2 py-1 rounded text-xs">높음</span></td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-medium">미국 주식 (S&P 500)</td>
                         <td className="px-4 py-3 text-center text-blue-600">8~12%</td>
-                        <td className="px-4 py-3 text-center"><span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">높음</span></td>
+                        <td className="px-4 py-3 text-center"><span className="bg-teal-100 text-teal-700 px-2 py-1 rounded text-xs">높음</span></td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-medium">부동산 (REITs)</td>
@@ -661,6 +678,13 @@ export default function CompoundInterestPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/compound-interest-calculator')} />
+          </div>
+        </section>
+
+        {/* 광고 배치 - Footer 위 */}
+        <section className="py-8 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="my-4" />
           </div>
         </section>
       </main>

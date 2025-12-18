@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
+import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
 import {
   calculateCapitalGainsTax,
@@ -156,7 +158,7 @@ export default function CapitalGainsTaxCalculatorPage() {
         <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden bg-slate-50">
           {/* 배경 그라데이션 */}
           <div className="absolute inset-0 w-full h-full">
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-400/10 blur-[100px]"></div>
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-teal-400/10 blur-[100px]"></div>
             <div className="absolute top-[10%] right-[-5%] w-[30%] h-[30%] rounded-full bg-red-400/10 blur-[100px]"></div>
             <div className="absolute bottom-[-10%] left-[20%] w-[30%] h-[30%] rounded-full bg-amber-400/10 blur-[100px]"></div>
           </div>
@@ -344,9 +346,9 @@ export default function CapitalGainsTaxCalculatorPage() {
                             {formatNumber(Math.round(result!.taxableIncome / 10000))}만원
                           </span>
                         </div>
-                        <div className="flex justify-between items-center p-4 bg-orange-50 rounded-xl">
+                        <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
                           <span className="text-slate-600 font-medium">결정세액</span>
-                          <span className="text-xl font-bold text-orange-600">
+                          <span className="text-xl font-bold text-teal-600">
                             {formatNumber(Math.round(result!.finalTax / 10000))}만원
                           </span>
                         </div>
@@ -373,6 +375,12 @@ export default function CapitalGainsTaxCalculatorPage() {
                           주담대 계산기
                         </Link>
                       </div>
+
+                      {/* 관련 콘텐츠 CTA */}
+                      <RelatedContentCTA
+                        posts={getPostsByCalculator('/capital-gains-tax-calculator')}
+                        title="양도세에 대해 더 알아보기"
+                      />
                     </div>
                   )}
                 </div>
@@ -442,6 +450,15 @@ export default function CapitalGainsTaxCalculatorPage() {
           </section>
         )}
 
+        {/* 광고 배치 - 차트 섹션 아래 */}
+        {showResult && result && (
+          <section className="py-8 bg-white">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <AdUnit className="my-4" />
+            </div>
+          </section>
+        )}
+
         {/* 양도소득세 가이드 */}
         <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -457,7 +474,7 @@ export default function CapitalGainsTaxCalculatorPage() {
                 </p>
                 <div className="bg-slate-50 rounded-xl p-4">
                   <p className="text-center font-mono text-sm text-slate-700">
-                    양도소득세 = (<span className="text-blue-600 font-bold">양도가액</span> - <span className="text-red-600 font-bold">취득가액</span> - <span className="text-purple-600 font-bold">필요경비</span> - <span className="text-green-600 font-bold">공제</span>) × <span className="text-orange-600 font-bold">세율</span>
+                    양도소득세 = (<span className="text-blue-600 font-bold">양도가액</span> - <span className="text-red-600 font-bold">취득가액</span> - <span className="text-purple-600 font-bold">필요경비</span> - <span className="text-green-600 font-bold">공제</span>) × <span className="text-teal-600 font-bold">세율</span>
                   </p>
                 </div>
               </div>
@@ -637,6 +654,13 @@ export default function CapitalGainsTaxCalculatorPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <RelatedGuides posts={getPostsByCalculator('/capital-gains-tax-calculator')} />
+          </div>
+        </section>
+
+        {/* 광고 배치 - Footer 위 */}
+        <section className="py-8 bg-slate-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="my-4" />
           </div>
         </section>
       </main>

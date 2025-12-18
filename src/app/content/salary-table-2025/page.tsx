@@ -83,7 +83,7 @@ export default function SalaryTable2025() {
         {/* 연봉별 실수령액 표 */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
           <h2 className="text-xl font-bold text-slate-900 mb-6">2025년 연봉별 실수령액 상세표</h2>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -240,7 +240,7 @@ export default function SalaryTable2025() {
           </Link>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   )
