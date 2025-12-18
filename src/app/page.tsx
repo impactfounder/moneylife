@@ -216,22 +216,22 @@ export default function Home() {
                           <button
                             type="button"
                             onClick={() => setSalaryType('after')}
-                            className={`px-5 py-3 rounded-xl font-semibold transition-all ${salaryType === 'after'
+                            className={`px-3 py-3 rounded-xl font-semibold transition-all text-sm leading-tight ${salaryType === 'after'
                               ? 'bg-slate-900 text-white shadow-lg shadow-slate-200'
                               : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                               }`}
                           >
-                            세후 (실수령액)
+                            세후<br /><span className="text-xs opacity-75">(실수령액)</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => setSalaryType('before')}
-                            className={`px-5 py-3 rounded-xl font-semibold transition-all ${salaryType === 'before'
+                            className={`px-3 py-3 rounded-xl font-semibold transition-all text-sm leading-tight ${salaryType === 'before'
                               ? 'bg-slate-900 text-white shadow-lg shadow-slate-200'
                               : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                               }`}
                           >
-                            세전 (연봉계약서)
+                            세전<br /><span className="text-xs opacity-75">(연봉계약서)</span>
                           </button>
                         </div>
                       </div>
