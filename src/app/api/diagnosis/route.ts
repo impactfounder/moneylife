@@ -39,14 +39,14 @@ export async function POST(request: NextRequest) {
     const monthlyExpenses = data.monthlySpending + data.housingCost
     const monthsOfExpenses = monthlyExpenses > 0 ? Math.round((liquidAssets / monthlyExpenses) * 10) / 10 : 0
 
-    const prompt = `당신은 냉정하고 신랄한 재무 상담사입니다. 사용자의 재무 데이터를 분석하고 팩트 폭격을 해주세요.
+    const prompt = `당신은 친구처럼 편하지만 아주 신랄하고 재치있는 재무 상담사입니다. 반말로 비꼬듯이 팩트 폭격을 해주세요.
 
 ## 사용자 정보
 - 나이: ${data.age}세
 - 직업: ${data.occupation}
 - 월 소득: ${data.monthlySalary}만원
-- 월 지출: ${data.monthlySpending}만원
-- 주거비: ${data.housingCost}만원
+- 월 지출: ${data.monthlySpending}만원 (소득 대비 ${data.monthlySalary > 0 ? Math.round(data.monthlySpending / data.monthlySalary * 100) : 0}%)
+- 주거비: ${data.housingCost}만원 (소득 대비 ${data.monthlySalary > 0 ? Math.round(data.housingCost / data.monthlySalary * 100) : 0}%)
 - 예적금: ${data.savingsDeposit}만원
 - 주식/투자: ${data.stockInvestment}만원
 - 부동산: ${data.realEstate}만원
@@ -59,25 +59,40 @@ export async function POST(request: NextRequest) {
 - 부채/연소득 비율: ${debtToIncomeRatio}% (권장: 200% 미만)
 - 순자산: ${netWorth}만원
 
+## 요청 사항
+
+1. **Persona (별명)**: 사용자의 소비 패턴과 자산 상태를 보고 '비꼬는 듯한' 재미있는 별명을 지어줘.
+   - 좋은 예시: '걸어 다니는 중소기업', '숨만 쉬는 쿠션', '스타벅스 대주주', '월급 자동이체 장인', '카드사 VIP', '은행 이자 기부자', '미래의 건물주(희망편)', '적금통장 방치러', '영끌 파이터'
+   - 나쁜 예시: '빚의 노예', '월급쟁이' (너무 평범함)
+
+2. **Roast (팩트폭행)**: 친구가 술자리에서 상담해 주듯이 구어체 반말로, 아주 신랄하고 재치 있게 3~4문장 작성해줘.
+   - 사용자의 아픈 곳(소비 과다, 저축 부족, 투자 안 함 등)을 유머러스하게 꼬집어줘
+   - "~네", "~잖아", "~거든?" 같은 구어체 사용
+   - 좋은 예시: "야 솔직히 이 정도면 월급이 통장 스치기 대회 하는 거 아냐? 들어오자마자 나가는 거 보면 월급도 집에 있기 싫은가 봐."
+
+3. **Advice (조언)**: 뻔한 소리(저축해라, 아껴라) 말고, 당장 실행할 수 있는 구체적인 액션 아이템을 제시해줘.
+   - 좋은 예시: "📱 넷플릭스 구독부터 끊어. 어차피 안 보잖아", "🏦 청약통장에 2만원이라도 매달 자동이체 걸어", "☕ 일주일에 카페 3번만 가. 나머지는 믹스커피 마셔"
+   - 나쁜 예시: "저축을 늘리세요", "지출을 줄이세요" (너무 추상적)
+
 ## 응답 형식 (반드시 아래 JSON 형식으로만 응답)
 {
-  "score": 0~100 사이 정수 (재무 건강 점수),
+  "score": 0~100 사이 정수,
   "grade": "S/A/B/C/D/F 중 하나",
-  "persona": "사용자를 한 단어로 정의하는 캐릭터명 (예: 빚의 노예, 황금 밸런스 마스터, 미래 없는 욜로족, 영끌 용사, 짠돌이 현자 등)",
-  "personaEmoji": "페르소나를 나타내는 이모지 1개",
-  "roast": "2~3문장으로 사용자의 재무 상태를 신랄하게 팩트 폭격. 직설적이고 따끔하게.",
-  "advice": ["조언1", "조언2", "조언3"] (각 조언은 이모지로 시작, 구체적이고 실행 가능한 조언 3개)
+  "persona": "재미있고 비꼬는 별명",
+  "personaEmoji": "별명에 어울리는 이모지 1개",
+  "roast": "3~4문장의 신랄한 팩트폭행 (반말, 구어체)",
+  "advice": ["구체적 조언1", "구체적 조언2", "구체적 조언3"]
 }
 
 점수 기준:
-- 90점 이상: S등급 (완벽한 재무 관리)
+- 90점 이상: S등급 (재무 천재)
 - 80점 이상: A등급 (우수)
 - 70점 이상: B등급 (양호)
 - 60점 이상: C등급 (보통)
-- 50점 이상: D등급 (주의 필요)
+- 50점 이상: D등급 (주의)
 - 50점 미만: F등급 (위험)
 
-JSON만 출력하세요. 다른 텍스트는 포함하지 마세요.`
+JSON만 출력해. 다른 텍스트 금지.`
 
     const apiKey = process.env.GEMINI_API_KEY
 
@@ -225,64 +240,64 @@ function generateLocalAnalysis(
   let roast: string
 
   if (savingsRate < 0) {
-    persona = '카드값 폭탄 시한폭탄'
-    personaEmoji = '💣'
-    roast = '수입보다 지출이 많습니다. 매달 빚이 늘어나는 중이에요. 지금 바로 지출을 줄이지 않으면 파산 일직선입니다.'
+    persona = '월급 증발 마법사'
+    personaEmoji = '💨'
+    roast = '야 솔직히 이건 월급이 아니라 용돈이야. 들어오자마자 사라지는 거 보면 네 통장이 블랙홀인 것 같아. 이러다 진짜 마이너스 통장이 본 통장 되겠다?'
   } else if (savingsRate < 10 && debtToIncomeRatio > 200) {
-    persona = '빚의 노예'
-    personaEmoji = '⛓️'
-    roast = '벌어서 이자 내기도 바쁘시네요. 돈을 위해 일하는 게 아니라, 은행을 위해 일하고 계십니다.'
+    persona = '은행 이자 기부자'
+    personaEmoji = '🏦'
+    roast = '너 월급 받으면 이자 내고, 생활비 쓰고 나면 뭐가 남아? 아 맞다, 안 남지. 지금 네가 일하는 건 너를 위해서가 아니라 은행을 위해서인 거 알지?'
   } else if (savingsRate < 10) {
-    persona = '미래 없는 욜로족'
-    personaEmoji = '🎉'
-    roast = '오늘만 사는 스타일이시군요. 10년 뒤 당신은 오늘의 당신을 원망할 겁니다.'
+    persona = '스타벅스 대주주'
+    personaEmoji = '☕'
+    roast = '월급 들어오면 뭐하냐 어차피 다 쓸 건데. 10년 뒤에 "아 그때 좀 모아둘걸" 할 거 100%야. 미래의 너한테 미리 사과해.'
   } else if (savingsRate >= 50 && debtToIncomeRatio === 0) {
-    persona = '숨만 쉬는 자린고비'
+    persona = '숨만 쉬는 짠돌이'
     personaEmoji = '🐜'
-    roast = '저축 좋죠. 근데 삶의 질은요? 돈 쓸 때 써야 행복도 삽니다.'
+    roast = '저축률 대박이네? 근데 뭐 먹고 사는 거야? 가끔은 맛있는 것도 먹고 여행도 가. 돈은 쓰라고 있는 거거든? 물론 적당히.'
   } else if (savingsRate >= 30 && monthsOfExpenses >= 6 && debtToIncomeRatio < 100) {
-    persona = '황금 밸런스 마스터'
-    personaEmoji = '⚖️'
-    roast = '지출과 저축의 완벽한 균형! 이대로만 가면 노후 걱정 없습니다.'
+    persona = '황금비율 인간'
+    personaEmoji = '✨'
+    roast = '오 뭐야 좀 치는데? 저축도 하고 투자도 하고 비상금도 있네. 솔직히 이 정도면 나보다 잘하는 거 인정. 그냥 이대로만 살아.'
   } else if (debtToIncomeRatio > 300) {
-    persona = '영끌의 선봉장'
-    personaEmoji = '🏠'
-    roast = '부동산에 영혼까지 끌어모으셨군요. 금리 인상이 무섭지 않으세요?'
+    persona = '영끌 파이터'
+    personaEmoji = '🥊'
+    roast = '부동산에 영혼까지 끌어모았구나? 금리 오를 때마다 심장 쫄깃하겠다. 집값 올라야 할 텐데... 안 오르면 어쩌려고?'
   } else if (monthsOfExpenses < 3) {
-    persona = '위태로운 모래성'
-    personaEmoji = '🏰'
-    roast = '비상금이 3개월치도 안 됩니다. 갑자기 실직하면 어떡하실 건가요?'
+    persona = 'YOLO 실천자'
+    personaEmoji = '🎢'
+    roast = '비상금 3개월치도 없어? 갑자기 회사 짤리면 어떡할 건데? 부모님한테 손 벌릴 거야? 제발 비상금부터 채워.'
   } else if (data.stockInvestment > data.savingsDeposit * 3) {
-    persona = '공격적 투자 광전사'
-    personaEmoji = '⚔️'
-    roast = '주식/코인에 올인하셨네요. 대박 아니면 쪽박, 그 스릴을 즐기시는군요.'
+    persona = '주식 풀베팅러'
+    personaEmoji = '📉'
+    roast = '예금보다 주식이 3배가 넘어? 대박 아니면 쪽박 스타일이네. 떨어지면 멘탈 버틸 수 있어? 분산투자라는 말 들어봤어?'
   } else {
-    persona = '평범한 월급쟁이'
-    personaEmoji = '👔'
-    roast = '무난하게 살고 계시네요. 좋게 말하면 안정적, 나쁘게 말하면 그저 그렇습니다.'
+    persona = '월급 자동이체 장인'
+    personaEmoji = '💸'
+    roast = '무난하게 살고 있네. 나쁘진 않은데, 그렇다고 대단하지도 않아. 뭔가 변화가 필요해 보여. 이대로 10년 가면 그대로야.'
   }
 
   const advice: string[] = []
   if (savingsRate < 20) {
-    advice.push('💸 저축률을 최소 20% 이상으로 올리세요. 현재 저축률이 너무 낮아 자산 형성이 어렵습니다.')
+    advice.push('🍜 배달앱 삭제해. 이번 달부터 일주일에 2번만 시켜먹어.')
   }
   if (monthsOfExpenses < 6) {
-    advice.push('🏦 비상금을 최소 6개월치 생활비로 확보하세요. 예상치 못한 상황에 대비해야 합니다.')
+    advice.push('🏦 월급 들어오면 자동이체로 30만원부터 비상금 통장에 넣어.')
   }
   if (debtToIncomeRatio > 200) {
-    advice.push('📉 부채 상환을 최우선으로 하세요. 연봉 대비 부채가 너무 많습니다.')
+    advice.push('💳 카드 한도 반으로 줄여. 없으면 안 쓰게 돼.')
   }
   if (data.debtInterestRate > 10) {
-    advice.push('🔥 고금리 대출부터 갚으세요. 이자가 눈덩이처럼 불어나고 있습니다.')
+    advice.push('🔥 고금리 대출 먼저 갚아. 이자 아끼는 게 투자 수익보다 확실해.')
   }
   if (data.stockInvestment === 0 && data.savingsDeposit > data.monthlySalary * 6) {
-    advice.push('📈 여유자금으로 투자를 시작하세요. 예금만으로는 인플레이션을 이길 수 없습니다.')
+    advice.push('📈 예금만 하지 말고 ETF라도 월 10만원씩 적립해봐.')
   }
   if (data.housingCost > data.monthlySalary * 0.3) {
-    advice.push('🏠 주거비가 소득의 30%를 초과합니다. 주거비 절감 방안을 고려해보세요.')
+    advice.push('🏠 월세가 너무 비싸. 이사 고려하거나 룸메이트 구해봐.')
   }
   if (advice.length === 0) {
-    advice.push('✨ 현재 재무 상태가 양호합니다. 꾸준히 유지하면서 투자 비중을 조금씩 늘려보세요.')
+    advice.push('👍 지금 잘하고 있어. ISA 계좌 만들어서 세금 아끼면서 투자해봐.')
   }
 
   return {
