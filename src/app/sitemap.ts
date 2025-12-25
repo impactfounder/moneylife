@@ -82,6 +82,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/minimum-wage-calculator`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // 콘텐츠 허브
     {
       url: `${baseUrl}/content`,
@@ -171,6 +177,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/content/pension-vs-irp-2025`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/content/minimum-wage-2026`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.9,
