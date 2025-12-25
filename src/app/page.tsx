@@ -133,19 +133,19 @@ export default function Home() {
               </div>
 
               {/* Main Copy */}
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight animate-slide-in">
-                내 돈, 잘 관리하고 있을까?
+              <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight tracking-tight animate-slide-in">
+                복잡한 금융 계산은
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
-                  AI가 1분 만에 무료로 진단
+                  AI에게 맡기세요
                 </span>
               </h1>
 
               {/* Sub Copy */}
               <p className="text-lg lg:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-in" style={{ animationDelay: '100ms' }}>
-                연봉 상위 %부터 자산 증식 로드맵까지,
+                연봉 순위부터 맞춤형 자산 진단까지,
                 <br className="hidden sm:block" />
-                인공지능이 객관적으로 분석해 드립니다.
+                30초 만에 나만의 금융 솔루션을 받아보세요.
               </p>
 
               {/* Easy Entry Form */}
@@ -212,11 +212,11 @@ export default function Home() {
         <section className="py-20 lg:py-28 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-                왜 MoneyLife 진단인가요?
+              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight">
+                왜 MoneyLife인가요?
               </h2>
               <p className="text-slate-500 text-lg">
-                단순 계산기를 넘어, 진짜 인사이트를 드립니다
+                단순 계산을 넘어, 진짜 금융 인사이트를 드립니다
               </p>
             </div>
 
@@ -267,11 +267,11 @@ export default function Home() {
         <section className="py-20 lg:py-28 bg-slate-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight">
                 필요한 기능만 골라 쓰세요
               </h2>
               <p className="text-slate-500 text-lg">
-                금융 계산, 한 곳에서 해결하세요
+                금융 계산부터 자산 진단까지, 한 곳에서 해결
               </p>
             </div>
 
@@ -321,11 +321,11 @@ export default function Home() {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center justify-between mb-12">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">
+                <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-2 tracking-tight">
                   금융 가이드
                 </h2>
                 <p className="text-slate-500">
-                  돈 관리에 도움되는 최신 콘텐츠
+                  자산 관리에 도움되는 최신 콘텐츠
                 </p>
               </div>
               <Link
@@ -386,13 +386,13 @@ export default function Home() {
         {/* CTA Section */}
         <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900">
           <div className="container mx-auto px-4 max-w-4xl text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              지금 바로 내 재무 상태를
+            <h2 className="text-3xl lg:text-4xl font-black text-white mb-6 tracking-tight">
+              당신만의 금융 솔루션,
               <br />
-              점검해보세요
+              지금 바로 시작하세요
             </h2>
             <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
-              30초 투자로 나의 재무 건강 점수와 맞춤형 자산 증식 전략을 무료로 받아보세요.
+              30초 투자로 나의 재무 건강 점수와 맞춤형 자산 관리 전략을 무료로 받아보세요.
             </p>
             <Link
               href="/financial-diagnosis"

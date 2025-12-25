@@ -112,12 +112,14 @@ export function QuickRankModal({ isOpen, onClose, monthlySalary }: QuickRankModa
           <div className="text-center mb-8 w-full">
             <p className="text-slate-500 text-sm font-bold mb-2 tracking-wide uppercase">대한민국 상위</p>
 
-            {/* 숫자 컨테이너: 고정된 높이와 중앙 정렬 */}
+            {/* 숫자 컨테이너: tabular-nums + absolute % 배치로 레이아웃 안정화 */}
             <div className="relative flex justify-center items-baseline h-[80px]">
-              <span className="text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 tabular-nums tracking-tight leading-none">
-                {displayPercentile.toFixed(1)}
-              </span>
-              <span className="text-3xl lg:text-4xl font-bold text-blue-600 ml-1">%</span>
+              <div className="relative">
+                <span className="text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 tabular-nums tracking-tight leading-none">
+                  {displayPercentile.toFixed(1)}
+                </span>
+                <span className="text-3xl lg:text-4xl font-bold text-blue-600 absolute -right-9 top-1">%</span>
+              </div>
             </div>
           </div>
 

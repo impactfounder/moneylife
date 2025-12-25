@@ -1,16 +1,49 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { formatNumber } from '@/lib/calculations'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, RadialLinearScale, PointElement, LineElement, Filler } from 'chart.js'
+import { Doughnut, Radar } from 'react-chartjs-2'
+import html2canvas from 'html2canvas'
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement, Tooltip, Legend, RadialLinearScale, PointElement, LineElement, Filler)
+
+declare global {
+  interface Window {
+    Kakao?: {
+      init: (key: string) => void
+      isInitialized: () => boolean
+      Share: {
+        sendDefault: (options: KakaoShareOptions) => void
+      }
+    }
+  }
+}
+
+interface KakaoShareOptions {
+  objectType: string
+  content: {
+    title: string
+    description: string
+    imageUrl: string
+    link: {
+      mobileWebUrl: string
+      webUrl: string
+    }
+  }
+  buttons: Array<{
+    title: string
+    link: {
+      mobileWebUrl: string
+      webUrl: string
+    }
+  }>
+}
 
 // 연령대별 평균 데이터 (통계청 기준 가상 데이터)
 const AVERAGE_STATS: Record<string, { income: number; assets: number; spending: number }> = {
@@ -91,6 +124,87 @@ export default function FinancialDiagnosisResultPage() {
   const [result, setResult] = useState<DiagnosisResult | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isSaving, setIsSaving] = useState(false)
+  const shareCardRef = useRef<HTMLDivElement>(null)
+
+  // Kakao SDK 초기화
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js'
+    script.async = true
+    script.onload = () => {
+      if (window.Kakao && !window.Kakao.isInitialized()) {
+        // 실제 서비스에서는 환경변수로 관리
+        window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY || 'demo_key')
+      }
+    }
+    document.head.appendChild(script)
+    return () => {
+      document.head.removeChild(script)
+    }
+  }, [])
+
+  // 카카오톡 공유
+  const handleKakaoShare = () => {
+    if (!window.Kakao || !result) return
+
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: `나의 재무 건강 점수: ${result.score}점 (${result.grade}등급)`,
+        description: `${result.persona} - ${result.roast.slice(0, 50)}...`,
+        imageUrl: 'https://moneylife.kr/og-diagnosis.png',
+        link: {
+          mobileWebUrl: 'https://moneylife.kr/financial-diagnosis',
+          webUrl: 'https://moneylife.kr/financial-diagnosis',
+        },
+      },
+      buttons: [
+        {
+          title: '나도 진단받기',
+          link: {
+            mobileWebUrl: 'https://moneylife.kr/financial-diagnosis',
+            webUrl: 'https://moneylife.kr/financial-diagnosis',
+          },
+        },
+      ],
+    })
+  }
+
+  // 이미지로 저장
+  const handleSaveImage = async () => {
+    if (!shareCardRef.current || isSaving) return
+
+    setIsSaving(true)
+    try {
+      const canvas = await html2canvas(shareCardRef.current, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        useCORS: true,
+        logging: false,
+      })
+
+      const link = document.createElement('a')
+      link.download = `재무진단_${result?.score}점_${new Date().toISOString().split('T')[0]}.png`
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+    } catch (err) {
+      console.error('이미지 저장 실패:', err)
+      alert('이미지 저장에 실패했습니다.')
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  // URL 복사
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText('https://moneylife.kr/financial-diagnosis')
+      alert('링크가 복사되었습니다!')
+    } catch {
+      alert('링크 복사에 실패했습니다.')
+    }
+  }
 
   useEffect(() => {
     const stored = sessionStorage.getItem('financialDiagnosisData')
@@ -208,27 +322,111 @@ export default function FinancialDiagnosisResultPage() {
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="text-5xl mb-3">{result.personaEmoji}</div>
-              <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-1">
-                당신은 <span className="text-violet-600">{result.persona}</span>
-              </h1>
+            {/* 공유용 카드 (이미지 저장 영역) */}
+            <div ref={shareCardRef} className="max-w-md mx-auto bg-white rounded-3xl p-6 shadow-xl border border-slate-100">
+              <div className="text-center">
+                <div className="text-5xl mb-3">{result.personaEmoji}</div>
+                <h1 className="text-xl lg:text-2xl font-bold text-slate-900 mb-1">
+                  당신은 <span className="text-violet-600">{result.persona}</span>
+                </h1>
 
-              {/* 점수 + 등급 인라인 */}
-              <div className="flex items-center justify-center gap-6 my-6">
-                <div className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-slate-100">
-                  <p className="text-xs text-slate-500 mb-1">재무 건강 점수</p>
-                  <p className="text-4xl font-black text-slate-900">{result.score}</p>
+                {/* 점수 + 등급 인라인 */}
+                <div className="flex items-center justify-center gap-4 my-5">
+                  <div className="bg-slate-50 rounded-xl px-5 py-3">
+                    <p className="text-[10px] text-slate-500 mb-1">재무 건강 점수</p>
+                    <p className="text-3xl font-black text-slate-900">{result.score}</p>
+                  </div>
+                  <div className="bg-slate-50 rounded-xl px-5 py-3">
+                    <p className="text-[10px] text-slate-500 mb-1">등급</p>
+                    <p className={`text-3xl font-black ${result.gradeColor}`}>{result.grade}</p>
+                  </div>
                 </div>
-                <div className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-slate-100">
-                  <p className="text-xs text-slate-500 mb-1">등급</p>
-                  <p className={`text-4xl font-black ${result.gradeColor}`}>{result.grade}</p>
+
+                {/* 레이더 차트 - 재무 균형 시각화 */}
+                <div className="w-48 h-48 mx-auto mb-4">
+                  <Radar
+                    data={{
+                      labels: ['저축률', '비상금', '부채관리', '자산'],
+                      datasets: [{
+                        label: '내 점수',
+                        data: [
+                          Math.min(100, (result.stats.savingsRate / 30) * 100),
+                          Math.min(100, (result.stats.monthsOfExpenses / 12) * 100),
+                          Math.max(0, 100 - (result.stats.debtToIncomeRatio / 3)),
+                          Math.min(100, (result.stats.netWorth / 50000) * 100),
+                        ],
+                        backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                        borderColor: 'rgba(139, 92, 246, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(139, 92, 246, 1)',
+                        pointRadius: 3,
+                      }]
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: true,
+                      scales: {
+                        r: {
+                          beginAtZero: true,
+                          max: 100,
+                          ticks: { display: false, stepSize: 25 },
+                          pointLabels: { font: { size: 10, weight: 'bold' }, color: '#64748b' },
+                          grid: { color: '#e2e8f0' },
+                          angleLines: { color: '#e2e8f0' },
+                        }
+                      },
+                      plugins: { legend: { display: false } }
+                    }}
+                  />
                 </div>
+
+                {/* 팩트 폭행 */}
+                <div className="bg-slate-900 text-white rounded-xl p-4 text-left">
+                  <p className="text-sm leading-relaxed">{result.roast}</p>
+                </div>
+
+                {/* 워터마크 */}
+                <p className="text-[10px] text-slate-300 mt-4">moneylife.kr | AI 재무 진단</p>
               </div>
+            </div>
 
-              {/* 팩트 폭행 */}
-              <div className="bg-slate-900 text-white rounded-2xl p-5 text-left max-w-xl mx-auto">
-                <p className="text-base leading-relaxed">{result.roast}</p>
+            {/* 공유 버튼 영역 */}
+            <div className="max-w-md mx-auto mt-6">
+              <p className="text-center text-xs text-slate-500 mb-3">친구에게 공유하고 함께 비교해보세요!</p>
+              <div className="flex items-center justify-center gap-3">
+                {/* 카카오 공유 */}
+                <button
+                  onClick={handleKakaoShare}
+                  className="flex items-center gap-2 bg-[#FEE500] text-[#3C1E1E] px-5 py-3 rounded-xl font-bold text-sm hover:brightness-95 transition-all"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.47 1.607 4.647 4.033 5.907-.13.47-.837 3.043-.864 3.24 0 0-.017.14.073.194.09.054.196.023.196.023.258-.036 2.987-1.96 3.458-2.29.69.095 1.407.146 2.104.146 5.523 0 10-3.477 10-7.72C22 6.477 17.523 3 12 3"/>
+                  </svg>
+                  카카오톡
+                </button>
+
+                {/* 이미지 저장 */}
+                <button
+                  onClick={handleSaveImage}
+                  disabled={isSaving}
+                  className="flex items-center gap-2 bg-violet-600 text-white px-5 py-3 rounded-xl font-bold text-sm hover:bg-violet-700 transition-all disabled:opacity-50"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {isSaving ? '저장 중...' : '이미지 저장'}
+                </button>
+
+                {/* 링크 복사 */}
+                <button
+                  onClick={handleCopyLink}
+                  className="flex items-center gap-2 bg-slate-200 text-slate-700 px-5 py-3 rounded-xl font-bold text-sm hover:bg-slate-300 transition-all"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  링크
+                </button>
               </div>
             </div>
           </div>

@@ -119,7 +119,7 @@ function MarketTicker() {
   ]
 
   return (
-    <div className="hidden xl:block bg-slate-900 py-1.5 border-t border-slate-700">
+    <div className="hidden xl:block bg-slate-900 py-1.5">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-8 text-sm">
           {tickerItems.map((item, index) => (
@@ -141,15 +141,15 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="glass-effect border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+    <header className="glass-effect border-b border-slate-100 xl:border-b-0 sticky top-0 z-50 shadow-sm xl:shadow-none">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* 로고 */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="font-black text-xl text-slate-900 tracking-tight">
-            MONEYLIFE
+            MoneyLife
           </span>
-          <span className="text-slate-400 font-medium text-sm hidden sm:inline">
-            금융계산기
+          <span className="text-[10px] font-bold text-white bg-gradient-to-r from-violet-500 to-blue-500 px-2 py-0.5 rounded-full tracking-wide">
+            AI
           </span>
         </Link>
 

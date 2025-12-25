@@ -4,8 +4,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: '금융계산기 - moneylife.kr',
-    template: '%s | 금융계산기'
+    default: 'AI 금융 진단 - MoneyLife',
+    template: '%s | AI 금융 진단 머니라이프'
   },
   description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에! 급여계산기, 대출계산기, 연봉순위 테스트 등 9개 계산기 무료 제공',
   keywords: [

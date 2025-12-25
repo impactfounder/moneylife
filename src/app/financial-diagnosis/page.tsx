@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
@@ -39,6 +39,15 @@ function DiagnosisForm() {
     totalDebt: '',
     debtInterestRate: '',
   })
+  const formRef = useRef<HTMLDivElement>(null)
+
+  // 모바일에서 인풋 포커스 시 스크롤 조정
+  const handleInputFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    // 모바일에서 키보드가 올라올 때 인풋이 가려지지 않도록 스크롤
+    setTimeout(() => {
+      e.target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 300)
+  }, [])
 
   // URL 쿼리 파라미터에서 월급 가져오기
   useEffect(() => {
@@ -116,6 +125,24 @@ function DiagnosisForm() {
     return false
   }
 
+  // Enter 키로 다음 필드 또는 다음 단계로 이동
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, nextFieldId?: string) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      if (nextFieldId) {
+        const nextField = document.getElementById(nextFieldId)
+        if (nextField) {
+          nextField.focus()
+          return
+        }
+      }
+      // 마지막 필드면 다음 단계로
+      if (isStepValid()) {
+        handleNext()
+      }
+    }
+  }
+
   const progressPercentage = {
     'info': 25,
     'assets': 50,
@@ -187,12 +214,18 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
-                            type="number"
+                            id="input-age"
+                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                             value={formData.age}
-                            onChange={(e) => setFormData(prev => ({ ...prev, age: e.target.value }))}
+                            onChange={(e) => {
+                              const val = e.target.value.replace(/[^0-9]/g, '')
+                              setFormData(prev => ({ ...prev, age: val }))
+                            }}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e, 'input-salary')}
                             placeholder="30"
-                            min="18"
-                            max="100"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
@@ -225,9 +258,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-salary"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.monthlySalary}
                             onChange={(e) => handleFormatInput(e.target.value, 'monthlySalary')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="350"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -253,9 +291,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-savings"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.savingsDeposit}
                             onChange={(e) => handleFormatInput(e.target.value, 'savingsDeposit')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e, 'input-stock')}
                             placeholder="0"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -271,9 +314,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-stock"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.stockInvestment}
                             onChange={(e) => handleFormatInput(e.target.value, 'stockInvestment')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e, 'input-realestate')}
                             placeholder="0"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -289,9 +337,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-realestate"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.realEstate}
                             onChange={(e) => handleFormatInput(e.target.value, 'realEstate')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="0"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -317,9 +370,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-spending"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.monthlySpending}
                             onChange={(e) => handleFormatInput(e.target.value, 'monthlySpending')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e, 'input-housing')}
                             placeholder="200"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -338,9 +396,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-housing"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.housingCost}
                             onChange={(e) => handleFormatInput(e.target.value, 'housingCost')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="0"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -366,9 +429,14 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
+                            id="input-debt"
                             type="text"
+                            inputMode="numeric"
+                            pattern="[0-9,]*"
                             value={formData.totalDebt}
                             onChange={(e) => handleFormatInput(e.target.value, 'totalDebt')}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e, 'input-rate')}
                             placeholder="0"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
@@ -387,13 +455,18 @@ function DiagnosisForm() {
                         </label>
                         <div className="relative">
                           <input
-                            type="number"
+                            id="input-rate"
+                            type="text"
+                            inputMode="decimal"
+                            pattern="[0-9.]*"
                             value={formData.debtInterestRate}
-                            onChange={(e) => setFormData(prev => ({ ...prev, debtInterestRate: e.target.value }))}
+                            onChange={(e) => {
+                              const val = e.target.value.replace(/[^0-9.]/g, '')
+                              setFormData(prev => ({ ...prev, debtInterestRate: val }))
+                            }}
+                            onFocus={handleInputFocus}
+                            onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="5"
-                            step="0.1"
-                            min="0"
-                            max="30"
                             className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
