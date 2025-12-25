@@ -141,7 +141,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="glass-effect border-x-0 border-t-0 border-b border-slate-100 xl:border-b-0 sticky top-0 z-50 shadow-sm xl:shadow-none">
+    <header className="glass-effect border-x-0 border-t-0 border-b border-slate-100 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* 로고 */}
         <Link href="/" className="flex items-center gap-2 group">

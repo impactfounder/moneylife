@@ -12,7 +12,7 @@ import { QuickRankModal } from '@/components/ui/QuickRankModal'
 const calculators = [
   {
     id: 'salary-rank',
-    name: '연봉 순위',
+    name: '연봉 순위 계산기',
     icon: '🏆',
     description: '내 연봉은 상위 몇 %? 통계청 데이터 기반 정확한 순위 확인',
     href: '/salary-rank',
@@ -36,7 +36,7 @@ const calculators = [
   },
   {
     id: 'mortgage-calculator',
-    name: '주택담보대출',
+    name: '주택담보대출 계산기',
     icon: '🏠',
     description: 'LTV 자동 계산, 월별 상환 스케줄로 대출 계획 수립',
     href: '/mortgage-calculator',
@@ -50,28 +50,28 @@ const calculators = [
   },
   {
     id: 'pension-calculator',
-    name: '국민연금',
+    name: '국민연금 계산기',
     icon: '🏛️',
     description: '2025년 기준 예상 월 연금 수령액과 손익분기 나이 계산',
     href: '/pension-calculator',
   },
   {
     id: 'severance-calculator',
-    name: '퇴직금',
+    name: '퇴직금 계산기',
     icon: '💼',
     description: '근속일수와 평균임금으로 퇴직금 + 퇴직소득세 계산',
     href: '/severance-calculator',
   },
   {
     id: 'income-tax-calculator',
-    name: '종합소득세',
+    name: '종합소득세 계산기',
     icon: '📊',
     description: '2025년 8단계 누진세율, 6가지 공제 항목 자동 계산',
     href: '/income-tax-calculator',
   },
   {
     id: 'minimum-wage-calculator',
-    name: '최저시급',
+    name: '최저시급 계산기',
     icon: '⏰',
     description: '2026년 최저시급 10,320원 기준 월급, 주휴수당 계산',
     href: '/minimum-wage-calculator',
@@ -134,10 +134,10 @@ export default function Home() {
 
               {/* Main Copy */}
               <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight tracking-tight animate-slide-in">
-                복잡한 금융 계산은
+                내 돈, 잘 관리하고 있을까?
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
-                  AI에게 맡기세요
+                  AI 자산 진단으로 1분 만에 확인
                 </span>
               </h1>
 
