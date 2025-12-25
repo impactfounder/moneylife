@@ -8,8 +8,8 @@ import { formatNumber } from '@/lib/calculations'
 import { getRecentPosts } from '@/data/posts'
 import { QuickRankModal } from '@/components/ui/QuickRankModal'
 
-// Top 3 인기 계산기
-const topCalculators = [
+// 전체 계산기 목록 (9개)
+const calculators = [
   {
     id: 'salary-rank',
     name: '연봉 순위',
@@ -34,17 +34,48 @@ const topCalculators = [
     href: '/loan-calculator',
     badge: '추천',
   },
-]
-
-// 나머지 계산기들
-const moreCalculators = [
-  { name: '주택담보대출', href: '/mortgage-calculator', icon: '🏠' },
-  { name: '복리 계산기', href: '/compound-interest-calculator', icon: '📈' },
-  { name: '국민연금', href: '/pension-calculator', icon: '🏛️' },
-  { name: '퇴직금', href: '/severance-calculator', icon: '💼' },
-  { name: '종합소득세', href: '/income-tax-calculator', icon: '📊' },
-  { name: '양도소득세', href: '/capital-gains-tax-calculator', icon: '🏡' },
-  { name: '최저시급', href: '/minimum-wage-calculator', icon: '⏰' },
+  {
+    id: 'mortgage-calculator',
+    name: '주택담보대출',
+    icon: '🏠',
+    description: 'LTV 자동 계산, 월별 상환 스케줄로 대출 계획 수립',
+    href: '/mortgage-calculator',
+  },
+  {
+    id: 'compound-interest-calculator',
+    name: '복리 계산기',
+    icon: '📈',
+    description: '초기 투자금과 월 적립으로 10년 후 자산 시뮬레이션',
+    href: '/compound-interest-calculator',
+  },
+  {
+    id: 'pension-calculator',
+    name: '국민연금',
+    icon: '🏛️',
+    description: '2025년 기준 예상 월 연금 수령액과 손익분기 나이 계산',
+    href: '/pension-calculator',
+  },
+  {
+    id: 'severance-calculator',
+    name: '퇴직금',
+    icon: '💼',
+    description: '근속일수와 평균임금으로 퇴직금 + 퇴직소득세 계산',
+    href: '/severance-calculator',
+  },
+  {
+    id: 'income-tax-calculator',
+    name: '종합소득세',
+    icon: '📊',
+    description: '2025년 8단계 누진세율, 6가지 공제 항목 자동 계산',
+    href: '/income-tax-calculator',
+  },
+  {
+    id: 'minimum-wage-calculator',
+    name: '최저시급',
+    icon: '⏰',
+    description: '2026년 최저시급 10,320원 기준 월급, 주휴수당 계산',
+    href: '/minimum-wage-calculator',
+  },
 ]
 
 export default function Home() {
@@ -232,7 +263,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Top Calculators Section */}
+        {/* Calculators Section - 전체 9개 노출 */}
         <section className="py-20 lg:py-28 bg-slate-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-12">
@@ -240,38 +271,40 @@ export default function Home() {
                 필요한 기능만 골라 쓰세요
               </h2>
               <p className="text-slate-500 text-lg">
-                가장 많이 사용되는 핵심 계산기
+                금융 계산, 한 곳에서 해결하세요
               </p>
             </div>
 
-            {/* Top 3 Calculators */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-              {topCalculators.map((calc, index) => (
+            {/* All Calculators Grid - 모바일 2열, PC 3열 */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+              {calculators.map((calc) => (
                 <Link
                   key={calc.id}
                   href={calc.href}
-                  className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 hover:border-slate-200 overflow-hidden"
+                  className="group relative bg-white rounded-2xl lg:rounded-3xl p-5 lg:p-8 shadow-sm hover:shadow-2xl hover:-translate-y-1 lg:hover:-translate-y-2 transition-all duration-300 border border-slate-100 hover:border-slate-200 overflow-hidden"
                 >
-                  {/* Badge */}
-                  <span className="absolute top-6 right-6 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                    {calc.badge}
-                  </span>
+                  {/* Badge - 있을 때만 표시 */}
+                  {calc.badge && (
+                    <span className="absolute top-4 right-4 lg:top-6 lg:right-6 bg-slate-900 text-white text-[10px] lg:text-xs font-bold px-2 lg:px-3 py-1 lg:py-1.5 rounded-full">
+                      {calc.badge}
+                    </span>
+                  )}
 
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:bg-slate-200 transition-all">
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-slate-100 rounded-xl lg:rounded-2xl flex items-center justify-center text-2xl lg:text-3xl mb-4 lg:mb-6 group-hover:scale-110 group-hover:bg-slate-200 transition-all">
                     {calc.icon}
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-slate-700">
+                  <h3 className="text-base lg:text-xl font-bold text-slate-900 mb-1 lg:mb-2 group-hover:text-slate-700">
                     {calc.name}
                   </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">
+                  <p className="text-slate-500 text-xs lg:text-sm leading-relaxed line-clamp-2">
                     {calc.description}
                   </p>
 
-                  {/* Arrow */}
-                  <div className="mt-6 flex items-center text-slate-400 group-hover:text-slate-600 transition-colors">
+                  {/* Arrow - PC에서만 표시 */}
+                  <div className="hidden lg:flex mt-6 items-center text-slate-400 group-hover:text-slate-600 transition-colors">
                     <span className="text-sm font-medium">바로가기</span>
                     <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -280,32 +313,16 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-
-            {/* More Calculators */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-200">
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                {moreCalculators.map((calc) => (
-                  <Link
-                    key={calc.href}
-                    href={calc.href}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-                  >
-                    <span>{calc.icon}</span>
-                    {calc.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* Latest Content Section */}
+        {/* Financial Guide Section - 6개 노출 */}
         <section className="py-20 lg:py-28 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center justify-between mb-12">
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">
-                  금융 꿀팁
+                  금융 가이드
                 </h2>
                 <p className="text-slate-500">
                   돈 관리에 도움되는 최신 콘텐츠
@@ -315,35 +332,36 @@ export default function Home() {
                 href="/content"
                 className="hidden sm:inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 font-medium transition-colors"
               >
-                전체보기
+                전체 가이드 보기
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {getRecentPosts(3).map((post, index) => (
+            {/* 모바일 2열, PC 3열 - 6개 노출 */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+              {getRecentPosts(6).map((post) => (
                 <Link
                   key={post.slug}
                   href={`/content/${post.slug}`}
-                  className="group bg-slate-50 rounded-2xl p-6 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:border-slate-200"
+                  className="group bg-slate-50 rounded-2xl p-4 lg:p-6 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:border-slate-200"
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">{post.thumbnail}</span>
-                    <span className="text-xs font-semibold text-slate-500 bg-white px-2.5 py-1 rounded-full border border-slate-200">
+                  <div className="flex items-center gap-2 lg:gap-3 mb-3 lg:mb-4">
+                    <span className="text-2xl lg:text-3xl">{post.thumbnail}</span>
+                    <span className="text-[10px] lg:text-xs font-semibold text-slate-500 bg-white px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full border border-slate-200">
                       {post.category}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-slate-900 transition-colors line-clamp-2">
+                  <h3 className="text-sm lg:text-lg font-bold text-slate-800 mb-1 lg:mb-2 group-hover:text-slate-900 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-slate-500 text-sm line-clamp-2 mb-4">
+                  <p className="text-slate-500 text-xs lg:text-sm line-clamp-2 mb-2 lg:mb-4 hidden sm:block">
                     {post.description}
                   </p>
-                  <div className="flex items-center justify-between text-xs text-slate-400">
+                  <div className="flex items-center justify-between text-[10px] lg:text-xs text-slate-400">
                     <span>{post.readTime} 읽기</span>
-                    <span className="group-hover:text-slate-600 transition-colors">
+                    <span className="group-hover:text-slate-600 transition-colors hidden sm:inline">
                       읽어보기 →
                     </span>
                   </div>
@@ -356,7 +374,7 @@ export default function Home() {
                 href="/content"
                 className="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 font-medium"
               >
-                전체 콘텐츠 보기
+                전체 가이드 보기
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
