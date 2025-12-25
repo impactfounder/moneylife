@@ -16,13 +16,6 @@
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* 모바일 하단 네비게이션 공간 확보 */
-    @apply pb-16 md:pb-0;
-  }
-
-  /* 모바일 Safe Area (노치/홈 인디케이터) */
-  .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
   }
 
   html {

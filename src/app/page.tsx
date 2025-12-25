@@ -133,7 +133,7 @@ export default function Home() {
               </div>
 
               {/* Main Copy */}
-              <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight tracking-tight animate-slide-in">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 leading-tight tracking-tight animate-slide-in">
                 내 돈, 잘 관리하고 있을까?
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
@@ -142,7 +142,7 @@ export default function Home() {
               </h1>
 
               {/* Sub Copy */}
-              <p className="text-lg lg:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-in" style={{ animationDelay: '100ms' }}>
+              <p className="text-base md:text-lg lg:text-xl text-slate-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-in" style={{ animationDelay: '100ms' }}>
                 연봉 순위부터 맞춤형 자산 진단까지,
                 <br className="hidden sm:block" />
                 30초 만에 나만의 금융 솔루션을 받아보세요.
@@ -184,24 +184,24 @@ export default function Home() {
               </div>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-slate-400 text-sm animate-fade-in" style={{ animationDelay: '300ms' }}>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-8 md:mt-12 animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  100% 무료
+                  <span className="text-xs text-white/80 font-medium">100% 무료</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  개인정보 저장 안함
+                  <span className="text-xs text-white/80 font-medium">개인정보 저장 안함</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  통계청 데이터 기반
+                  <span className="text-xs text-white/80 font-medium">통계청 데이터 기반</span>
                 </div>
               </div>
             </div>
@@ -339,32 +339,36 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* 모바일 2열, PC 3열 - 6개 노출 */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+            {/* 모바일 1열, PC 3열 - 6개 노출 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
               {getRecentPosts(6).map((post) => (
                 <Link
                   key={post.slug}
                   href={`/content/${post.slug}`}
-                  className="group bg-slate-50 rounded-2xl p-4 lg:p-6 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:border-slate-200"
+                  className="group flex items-center gap-4 bg-slate-50 rounded-2xl p-4 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:border-slate-200"
                 >
-                  <div className="flex items-center gap-2 lg:gap-3 mb-3 lg:mb-4">
-                    <span className="text-2xl lg:text-3xl">{post.thumbnail}</span>
-                    <span className="text-[10px] lg:text-xs font-semibold text-slate-500 bg-white px-2 lg:px-2.5 py-0.5 lg:py-1 rounded-full border border-slate-200">
-                      {post.category}
-                    </span>
+                  {/* 왼쪽: 아이콘 */}
+                  <div className="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl shadow-sm">
+                    {post.thumbnail}
                   </div>
-                  <h3 className="text-sm lg:text-lg font-bold text-slate-800 mb-1 lg:mb-2 group-hover:text-slate-900 transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-500 text-xs lg:text-sm line-clamp-2 mb-2 lg:mb-4 hidden sm:block">
-                    {post.description}
-                  </p>
-                  <div className="flex items-center justify-between text-[10px] lg:text-xs text-slate-400">
-                    <span>{post.readTime} 읽기</span>
-                    <span className="group-hover:text-slate-600 transition-colors hidden sm:inline">
-                      읽어보기 →
-                    </span>
+                  {/* 오른쪽: 텍스트 */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[10px] font-semibold text-slate-500 bg-white px-2 py-0.5 rounded-full border border-slate-200">
+                        {post.category}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-800 group-hover:text-slate-900 transition-colors line-clamp-1">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-slate-500 line-clamp-1 mt-0.5">
+                      {post.description}
+                    </p>
                   </div>
+                  {/* 화살표 */}
+                  <svg className="w-5 h-5 text-slate-300 group-hover:text-slate-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               ))}
             </div>

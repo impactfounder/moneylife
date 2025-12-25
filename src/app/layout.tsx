@@ -122,7 +122,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased pb-20 md:pb-0">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
