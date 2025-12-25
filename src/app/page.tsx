@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { formatNumber } from '@/lib/calculations'
 import { getRecentPosts } from '@/data/posts'
+import { QuickRankModal } from '@/components/ui/QuickRankModal'
 
 // Top 3 인기 계산기
 const topCalculators = [
@@ -48,9 +48,10 @@ const moreCalculators = [
 ]
 
 export default function Home() {
-  const router = useRouter()
   const [salaryInput, setSalaryInput] = useState('')
   const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  const [modalSalary, setModalSalary] = useState(0)
 
   const handleFormatInput = (value: string) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -61,7 +62,7 @@ export default function Home() {
     }
   }
 
-  const handleStartDiagnosis = (e: React.FormEvent) => {
+  const handleShowRank = (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
@@ -71,8 +72,9 @@ export default function Home() {
       return
     }
 
-    // 진단 페이지로 이동 (쿼리 파라미터로 월급 전달)
-    router.push(`/financial-diagnosis?monthlySalary=${parsedSalary}`)
+    // 모달 열기 (바로 페이지 이동 X)
+    setModalSalary(parsedSalary)
+    setShowModal(true)
   }
 
   return (
@@ -117,7 +119,7 @@ export default function Home() {
 
               {/* Easy Entry Form */}
               <div className="w-full max-w-md animate-fade-in" style={{ animationDelay: '200ms' }}>
-                <form onSubmit={handleStartDiagnosis} className="space-y-4">
+                <form onSubmit={handleShowRank} className="space-y-4">
                   <div className="relative">
                     <input
                       type="text"
@@ -424,6 +426,13 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      {/* Quick Rank Modal */}
+      <QuickRankModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        monthlySalary={modalSalary}
+      />
     </>
   )
 }
