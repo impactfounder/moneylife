@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -109,6 +110,11 @@ export default function PensionVsIRP() {
           <p className="text-xs sm:text-sm text-slate-600 mt-3 sm:mt-4">
             * 2025년 기준 / 총급여 5,500만원 이하 16.5%, 초과 13.2%
           </p>
+        </section>
+
+        {/* 광고 - 중간 */}
+        <section className="mb-8 sm:mb-12">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 💰 세액공제 계산 */}
@@ -262,6 +268,11 @@ export default function PensionVsIRP() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8 sm:mb-12">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 🛠️ 유용한 도구 */}

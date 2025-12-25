@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -126,6 +127,11 @@ export default function SalaryTable2025() {
           </div>
         </section>
 
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
+        </section>
+
         {/* 구간별 특징 */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
           <h2 className="text-xl font-bold text-slate-900 mb-6">구간별 특징 분석</h2>
@@ -200,6 +206,11 @@ export default function SalaryTable2025() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 관련 계산기 */}
