@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { formatNumber } from '@/lib/calculations'
+import { Suspense } from 'react'
 
 type DiagnosisStep = 'info' | 'assets' | 'spending' | 'debt' | 'loading'
 
@@ -22,8 +23,9 @@ interface FormData {
   debtInterestRate: string
 }
 
-export default function FinancialDiagnosisPage() {
+function DiagnosisForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [step, setStep] = useState<DiagnosisStep>('info')
   const [formData, setFormData] = useState<FormData>({
     age: '',
@@ -37,6 +39,20 @@ export default function FinancialDiagnosisPage() {
     totalDebt: '',
     debtInterestRate: '',
   })
+
+  // URL 쿼리 파라미터에서 월급 가져오기
+  useEffect(() => {
+    const monthlySalaryParam = searchParams.get('monthlySalary')
+    if (monthlySalaryParam) {
+      const salary = parseInt(monthlySalaryParam)
+      if (!isNaN(salary) && salary > 0) {
+        setFormData(prev => ({
+          ...prev,
+          monthlySalary: formatNumber(salary)
+        }))
+      }
+    }
+  }, [searchParams])
 
   const handleFormatInput = (value: string, field: keyof FormData) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -441,5 +457,17 @@ export default function FinancialDiagnosisPage() {
 
       <Footer />
     </>
+  )
+}
+
+export default function FinancialDiagnosisPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-violet-200 border-t-violet-600"></div>
+      </div>
+    }>
+      <DiagnosisForm />
+    </Suspense>
   )
 }
