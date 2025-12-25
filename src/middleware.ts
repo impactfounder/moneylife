@@ -13,13 +13,24 @@ export function middleware(request: NextRequest) {
 
   // 2. .html 확장자 제거 리다이렉트 (301)
   if (pathname.endsWith('.html')) {
-    const newPathname = pathname.replace(/\.html$/, '')
-    // index.html -> / 로 리다이렉트
-    if (newPathname === '/index' || newPathname === '') {
-      url.pathname = '/'
-    } else {
-      url.pathname = newPathname
+    let newPathname = pathname.replace(/\.html$/, '')
+
+    // index.html 처리 (루트 및 서브디렉토리)
+    // /index -> /
+    // /content/index -> /content
+    if (newPathname === '/index') {
+      newPathname = '/'
+    } else if (newPathname.endsWith('/index')) {
+      newPathname = newPathname.replace(/\/index$/, '')
     }
+
+    url.pathname = newPathname || '/'
+    return NextResponse.redirect(url, 301)
+  }
+
+  // 2-1. /index 경로도 처리 (html 없이 직접 접근 시)
+  if (pathname === '/index' || pathname.endsWith('/index')) {
+    url.pathname = pathname === '/index' ? '/' : pathname.replace(/\/index$/, '')
     return NextResponse.redirect(url, 301)
   }
 
