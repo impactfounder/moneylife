@@ -9,13 +9,11 @@ import { formatNumber } from '@/lib/calculations'
 
 // 2026년 최저시급
 const MINIMUM_WAGE_2026 = 10320
-const MINIMUM_WAGE_2025 = 9860
 
 export default function MinimumWageCalculatorPage() {
   const [hoursPerDay, setHoursPerDay] = useState('8')
   const [daysPerWeek, setDaysPerWeek] = useState('5')
   const [includeWeeklyAllowance, setIncludeWeeklyAllowance] = useState(true)
-  const [selectedYear, setSelectedYear] = useState<'2026' | '2025'>('2026')
   const [showResult, setShowResult] = useState(false)
   const [result, setResult] = useState<{
     hourlyWage: number
@@ -32,7 +30,7 @@ export default function MinimumWageCalculatorPage() {
 
     const hours = parseFloat(hoursPerDay) || 8
     const days = parseFloat(daysPerWeek) || 5
-    const minimumWage = selectedYear === '2026' ? MINIMUM_WAGE_2026 : MINIMUM_WAGE_2025
+    const minimumWage = MINIMUM_WAGE_2026
 
     // 주간 근무시간
     const weeklyHours = hours * days
@@ -108,39 +106,6 @@ export default function MinimumWageCalculatorPage() {
                 <div className="glass-effect rounded-3xl p-8 shadow-2xl border border-white/50 relative overflow-hidden bg-white/80 backdrop-blur-xl">
                   {!showResult ? (
                     <form onSubmit={handleCalculate} className="space-y-6">
-                      {/* 연도 선택 */}
-                      <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
-                          적용 연도
-                        </label>
-                        <div className="grid grid-cols-2 gap-3">
-                          <button
-                            type="button"
-                            onClick={() => setSelectedYear('2026')}
-                            className={`py-3 rounded-xl font-bold transition-all ${
-                              selectedYear === '2026'
-                                ? 'bg-slate-900 text-white shadow-lg'
-                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                            }`}
-                          >
-                            2026년
-                            <span className="block text-xs mt-0.5 opacity-70">10,320원</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setSelectedYear('2025')}
-                            className={`py-3 rounded-xl font-bold transition-all ${
-                              selectedYear === '2025'
-                                ? 'bg-slate-900 text-white shadow-lg'
-                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                            }`}
-                          >
-                            2025년
-                            <span className="block text-xs mt-0.5 opacity-70">9,860원</span>
-                          </button>
-                        </div>
-                      </div>
-
                       {/* 하루 근무시간 */}
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
@@ -211,7 +176,7 @@ export default function MinimumWageCalculatorPage() {
                     <div className="space-y-6">
                       {/* 결과 헤더 */}
                       <div className="text-center">
-                        <p className="text-sm text-slate-500 mb-2">{selectedYear}년 최저시급 기준 월급</p>
+                        <p className="text-sm text-slate-500 mb-2">2026년 최저시급 기준 월급</p>
                         <div className="text-5xl font-black text-slate-900 mb-2 tracking-tighter">
                           {formatNumber(result!.monthlyWage)}
                           <span className="text-2xl font-bold text-slate-500 ml-1">원</span>
