@@ -53,7 +53,8 @@ export type CalculatorType =
   | 'severance-calculator'
   | 'income-tax-calculator'
   | 'capital-gains-tax-calculator'
-  | 'venture-investment-tax-calculator';
+  | 'venture-investment-tax-calculator'
+  | 'minimum-wage-calculator';
 
 export interface Calculator {
   id: CalculatorType;

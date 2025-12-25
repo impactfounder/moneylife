@@ -78,6 +78,14 @@ const calculators: Calculator[] = [
     icon: '🏡',
     description: '부동산 양도차익, 장기보유공제, 다주택 중과세 반영',
     href: '/capital-gains-tax-calculator'
+  },
+  {
+    id: 'minimum-wage-calculator',
+    name: '최저시급 계산기',
+    icon: '⏰',
+    description: '2026년 최저시급 10,320원 기준 월급, 주휴수당 계산',
+    href: '/minimum-wage-calculator',
+    popular: true
   }
 ]
 
