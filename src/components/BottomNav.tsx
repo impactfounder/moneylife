@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 const navItems = [
   { href: '/', icon: '🏠', label: '홈' },
-  { href: '/salary-rank', icon: '🧮', label: '계산기' },
+  { href: '/calculators', icon: '🧮', label: '계산기' },
   { href: '/content', icon: '📚', label: '콘텐츠' },
 ]
 
@@ -16,9 +16,9 @@ export function BottomNav() {
     if (href === '/') {
       return pathname === '/'
     }
-    if (href === '/salary-rank') {
+    if (href === '/calculators') {
       // 계산기 관련 경로들
-      return pathname.includes('calculator') || pathname === '/salary-rank'
+      return pathname.includes('calculator') || pathname === '/salary-rank' || pathname === '/calculators'
     }
     return pathname.startsWith(href)
   }

@@ -183,25 +183,23 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Trust Badges */}
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-8 md:mt-12 animate-fade-in" style={{ animationDelay: '300ms' }}>
-                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-xs text-white/80 font-medium">100% 무료</span>
+              {/* Trust Badges - 2x2 Grid */}
+              <div className="grid grid-cols-2 gap-2 md:gap-3 mt-8 md:mt-12 max-w-sm mx-auto animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-xs text-slate-300 font-medium">100% 무료</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-xs text-white/80 font-medium">개인정보 저장 안함</span>
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-xs text-slate-300 font-medium">회원가입 없음</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-xs text-white/80 font-medium">통계청 데이터 기반</span>
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-xs text-slate-300 font-medium">개인정보 저장 안함</span>
+                </div>
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-xs text-slate-300 font-medium">통계청 데이터 기반</span>
                 </div>
               </div>
             </div>
@@ -358,10 +356,10 @@ export default function Home() {
                         {post.category}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-800 group-hover:text-slate-900 transition-colors line-clamp-1">
+                    <h3 className="text-sm md:text-base font-bold text-slate-800 group-hover:text-slate-900 transition-colors whitespace-normal break-keep">
                       {post.title}
                     </h3>
-                    <p className="text-sm text-slate-500 line-clamp-1 mt-0.5">
+                    <p className="hidden md:block text-sm text-slate-500 line-clamp-1 mt-0.5">
                       {post.description}
                     </p>
                   </div>
