@@ -24,7 +24,11 @@
       "Bash(done)",
       "Bash(ls:*)",
       "Bash(git diff:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(git stash pop:*)"
     ]
   }
 }
