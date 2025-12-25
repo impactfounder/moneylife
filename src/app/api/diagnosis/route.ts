@@ -20,6 +20,11 @@ interface GeminiResponse {
   personaEmoji: string
   roast: string
   advice: string[]
+  goals: {
+    shortTerm: string
+    midTerm: string
+    longTerm: string
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -58,6 +63,7 @@ export async function POST(request: NextRequest) {
 - 비상금: ${monthsOfExpenses}개월치 (권장: 6개월 이상)
 - 부채/연소득 비율: ${debtToIncomeRatio}% (권장: 200% 미만)
 - 순자산: ${netWorth}만원
+- 총 자산: ${totalAssets}만원
 
 ## 요청 사항
 
@@ -68,11 +74,14 @@ export async function POST(request: NextRequest) {
 2. **Roast (팩트폭행)**: 친구가 술자리에서 상담해 주듯이 구어체 반말로, 아주 신랄하고 재치 있게 3~4문장 작성해줘.
    - 사용자의 아픈 곳(소비 과다, 저축 부족, 투자 안 함 등)을 유머러스하게 꼬집어줘
    - "~네", "~잖아", "~거든?" 같은 구어체 사용
-   - 좋은 예시: "야 솔직히 이 정도면 월급이 통장 스치기 대회 하는 거 아냐? 들어오자마자 나가는 거 보면 월급도 집에 있기 싫은가 봐."
 
-3. **Advice (조언)**: 뻔한 소리(저축해라, 아껴라) 말고, 당장 실행할 수 있는 구체적인 액션 아이템을 제시해줘.
-   - 좋은 예시: "📱 넷플릭스 구독부터 끊어. 어차피 안 보잖아", "🏦 청약통장에 2만원이라도 매달 자동이체 걸어", "☕ 일주일에 카페 3번만 가. 나머지는 믹스커피 마셔"
-   - 나쁜 예시: "저축을 늘리세요", "지출을 줄이세요" (너무 추상적)
+3. **Advice (조언)**: 뻔한 소리 말고, 당장 실행할 수 있는 구체적인 액션 아이템 3개.
+   - 좋은 예시: "📱 넷플릭스 구독부터 끊어", "🏦 청약통장에 2만원이라도 자동이체 걸어"
+
+4. **Goals (목표)**: 사용자 상황에 맞는 현실적인 재무 목표를 제시해줘.
+   - shortTerm (1년): 지금 당장 시작해서 1년 안에 달성할 수 있는 목표 (예: "비상금 500만원 모으기", "카드빚 청산")
+   - midTerm (3년): 3년 안에 달성할 중기 목표 (예: "순자산 5천만원 달성", "투자 포트폴리오 구축")
+   - longTerm (5년): 5년 후 달성할 장기 목표 (예: "내 집 마련 목돈 1억", "월 배당금 30만원 만들기")
 
 ## 응답 형식 (반드시 아래 JSON 형식으로만 응답)
 {
@@ -81,7 +90,12 @@ export async function POST(request: NextRequest) {
   "persona": "재미있고 비꼬는 별명",
   "personaEmoji": "별명에 어울리는 이모지 1개",
   "roast": "3~4문장의 신랄한 팩트폭행 (반말, 구어체)",
-  "advice": ["구체적 조언1", "구체적 조언2", "구체적 조언3"]
+  "advice": ["구체적 조언1", "구체적 조언2", "구체적 조언3"],
+  "goals": {
+    "shortTerm": "1년 목표 (구체적 금액 포함)",
+    "midTerm": "3년 목표 (구체적 금액 포함)",
+    "longTerm": "5년 목표 (구체적 금액 포함)"
+  }
 }
 
 점수 기준:
@@ -97,7 +111,6 @@ JSON만 출력해. 다른 텍스트 금지.`
     const apiKey = process.env.GEMINI_API_KEY
 
     if (!apiKey) {
-      // API 키가 없으면 로컬 분석으로 폴백
       return NextResponse.json({
         success: true,
         result: generateLocalAnalysis(data, savingsRate, debtToIncomeRatio, monthsOfExpenses, netWorth),
@@ -114,7 +127,7 @@ JSON만 출력해. 다른 텍스트 금지.`
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
             temperature: 0.8,
-            maxOutputTokens: 1024,
+            maxOutputTokens: 1500,
           }
         })
       }
@@ -122,7 +135,6 @@ JSON만 출력해. 다른 텍스트 금지.`
 
     if (!response.ok) {
       console.error('Gemini API error:', await response.text())
-      // API 에러 시 로컬 분석으로 폴백
       return NextResponse.json({
         success: true,
         result: generateLocalAnalysis(data, savingsRate, debtToIncomeRatio, monthsOfExpenses, netWorth),
@@ -141,9 +153,7 @@ JSON만 출력해. 다른 텍스트 금지.`
       })
     }
 
-    // JSON 파싱 시도
     try {
-      // ```json ... ``` 형식 처리
       const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/\{[\s\S]*\}/)
       const jsonStr = jsonMatch ? (jsonMatch[1] || jsonMatch[0]) : text
       const parsed: GeminiResponse = JSON.parse(jsonStr.trim())
@@ -157,7 +167,8 @@ JSON만 출력해. 다른 텍스트 금지.`
           persona: parsed.persona,
           personaEmoji: parsed.personaEmoji,
           roast: parsed.roast,
-          advice: parsed.advice.slice(0, 3)
+          advice: parsed.advice.slice(0, 3),
+          goals: parsed.goals || generateLocalGoals(data, savingsRate, netWorth)
         },
         stats: { savingsRate, debtToIncomeRatio, netWorth, monthsOfExpenses }
       })
@@ -190,6 +201,40 @@ function getGradeColor(grade: string): string {
   }
 }
 
+function generateLocalGoals(data: DiagnosisInput, savingsRate: number, netWorth: number) {
+  const monthlySaving = Math.max(0, data.monthlySalary - data.monthlySpending - data.housingCost)
+
+  let shortTerm: string
+  let midTerm: string
+  let longTerm: string
+
+  if (data.totalDebt > 0 && data.debtInterestRate > 5) {
+    shortTerm = `고금리 부채 ${Math.min(data.totalDebt, monthlySaving * 12)}만원 상환하기`
+  } else if (savingsRate < 10) {
+    shortTerm = '월 저축률 20% 달성하기'
+  } else {
+    shortTerm = `비상금 ${Math.round(data.monthlySpending * 6)}만원 모으기`
+  }
+
+  if (netWorth < 5000) {
+    midTerm = '순자산 5,000만원 달성하기'
+  } else if (netWorth < 10000) {
+    midTerm = '순자산 1억원 돌파하기'
+  } else {
+    midTerm = `투자 포트폴리오 ${Math.round(netWorth * 0.5)}만원 구축하기`
+  }
+
+  if (data.age < 35) {
+    longTerm = '내 집 마련 목돈 1억원 모으기'
+  } else if (data.age < 45) {
+    longTerm = '월 50만원 패시브 인컴 만들기'
+  } else {
+    longTerm = '노후 자금 3억원 확보하기'
+  }
+
+  return { shortTerm, midTerm, longTerm }
+}
+
 function generateLocalAnalysis(
   data: DiagnosisInput,
   savingsRate: number,
@@ -197,7 +242,6 @@ function generateLocalAnalysis(
   monthsOfExpenses: number,
   netWorth: number
 ) {
-  // 점수 계산
   let score = 50
 
   if (savingsRate >= 50) score += 25
@@ -307,6 +351,7 @@ function generateLocalAnalysis(
     persona,
     personaEmoji,
     roast,
-    advice: advice.slice(0, 3)
+    advice: advice.slice(0, 3),
+    goals: generateLocalGoals(data, savingsRate, netWorth)
   }
 }
