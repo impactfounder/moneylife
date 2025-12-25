@@ -88,6 +88,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // AI 재무 진단
+    {
+      url: `${baseUrl}/financial-diagnosis`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // 콘텐츠 허브
     {
       url: `${baseUrl}/content`,

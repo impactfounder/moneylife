@@ -304,6 +304,32 @@ export default function Home() {
           </div>
         </section>
 
+        {/* AI 재무 진단 배너 */}
+        <section className="py-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white text-sm font-bold mb-6 backdrop-blur-sm">
+                NEW
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                AI가 진단하는 나의 재정 건강
+              </h2>
+              <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+                1분 안에 완료되는 무료 재무 진단. 저축률, 부채비율, 순자산을 분석하고 맞춤형 조언을 받아보세요.
+              </p>
+              <Link
+                href="/financial-diagnosis"
+                className="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              >
+                무료 진단 시작하기
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* 계산기 그리드 */}
         <section id="calculators" className="pb-20 pt-10 bg-slate-50/50">
           <div className="container mx-auto px-4">
