@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://moneylife.kr/og-image.png',
+        url: 'https://moneylife.kr/og-image-v2.png',
         width: 1200,
         height: 630,
         alt: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
     description: '1분 만에 무료 재무 진단 + 9가지 필수 금융 도구. 연봉순위, 대출, 투자, 세금까지 한 곳에서!',
-    images: ['https://moneylife.kr/og-image.png'],
+    images: ['https://moneylife.kr/og-image-v2.png'],
   },
   robots: {
     index: true,
