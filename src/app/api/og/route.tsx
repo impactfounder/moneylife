@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 export async function GET() {
-  // 4개로 축소 (선택과 집중)
+  // 4개 아이콘 (선택과 집중)
   const tools = [
     { icon: '🏆', label: '연봉' },
     { icon: '💰', label: '급여' },
@@ -23,7 +23,7 @@ export async function GET() {
           position: 'relative',
         }}
       >
-        {/* Background Gradient Blobs - 더 어둡게 */}
+        {/* Background Gradient Blobs */}
         <div
           style={{
             position: 'absolute',
@@ -47,7 +47,7 @@ export async function GET() {
           }}
         />
 
-        {/* Main Content - 여백 축소, 꽉 차게 */}
+        {/* Main Content */}
         <div
           style={{
             display: 'flex',
@@ -59,7 +59,7 @@ export async function GET() {
             justifyContent: 'center',
           }}
         >
-          {/* Top - Logo */}
+          {/* Top - Logo (심플하게 텍스트만) */}
           <div
             style={{
               display: 'flex',
@@ -69,37 +69,24 @@ export async function GET() {
           >
             <span
               style={{
-                fontSize: '48px',
+                fontSize: '42px',
                 fontWeight: 800,
                 color: 'white',
-                marginRight: '16px',
               }}
             >
               MoneyLife
             </span>
-            <span
-              style={{
-                fontSize: '22px',
-                fontWeight: 700,
-                color: 'white',
-                backgroundColor: '#8b5cf6',
-                padding: '8px 20px',
-                borderRadius: '999px',
-              }}
-            >
-              AI
-            </span>
           </div>
 
-          {/* Center - Main Message (Big & Bold) */}
+          {/* Center - Main Message */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '24px',
+              gap: '28px',
             }}
           >
-            {/* 메인 카피 - 80px로 확대 */}
+            {/* 메인 카피 - 80px */}
             <div
               style={{
                 fontSize: '80px',
@@ -115,33 +102,32 @@ export async function GET() {
             <div
               style={{
                 display: 'flex',
-                fontSize: '48px',
+                fontSize: '44px',
                 fontWeight: 700,
                 lineHeight: 1.3,
               }}
             >
-              <span style={{ color: '#94a3b8' }}>AI 자산 진단 & </span>
-              <span style={{ color: '#38bdf8', marginLeft: '12px' }}>급여 · 대출 · 세금</span>
-              <span style={{ color: '#94a3b8', marginLeft: '12px' }}>계산기</span>
+              <span style={{ color: '#94a3b8' }}>AI 자산 진단 &</span>
+              <span style={{ color: '#4ade80', marginLeft: '16px' }}>급여 · 대출 · 세금 계산기</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom - Tools Dock (확대 버전) */}
+        {/* Bottom - Tools Dock (반투명 박스) */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '40px 60px 50px',
-            backgroundColor: 'rgba(255,255,255,0.06)',
-            borderTop: '1px solid rgba(255,255,255,0.08)',
+            padding: '36px 60px 44px',
+            backgroundColor: 'rgba(255,255,255,0.1)',
+            borderTop: '1px solid rgba(255,255,255,0.1)',
           }}
         >
           <div
             style={{
               display: 'flex',
-              gap: '80px',
+              gap: '72px',
             }}
           >
             {tools.map((tool) => (
@@ -151,13 +137,13 @@ export async function GET() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '10px',
                 }}
               >
                 <span style={{ fontSize: '70px' }}>{tool.icon}</span>
                 <span
                   style={{
-                    fontSize: '32px',
+                    fontSize: '30px',
                     color: 'white',
                     fontWeight: 700,
                   }}
