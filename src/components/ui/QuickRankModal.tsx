@@ -162,7 +162,7 @@ export function QuickRankModal({ isOpen, onClose, annualSalary }: QuickRankModal
 
           {/* 푸터 정보 */}
           <p className="text-[10px] text-slate-300 mt-4 text-center">
-            * 통계청 2024년 임금근로자 소득 데이터 기준
+            * 국세청 2023년 귀속 근로소득 통계 기준
           </p>
         </div>
       </div>

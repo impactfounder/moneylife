@@ -104,7 +104,7 @@ function SalaryRankContent() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  📊 통계청 데이터 기반
+                  📊 국세청 2023년 귀속 통계 기반
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   내 연봉 상위 몇 %일까?
@@ -374,11 +374,11 @@ function SalaryRankContent() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">2024년 통계청 소득 데이터 기반</span>
+                    <span className="text-slate-300">국세청 2023년 귀속 근로소득 통계</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">전국 근로소득자 분위별 분석</span>
+                    <span className="text-slate-300">만근 근로자 천분위 데이터 기반</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
@@ -401,7 +401,7 @@ function SalaryRankContent() {
                 </div>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 통계청, 세계은행 (2024년)
+                출처: 국세청 (2023년 귀속), 세계은행
               </p>
             </div>
           </div>
