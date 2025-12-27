@@ -8,9 +8,9 @@ import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
 import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
-import { calculateLoan } from '@/lib/loan-calculator'
+import { calculateLoan, getLTVByRegion, getStressRates, getDSRLimit } from '@/lib/loan-calculator'
 import { formatNumber } from '@/lib/calculations'
-import type { LoanResult } from '@/types'
+import type { LoanResult, LoanRegion } from '@/types'
 import {
   Chart as ChartJS,
   ArcElement,
@@ -22,7 +22,7 @@ import {
   LineElement,
   PointElement,
 } from 'chart.js'
-import { Pie, Line } from 'react-chartjs-2'
+import { Pie, Line, Bar } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement)
 
@@ -35,6 +35,20 @@ export default function LoanCalculatorPage() {
   const [showResult, setShowResult] = useState(false)
   const [error, setError] = useState<string>('')
   const [showAllSchedule, setShowAllSchedule] = useState(false)
+
+  // 고도화: 스트레스 DSR & LTV 관련
+  const [showAdvanced, setShowAdvanced] = useState(false)
+  const [rateType, setRateType] = useState<'fixed' | 'variable' | 'mixed' | 'periodic'>('variable')
+  const [annualIncome, setAnnualIncome] = useState('')
+  const [existingDebt, setExistingDebt] = useState('')
+  const [region, setRegion] = useState<LoanRegion>('seoul')
+  const [propertyValue, setPropertyValue] = useState('')
+  const [isFirstHome, setIsFirstHome] = useState(false)
+  const [customLTV, setCustomLTV] = useState('')
+
+  const ltvByRegion = getLTVByRegion()
+  const stressRates = getStressRates()
+  const dsrLimit = getDSRLimit()
 
   const handleFormatInput = (value: string, setter: (v: string) => void) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -70,7 +84,15 @@ export default function LoanCalculatorPage() {
       amount: loanAmount,
       interestRate: rate,
       months: period,
-      method
+      method,
+      // 고도화 옵션
+      rateType: showAdvanced ? rateType : undefined,
+      annualIncome: showAdvanced && annualIncome ? parseInt(annualIncome.replace(/,/g, '')) * 10000 : undefined,
+      existingDebtPayment: showAdvanced && existingDebt ? parseInt(existingDebt.replace(/,/g, '')) * 10000 : undefined,
+      region: showAdvanced ? region : undefined,
+      propertyValue: showAdvanced && propertyValue ? parseInt(propertyValue.replace(/,/g, '')) * 10000 : undefined,
+      isFirstHome: showAdvanced ? isFirstHome : undefined,
+      customLTV: region === 'custom' && customLTV ? parseFloat(customLTV) : undefined,
     })
 
     setResult(calcResult)
@@ -84,6 +106,11 @@ export default function LoanCalculatorPage() {
     setYears('')
     setResult(null)
     setShowAllSchedule(false)
+    // 고도화 옵션 초기화
+    setAnnualIncome('')
+    setExistingDebt('')
+    setPropertyValue('')
+    setCustomLTV('')
   }
 
   // 파이 차트 데이터 (원금 vs 이자)
@@ -120,6 +147,22 @@ export default function LoanCalculatorPage() {
     }
   }
 
+  // 스트레스 DSR 비교 차트
+  const dsrComparisonData = result?.dsrResult ? {
+    labels: ['규제 전 한도', '스트레스 DSR 적용'],
+    datasets: [
+      {
+        label: '대출 한도 (만원)',
+        data: [
+          Math.round(result.dsrResult.baseLoanLimit / 10000),
+          Math.round(result.dsrResult.stressLoanLimit / 10000),
+        ],
+        backgroundColor: ['#3b82f6', '#ef4444'],
+        borderRadius: 8,
+      },
+    ],
+  } : null
+
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -135,6 +178,24 @@ export default function LoanCalculatorPage() {
   }
 
   const lineOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: (value: number | string) => formatNumber(Number(value)) + '만원'
+        }
+      }
+    }
+  }
+
+  const barOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -171,7 +232,7 @@ export default function LoanCalculatorPage() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  2025년 최신 금리 기준
+                  2025년 스트레스 DSR 반영
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   대출 상환액 계산기
@@ -283,6 +344,177 @@ export default function LoanCalculatorPage() {
                         </div>
                       </div>
 
+                      {/* 상세 설정 토글 */}
+                      <div className="pt-2">
+                        <button
+                          type="button"
+                          onClick={() => setShowAdvanced(!showAdvanced)}
+                          className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+                        >
+                          <svg
+                            className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                          상세 설정 (DSR/LTV 분석)
+                        </button>
+                      </div>
+
+                      {/* 상세 설정 영역 */}
+                      {showAdvanced && (
+                        <div className="space-y-6 pt-4 border-t border-slate-200">
+                          {/* 금리 유형 (스트레스 DSR) */}
+                          <div>
+                            <h3 className="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+                              <span className="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs">%</span>
+                              금리 유형 (스트레스 DSR)
+                            </h3>
+                            <div className="grid grid-cols-2 gap-2">
+                              {[
+                                { value: 'fixed', label: '고정금리', stress: stressRates.fixed },
+                                { value: 'variable', label: '변동금리', stress: stressRates.variable },
+                                { value: 'mixed', label: '혼합형', stress: stressRates.mixed },
+                                { value: 'periodic', label: '주기형', stress: stressRates.periodic },
+                              ].map((type) => (
+                                <button
+                                  key={type.value}
+                                  type="button"
+                                  onClick={() => setRateType(type.value as typeof rateType)}
+                                  className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                                    rateType === type.value
+                                      ? 'bg-slate-900 text-white'
+                                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                  }`}
+                                >
+                                  {type.label}
+                                  <span className="block text-[10px] opacity-70">
+                                    +{type.stress}%p
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* 연 소득 */}
+                          <div className="flex items-center gap-3">
+                            <label className="w-20 text-sm text-slate-600 shrink-0">연 소득</label>
+                            <div className="relative flex-1">
+                              <input
+                                type="text"
+                                value={annualIncome}
+                                onChange={(e) => handleFormatInput(e.target.value, setAnnualIncome)}
+                                placeholder="0"
+                                className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                              />
+                              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                            </div>
+                            <span className="text-xs text-slate-400 whitespace-nowrap">DSR 계산</span>
+                          </div>
+
+                          {/* 기존 대출 상환액 */}
+                          <div className="flex items-center gap-3">
+                            <label className="w-20 text-sm text-slate-600 shrink-0">기존 대출</label>
+                            <div className="relative flex-1">
+                              <input
+                                type="text"
+                                value={existingDebt}
+                                onChange={(e) => handleFormatInput(e.target.value, setExistingDebt)}
+                                placeholder="0"
+                                className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                              />
+                              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원/년</span>
+                            </div>
+                            <span className="text-xs text-slate-400 whitespace-nowrap">연 상환액</span>
+                          </div>
+
+                          {/* LTV 지역 선택 */}
+                          <div className="pt-4 border-t border-slate-100">
+                            <h3 className="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+                              <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs">🏠</span>
+                              매수 예정 지역 (LTV)
+                            </h3>
+                            <div className="space-y-2">
+                              {[
+                                { value: 'gangnam', label: '투기과열 (강남/서초/송파/용산)', ltv: ltvByRegion.gangnam.base },
+                                { value: 'seoul', label: '서울 (기타 지역)', ltv: ltvByRegion.seoul.base },
+                                { value: 'metro', label: '수도권 조정지역', ltv: ltvByRegion.metro.base },
+                                { value: 'other', label: '비규제지역', ltv: ltvByRegion.other.base },
+                                { value: 'custom', label: '직접 입력', ltv: null },
+                              ].map((r) => (
+                                <button
+                                  key={r.value}
+                                  type="button"
+                                  onClick={() => setRegion(r.value as LoanRegion)}
+                                  className={`w-full px-4 py-2.5 rounded-lg text-sm font-medium transition-all flex justify-between items-center ${
+                                    region === r.value
+                                      ? 'bg-slate-900 text-white'
+                                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                  }`}
+                                >
+                                  <span>{r.label}</span>
+                                  {r.ltv !== null && (
+                                    <span className="text-xs opacity-70">LTV {r.ltv}%</span>
+                                  )}
+                                </button>
+                              ))}
+                            </div>
+
+                            {/* 직접 입력 LTV */}
+                            {region === 'custom' && (
+                              <div className="mt-3 flex items-center gap-3">
+                                <label className="w-20 text-sm text-slate-600 shrink-0">LTV</label>
+                                <div className="relative flex-1">
+                                  <input
+                                    type="number"
+                                    value={customLTV}
+                                    onChange={(e) => setCustomLTV(e.target.value)}
+                                    placeholder="70"
+                                    min="0"
+                                    max="100"
+                                    className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                  />
+                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">%</span>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* 생애최초 여부 */}
+                            {region !== 'custom' && (
+                              <label className="mt-3 flex items-center gap-2 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={isFirstHome}
+                                  onChange={(e) => setIsFirstHome(e.target.checked)}
+                                  className="w-4 h-4 rounded border-slate-300 text-slate-900 focus:ring-slate-500"
+                                />
+                                <span className="text-sm text-slate-600">
+                                  생애최초 주택 구입 (LTV +10%p)
+                                </span>
+                              </label>
+                            )}
+
+                            {/* 주택 가격 */}
+                            <div className="mt-3 flex items-center gap-3">
+                              <label className="w-20 text-sm text-slate-600 shrink-0">주택 가격</label>
+                              <div className="relative flex-1">
+                                <input
+                                  type="text"
+                                  value={propertyValue}
+                                  onChange={(e) => handleFormatInput(e.target.value, setPropertyValue)}
+                                  placeholder="0"
+                                  className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                              </div>
+                              <span className="text-xs text-slate-400 whitespace-nowrap">시세</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {/* 에러 메시지 */}
                       {error && (
                         <p className="text-sm text-red-500 text-center font-medium animate-fade-in">
@@ -337,6 +569,82 @@ export default function LoanCalculatorPage() {
                           </span>
                         </div>
                       </div>
+
+                      {/* 스트레스 DSR 결과 */}
+                      {result!.dsrResult && (
+                        <div className="p-4 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border border-red-100">
+                          <h4 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                            <span className="text-red-500">⚠️</span> 스트레스 DSR 분석
+                          </h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">현재 DSR</span>
+                              <span className={`font-bold ${result!.dsrResult.baseDSR > dsrLimit ? 'text-red-600' : 'text-slate-900'}`}>
+                                {result!.dsrResult.baseDSR.toFixed(1)}%
+                              </span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">스트레스 DSR (+{result!.dsrResult.stressRate}%p)</span>
+                              <span className={`font-bold ${result!.dsrResult.stressDSR > dsrLimit ? 'text-red-600' : 'text-slate-900'}`}>
+                                {result!.dsrResult.stressDSR.toFixed(1)}%
+                              </span>
+                            </div>
+                            <div className="flex justify-between pt-2 border-t border-red-200">
+                              <span className="text-slate-700 font-medium">DSR 한도</span>
+                              <span className="font-bold text-slate-900">{dsrLimit}%</span>
+                            </div>
+                            {result!.dsrResult.dsrExceeded && (
+                              <div className="mt-2 p-2 bg-red-100 rounded-lg">
+                                <p className="text-xs text-red-700 font-medium">
+                                  ⛔ DSR {dsrLimit}% 초과! 대출 한도 제한 가능성 있음
+                                </p>
+                              </div>
+                            )}
+                            <div className="mt-3 pt-2 border-t border-red-200">
+                              <div className="flex justify-between text-xs">
+                                <span className="text-slate-600">규제 전 예상 한도</span>
+                                <span className="font-bold text-slate-900">{formatNumber(Math.round(result!.dsrResult.baseLoanLimit / 10000))}만원</span>
+                              </div>
+                              <div className="flex justify-between text-xs mt-1">
+                                <span className="text-slate-600">스트레스 적용 한도</span>
+                                <span className="font-bold text-red-600">{formatNumber(Math.round(result!.dsrResult.stressLoanLimit / 10000))}만원</span>
+                              </div>
+                              <div className="flex justify-between text-xs mt-1">
+                                <span className="text-slate-600">한도 감소</span>
+                                <span className="font-bold text-amber-600">-{formatNumber(Math.round(result!.dsrResult.limitReduction / 10000))}만원 ({result!.dsrResult.limitReductionPercent}%)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* LTV 결과 */}
+                      {result!.ltvResult && (
+                        <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+                          <h4 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">🏠</span> LTV 분석
+                          </h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">지역</span>
+                              <span className="font-bold text-slate-900">{result!.ltvResult.regionName}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">적용 LTV</span>
+                              <span className="font-bold text-blue-600">
+                                {result!.ltvResult.appliedLTV}%
+                                {result!.ltvResult.ltvBonus > 0 && (
+                                  <span className="text-xs text-green-600 ml-1">(+{result!.ltvResult.ltvBonus}%p 생애최초)</span>
+                                )}
+                              </span>
+                            </div>
+                            <div className="flex justify-between pt-2 border-t border-blue-200">
+                              <span className="text-slate-700 font-medium">최대 대출 가능액</span>
+                              <span className="font-black text-indigo-600">{formatNumber(Math.round(result!.ltvResult.maxLoanAmount / 10000))}만원</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
 
                       {/* 버튼 */}
                       <div className="flex flex-col sm:flex-row gap-3">
@@ -398,6 +706,23 @@ export default function LoanCalculatorPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* 스트레스 DSR 비교 차트 */}
+                {result.dsrResult && dsrComparisonData && (
+                  <div className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
+                    <h3 className="text-lg font-bold text-slate-800 mb-4 text-center">
+                      스트레스 DSR 적용 시 대출 한도 변동
+                    </h3>
+                    <div className="h-[200px]">
+                      <Bar data={dsrComparisonData} options={barOptions} />
+                    </div>
+                    <p className="text-xs text-center text-slate-500 mt-4">
+                      * 스트레스 DSR 적용 시 대출 한도가 <span className="text-red-600 font-bold">
+                        {formatNumber(Math.round(result.dsrResult.limitReduction / 10000))}만원 ({result.dsrResult.limitReductionPercent}%)
+                      </span> 감소합니다
+                    </p>
+                  </div>
+                )}
               </div>
             </section>
 
@@ -508,6 +833,48 @@ export default function LoanCalculatorPage() {
             <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
               <h2 className="text-2xl font-bold text-slate-900 mb-8">대출 상환 가이드</h2>
 
+              {/* 스트레스 DSR */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-slate-800 mb-4">
+                  2025년 스트레스 DSR이란?
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  스트레스 DSR은 <strong className="text-slate-800">미래 금리 상승 가능성</strong>을 반영해 대출 심사 시
+                  현재 금리보다 높은 가산 금리를 적용하는 제도입니다. 2025년부터 본격 시행되어
+                  <strong className="text-slate-800">변동금리 대출의 경우 1.5%p</strong>를 가산하여 DSR을 계산합니다.
+                </p>
+                <div className="bg-red-50 rounded-xl p-4">
+                  <p className="text-red-800 text-sm">
+                    <strong>금리 유형별 가산 금리:</strong><br />
+                    • 고정금리: 가산 없음 (0%p)<br />
+                    • 변동금리: +1.5%p<br />
+                    • 혼합형 (5년 고정 후 변동): +0.75%p<br />
+                    • 주기형 (금리 조정 주기): +0.375%p
+                  </p>
+                </div>
+              </div>
+
+              {/* LTV 규제 */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-slate-800 mb-4">
+                  지역별 LTV 규제
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  LTV(담보인정비율)는 주택 가격 대비 대출 가능 비율입니다.
+                  지역에 따라 다른 LTV가 적용되며, <strong className="text-slate-800">생애최초 주택 구입자는 10%p 우대</strong>를 받습니다.
+                </p>
+                <div className="bg-blue-50 rounded-xl p-4">
+                  <p className="text-blue-800 text-sm">
+                    <strong>지역별 LTV 한도:</strong><br />
+                    • 투기과열지구 (강남/서초/송파/용산): 50%<br />
+                    • 조정대상지역 (서울): 50%<br />
+                    • 조정대상지역 (수도권): 60%<br />
+                    • 비규제지역: 70%<br />
+                    • 생애최초: 각 지역 기준 +10%p (최대 80%)
+                  </p>
+                </div>
+              </div>
+
               {/* 원리금균등상환 */}
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-slate-800 mb-4">
@@ -518,8 +885,8 @@ export default function LoanCalculatorPage() {
                   초기에는 이자 비중이 높고, 시간이 지날수록 원금 비중이 높아집니다.
                   월 상환액이 일정하여 <strong className="text-slate-800">재정 계획</strong>을 세우기 쉽습니다.
                 </p>
-                <div className="bg-blue-50 rounded-xl p-4">
-                  <p className="text-blue-800 text-sm">
+                <div className="bg-slate-50 rounded-xl p-4">
+                  <p className="text-slate-800 text-sm">
                     <strong>장점:</strong> 매월 같은 금액이므로 예산 관리가 쉬움<br />
                     <strong>단점:</strong> 총 이자 부담이 원금균등상환보다 높음
                   </p>
@@ -544,29 +911,6 @@ export default function LoanCalculatorPage() {
                 </div>
               </div>
 
-              {/* 금리 유형 */}
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-slate-800 mb-4">
-                  금리 유형 비교
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-slate-50 rounded-xl p-4">
-                    <h4 className="font-bold text-slate-800 mb-2">고정금리</h4>
-                    <p className="text-sm text-slate-600">
-                      대출 기간 동안 금리가 변하지 않아 상환액이 일정합니다.
-                      금리 인상기에 유리합니다.
-                    </p>
-                  </div>
-                  <div className="bg-slate-50 rounded-xl p-4">
-                    <h4 className="font-bold text-slate-800 mb-2">변동금리</h4>
-                    <p className="text-sm text-slate-600">
-                      시장 금리에 따라 대출 금리가 변동됩니다.
-                      초기 금리가 낮지만 리스크가 있습니다.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               {/* 참고자료 */}
               <div className="bg-blue-50 rounded-xl p-6">
                 <h4 className="font-bold text-slate-800 mb-4">참고자료</h4>
@@ -579,6 +923,11 @@ export default function LoanCalculatorPage() {
                   <li>
                     <a href="https://www.bok.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                       한국은행 - 기준금리 및 금융시장 동향
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.hf.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                      주택금융공사 - 주택담보대출 안내
                     </a>
                   </li>
                 </ul>
@@ -599,34 +948,34 @@ export default function LoanCalculatorPage() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">원리금균등/원금균등 상환 지원</span>
+                    <span className="text-slate-300">2025년 스트레스 DSR 반영</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">월 단위 이자 계산 적용</span>
+                    <span className="text-slate-300">금리 유형별 가산 금리 적용</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">상환 스케줄 전체 제공</span>
+                    <span className="text-slate-300">지역별 LTV 자동 매핑</span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">연 이자율 기준 계산</span>
+                    <span className="text-slate-300">생애최초 LTV 우대 반영</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">중도상환 미반영 (단순 계산)</span>
+                    <span className="text-slate-300">DSR 40% 한도 기준</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">실제 금리는 금융기관별 상이</span>
+                    <span className="text-slate-300">대출 한도 역산 기능</span>
                   </div>
                 </div>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 금융감독원 대출금리 비교공시 기준
+                출처: 금융감독원 대출금리 비교공시, 2025년 가계부채 관리방안
               </p>
             </div>
           </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
@@ -8,7 +8,7 @@ import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
 import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
 import { getPostsByCalculator } from '@/data/posts'
-import { calculateSalary } from '@/lib/salary-calculator'
+import { calculateSalary, getTaxExemptLimits } from '@/lib/salary-calculator'
 import { formatNumber } from '@/lib/calculations'
 import type { SalaryResult } from '@/types'
 import {
@@ -31,6 +31,17 @@ export default function SalaryCalculatorPage() {
   const [result, setResult] = useState<SalaryResult | null>(null)
   const [showResult, setShowResult] = useState(false)
 
+  // 상세 설정 (비과세 & 성과급)
+  const [showAdvanced, setShowAdvanced] = useState(false)
+  const [mealAllowance, setMealAllowance] = useState('')
+  const [carAllowance, setCarAllowance] = useState('')
+  const [childcareAllowance, setChildcareAllowance] = useState('')
+  const [researchAllowance, setResearchAllowance] = useState('')
+  const [otherExempt, setOtherExempt] = useState('')
+  const [incentive, setIncentive] = useState('')
+
+  const taxExemptLimits = getTaxExemptLimits()
+
   const handleFormatInput = (value: string, setter: (v: string) => void) => {
     const numbers = value.replace(/[^0-9]/g, '')
     if (numbers) {
@@ -49,10 +60,26 @@ export default function SalaryCalculatorPage() {
       return
     }
 
+    // 비과세 항목 (만원 -> 원)
+    const taxExempt = showAdvanced ? {
+      mealAllowance: parseInt(mealAllowance.replace(/,/g, '') || '0') * 10000,
+      carAllowance: parseInt(carAllowance.replace(/,/g, '') || '0') * 10000,
+      childcareAllowance: parseInt(childcareAllowance.replace(/,/g, '') || '0') * 10000,
+      researchAllowance: parseInt(researchAllowance.replace(/,/g, '') || '0') * 10000,
+      otherExempt: parseInt(otherExempt.replace(/,/g, '') || '0') * 10000,
+    } : undefined
+
+    // 성과급 (만원 -> 원)
+    const incentiveData = showAdvanced && incentive ? {
+      amount: parseInt(incentive.replace(/,/g, '') || '0') * 10000,
+    } : undefined
+
     const calcResult = calculateSalary({
       grossSalary: gross,
       dependents: parseInt(dependents) || 1,
       childrenUnder20: parseInt(childrenUnder20) || 0,
+      taxExempt,
+      incentive: incentiveData,
     })
 
     setResult(calcResult)
@@ -65,6 +92,13 @@ export default function SalaryCalculatorPage() {
     setDependents('1')
     setChildrenUnder20('0')
     setResult(null)
+    // 상세 설정 초기화
+    setMealAllowance('')
+    setCarAllowance('')
+    setChildcareAllowance('')
+    setResearchAllowance('')
+    setOtherExempt('')
+    setIncentive('')
   }
 
   // 파이 차트 데이터
@@ -233,6 +267,144 @@ export default function SalaryCalculatorPage() {
                         </div>
                       </div>
 
+                      {/* 상세 설정 토글 */}
+                      <div className="pt-2">
+                        <button
+                          type="button"
+                          onClick={() => setShowAdvanced(!showAdvanced)}
+                          className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+                        >
+                          <svg
+                            className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                          상세 설정 (비과세/성과급)
+                        </button>
+                      </div>
+
+                      {/* 상세 설정 영역 */}
+                      {showAdvanced && (
+                        <div className="space-y-6 pt-4 border-t border-slate-200">
+                          {/* 비과세 항목 섹션 */}
+                          <div>
+                            <h3 className="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+                              <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs">₩</span>
+                              비과세 항목 (월)
+                            </h3>
+                            <div className="space-y-3">
+                              {/* 식대 */}
+                              <div className="flex items-center gap-3">
+                                <label className="w-24 text-sm text-slate-600 shrink-0">식대</label>
+                                <div className="relative flex-1">
+                                  <input
+                                    type="text"
+                                    value={mealAllowance}
+                                    onChange={(e) => handleFormatInput(e.target.value, setMealAllowance)}
+                                    placeholder="0"
+                                    className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                  />
+                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                                </div>
+                                <span className="text-xs text-slate-400 whitespace-nowrap">한도 {taxExemptLimits.mealAllowance / 10000}만</span>
+                              </div>
+
+                              {/* 자가운전보조금 */}
+                              <div className="flex items-center gap-3">
+                                <label className="w-24 text-sm text-slate-600 shrink-0">자가운전</label>
+                                <div className="relative flex-1">
+                                  <input
+                                    type="text"
+                                    value={carAllowance}
+                                    onChange={(e) => handleFormatInput(e.target.value, setCarAllowance)}
+                                    placeholder="0"
+                                    className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                  />
+                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                                </div>
+                                <span className="text-xs text-slate-400 whitespace-nowrap">한도 {taxExemptLimits.carAllowance / 10000}만</span>
+                              </div>
+
+                              {/* 육아수당 */}
+                              <div className="flex items-center gap-3">
+                                <label className="w-24 text-sm text-slate-600 shrink-0">육아수당</label>
+                                <div className="relative flex-1">
+                                  <input
+                                    type="text"
+                                    value={childcareAllowance}
+                                    onChange={(e) => handleFormatInput(e.target.value, setChildcareAllowance)}
+                                    placeholder="0"
+                                    className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                  />
+                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                                </div>
+                                <span className="text-xs text-slate-400 whitespace-nowrap">한도 {taxExemptLimits.childcareAllowance / 10000}만</span>
+                              </div>
+
+                              {/* 연구활동비 */}
+                              <div className="flex items-center gap-3">
+                                <label className="w-24 text-sm text-slate-600 shrink-0">연구활동비</label>
+                                <div className="relative flex-1">
+                                  <input
+                                    type="text"
+                                    value={researchAllowance}
+                                    onChange={(e) => handleFormatInput(e.target.value, setResearchAllowance)}
+                                    placeholder="0"
+                                    className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                  />
+                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                                </div>
+                                <span className="text-xs text-slate-400 whitespace-nowrap">실비정산</span>
+                              </div>
+
+                              {/* 기타 비과세 */}
+                              <div className="flex items-center gap-3">
+                                <label className="w-24 text-sm text-slate-600 shrink-0">기타</label>
+                                <div className="relative flex-1">
+                                  <input
+                                    type="text"
+                                    value={otherExempt}
+                                    onChange={(e) => handleFormatInput(e.target.value, setOtherExempt)}
+                                    placeholder="0"
+                                    className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                  />
+                                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                                </div>
+                                <span className="text-xs text-slate-400 whitespace-nowrap">직접입력</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* 성과급 섹션 */}
+                          <div className="pt-4 border-t border-slate-100">
+                            <h3 className="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+                              <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs">★</span>
+                              성과급 (연간)
+                            </h3>
+                            <div className="flex items-center gap-3">
+                              <label className="w-24 text-sm text-slate-600 shrink-0">예상 성과급</label>
+                              <div className="relative flex-1">
+                                <input
+                                  type="text"
+                                  value={incentive}
+                                  onChange={(e) => handleFormatInput(e.target.value, setIncentive)}
+                                  placeholder="0"
+                                  className="w-full px-3 py-2.5 text-sm font-medium border border-slate-200 rounded-lg focus:border-slate-400 focus:ring-1 focus:ring-slate-200 bg-slate-50 focus:bg-white text-slate-900"
+                                />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">만원</span>
+                              </div>
+                              <span className="text-xs text-slate-400 whitespace-nowrap">PS/PI</span>
+                            </div>
+                            <p className="text-xs text-slate-400 mt-2 ml-[108px]">
+                              성과급 포함 시 세율 구간 변동을 확인할 수 있습니다
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
                       {/* 계산 버튼 */}
                       <button
                         type="submit"
@@ -263,6 +435,14 @@ export default function SalaryCalculatorPage() {
                             {formatNumber(Math.round(result!.grossSalary / 10000))}만원
                           </span>
                         </div>
+                        {result!.taxExemptTotal && result!.taxExemptTotal > 0 && (
+                          <div className="flex justify-between items-center p-4 bg-green-50 rounded-xl">
+                            <span className="text-slate-600 font-medium">비과세 금액</span>
+                            <span className="text-lg font-bold text-green-600">
+                              {formatNumber(Math.round(result!.taxExemptTotal / 10000))}만원
+                            </span>
+                          </div>
+                        )}
                         <div className="flex justify-between items-center p-4 bg-red-50 rounded-xl">
                           <span className="text-slate-600 font-medium">총 공제액</span>
                           <span className="text-lg font-bold text-red-600">
@@ -276,6 +456,43 @@ export default function SalaryCalculatorPage() {
                           </span>
                         </div>
                       </div>
+
+                      {/* 성과급 비교 결과 */}
+                      {result!.incentiveResult && (
+                        <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+                          <h4 className="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">★</span> 성과급 포함 시뮬레이션
+                          </h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">성과급 포함 연봉</span>
+                              <span className="font-bold text-slate-900">{formatNumber(result!.incentiveResult.grossWithIncentive)}만원</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">성과급 세금</span>
+                              <span className="font-bold text-red-600">-{formatNumber(Math.round(result!.incentiveResult.incentiveTax / 10000))}만원</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-slate-600">성과급 실수령액</span>
+                              <span className="font-bold text-blue-600">{formatNumber(Math.round(result!.incentiveResult.incentiveNetAmount / 10000))}만원</span>
+                            </div>
+                            <div className="flex justify-between pt-2 border-t border-blue-200">
+                              <span className="text-slate-700 font-medium">연간 총 실수령액</span>
+                              <span className="font-black text-indigo-600">{formatNumber(result!.incentiveResult.netWithIncentive)}만원</span>
+                            </div>
+                            {result!.incentiveResult.taxBracketChange && (
+                              <div className="mt-3 p-3 bg-amber-50 rounded-lg">
+                                <p className="text-xs text-amber-700 font-medium">
+                                  ⚠️ 세율 구간 변동: {result!.incentiveResult.taxBracketChange.beforeBracket} → {result!.incentiveResult.taxBracketChange.afterBracket}
+                                  <span className="ml-1 text-amber-600">
+                                    (+{(result!.incentiveResult.taxBracketChange.rateIncrease * 100).toFixed(0)}%p)
+                                  </span>
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
 
                       {/* 버튼 */}
                       <div className="flex gap-3">
@@ -347,6 +564,25 @@ export default function SalaryCalculatorPage() {
                   공제 내역 상세
                 </h2>
                 <div className="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
+                  {/* 비과세 (있는 경우) */}
+                  {result.taxExemptTotal && result.taxExemptTotal > 0 && (
+                    <>
+                      <div className="bg-green-50 px-6 py-4 border-b border-slate-200">
+                        <div className="flex justify-between items-center">
+                          <span className="font-bold text-slate-900">비과세 금액</span>
+                          <span className="text-lg font-bold text-green-600">
+                            {formatNumber(result.taxExemptTotal)}원
+                          </span>
+                        </div>
+                      </div>
+                      <div className="px-6 py-4 border-b border-slate-200">
+                        <p className="text-sm text-slate-600">
+                          비과세 항목은 4대보험 및 소득세 과세표준에서 제외됩니다.
+                        </p>
+                      </div>
+                    </>
+                  )}
+
                   {/* 4대보험 */}
                   <div className="bg-amber-50 px-6 py-4 border-b border-slate-200">
                     <div className="flex justify-between items-center">
@@ -434,6 +670,32 @@ export default function SalaryCalculatorPage() {
                     </p>
                   </div>
                 </div>
+
+                {/* 성과급 포함 비교 (있는 경우) */}
+                {result.incentiveResult && (
+                  <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-100">
+                    <h3 className="text-lg font-bold text-slate-900 mb-4 text-center">
+                      성과급 포함 vs 미포함 비교
+                    </h3>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="text-center">
+                        <p className="text-sm text-slate-500 mb-2">성과급 미포함</p>
+                        <p className="text-2xl font-black text-slate-700">
+                          {formatNumber(result.annualNet)}만원
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-slate-500 mb-2">성과급 포함</p>
+                        <p className="text-2xl font-black text-indigo-600">
+                          {formatNumber(result.incentiveResult.netWithIncentive)}만원
+                        </p>
+                        <p className="text-xs text-green-600 mt-1">
+                          +{formatNumber(result.incentiveResult.netWithIncentive - result.annualNet)}만원
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
           </>
@@ -490,7 +752,7 @@ export default function SalaryCalculatorPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 font-bold">•</span>
-                    <span><strong className="text-slate-800">교통비:</strong> 월 20만원까지 비과세</span>
+                    <span><strong className="text-slate-800">자가운전보조금:</strong> 월 20만원까지 비과세 (본인 차량 업무 사용시)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 font-bold">•</span>
@@ -498,9 +760,28 @@ export default function SalaryCalculatorPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 font-bold">•</span>
-                    <span>연구보조비, 야간근로수당, 출산·보육수당 등</span>
+                    <span><strong className="text-slate-800">연구활동비:</strong> 연구직 종사자의 실비 정산 금액</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500 font-bold">•</span>
+                    <span>야간근로수당, 출산·보육수당, 학자금 등</span>
                   </li>
                 </ul>
+              </div>
+
+              {/* 성과급 안내 */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-slate-800 mb-4">
+                  성과급(PS/PI) 세금 계산
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  성과급은 연간 총 급여에 합산되어 과세됩니다. 성과급이 포함되면 <strong className="text-slate-800">과세표준 구간이 올라갈 수 있어</strong>
+                  세율이 높아질 수 있습니다. 상세 설정에서 예상 성과급을 입력하면 세율 구간 변동 여부를 확인할 수 있습니다.
+                </p>
+                <div className="bg-amber-50 rounded-xl p-4 text-sm text-amber-800">
+                  <strong>💡 Tip:</strong> 성과급이 세율 구간 경계에 걸리면 일부만 높은 세율이 적용됩니다.
+                  예를 들어 과세표준이 4,800만원인 상태에서 400만원 성과급을 받으면, 초과분 200만원만 24% 세율이 적용됩니다.
+                </div>
               </div>
 
               {/* 참고자료 */}
@@ -555,6 +836,10 @@ export default function SalaryCalculatorPage() {
                     <span className="text-green-400 font-bold">✓</span>
                     <span className="text-slate-300">건강보험료율: 7.09% (근로자 3.545%)</span>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">비과세 항목 한도 적용</span>
+                  </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
@@ -568,6 +853,10 @@ export default function SalaryCalculatorPage() {
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
                     <span className="text-slate-300">간이세액표 기준 소득세 계산</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 font-bold">✓</span>
+                    <span className="text-slate-300">성과급 세율 구간 변동 계산</span>
                   </div>
                 </div>
               </div>
