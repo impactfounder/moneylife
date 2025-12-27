@@ -592,7 +592,7 @@ export default function LoanCalculatorPage() {
         {showResult && result && result.finalLimit > 0 && (
           <>
             {/* 차트 섹션 */}
-            <section className="py-16 bg-white">
+            <section className="py-12 bg-white">
               <div className="container mx-auto px-4 max-w-4xl">
                 <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">
                   규제별 한도 분석
@@ -617,15 +617,8 @@ export default function LoanCalculatorPage() {
               </div>
             </section>
 
-            {/* 광고 */}
-            <section className="py-8 bg-white">
-              <div className="container mx-auto px-4 max-w-4xl">
-                <AdUnit className="my-4" />
-              </div>
-            </section>
-
             {/* 상세 분석 리포트 */}
-            <section className="py-16 bg-slate-50">
+            <section className="py-12 bg-slate-50">
               <div className="container mx-auto px-4 max-w-4xl">
                 <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
                   <h2 className="text-xl font-bold text-slate-900 mb-6">상세 분석 리포트</h2>
