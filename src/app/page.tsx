@@ -8,12 +8,22 @@ import { formatNumber } from '@/lib/calculations'
 import { getRecentPosts } from '@/data/posts'
 import { QuickRankModal } from '@/components/ui/QuickRankModal'
 
-// 제목 줄바꿈 포맷팅: 쉼표 뒤, 물음표 뒤, 하이픈 앞에서 줄바꿈
-const formatTitleForLineBreak = (title: string) => {
-  return title
-    .replace(/, /g, ', \u200B')     // 쉼표+공백 뒤에 zero-width space (줄바꿈 허용)
-    .replace(/\? /g, '? \u200B')    // 물음표+공백 뒤에 zero-width space
-    .replace(/ - /g, ' \u200B- ')   // 하이픈 앞에 zero-width space
+// 제목을 줄바꿈 지점에서 분리하여 배열로 반환
+const splitTitleForLineBreak = (title: string): string[] => {
+  // 우선순위: 하이픈 > 물음표 > 쉼표
+  if (title.includes(' - ')) {
+    const idx = title.indexOf(' - ')
+    return [title.slice(0, idx), title.slice(idx)]
+  }
+  if (title.includes('? ')) {
+    const idx = title.indexOf('? ') + 1
+    return [title.slice(0, idx), title.slice(idx + 1)]
+  }
+  if (title.includes(', ')) {
+    const idx = title.lastIndexOf(', ') + 1
+    return [title.slice(0, idx), title.slice(idx + 1)]
+  }
+  return [title]
 }
 
 // 전체 계산기 목록 (9개)
@@ -371,7 +381,9 @@ export default function Home() {
                   </div>
                   {/* 제목 - 쉼표/물음표 뒤, 하이픈 앞에서 줄바꿈 */}
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 min-h-[3.5rem] leading-snug">
-                    {formatTitleForLineBreak(post.title)}
+                    {splitTitleForLineBreak(post.title).map((line, i) => (
+                      <span key={i} className="block">{line}</span>
+                    ))}
                   </h3>
                 </Link>
               ))}

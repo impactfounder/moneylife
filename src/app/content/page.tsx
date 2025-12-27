@@ -6,12 +6,22 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Card } from '@/components/ui/Card'
 
-// 제목 줄바꿈 포맷팅: 쉼표 뒤, 물음표 뒤, 하이픈 앞에서 줄바꿈
-const formatTitleForLineBreak = (title: string) => {
-  return title
-    .replace(/, /g, ', \u200B')     // 쉼표+공백 뒤에 zero-width space (줄바꿈 허용)
-    .replace(/\? /g, '? \u200B')    // 물음표+공백 뒤에 zero-width space
-    .replace(/ - /g, ' \u200B- ')   // 하이픈 앞에 zero-width space
+// 제목을 줄바꿈 지점에서 분리하여 배열로 반환
+const splitTitleForLineBreak = (title: string): string[] => {
+  // 우선순위: 하이픈 > 물음표 > 쉼표
+  if (title.includes(' - ')) {
+    const idx = title.indexOf(' - ')
+    return [title.slice(0, idx), title.slice(idx)]
+  }
+  if (title.includes('? ')) {
+    const idx = title.indexOf('? ') + 1
+    return [title.slice(0, idx), title.slice(idx + 1)]
+  }
+  if (title.includes(', ')) {
+    const idx = title.lastIndexOf(', ') + 1
+    return [title.slice(0, idx), title.slice(idx + 1)]
+  }
+  return [title]
 }
 
 const contents = [
@@ -285,7 +295,9 @@ export default function ContentPage() {
                       </div>
 
                       <h3 className="text-xl font-bold text-slate-900 mb-2">
-                        {formatTitleForLineBreak(content.title)}
+                        {splitTitleForLineBreak(content.title).map((line, i) => (
+                          <span key={i} className="block">{line}</span>
+                        ))}
                       </h3>
 
                       <p className="text-slate-600 text-sm leading-relaxed">
