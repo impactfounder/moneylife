@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   publisher: 'moneylife.kr',
   metadataBase: new URL('https://moneylife.kr'),
   openGraph: {
-    title: 'MoneyLife AI - 내 돈, AI가 1분 만에 진단',
-    description: '무료 AI 재무 진단 + 9가지 필수 금융 계산기. 연봉, 대출, 투자, 세금까지 한 곳에서!',
+    title: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
+    description: '1분 만에 무료 재무 진단 + 9가지 필수 금융 도구. 연봉순위, 대출, 투자, 세금까지 한 곳에서!',
     url: 'https://moneylife.kr',
     siteName: 'MoneyLife AI',
     locale: 'ko_KR',
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
         url: 'https://moneylife.kr/api/og',
         width: 1200,
         height: 630,
-        alt: 'MoneyLife AI - 내 돈, AI가 1분 만에 진단',
+        alt: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MoneyLife AI - 내 돈, AI가 1분 만에 진단',
-    description: '무료 AI 재무 진단 + 9가지 필수 금융 계산기. 연봉, 대출, 투자, 세금까지 한 곳에서!',
+    title: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
+    description: '1분 만에 무료 재무 진단 + 9가지 필수 금융 도구. 연봉순위, 대출, 투자, 세금까지 한 곳에서!',
     images: ['https://moneylife.kr/api/og'],
   },
   robots: {

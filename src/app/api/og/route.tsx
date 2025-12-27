@@ -3,21 +3,19 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 export async function GET() {
-  // Pretendard 폰트 로드
+  // Google Fonts에서 Noto Sans KR 로드 (더 안정적)
   const fontData = await fetch(
-    'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard/dist/public/static/Pretendard-Bold.otf'
+    'https://fonts.gstatic.com/s/notosanskr/v36/PbyxFmXiEBPT4ITbgNA5Cgms3VYcOA-vvnIzzuoyeLGC5nwmHQ.woff'
   ).then((res) => res.arrayBuffer())
 
   const calculators = [
     { icon: '🏆', label: '연봉순위' },
-    { icon: '💰', label: '급여계산' },
-    { icon: '🏠', label: '대출계산' },
-    { icon: '📈', label: '복리계산' },
+    { icon: '💰', label: '급여' },
+    { icon: '🏠', label: '대출' },
+    { icon: '📈', label: '투자' },
     { icon: '💼', label: '퇴직금' },
-    { icon: '🏛️', label: '연금계산' },
-    { icon: '📊', label: '소득세' },
-    { icon: '⏰', label: '최저시급' },
-    { icon: '🏦', label: '주담대' },
+    { icon: '🏛️', label: '연금' },
+    { icon: '📊', label: '세금' },
   ]
 
   return new ImageResponse(
@@ -29,41 +27,18 @@ export async function GET() {
           display: 'flex',
           flexDirection: 'column',
           background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
-          fontFamily: 'Pretendard',
-          position: 'relative',
+          fontFamily: 'Noto Sans KR',
         }}
       >
-        {/* Background Glow */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '-100px',
-            right: '-100px',
-            width: '500px',
-            height: '500px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-50px',
-            left: '-50px',
-            width: '400px',
-            height: '400px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%)',
-          }}
-        />
-
-        {/* Top Section */}
+        {/* Main Content Area */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '50px 60px 30px',
+            justifyContent: 'center',
+            flex: 1,
+            padding: '60px',
           }}
         >
           {/* Logo */}
@@ -71,26 +46,26 @@ export async function GET() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
-              marginBottom: '20px',
+              marginBottom: '32px',
             }}
           >
             <span
               style={{
-                fontSize: '42px',
+                fontSize: '48px',
                 fontWeight: 700,
                 color: 'white',
+                marginRight: '16px',
               }}
             >
               MoneyLife
             </span>
             <span
               style={{
-                fontSize: '18px',
+                fontSize: '20px',
                 fontWeight: 700,
                 color: 'white',
                 background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-                padding: '6px 14px',
+                padding: '8px 20px',
                 borderRadius: '999px',
               }}
             >
@@ -101,64 +76,46 @@ export async function GET() {
           {/* Main Copy */}
           <div
             style={{
-              fontSize: '52px',
+              fontSize: '56px',
               fontWeight: 700,
               color: 'white',
               textAlign: 'center',
-              marginBottom: '12px',
+              marginBottom: '16px',
+              lineHeight: 1.2,
             }}
           >
-            내 돈, AI가 1분 만에 진단
+            AI와 함께하는
+          </div>
+          <div
+            style={{
+              fontSize: '56px',
+              fontWeight: 700,
+              color: 'white',
+              textAlign: 'center',
+              marginBottom: '24px',
+              lineHeight: 1.2,
+            }}
+          >
+            금융 진단 & 계산기
           </div>
 
           {/* Sub Copy */}
           <div
             style={{
-              fontSize: '22px',
+              fontSize: '24px',
               color: '#94a3b8',
               textAlign: 'center',
+              marginBottom: '48px',
             }}
           >
-            무료 재무 진단 + 9가지 필수 금융 계산기
+            1분 만에 무료 재무 진단 + 9가지 필수 금융 도구
           </div>
-        </div>
 
-        {/* Calculator Grid - 핵심 강조 영역 */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            flex: 1,
-            padding: '20px 60px 50px',
-          }}
-        >
-          {/* Section Label */}
+          {/* Calculator Icons Row */}
           <div
             style={{
               display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '24px',
-              background: 'rgba(6,182,212,0.15)',
-              padding: '8px 20px',
-              borderRadius: '999px',
-              border: '1px solid rgba(6,182,212,0.3)',
-            }}
-          >
-            <span style={{ fontSize: '16px', color: '#22d3ee', fontWeight: 700 }}>
-              9가지 필수 금융 도구
-            </span>
-          </div>
-
-          {/* Calculator Cards Grid */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '12px',
-              maxWidth: '900px',
+              gap: '16px',
             }}
           >
             {calculators.map((calc) => (
@@ -166,18 +123,22 @@ export async function GET() {
                 key={calc.label}
                 style={{
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '10px',
-                  background: 'rgba(255,255,255,0.08)',
-                  padding: '14px 20px',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  justifyContent: 'center',
+                  width: '110px',
+                  height: '100px',
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(255,255,255,0.15)',
                 }}
               >
-                <span style={{ fontSize: '28px' }}>{calc.icon}</span>
+                <span style={{ fontSize: '36px', marginBottom: '8px' }}>
+                  {calc.icon}
+                </span>
                 <span
                   style={{
-                    fontSize: '18px',
+                    fontSize: '16px',
                     color: '#e2e8f0',
                     fontWeight: 700,
                   }}
@@ -195,11 +156,11 @@ export async function GET() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '20px',
-            background: 'rgba(0,0,0,0.3)',
+            padding: '24px',
+            background: 'rgba(0,0,0,0.4)',
           }}
         >
-          <span style={{ fontSize: '16px', color: '#64748b' }}>
+          <span style={{ fontSize: '18px', color: '#64748b', fontWeight: 700 }}>
             moneylife.kr
           </span>
         </div>
@@ -210,7 +171,7 @@ export async function GET() {
       height: 630,
       fonts: [
         {
-          name: 'Pretendard',
+          name: 'Noto Sans KR',
           data: fontData,
           style: 'normal',
           weight: 700,
