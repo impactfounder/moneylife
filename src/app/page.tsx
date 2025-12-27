@@ -162,7 +162,7 @@ export default function Home() {
                       type="text"
                       value={salaryInput}
                       onChange={(e) => handleFormatInput(e.target.value)}
-                      placeholder="예: 4500"
+                      placeholder="예: 4,500"
                       className="w-52 md:w-60 py-2 text-4xl md:text-5xl font-bold text-center bg-transparent border-b-2 border-white/40 focus:border-cyan-400 focus:outline-none transition-all text-white placeholder-white/30 placeholder:text-lg md:placeholder:text-xl tracking-tight"
                     />
                     <span className="text-xl md:text-2xl font-medium text-slate-400">
