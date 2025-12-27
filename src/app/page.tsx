@@ -346,31 +346,25 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* 모바일 1열, PC 3열 - 6개 노출 (심플 카드) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {/* 모바일 1열, 태블릿 2열, PC 3열 - 6개 노출 (가이드 페이지와 동일한 카드) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
               {getRecentPosts(6).map((post) => (
                 <Link
                   key={post.slug}
                   href={`/content/${post.slug}`}
-                  className="group flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 hover:bg-slate-100 transition-all duration-200 border border-transparent hover:border-slate-200"
+                  className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-slate-300 hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
                 >
-                  {/* 아이콘 */}
-                  <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg flex items-center justify-center text-xl shadow-sm">
-                    {post.thumbnail}
-                  </div>
-                  {/* 텍스트 */}
-                  <div className="flex-1 min-w-0">
-                    <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide">
+                  {/* 상단: 아이콘 + 뱃지 */}
+                  <div className="flex items-start justify-between mb-4">
+                    <span className="text-4xl">{post.thumbnail}</span>
+                    <span className="bg-slate-100 text-slate-600 text-xs font-bold px-3 py-1 rounded-full">
                       {post.category}
                     </span>
-                    <h3 className="text-sm font-bold text-slate-800 group-hover:text-slate-900 transition-colors line-clamp-2 leading-tight">
-                      {post.title}
-                    </h3>
                   </div>
-                  {/* 화살표 */}
-                  <svg className="w-4 h-4 text-slate-300 group-hover:text-slate-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {/* 제목 */}
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 leading-snug">
+                    {post.title}
+                  </h3>
                 </Link>
               ))}
             </div>
