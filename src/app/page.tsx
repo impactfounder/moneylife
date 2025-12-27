@@ -361,9 +361,9 @@ export default function Home() {
                       {post.category}
                     </span>
                   </div>
-                  {/* 제목 */}
+                  {/* 제목 - 하이픈 앞에서 줄바꿈 방지 */}
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 break-keep min-h-[3.5rem] leading-snug">
-                    {post.title}
+                    {post.title.replace(/ - /g, '\u00A0- ')}
                   </h3>
                 </Link>
               ))}

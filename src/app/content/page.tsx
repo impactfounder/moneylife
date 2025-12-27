@@ -276,8 +276,8 @@ export default function ContentPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">
-                        {content.title}
+                      <h3 className="text-xl font-bold text-slate-900 mb-2 break-keep">
+                        {content.title.replace(/ - /g, '\u00A0- ')}
                       </h3>
 
                       <p className="text-slate-600 text-sm leading-relaxed">
