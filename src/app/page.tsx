@@ -153,7 +153,7 @@ export default function Home() {
                 <form onSubmit={handleShowRank} className="space-y-6">
                   {/* 행동 유도 문구 */}
                   <p className="text-lg md:text-xl font-bold text-cyan-400 text-center animate-bounce">
-                    내 연봉(계약 연봉)은 얼마일까? 👇
+                    내 연봉, 대한민국 상위 몇 %일까? 👇
                   </p>
 
                   {/* 입력 필드 */}
@@ -169,8 +169,8 @@ export default function Home() {
                       만원
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 text-center">
-                    ※ 세금 떼기 전, 계약서상 연봉을 입력해주세요
+                  <p className="text-xs text-slate-500 text-center">
+                    ※ 세전 연봉 기준 (성과급·제수당 포함)
                   </p>
                   {error && (
                     <p className="text-sm text-red-400 text-center font-medium animate-fade-in">
@@ -181,7 +181,7 @@ export default function Home() {
                     type="submit"
                     className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-cyan-500/25 hover:shadow-2xl hover:shadow-cyan-500/30 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2"
                   >
-                    내 재무 점수 무료로 확인하기
+                    내 연봉 순위 & 재무 점수 확인하기
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
