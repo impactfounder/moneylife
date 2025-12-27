@@ -8,6 +8,14 @@ import { formatNumber } from '@/lib/calculations'
 import { getRecentPosts } from '@/data/posts'
 import { QuickRankModal } from '@/components/ui/QuickRankModal'
 
+// 제목 줄바꿈 포맷팅: 쉼표 뒤, 물음표 뒤, 하이픈 앞에서 줄바꿈
+const formatTitleForLineBreak = (title: string) => {
+  return title
+    .replace(/, /g, ',\u200B')      // 쉼표 뒤에 zero-width space (줄바꿈 허용)
+    .replace(/\? /g, '?\u200B')     // 물음표 뒤에 zero-width space
+    .replace(/ - /g, ' \u200B- ')   // 하이픈 앞에 zero-width space
+}
+
 // 전체 계산기 목록 (9개)
 const calculators = [
   {
@@ -361,9 +369,9 @@ export default function Home() {
                       {post.category}
                     </span>
                   </div>
-                  {/* 제목 - 하이픈 앞에서 줄바꿈 방지 */}
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 break-keep min-h-[3.5rem] leading-snug">
-                    {post.title.replace(/ - /g, '\u00A0- ')}
+                  {/* 제목 - 쉼표/물음표 뒤, 하이픈 앞에서 줄바꿈 */}
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 min-h-[3.5rem] leading-snug">
+                    {formatTitleForLineBreak(post.title)}
                   </h3>
                 </Link>
               ))}

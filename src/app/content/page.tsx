@@ -6,6 +6,14 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Card } from '@/components/ui/Card'
 
+// 제목 줄바꿈 포맷팅: 쉼표 뒤, 물음표 뒤, 하이픈 앞에서 줄바꿈
+const formatTitleForLineBreak = (title: string) => {
+  return title
+    .replace(/, /g, ',\u200B')      // 쉼표 뒤에 zero-width space (줄바꿈 허용)
+    .replace(/\? /g, '?\u200B')     // 물음표 뒤에 zero-width space
+    .replace(/ - /g, ' \u200B- ')   // 하이픈 앞에 zero-width space
+}
+
 const contents = [
   {
     id: 1,
@@ -276,8 +284,8 @@ export default function ContentPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-slate-900 mb-2 break-keep">
-                        {content.title.replace(/ - /g, '\u00A0- ')}
+                      <h3 className="text-xl font-bold text-slate-900 mb-2">
+                        {formatTitleForLineBreak(content.title)}
                       </h3>
 
                       <p className="text-slate-600 text-sm leading-relaxed">
