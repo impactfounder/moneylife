@@ -99,7 +99,7 @@ export default function Home() {
 
     const parsedSalary = parseInt(salaryInput.replace(/,/g, ''))
     if (!parsedSalary || isNaN(parsedSalary) || parsedSalary <= 0) {
-      setError('월 실수령액을 입력해주세요')
+      setError('연봉을 입력해주세요')
       return
     }
 
@@ -153,7 +153,7 @@ export default function Home() {
                 <form onSubmit={handleShowRank} className="space-y-6">
                   {/* 행동 유도 문구 */}
                   <p className="text-lg md:text-xl font-bold text-cyan-400 text-center animate-bounce">
-                    내 소득, 대한민국 상위 몇 %일까? 👇
+                    내 연봉(계약 연봉)은 얼마일까? 👇
                   </p>
 
                   {/* 입력 필드 */}
@@ -162,13 +162,16 @@ export default function Home() {
                       type="text"
                       value={salaryInput}
                       onChange={(e) => handleFormatInput(e.target.value)}
-                      placeholder="월 실수령액 입력"
+                      placeholder="예: 4500"
                       className="w-52 md:w-60 py-2 text-4xl md:text-5xl font-bold text-center bg-transparent border-b-2 border-white/40 focus:border-cyan-400 focus:outline-none transition-all text-white placeholder-white/30 placeholder:text-lg md:placeholder:text-xl tracking-tight"
                     />
                     <span className="text-xl md:text-2xl font-medium text-slate-400">
                       만원
                     </span>
                   </div>
+                  <p className="text-xs text-slate-400 text-center">
+                    ※ 세금 떼기 전, 계약서상 연봉을 입력해주세요
+                  </p>
                   {error && (
                     <p className="text-sm text-red-400 text-center font-medium animate-fade-in">
                       {error}
@@ -457,7 +460,7 @@ export default function Home() {
       <QuickRankModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        monthlySalary={modalSalary}
+        annualSalary={modalSalary}
       />
     </>
   )

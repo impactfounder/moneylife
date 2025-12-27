@@ -2,25 +2,23 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { calculateKoreaRank, formatNumber, convertAfterToBefore } from '@/lib/calculations'
+import { calculateKoreaRank, formatNumber } from '@/lib/calculations'
 
 interface QuickRankModalProps {
   isOpen: boolean
   onClose: () => void
-  monthlySalary: number // 만원 단위
+  annualSalary: number // 만원 단위 (세전 연봉)
 }
 
-export function QuickRankModal({ isOpen, onClose, monthlySalary }: QuickRankModalProps) {
+export function QuickRankModal({ isOpen, onClose, annualSalary }: QuickRankModalProps) {
   const router = useRouter()
   const [displayPercentile, setDisplayPercentile] = useState(0)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  // 세후 월급 -> 세전으로 변환 후 순위 계산
-  const salaryInWon = monthlySalary * 10000
-  const grossSalary = convertAfterToBefore(salaryInWon)
-  const rankResult = calculateKoreaRank(grossSalary, 'all')
+  // 연봉(만원) -> 월급(원)으로 변환 후 순위 계산
+  const monthlyGrossSalary = (annualSalary * 10000) / 12
+  const rankResult = calculateKoreaRank(monthlyGrossSalary, 'all')
   const percentile = rankResult.percentile
-  const annualSalary = Math.round(grossSalary * 12 / 10000)
 
   // Count up 애니메이션
   useEffect(() => {
@@ -69,7 +67,7 @@ export function QuickRankModal({ isOpen, onClose, monthlySalary }: QuickRankModa
 
   const handleGoToDiagnosis = () => {
     onClose()
-    router.push(`/financial-diagnosis?monthlySalary=${monthlySalary}`)
+    router.push(`/financial-diagnosis?annualSalary=${annualSalary}`)
   }
 
   const getMessage = () => {
@@ -99,12 +97,11 @@ export function QuickRankModal({ isOpen, onClose, monthlySalary }: QuickRankModa
 
         <div className="p-8 flex flex-col items-center">
 
-          {/* 1. 이모지 & 월급 정보 */}
+          {/* 1. 이모지 & 연봉 정보 */}
           <div className="text-center mb-8">
             <div className="text-6xl mb-4">{emoji}</div>
             <p className="text-slate-500 text-sm font-medium">
-              월 실수령액 {formatNumber(monthlySalary)}만원
-              <span className="block text-xs text-slate-400 mt-1">(연봉 약 {formatNumber(annualSalary)}만원)</span>
+              연봉 {formatNumber(annualSalary)}만원
             </p>
           </div>
 
