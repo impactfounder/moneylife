@@ -6,8 +6,12 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Card } from '@/components/ui/Card'
 
-// 제목을 줄바꿈 지점에서 분리하여 배열로 반환
+// 제목을 줄바꿈 지점에서 분리하여 배열로 반환 (긴 제목만)
 const splitTitleForLineBreak = (title: string): string[] => {
+  // 짧은 제목(20자 이하)은 줄바꿈 하지 않음
+  if (title.length <= 20) {
+    return [title]
+  }
   // 우선순위: 하이픈 > 물음표 > 쉼표
   if (title.includes(' - ')) {
     const idx = title.indexOf(' - ')
