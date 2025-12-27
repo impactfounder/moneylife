@@ -3,14 +3,12 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 export async function GET() {
-  const calculators = [
-    { icon: '🏆', label: 'Salary Rank' },
-    { icon: '💰', label: 'Payroll' },
-    { icon: '🏠', label: 'Loan' },
-    { icon: '📈', label: 'Investment' },
-    { icon: '💼', label: 'Severance' },
-    { icon: '🏛️', label: 'Pension' },
-    { icon: '📊', label: 'Tax' },
+  const tools = [
+    { icon: '🏆', label: '연봉' },
+    { icon: '💰', label: '급여' },
+    { icon: '🏠', label: '대출' },
+    { icon: '📈', label: '투자' },
+    { icon: '💸', label: '세금' },
   ]
 
   return new ImageResponse(
@@ -21,45 +19,70 @@ export async function GET() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
+          backgroundColor: '#0f172a',
+          position: 'relative',
         }}
       >
-        {/* Main Content Area */}
+        {/* Background Gradient Blobs */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-80px',
+            left: '-80px',
+            width: '400px',
+            height: '400px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-100px',
+            right: '-100px',
+            width: '500px',
+            height: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.25) 0%, transparent 70%)',
+          }}
+        />
+
+        {/* Main Content */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
             flex: 1,
             padding: '60px',
+            position: 'relative',
+            zIndex: 10,
           }}
         >
-          {/* Logo */}
+          {/* Top - Logo */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginBottom: '40px',
+              marginBottom: '60px',
             }}
           >
             <span
               style={{
-                fontSize: '56px',
+                fontSize: '40px',
                 fontWeight: 700,
                 color: 'white',
-                marginRight: '16px',
+                marginRight: '12px',
               }}
             >
               MoneyLife
             </span>
             <span
               style={{
-                fontSize: '24px',
+                fontSize: '18px',
                 fontWeight: 700,
                 color: 'white',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-                padding: '10px 24px',
+                backgroundColor: '#8b5cf6',
+                padding: '6px 16px',
                 borderRadius: '999px',
               }}
             >
@@ -67,83 +90,77 @@ export async function GET() {
             </span>
           </div>
 
-          {/* Main Copy */}
-          <div
-            style={{
-              fontSize: '44px',
-              fontWeight: 700,
-              color: 'white',
-              textAlign: 'center',
-              marginBottom: '16px',
-            }}
-          >
-            AI Financial Diagnosis & Calculators
-          </div>
-
-          {/* Sub Copy */}
-          <div
-            style={{
-              fontSize: '24px',
-              color: '#94a3b8',
-              textAlign: 'center',
-              marginBottom: '48px',
-            }}
-          >
-            Free AI diagnosis + 9 essential financial tools
-          </div>
-
-          {/* Calculator Icons Row */}
+          {/* Center - Main Message */}
           <div
             style={{
               display: 'flex',
-              gap: '12px',
+              flexDirection: 'column',
+              flex: 1,
+              justifyContent: 'center',
             }}
           >
-            {calculators.map((calc) => (
-              <div
-                key={calc.label}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '120px',
-                  height: '100px',
-                  background: 'rgba(255,255,255,0.1)',
-                  borderRadius: '20px',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                }}
-              >
-                <span style={{ fontSize: '40px', marginBottom: '8px' }}>
-                  {calc.icon}
-                </span>
-                <span
-                  style={{
-                    fontSize: '12px',
-                    color: '#e2e8f0',
-                    fontWeight: 600,
-                  }}
-                >
-                  {calc.label}
-                </span>
-              </div>
-            ))}
+            <div
+              style={{
+                fontSize: '60px',
+                fontWeight: 700,
+                color: 'white',
+                marginBottom: '20px',
+                lineHeight: 1.2,
+              }}
+            >
+              내 돈, 잘 관리하고 있을까?
+            </div>
+            <div
+              style={{
+                fontSize: '30px',
+                color: '#94a3b8',
+              }}
+            >
+              AI 자산 진단부터 9가지 금융 도구까지
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom - Tools Dock */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '24px',
-            background: 'rgba(0,0,0,0.4)',
+            padding: '30px 60px',
+            backgroundColor: 'rgba(255,255,255,0.08)',
+            borderTop: '1px solid rgba(255,255,255,0.1)',
           }}
         >
-          <span style={{ fontSize: '20px', color: '#64748b', fontWeight: 600 }}>
-            moneylife.kr
-          </span>
+          <div
+            style={{
+              display: 'flex',
+              gap: '48px',
+            }}
+          >
+            {tools.map((tool) => (
+              <div
+                key={tool.label}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
+              >
+                <span style={{ fontSize: '40px' }}>{tool.icon}</span>
+                <span
+                  style={{
+                    fontSize: '16px',
+                    color: 'white',
+                    fontWeight: 600,
+                  }}
+                >
+                  {tool.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     ),
