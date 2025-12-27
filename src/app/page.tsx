@@ -150,14 +150,20 @@ export default function Home() {
 
               {/* Easy Entry Form */}
               <div className="w-full max-w-md animate-fade-in" style={{ animationDelay: '200ms' }}>
-                <form onSubmit={handleShowRank} className="space-y-4">
+                <form onSubmit={handleShowRank} className="space-y-6">
+                  {/* 행동 유도 문구 */}
+                  <p className="text-lg md:text-xl font-bold text-cyan-400 text-center animate-bounce">
+                    내 소득, 대한민국 상위 몇 %일까? 👇
+                  </p>
+
+                  {/* 입력 필드 */}
                   <div className="flex items-baseline justify-center gap-3">
                     <input
                       type="text"
                       value={salaryInput}
                       onChange={(e) => handleFormatInput(e.target.value)}
-                      placeholder="300"
-                      className="w-40 md:w-48 py-2 text-5xl md:text-6xl font-bold text-center bg-transparent border-b-2 border-white/40 focus:border-cyan-400 focus:outline-none transition-all text-white placeholder-white/25 tracking-tight"
+                      placeholder="월 실수령액 입력"
+                      className="w-52 md:w-60 py-2 text-4xl md:text-5xl font-bold text-center bg-transparent border-b-2 border-white/40 focus:border-cyan-400 focus:outline-none transition-all text-white placeholder-white/30 placeholder:text-lg md:placeholder:text-xl tracking-tight"
                     />
                     <span className="text-xl md:text-2xl font-medium text-slate-400">
                       만원
