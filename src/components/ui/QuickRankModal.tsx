@@ -94,8 +94,8 @@ export function QuickRankModal({ isOpen, onClose, monthlySalary }: QuickRankModa
         ref={modalRef}
         className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden animate-slide-in"
       >
-        {/* Top Gradient Bar */}
-        <div className="h-2 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500" />
+        {/* Top Bar - Deep Navy */}
+        <div className="h-2 bg-slate-900" />
 
         <div className="p-8 flex flex-col items-center">
 

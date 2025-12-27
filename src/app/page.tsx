@@ -183,21 +183,21 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Trust Badges - 2x2 Grid */}
-              <div className="grid grid-cols-2 gap-2 md:gap-3 mt-8 md:mt-12 max-w-sm mx-auto animate-fade-in" style={{ animationDelay: '300ms' }}>
-                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+              {/* Trust Badges - 모바일 2x2, PC 1열 */}
+              <div className="grid grid-cols-2 md:flex md:justify-center gap-2 md:gap-4 mt-8 md:mt-12 max-w-sm md:max-w-none mx-auto animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3 md:px-4">
                   <span className="text-green-400">✓</span>
                   <span className="text-xs text-slate-300 font-medium">100% 무료</span>
                 </div>
-                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3 md:px-4">
                   <span className="text-green-400">✓</span>
                   <span className="text-xs text-slate-300 font-medium">회원가입 없음</span>
                 </div>
-                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3 md:px-4">
                   <span className="text-green-400">✓</span>
                   <span className="text-xs text-slate-300 font-medium">개인정보 저장 안함</span>
                 </div>
-                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3">
+                <div className="flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg py-2.5 px-3 md:px-4">
                   <span className="text-green-400">✓</span>
                   <span className="text-xs text-slate-300 font-medium">통계청 데이터 기반</span>
                 </div>
