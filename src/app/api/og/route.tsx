@@ -3,11 +3,11 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 export async function GET() {
+  // 4개로 축소 (선택과 집중)
   const tools = [
     { icon: '🏆', label: '연봉' },
     { icon: '💰', label: '급여' },
     { icon: '🏠', label: '대출' },
-    { icon: '📈', label: '투자' },
     { icon: '💸', label: '세금' },
   ]
 
@@ -19,43 +19,44 @@ export async function GET() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: '#0f172a',
+          backgroundColor: '#0a0f1a',
           position: 'relative',
         }}
       >
-        {/* Background Gradient Blobs */}
+        {/* Background Gradient Blobs - 더 어둡게 */}
         <div
           style={{
             position: 'absolute',
-            top: '-80px',
-            left: '-80px',
-            width: '400px',
-            height: '400px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-100px',
-            right: '-100px',
+            top: '-100px',
+            left: '-100px',
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(59,130,246,0.25) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-120px',
+            right: '-120px',
+            width: '600px',
+            height: '600px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)',
           }}
         />
 
-        {/* Main Content */}
+        {/* Main Content - 여백 축소, 꽉 차게 */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             flex: 1,
-            padding: '60px',
+            padding: '50px 60px 30px',
             position: 'relative',
             zIndex: 10,
+            justifyContent: 'center',
           }}
         >
           {/* Top - Logo */}
@@ -63,26 +64,26 @@ export async function GET() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginBottom: '60px',
+              marginBottom: '40px',
             }}
           >
             <span
               style={{
-                fontSize: '40px',
-                fontWeight: 700,
+                fontSize: '48px',
+                fontWeight: 800,
                 color: 'white',
-                marginRight: '12px',
+                marginRight: '16px',
               }}
             >
               MoneyLife
             </span>
             <span
               style={{
-                fontSize: '18px',
+                fontSize: '22px',
                 fontWeight: 700,
                 color: 'white',
                 backgroundColor: '#8b5cf6',
-                padding: '6px 16px',
+                padding: '8px 20px',
                 borderRadius: '999px',
               }}
             >
@@ -90,52 +91,57 @@ export async function GET() {
             </span>
           </div>
 
-          {/* Center - Main Message */}
+          {/* Center - Main Message (Big & Bold) */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              flex: 1,
-              justifyContent: 'center',
+              gap: '24px',
             }}
           >
+            {/* 메인 카피 - 80px로 확대 */}
             <div
               style={{
-                fontSize: '60px',
-                fontWeight: 700,
+                fontSize: '80px',
+                fontWeight: 800,
                 color: 'white',
-                marginBottom: '20px',
-                lineHeight: 1.2,
+                lineHeight: 1.1,
+                letterSpacing: '-2px',
               }}
             >
               내 돈, 잘 관리하고 있을까?
             </div>
+            {/* 서브 카피 - 48px, 강조색 적용 */}
             <div
               style={{
-                fontSize: '30px',
-                color: '#94a3b8',
+                display: 'flex',
+                fontSize: '48px',
+                fontWeight: 700,
+                lineHeight: 1.3,
               }}
             >
-              AI 자산 진단부터 9가지 금융 도구까지
+              <span style={{ color: '#94a3b8' }}>AI 자산 진단 & </span>
+              <span style={{ color: '#38bdf8', marginLeft: '12px' }}>급여 · 대출 · 세금</span>
+              <span style={{ color: '#94a3b8', marginLeft: '12px' }}>계산기</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom - Tools Dock */}
+        {/* Bottom - Tools Dock (확대 버전) */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '30px 60px',
-            backgroundColor: 'rgba(255,255,255,0.08)',
-            borderTop: '1px solid rgba(255,255,255,0.1)',
+            padding: '40px 60px 50px',
+            backgroundColor: 'rgba(255,255,255,0.06)',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
           }}
         >
           <div
             style={{
               display: 'flex',
-              gap: '48px',
+              gap: '80px',
             }}
           >
             {tools.map((tool) => (
@@ -145,15 +151,15 @@ export async function GET() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px',
+                  gap: '12px',
                 }}
               >
-                <span style={{ fontSize: '40px' }}>{tool.icon}</span>
+                <span style={{ fontSize: '70px' }}>{tool.icon}</span>
                 <span
                   style={{
-                    fontSize: '16px',
+                    fontSize: '32px',
                     color: 'white',
-                    fontWeight: 600,
+                    fontWeight: 700,
                   }}
                 >
                   {tool.label}
