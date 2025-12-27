@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 const navItems = [
   { href: '/', icon: '🏠', label: '홈' },
   { href: '/calculators', icon: '🧮', label: '계산기' },
-  { href: '/content', icon: '📚', label: '콘텐츠' },
+  { href: '/content', icon: '📚', label: '가이드' },
 ]
 
 export function BottomNav() {

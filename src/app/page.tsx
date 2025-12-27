@@ -151,17 +151,17 @@ export default function Home() {
               {/* Easy Entry Form */}
               <div className="w-full max-w-md animate-fade-in" style={{ animationDelay: '200ms' }}>
                 <form onSubmit={handleShowRank} className="space-y-4">
-                  <div className="relative">
+                  <div className="flex items-baseline justify-center gap-2">
                     <input
                       type="text"
                       value={salaryInput}
                       onChange={(e) => handleFormatInput(e.target.value)}
-                      placeholder="월 실수령액 입력"
-                      className="w-full px-6 py-5 text-xl font-bold text-center bg-white rounded-2xl border-2 border-transparent focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/20 transition-all text-slate-900 placeholder-slate-400 shadow-2xl shadow-black/20"
+                      placeholder="300"
+                      className="w-48 md:w-56 py-3 text-4xl md:text-5xl font-black text-center bg-transparent border-b-2 border-white/50 focus:border-cyan-400 focus:outline-none transition-all text-white placeholder-white/30"
                     />
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">
+                    <span className="text-2xl md:text-3xl font-bold text-white/70">
                       만원
-                    </div>
+                    </span>
                   </div>
                   {error && (
                     <p className="text-sm text-red-400 text-center font-medium animate-fade-in">
@@ -210,7 +210,7 @@ export default function Home() {
         <section className="py-20 lg:py-28 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight">
                 왜 MoneyLife인가요?
               </h2>
               <p className="text-slate-500 text-lg">
@@ -265,7 +265,7 @@ export default function Home() {
         <section className="py-20 lg:py-28 bg-slate-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight">
                 필요한 기능만 골라 쓰세요
               </h2>
               <p className="text-slate-500 text-lg">
@@ -319,7 +319,7 @@ export default function Home() {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center justify-between mb-12">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-2 tracking-tight">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 mb-2 tracking-tight">
                   금융 가이드
                 </h2>
                 <p className="text-slate-500">
@@ -388,7 +388,7 @@ export default function Home() {
         {/* CTA Section */}
         <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900">
           <div className="container mx-auto px-4 max-w-4xl text-center">
-            <h2 className="text-3xl lg:text-4xl font-black text-white mb-6 tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-6 tracking-tight">
               당신만의 금융 솔루션,
               <br />
               지금 바로 시작하세요
