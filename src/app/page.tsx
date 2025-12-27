@@ -11,8 +11,8 @@ import { QuickRankModal } from '@/components/ui/QuickRankModal'
 // 제목 줄바꿈 포맷팅: 쉼표 뒤, 물음표 뒤, 하이픈 앞에서 줄바꿈
 const formatTitleForLineBreak = (title: string) => {
   return title
-    .replace(/, /g, ',\u200B')      // 쉼표 뒤에 zero-width space (줄바꿈 허용)
-    .replace(/\? /g, '?\u200B')     // 물음표 뒤에 zero-width space
+    .replace(/, /g, ', \u200B')     // 쉼표+공백 뒤에 zero-width space (줄바꿈 허용)
+    .replace(/\? /g, '? \u200B')    // 물음표+공백 뒤에 zero-width space
     .replace(/ - /g, ' \u200B- ')   // 하이픈 앞에 zero-width space
 }
 
