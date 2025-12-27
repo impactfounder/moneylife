@@ -3,11 +3,12 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 export async function GET() {
-  // 4개 아이콘 (선택과 집중)
+  // 5개 아이콘
   const tools = [
     { icon: '🏆', label: '연봉' },
     { icon: '💰', label: '급여' },
     { icon: '🏠', label: '대출' },
+    { icon: '🏢', label: '부동산' },
     { icon: '💸', label: '세금' },
   ]
 
@@ -119,7 +120,7 @@ export async function GET() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '36px 60px 44px',
+            padding: '36px 80px 44px',
             backgroundColor: 'rgba(255,255,255,0.1)',
             borderTop: '1px solid rgba(255,255,255,0.1)',
           }}
@@ -127,7 +128,9 @@ export async function GET() {
           <div
             style={{
               display: 'flex',
-              gap: '72px',
+              justifyContent: 'space-between',
+              width: '100%',
+              maxWidth: '1000px',
             }}
           >
             {tools.map((tool) => (
