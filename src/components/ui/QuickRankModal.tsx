@@ -107,25 +107,23 @@ export function QuickRankModal({ isOpen, onClose, annualSalary }: QuickRankModal
 
           {/* 2. 메인 결과 (수직 정렬) */}
           <div className="text-center mb-8 w-full">
-            <p className="text-slate-500 text-sm font-bold mb-2 tracking-wide uppercase">대한민국 상위</p>
+            <p className="text-slate-500 text-sm font-bold mb-3 tracking-wide uppercase">대한민국 상위</p>
 
-            {/* 숫자 컨테이너: tabular-nums + absolute % 배치로 레이아웃 안정화 */}
-            <div className="relative flex justify-center items-baseline h-[80px]">
-              <div className="relative">
-                <span className="text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 tabular-nums tracking-tight leading-none">
-                  {displayPercentile.toFixed(1)}
-                </span>
-                <span className="text-3xl lg:text-4xl font-bold text-blue-600 absolute -right-9 top-1">%</span>
-              </div>
+            {/* 숫자 컨테이너 */}
+            <div className="flex justify-center items-baseline">
+              <span className="text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 tabular-nums tracking-tight">
+                {displayPercentile.toFixed(1)}
+              </span>
+              <span className="text-3xl lg:text-4xl font-bold text-blue-600 ml-1">%</span>
             </div>
           </div>
 
-          {/* 3. 프로그레스 바 */}
+          {/* 3. 프로그레스 바 - 상위 %가 낮을수록 바가 더 많이 차오름 */}
           <div className="w-full mb-8">
             <div className="relative h-4 bg-slate-100 rounded-full overflow-hidden mb-2">
               <div
                 className="absolute inset-y-0 left-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-all duration-1000 ease-out"
-                style={{ width: `${Math.max(5, 100 - displayPercentile)}%` }}
+                style={{ width: `${Math.min(100, Math.max(5, 100 - percentile))}%` }}
               />
             </div>
             <div className="flex justify-between text-[10px] text-slate-400 font-medium uppercase tracking-wider">
