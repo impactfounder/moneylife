@@ -362,7 +362,7 @@ export default function Home() {
                     </span>
                   </div>
                   {/* 제목 */}
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 leading-snug">
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2 break-keep min-h-[3.5rem] leading-snug">
                     {post.title}
                   </h3>
                 </Link>
