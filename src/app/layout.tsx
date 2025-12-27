@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { BottomNav } from '@/components/BottomNav'
+import { GoogleAdsense } from '@/components/GoogleAdsense'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -157,12 +158,8 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
 
-        {/* Google AdSense - lazyOnload for better initial page load */}
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515762248094919"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
+        {/* Google AdSense - 메인 페이지 제외 */}
+        <GoogleAdsense />
       </body>
     </html>
   )
