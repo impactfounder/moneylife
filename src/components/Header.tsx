@@ -156,7 +156,7 @@ export function Header() {
             홈
           </Link>
           <Link href="/content" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
-            콘텐츠
+            가이드
           </Link>
           <Link href="/calculators" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
             계산기
@@ -196,7 +196,7 @@ export function Header() {
               className="px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              콘텐츠
+              가이드
             </Link>
             <Link
               href="/calculators"

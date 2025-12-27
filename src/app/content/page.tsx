@@ -227,10 +227,10 @@ export default function ContentPage() {
         <section className="bg-white py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-              금융 콘텐츠
+              금융 가이드
             </h1>
             <p className="text-base md:text-lg text-slate-600">
-              재테크에 도움이 되는 유용한 정보를 제공합니다
+              자산 관리에 도움이 되는 유용한 정보를 제공합니다
             </p>
           </div>
         </section>
@@ -261,7 +261,7 @@ export default function ContentPage() {
           <div className="container mx-auto px-4">
             <div className="mb-6">
               <span className="text-sm text-slate-500">
-                {filteredContents.length}개의 콘텐츠
+                {filteredContents.length}개의 가이드
               </span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
