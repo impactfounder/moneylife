@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { BottomNav } from '@/components/BottomNav'
+import { GoogleAdsense } from '@/components/GoogleAdsense'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: '금융계산기 - moneylife.kr',
-    template: '%s | 금융계산기'
+    default: 'AI 금융 진단 - MoneyLife',
+    template: '%s | AI 금융 진단 머니라이프'
   },
   description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에! 급여계산기, 대출계산기, 연봉순위 테스트 등 9개 계산기 무료 제공',
   keywords: [
@@ -25,26 +27,26 @@ export const metadata: Metadata = {
   publisher: 'moneylife.kr',
   metadataBase: new URL('https://moneylife.kr'),
   openGraph: {
-    title: '금융계산기 - moneylife.kr',
-    description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에!',
+    title: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
+    description: '1분 만에 무료 재무 진단 + 9가지 필수 금융 도구. 연봉순위, 대출, 투자, 세금까지 한 곳에서!',
     url: 'https://moneylife.kr',
-    siteName: '금융계산기',
+    siteName: 'MoneyLife AI',
     locale: 'ko_KR',
     type: 'website',
     images: [
       {
-        url: 'https://moneylife.kr/og-image.png',
+        url: 'https://moneylife.kr/og-image-v4.png',
         width: 1200,
         height: 630,
-        alt: '금융계산기 - moneylife.kr',
+        alt: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '금융계산기 - moneylife.kr',
-    description: '대출부터 연봉순위까지, 모든 금융 계산을 1초만에!',
-    images: ['https://moneylife.kr/og-image.png'],
+    title: 'MoneyLife AI - AI와 함께하는 금융 진단 & 계산기',
+    description: '1분 만에 무료 재무 진단 + 9가지 필수 금융 도구. 연봉순위, 대출, 투자, 세금까지 한 곳에서!',
+    images: ['https://moneylife.kr/og-image-v4.png'],
   },
   robots: {
     index: true,
@@ -121,7 +123,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased pb-20 md:pb-0">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -133,6 +135,9 @@ export default function RootLayout({
         </noscript>
 
         {children}
+
+        {/* 모바일 하단 네비게이션 */}
+        <BottomNav />
 
         {/* Google Tag Manager - afterInteractive for better performance */}
         <Script
@@ -153,12 +158,8 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
 
-        {/* Google AdSense - lazyOnload for better initial page load */}
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2515762248094919"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
+        {/* Google AdSense - 메인 페이지 제외 */}
+        <GoogleAdsense />
       </body>
     </html>
   )

@@ -119,7 +119,7 @@ function MarketTicker() {
   ]
 
   return (
-    <div className="hidden xl:block bg-slate-900 py-1.5 border-t border-slate-700">
+    <div className="hidden xl:block bg-slate-900 py-1.5 border-none">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-8 text-sm">
           {tickerItems.map((item, index) => (
@@ -141,15 +141,12 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="glass-effect border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* 로고 */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="font-black text-xl text-slate-900 tracking-tight">
-            MONEYLIFE
-          </span>
-          <span className="text-slate-400 font-medium text-sm hidden sm:inline">
-            금융계산기
+        <Link href="/" className="flex items-center group">
+          <span className="font-extrabold text-2xl text-slate-900 tracking-tighter">
+            MoneyLife
           </span>
         </Link>
 
@@ -159,9 +156,9 @@ export function Header() {
             홈
           </Link>
           <Link href="/content" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
-            콘텐츠
+            가이드
           </Link>
-          <Link href="/#calculators" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
+          <Link href="/calculators" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">
             계산기
           </Link>
         </nav>
@@ -199,10 +196,10 @@ export function Header() {
               className="px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              콘텐츠
+              가이드
             </Link>
             <Link
-              href="/#calculators"
+              href="/calculators"
               className="px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >

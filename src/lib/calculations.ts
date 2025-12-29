@@ -1,60 +1,77 @@
 import type { RankResult, PercentileData, Region, AgeGroup } from '@/types';
+import {
+  INCOME_PERCENTILE_2023,
+  REGION_ADJUSTMENT,
+  AGE_ADJUSTMENT,
+  INCOME_STATS_META,
+} from '@/data/income-percentile-2023';
 
 // ============================================
-// 통계 데이터 (2024년 기준)
+// 국세청 2023년 귀속 근로소득 백분위 기반 계산
+// 출처: 국세청 만근 근로자 근로소득 천분위 통계
 // ============================================
 
-// ============================================
-// 통계 데이터 (2024년 추정치 반영)
-// ============================================
+/**
+ * 연봉(원)을 기준으로 상위 몇 %인지 계산
+ * @param annualSalary 연봉 (원)
+ * @returns 상위 X% (예: 5 = 상위 5%)
+ */
+function calculatePercentileFromAnnual(annualSalary: number): number {
+  // 백분위 포인트를 연봉 기준 내림차순 정렬
+  const sortedPoints = Object.entries(INCOME_PERCENTILE_2023)
+    .map(([p, v]) => ({ percentile: parseFloat(p), value: v }))
+    .sort((a, b) => b.value - a.value);
 
-const KOREA_STATISTICS = {
-  // 단위: 월 소득 (원)
-  // p10: 하위 10%, p99: 상위 1%
-  all: {
-    p10: 1500000,
-    p25: 2200000,
-    p50: 3000000, // 중위소득 약 300만원 (연 3600)
-    p75: 5000000, // 상위 25% 약 500만원 (연 6000)
-    p90: 8300000, // 상위 10% 약 830만원 (연 1억)
-    p95: 11000000, // 상위 5% 약 1100만원 (연 1.3억)
-    p99: 27000000  // 상위 1% 약 2700만원 (연 3.2억)
-  },
-  seoul: {
-    p10: 1800000, p25: 2600000, p50: 3600000, p75: 5800000, p90: 9200000, p95: 13000000, p99: 32000000
-  },
-  metro: {
-    p10: 1600000, p25: 2400000, p50: 3300000, p75: 5400000, p90: 8800000, p95: 12000000, p99: 29000000
-  },
-  other: {
-    p10: 1400000, p25: 2000000, p50: 2700000, p75: 4500000, p90: 7500000, p95: 10000000, p99: 24000000
+  // 최상위 초과
+  if (annualSalary >= sortedPoints[0].value) {
+    // 상위 0.1% 이상인 경우, 0.1% 미만 범위로 추정
+    const excess = (annualSalary - sortedPoints[0].value) / sortedPoints[0].value;
+    return Math.max(0.1 - excess * 0.05, 0.01);
   }
-};
 
-const AGE_STATISTICS = {
-  '20s': { p10: 1500000, p25: 2000000, p50: 2500000, p75: 3200000, p90: 4500000, p95: 5500000, p99: 8000000 },
-  '30s': { p10: 2000000, p25: 2800000, p50: 3600000, p75: 5000000, p90: 7000000, p95: 9000000, p99: 15000000 },
-  '40s': { p10: 2200000, p25: 3000000, p50: 4200000, p75: 6500000, p90: 9500000, p95: 13000000, p99: 25000000 },
-  '50s': { p10: 2000000, p25: 2800000, p50: 4000000, p75: 6000000, p90: 9000000, p95: 12000000, p99: 23000000 },
-  '60s': { p10: 1200000, p25: 1800000, p50: 2800000, p75: 4500000, p90: 7000000, p95: 9500000, p99: 18000000 }
-};
+  // 해당 구간 찾아서 선형 보간
+  for (let i = 0; i < sortedPoints.length - 1; i++) {
+    const upper = sortedPoints[i];     // 더 높은 연봉 (낮은 백분위)
+    const lower = sortedPoints[i + 1]; // 더 낮은 연봉 (높은 백분위)
+
+    if (annualSalary >= lower.value && annualSalary < upper.value) {
+      // 구간 내 선형 보간
+      const ratio = (annualSalary - lower.value) / (upper.value - lower.value);
+      return lower.percentile - ratio * (lower.percentile - upper.percentile);
+    }
+  }
+
+  // 최하위 이하
+  return 99.9;
+}
 
 // ============================================
-// 한국 소득 순위 계산
+// 한국 소득 순위 계산 (월 소득 기준 - 기존 API 유지)
 // ============================================
 
 export function calculateKoreaRank(
-  salary: number,
+  salary: number,      // 월 소득 (원)
   region: Region = 'all'
 ): RankResult {
-  const regionData = KOREA_STATISTICS[region];
-  const percentile = calculatePercentile(salary, regionData);
+  // 월 소득을 연 소득으로 변환
+  const annualSalary = salary * 12;
+
+  // 지역별 보정 적용 (지역 소득 수준 차이 반영)
+  const adjustmentFactor = REGION_ADJUSTMENT[region] || 1.0;
+  const adjustedSalary = annualSalary / adjustmentFactor;
+
+  // 백분위 계산
+  const percentile = calculatePercentileFromAnnual(adjustedSalary);
   const description = getPercentileDescription(percentile);
+
+  // 지역별 중위소득 계산
+  const medianAnnual = INCOME_STATS_META.median * adjustmentFactor;
+  const medianMonthly = Math.round(medianAnnual / 12);
 
   return {
     percentile: Math.round(percentile * 10) / 10,
     description,
-    median: regionData.p50
+    median: medianMonthly
   };
 }
 
@@ -63,14 +80,22 @@ export function calculateKoreaRank(
 // ============================================
 
 export function calculateAgeRank(
-  salary: number,
+  salary: number,      // 월 소득 (원)
   ageGroup: AgeGroup
 ): RankResult | null {
   if (ageGroup === 'all') return null;
 
-  const ageData = AGE_STATISTICS[ageGroup];
-  const percentile = calculatePercentile(salary, ageData);
-  const ageLabels = {
+  // 월 소득을 연 소득으로 변환
+  const annualSalary = salary * 12;
+
+  // 연령대별 보정 적용
+  const adjustmentFactor = AGE_ADJUSTMENT[ageGroup] || 1.0;
+  const adjustedSalary = annualSalary / adjustmentFactor;
+
+  // 백분위 계산
+  const percentile = calculatePercentileFromAnnual(adjustedSalary);
+
+  const ageLabels: Record<string, string> = {
     '20s': '20대',
     '30s': '30대',
     '40s': '40대',
@@ -78,10 +103,14 @@ export function calculateAgeRank(
     '60s': '60대'
   };
 
+  // 연령대별 중위소득 계산
+  const medianAnnual = INCOME_STATS_META.median * adjustmentFactor;
+  const medianMonthly = Math.round(medianAnnual / 12);
+
   return {
     percentile: Math.round(percentile * 10) / 10,
-    description: `${ageLabels[ageGroup]} 중위 소득: ${formatNumber(ageData.p50)}원`,
-    median: ageData.p50,
+    description: `${ageLabels[ageGroup]} 중위 소득: ${formatNumber(medianMonthly)}원`,
+    median: medianMonthly,
     label: ageLabels[ageGroup]
   };
 }
@@ -123,56 +152,60 @@ export function calculateWorldRank(salary: number): RankResult {
 }
 
 // ============================================
-// 퍼센타일 계산 (공통 로직)
-// ============================================
-
-function calculatePercentile(salary: number, data: PercentileData): number {
-  if (salary >= data.p99) {
-    const excess = (salary - data.p99) / data.p99;
-    return Math.max(1 - excess * 0.5, 0.1); // 상위 1% 이내
-  } else if (salary >= data.p95) {
-    const ratio = (salary - data.p95) / (data.p99 - data.p95);
-    return 5 - ratio * 4; // 1% ~ 5%
-  } else if (salary >= data.p90) {
-    const ratio = (salary - data.p90) / (data.p95 - data.p90);
-    return 10 - ratio * 5; // 5% ~ 10%
-  } else if (salary >= data.p75) {
-    const ratio = (salary - data.p75) / (data.p90 - data.p75);
-    return 25 - ratio * 15; // 10% ~ 25%
-  } else if (salary >= data.p50) {
-    const ratio = (salary - data.p50) / (data.p75 - data.p50);
-    return 50 - ratio * 25; // 25% ~ 50%
-  } else if (salary >= data.p25) {
-    const ratio = (salary - data.p25) / (data.p50 - data.p25);
-    return 75 - ratio * 25; // 50% ~ 75%
-  } else if (salary >= data.p10) {
-    const ratio = (salary - data.p10) / (data.p25 - data.p10);
-    return 90 - ratio * 15; // 75% ~ 90%
-  } else {
-    const deficit = (data.p10 - salary) / data.p10;
-    return Math.min(90 + deficit * 10, 99.9); // 90% ~
-  }
-}
-
-// ============================================
 // 퍼센타일 설명 생성
 // ============================================
 
 function getPercentileDescription(percentile: number): string {
   if (percentile <= 1) {
-    return '대한민국 상위 1%! 신의 경지입니다 👑';
+    return '최상위권 연봉이시네요! 자산 관리도 그만큼 잘하고 계신가요?';
   } else if (percentile <= 5) {
-    return '대한민국 상위 5%! 놀라운 성과입니다 🌟';
+    return '상위 5% 이내! 대단한 성과입니다';
+  } else if (percentile <= 7) {
+    return '억대 연봉! 상위 7% 이내입니다';
   } else if (percentile <= 10) {
-    return '대한민국 상위 10%! 억대 연봉 클럽 🏆';
-  } else if (percentile <= 25) {
-    return '상위 25% 이내! 성공적인 커리어입니다 ⭐';
+    return '상위 10% 이내! 훌륭한 소득 수준입니다';
+  } else if (percentile <= 20) {
+    return '상위 20% 이내! 안정적인 고소득자입니다';
+  } else if (percentile <= 30) {
+    return '상위 30% 이내! 평균 이상의 소득입니다';
   } else if (percentile <= 50) {
-    return '중위권 이상! 안정적인 소득입니다 👍';
-  } else if (percentile <= 75) {
-    return '평균 수준입니다. 더 높은 곳을 향해! 💼';
+    return '중위권 이상! 안정적인 소득입니다';
+  } else if (percentile <= 70) {
+    return '평균 수준의 소득입니다';
   } else {
-    return '성장 잠재력이 무한합니다! 화이팅! 💪';
+    return '성장 가능성이 있습니다. 화이팅!';
+  }
+}
+
+// ============================================
+// 레거시 호환용 퍼센타일 계산 (PercentileData 사용)
+// ============================================
+
+export function calculatePercentile(salary: number, data: PercentileData): number {
+  if (salary >= data.p99) {
+    const excess = (salary - data.p99) / data.p99;
+    return Math.max(1 - excess * 0.5, 0.1);
+  } else if (salary >= data.p95) {
+    const ratio = (salary - data.p95) / (data.p99 - data.p95);
+    return 5 - ratio * 4;
+  } else if (salary >= data.p90) {
+    const ratio = (salary - data.p90) / (data.p95 - data.p90);
+    return 10 - ratio * 5;
+  } else if (salary >= data.p75) {
+    const ratio = (salary - data.p75) / (data.p90 - data.p75);
+    return 25 - ratio * 15;
+  } else if (salary >= data.p50) {
+    const ratio = (salary - data.p50) / (data.p75 - data.p50);
+    return 50 - ratio * 25;
+  } else if (salary >= data.p25) {
+    const ratio = (salary - data.p25) / (data.p50 - data.p25);
+    return 75 - ratio * 25;
+  } else if (salary >= data.p10) {
+    const ratio = (salary - data.p10) / (data.p25 - data.p10);
+    return 90 - ratio * 15;
+  } else {
+    const deficit = (data.p10 - salary) / data.p10;
+    return Math.min(90 + deficit * 10, 99.9);
   }
 }
 
@@ -284,3 +317,9 @@ export function getTotalChecks(): number {
   if (typeof window === 'undefined') return 0;
   return parseInt(localStorage.getItem('totalChecks') || '0');
 }
+
+// ============================================
+// 통계 메타데이터 export
+// ============================================
+
+export { INCOME_STATS_META };

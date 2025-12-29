@@ -28,7 +28,9 @@
       "Bash(mkdir:*)",
       "Bash(mv:*)",
       "Bash(git fetch:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(git stash pop:*)"
     ]
   }
 }
