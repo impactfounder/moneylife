@@ -24,7 +24,9 @@
       "Bash(done)",
       "Bash(ls:*)",
       "Bash(git diff:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)"
     ]
   }
 }

@@ -99,16 +99,16 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         {/* Preconnect for performance */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-        {/* Pretendard Font */}
+        {/* 로컬 폰트 프리로드 */}
         <link
-          rel="stylesheet"
-          as="style"
+          rel="preload"
+          href="/fonts/PretendardVariable.woff2"
+          as="font"
+          type="font/woff2"
           crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
 
         {/* JSON-LD 구조화 데이터 */}
