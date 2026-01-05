@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
+import { InFeedAd } from '@/components/InFeedAd'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -176,6 +178,11 @@ export default function PensionStrategy() {
           </div>
         </section>
 
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
+        </section>
+
         {/* 💰 Step 2: 세액공제 */}
         <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💰 Step 2: IRP 세액공제 극대화</h2>
@@ -273,6 +280,11 @@ export default function PensionStrategy() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - Step2 후 */}
+        <section className="mb-8">
+          <InFeedAd />
         </section>
 
         {/* 📈 Step 3: 투자 전략 */}
@@ -459,6 +471,11 @@ export default function PensionStrategy() {
               </ul>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 🛠️ 유용한 도구 */}

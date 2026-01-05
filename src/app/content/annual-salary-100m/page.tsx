@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -145,6 +146,11 @@ export default function AnnualSalary100M() {
           </p>
         </section>
 
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
+        </section>
+
         {/* 💡 연봉 1억 현실 */}
         <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">💡 연봉 1억의 현실</h2>
@@ -239,6 +245,11 @@ export default function AnnualSalary100M() {
             * 연봉이 높을수록 누진세 적용으로 공제율 증가<br />
             * 1억 5천만원 이상부터는 소득세율 35% 적용
           </p>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 🛠️ 유용한 도구 */}

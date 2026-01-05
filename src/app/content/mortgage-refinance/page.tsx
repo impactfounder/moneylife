@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -133,6 +134,11 @@ export default function MortgageRefinanceGuide() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* Step 2: 절감 효과 계산 */}
@@ -362,6 +368,11 @@ export default function MortgageRefinanceGuide() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 관련 계산기 */}

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
+import { InFeedAd } from '@/components/InFeedAd'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -199,6 +201,11 @@ export default function TaxSavingGuide() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 💡 Step 2: 실전 절세 전략 */}
@@ -420,6 +427,11 @@ export default function TaxSavingGuide() {
           </div>
         </section>
 
+        {/* 광고 - Step3 후 */}
+        <section className="mb-8">
+          <InFeedAd />
+        </section>
+
         {/* 🏠 Step 4: 양도소득세 절세 */}
         <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12">
           <h2 className="text-2xl font-bold mb-6">🏠 Step 4: 양도소득세 절세 (부동산)</h2>
@@ -536,6 +548,11 @@ export default function TaxSavingGuide() {
               </ul>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 🛠️ 유용한 도구 */}

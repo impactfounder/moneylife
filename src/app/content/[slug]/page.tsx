@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { getPostBySlug, blogPosts } from '@/data/posts'
 
 interface PageProps {
@@ -80,6 +81,13 @@ export default function ContentDetailPage({ params }: PageProps) {
           </section>
         )}
 
+        {/* 광고 - 중간 */}
+        <section className="py-4">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="rounded-xl overflow-hidden" />
+          </div>
+        </section>
+
         {/* 본문 */}
         <section className="py-12">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -126,10 +134,15 @@ export default function ContentDetailPage({ params }: PageProps) {
                     <li className="text-slate-700">{children}</li>
                   ),
                   table: ({ children }) => (
-                    <div className="overflow-x-auto my-6">
-                      <table className="w-full border-collapse border border-slate-200 text-sm table-fixed">
-                        {children}
-                      </table>
+                    <div className="my-6">
+                      <p className="text-xs text-slate-400 mb-2 md:hidden flex items-center gap-1">
+                        <span>←</span> 좌우 스크롤 <span>→</span>
+                      </p>
+                      <div className="overflow-x-auto -mx-2 px-2">
+                        <table className="w-full border-collapse border border-slate-200 text-sm min-w-[400px]">
+                          {children}
+                        </table>
+                      </div>
                     </div>
                   ),
                   thead: ({ children }) => (
@@ -203,6 +216,13 @@ export default function ContentDetailPage({ params }: PageProps) {
                 {post.content}
               </ReactMarkdown>
             </article>
+          </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="py-4">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AdUnit className="rounded-xl overflow-hidden" />
           </div>
         </section>
 

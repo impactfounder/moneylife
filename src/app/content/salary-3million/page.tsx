@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 
 export const metadata = {
   title: '월급 300만원의 현실 - 2025년 구매력 분석 | moneylife.kr',
@@ -124,6 +125,11 @@ export default function Salary3MillionPage() {
                     </div>
                   </div>
                 </div>
+              </section>
+
+              {/* 광고 - 중간 */}
+              <section className="mb-8">
+                <AdUnit className="rounded-xl overflow-hidden" />
               </section>
 
               {/* 생활비 분석 */}
@@ -267,6 +273,11 @@ export default function Salary3MillionPage() {
                     </tbody>
                   </table>
                 </div>
+              </section>
+
+              {/* 광고 - 하단 */}
+              <section className="mb-8">
+                <AdUnit className="rounded-xl overflow-hidden" />
               </section>
 
               {/* 결론 */}

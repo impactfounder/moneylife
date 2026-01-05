@@ -7,6 +7,8 @@ import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
 import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
+import { HelpTooltip } from '@/components/ui/Tooltip'
+import { DynamicPie as Pie, DynamicLine as Line } from '@/components/charts/DynamicCharts'
 import { getPostsByCalculator } from '@/data/posts'
 import {
   calculateMortgage,
@@ -15,20 +17,6 @@ import {
   type MortgageResult
 } from '@/lib/mortgage-calculator'
 import { formatNumber } from '@/lib/calculations'
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-} from 'chart.js'
-import { Pie, Line } from 'react-chartjs-2'
-
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement)
 
 export default function MortgageCalculatorPage() {
   const [propertyPrice, setPropertyPrice] = useState('')
@@ -38,6 +26,7 @@ export default function MortgageCalculatorPage() {
   const [paymentType, setPaymentType] = useState<'equalPayment' | 'equalPrincipal'>('equalPayment')
   const [result, setResult] = useState<MortgageResult | null>(null)
   const [showResult, setShowResult] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleFormatInput = (value: string, setter: (v: string) => void) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -50,6 +39,7 @@ export default function MortgageCalculatorPage() {
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
 
     const property = parseInt(propertyPrice.replace(/,/g, '')) * 10000
     const loan = parseInt(loanAmount.replace(/,/g, '')) * 10000
@@ -57,7 +47,7 @@ export default function MortgageCalculatorPage() {
     const period = parseInt(years)
 
     if (!property || !loan || !rate || !period) {
-      alert('모든 값을 입력해주세요')
+      setError('모든 값을 입력해주세요')
       return
     }
 
@@ -193,37 +183,44 @@ export default function MortgageCalculatorPage() {
               <div className="w-full max-w-lg">
                 <div className="glass-effect rounded-3xl p-8 shadow-2xl border border-white/50 relative overflow-hidden bg-white/80 backdrop-blur-xl">
                   {!showResult ? (
-                    <form onSubmit={handleCalculate} className="space-y-6">
+                    <form onSubmit={handleCalculate} className="space-y-6" aria-label="주택담보대출 계산기">
                       {/* 주택 가격 */}
                       <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                        <label htmlFor="propertyPrice" className="block text-sm font-bold text-slate-700 mb-3 text-center">
                           주택 가격
+                          <HelpTooltip content="구매하려는 주택의 매매가입니다" />
                         </label>
                         <div className="relative">
                           <input
+                            id="propertyPrice"
                             type="text"
+                            inputMode="numeric"
                             value={propertyPrice}
                             onChange={(e) => handleFormatInput(e.target.value, setPropertyPrice)}
                             placeholder="예: 50,000"
+                            aria-describedby="propertyPriceHint"
                             className="w-full px-4 py-4 text-2xl font-bold text-center border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:ring-2 focus:ring-slate-200 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900"
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             만원
                           </div>
                         </div>
-                        <p className="text-xs text-slate-400 mt-2 text-center">
+                        <p id="propertyPriceHint" className="text-xs text-slate-400 mt-2 text-center">
                           예: 5억원 = 50,000만원
                         </p>
                       </div>
 
                       {/* 대출 금액 */}
                       <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                        <label htmlFor="loanAmount" className="block text-sm font-bold text-slate-700 mb-3 text-center">
                           대출 금액
+                          <HelpTooltip content="희망 대출 금액입니다. LTV 한도를 초과할 수 없습니다" />
                         </label>
                         <div className="relative">
                           <input
+                            id="loanAmount"
                             type="text"
+                            inputMode="numeric"
                             value={loanAmount}
                             onChange={(e) => handleFormatInput(e.target.value, setLoanAmount)}
                             placeholder="예: 30,000"
@@ -237,12 +234,15 @@ export default function MortgageCalculatorPage() {
 
                       {/* 연 이자율 */}
                       <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                        <label htmlFor="interestRate" className="block text-sm font-bold text-slate-700 mb-3 text-center">
                           연 이자율
+                          <HelpTooltip content="연간 대출 이자율입니다. 은행별로 다를 수 있습니다" />
                         </label>
                         <div className="relative">
                           <input
+                            id="interestRate"
                             type="number"
+                            inputMode="decimal"
                             value={interestRate}
                             onChange={(e) => setInterestRate(e.target.value)}
                             placeholder="예: 4.5"
@@ -308,6 +308,16 @@ export default function MortgageCalculatorPage() {
                           </button>
                         </div>
                       </div>
+
+                      {/* 에러 메시지 */}
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-center gap-2">
+                          <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                          </svg>
+                          <p className="text-red-600 text-sm font-medium">{error}</p>
+                        </div>
+                      )}
 
                       {/* 계산 버튼 */}
                       <button
@@ -456,12 +466,15 @@ export default function MortgageCalculatorPage() {
         {showResult && result && (
           <section className="py-16 bg-slate-50">
             <div className="container mx-auto px-4 max-w-4xl">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
+              <h2 className="text-2xl font-bold text-slate-900 mb-4 text-center">
                 월별 상환 스케줄
               </h2>
+              <p className="text-xs text-slate-400 mb-4 text-center md:hidden flex items-center justify-center gap-1">
+                <span>←</span> 좌우 스크롤하여 전체 표 확인 <span>→</span>
+              </p>
               <div className="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-sm min-w-[450px]">
                     <thead className="bg-slate-50">
                       <tr>
                         <th className="px-4 py-3 text-left font-bold text-slate-700">회차</th>

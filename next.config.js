@@ -21,6 +21,18 @@ const nextConfig = {
   // 성능 최적화
   swcMinify: true,
 
+  // 번들 최적화
+  compiler: {
+    // 프로덕션에서 console.log 제거
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // 실험적 기능
+  experimental: {
+    // 병렬 라우팅 최적화
+    optimizePackageImports: ['chart.js', 'react-chartjs-2'],
+  },
+
   // SEO: 리다이렉트 규칙 (301 영구 리다이렉트)
   async redirects() {
     return [

@@ -3,18 +3,6 @@
 @tailwind utilities;
 
 /* ============================================
-   로컬 폰트 정의
-   ============================================ */
-
-@font-face {
-  font-family: 'Pretendard Variable';
-  font-weight: 45 920;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
-}
-
-/* ============================================
    전역 스타일
    ============================================ */
 
@@ -25,7 +13,8 @@
 
   body {
     @apply bg-white text-gray-900;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    /* Next.js next/font가 --font-pretendard CSS 변수 자동 주입 */
+    font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

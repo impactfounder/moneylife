@@ -23,6 +23,14 @@ interface FormData {
   debtInterestRate: string
 }
 
+interface ValidationErrors {
+  age?: string
+  monthlySalary?: string
+  monthlySpending?: string
+  housingCost?: string
+  debtInterestRate?: string
+}
+
 function DiagnosisForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -39,7 +47,54 @@ function DiagnosisForm() {
     totalDebt: '',
     debtInterestRate: '',
   })
+  const [errors, setErrors] = useState<ValidationErrors>({})
   const formRef = useRef<HTMLDivElement>(null)
+
+  // 유효성 검사 함수
+  const validateField = (field: keyof FormData, value: string): string | undefined => {
+    const numValue = parseInt(value.replace(/,/g, '')) || 0
+
+    switch (field) {
+      case 'age':
+        const age = parseInt(value)
+        if (!value) return '나이를 입력해주세요'
+        if (isNaN(age) || age < 18) return '18세 이상 입력해주세요'
+        if (age > 100) return '100세 이하로 입력해주세요'
+        return undefined
+
+      case 'monthlySalary':
+        if (!value) return '월 소득을 입력해주세요'
+        if (numValue <= 0) return '1만원 이상 입력해주세요'
+        if (numValue > 99999) return '99,999만원 이하로 입력해주세요'
+        return undefined
+
+      case 'monthlySpending':
+        if (!value) return '월 지출을 입력해주세요'
+        const salary = parseInt(formData.monthlySalary.replace(/,/g, '')) || 0
+        if (numValue > salary && salary > 0) return `월 소득(${formatNumber(salary)}만원)보다 높습니다`
+        return undefined
+
+      case 'housingCost':
+        const spending = parseInt(formData.monthlySpending.replace(/,/g, '')) || 0
+        if (numValue > spending && spending > 0) return `총 지출(${formatNumber(spending)}만원)보다 높습니다`
+        return undefined
+
+      case 'debtInterestRate':
+        const rate = parseFloat(value)
+        if (value && (isNaN(rate) || rate < 0)) return '0% 이상 입력해주세요'
+        if (rate > 30) return '30% 이하로 입력해주세요'
+        return undefined
+
+      default:
+        return undefined
+    }
+  }
+
+  // 필드 변경 시 해당 필드만 검증
+  const handleFieldChange = (field: keyof FormData, value: string) => {
+    const error = validateField(field, value)
+    setErrors(prev => ({ ...prev, [field]: error }))
+  }
 
   // 모바일에서 인풋 포커스 시 스크롤 조정
   const handleInputFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
@@ -111,16 +166,21 @@ function DiagnosisForm() {
 
   const isStepValid = () => {
     if (step === 'info') {
-      return formData.age && formData.monthlySalary
+      const ageError = validateField('age', formData.age)
+      const salaryError = validateField('monthlySalary', formData.monthlySalary)
+      return formData.age && formData.monthlySalary && !ageError && !salaryError
     }
     if (step === 'assets') {
       return true // 자산은 0이어도 됨
     }
     if (step === 'spending') {
-      return formData.monthlySpending
+      const spendingError = validateField('monthlySpending', formData.monthlySpending)
+      const housingError = validateField('housingCost', formData.housingCost)
+      return formData.monthlySpending && !spendingError && !housingError
     }
     if (step === 'debt') {
-      return true // 빚이 없을 수도 있음
+      const rateError = validateField('debtInterestRate', formData.debtInterestRate)
+      return !rateError // 빚이 없을 수도 있음
     }
     return false
   }
@@ -222,16 +282,24 @@ function DiagnosisForm() {
                             onChange={(e) => {
                               const val = e.target.value.replace(/[^0-9]/g, '')
                               setFormData(prev => ({ ...prev, age: val }))
+                              handleFieldChange('age', val)
                             }}
                             onFocus={handleInputFocus}
                             onKeyDown={(e) => handleKeyDown(e, 'input-salary')}
                             placeholder="30"
-                            className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
+                            className={`w-full px-4 py-4 text-lg font-bold text-center border-2 rounded-xl focus:ring-2 transition-all bg-slate-50 focus:bg-white text-slate-900 ${
+                              errors.age
+                                ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
+                                : 'border-slate-200 focus:border-violet-500 focus:ring-violet-200'
+                            }`}
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             세
                           </div>
                         </div>
+                        {errors.age && (
+                          <p className="text-red-500 text-xs mt-1 text-center">{errors.age}</p>
+                        )}
                       </div>
 
                       <div>
@@ -263,16 +331,26 @@ function DiagnosisForm() {
                             inputMode="numeric"
                             pattern="[0-9,]*"
                             value={formData.monthlySalary}
-                            onChange={(e) => handleFormatInput(e.target.value, 'monthlySalary')}
+                            onChange={(e) => {
+                              handleFormatInput(e.target.value, 'monthlySalary')
+                              handleFieldChange('monthlySalary', e.target.value.replace(/[^0-9]/g, ''))
+                            }}
                             onFocus={handleInputFocus}
                             onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="350"
-                            className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
+                            className={`w-full px-4 py-4 text-lg font-bold text-center border-2 rounded-xl focus:ring-2 transition-all bg-slate-50 focus:bg-white text-slate-900 ${
+                              errors.monthlySalary
+                                ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
+                                : 'border-slate-200 focus:border-violet-500 focus:ring-violet-200'
+                            }`}
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             만원
                           </div>
                         </div>
+                        {errors.monthlySalary && (
+                          <p className="text-red-500 text-xs mt-1 text-center">{errors.monthlySalary}</p>
+                        )}
                       </div>
                     </div>
                   )}
@@ -375,19 +453,30 @@ function DiagnosisForm() {
                             inputMode="numeric"
                             pattern="[0-9,]*"
                             value={formData.monthlySpending}
-                            onChange={(e) => handleFormatInput(e.target.value, 'monthlySpending')}
+                            onChange={(e) => {
+                              handleFormatInput(e.target.value, 'monthlySpending')
+                              handleFieldChange('monthlySpending', e.target.value.replace(/[^0-9]/g, ''))
+                            }}
                             onFocus={handleInputFocus}
                             onKeyDown={(e) => handleKeyDown(e, 'input-housing')}
                             placeholder="200"
-                            className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
+                            className={`w-full px-4 py-4 text-lg font-bold text-center border-2 rounded-xl focus:ring-2 transition-all bg-slate-50 focus:bg-white text-slate-900 ${
+                              errors.monthlySpending
+                                ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
+                                : 'border-slate-200 focus:border-violet-500 focus:ring-violet-200'
+                            }`}
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             만원
                           </div>
                         </div>
-                        <p className="text-xs text-slate-400 mt-2 text-center">
-                          식비, 쇼핑, 통신비, 교통비, 보험료 등 포함
-                        </p>
+                        {errors.monthlySpending ? (
+                          <p className="text-amber-600 text-xs mt-2 text-center">{errors.monthlySpending}</p>
+                        ) : (
+                          <p className="text-xs text-slate-400 mt-2 text-center">
+                            식비, 쇼핑, 통신비, 교통비, 보험료 등 포함
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -401,16 +490,26 @@ function DiagnosisForm() {
                             inputMode="numeric"
                             pattern="[0-9,]*"
                             value={formData.housingCost}
-                            onChange={(e) => handleFormatInput(e.target.value, 'housingCost')}
+                            onChange={(e) => {
+                              handleFormatInput(e.target.value, 'housingCost')
+                              handleFieldChange('housingCost', e.target.value.replace(/[^0-9]/g, ''))
+                            }}
                             onFocus={handleInputFocus}
                             onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="0"
-                            className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
+                            className={`w-full px-4 py-4 text-lg font-bold text-center border-2 rounded-xl focus:ring-2 transition-all bg-slate-50 focus:bg-white text-slate-900 ${
+                              errors.housingCost
+                                ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
+                                : 'border-slate-200 focus:border-violet-500 focus:ring-violet-200'
+                            }`}
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             만원
                           </div>
                         </div>
+                        {errors.housingCost && (
+                          <p className="text-red-500 text-xs mt-1 text-center">{errors.housingCost}</p>
+                        )}
                       </div>
                     </div>
                   )}
@@ -463,16 +562,24 @@ function DiagnosisForm() {
                             onChange={(e) => {
                               const val = e.target.value.replace(/[^0-9.]/g, '')
                               setFormData(prev => ({ ...prev, debtInterestRate: val }))
+                              handleFieldChange('debtInterestRate', val)
                             }}
                             onFocus={handleInputFocus}
                             onKeyDown={(e) => handleKeyDown(e)}
                             placeholder="5"
-                            className="w-full px-4 py-4 text-lg font-bold text-center border-2 border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all bg-slate-50 focus:bg-white text-slate-900"
+                            className={`w-full px-4 py-4 text-lg font-bold text-center border-2 rounded-xl focus:ring-2 transition-all bg-slate-50 focus:bg-white text-slate-900 ${
+                              errors.debtInterestRate
+                                ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
+                                : 'border-slate-200 focus:border-violet-500 focus:ring-violet-200'
+                            }`}
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             %
                           </div>
                         </div>
+                        {errors.debtInterestRate && (
+                          <p className="text-red-500 text-xs mt-1 text-center">{errors.debtInterestRate}</p>
+                        )}
                       </div>
                     </div>
                   )}

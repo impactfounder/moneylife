@@ -83,10 +83,13 @@ export default function SalaryTable2025() {
 
         {/* 연봉별 실수령액 표 */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
-          <h2 className="text-xl font-bold text-slate-900 mb-6">2025년 연봉별 실수령액 상세표</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-4">2025년 연봉별 실수령액 상세표</h2>
+          <p className="text-xs text-slate-400 mb-4 md:hidden flex items-center gap-1">
+            <span>←</span> 좌우 스크롤하여 전체 표 확인 <span>→</span>
+          </p>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto -mx-6 px-6">
+            <table className="w-full text-sm min-w-[500px]">
               <thead>
                 <tr className="bg-slate-50">
                   <th className="px-4 py-3 text-center font-semibold text-slate-700 border-b-2 border-slate-200">연봉<br/>(세전)</th>

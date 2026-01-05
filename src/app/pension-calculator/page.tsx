@@ -15,20 +15,7 @@ import {
   type PensionResult
 } from '@/lib/pension-calculator'
 import { formatNumber } from '@/lib/calculations'
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-} from 'chart.js'
-import { Pie, Bar, Line } from 'react-chartjs-2'
-
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement)
+import { DynamicPie as Pie, DynamicBar as Bar, DynamicLine as Line } from '@/components/charts/DynamicCharts'
 
 export default function PensionCalculatorPage() {
   const [currentAge, setCurrentAge] = useState('')
@@ -37,6 +24,7 @@ export default function PensionCalculatorPage() {
   const [retirementAge, setRetirementAge] = useState('65')
   const [result, setResult] = useState<PensionResult | null>(null)
   const [showResult, setShowResult] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleFormatInput = (value: string, setter: (v: string) => void) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -49,6 +37,7 @@ export default function PensionCalculatorPage() {
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
 
     const age = parseInt(currentAge)
     const income = parseInt(monthlyIncome.replace(/,/g, '')) * 10000
@@ -56,7 +45,7 @@ export default function PensionCalculatorPage() {
     const retirement = parseInt(retirementAge)
 
     if (!age || !income || !years || !retirement) {
-      alert('모든 값을 입력해주세요')
+      setError('모든 값을 입력해주세요')
       return
     }
 
@@ -284,6 +273,16 @@ export default function PensionCalculatorPage() {
                           </div>
                         </div>
                       </div>
+
+                      {/* 에러 메시지 */}
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-center gap-2">
+                          <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                          </svg>
+                          <p className="text-red-600 text-sm font-medium">{error}</p>
+                        </div>
+                      )}
 
                       {/* 계산 버튼 */}
                       <button

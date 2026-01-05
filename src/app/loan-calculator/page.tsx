@@ -19,18 +19,7 @@ import {
   type LoanLimitResult,
 } from '@/lib/loan-policy-2026'
 import { formatNumber } from '@/lib/calculations'
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from 'chart.js'
-import { Bar } from 'react-chartjs-2'
-
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement)
+import { DynamicBar as Bar } from '@/components/charts/DynamicCharts'
 
 export default function LoanCalculatorPage() {
   // 입력 상태
@@ -692,8 +681,11 @@ export default function LoanCalculatorPage() {
                 <h3 className="text-xl font-bold text-slate-800 mb-4">
                   지역별 LTV/DTI 규제 (국토부 기준)
                 </h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm border-collapse">
+                <p className="text-xs text-slate-400 mb-2 md:hidden flex items-center gap-1">
+                  <span>←</span> 좌우 스크롤 <span>→</span>
+                </p>
+                <div className="overflow-x-auto -mx-2 px-2">
+                  <table className="w-full text-sm border-collapse min-w-[400px]">
                     <thead>
                       <tr className="bg-slate-100">
                         <th className="p-3 text-left font-bold">지역</th>

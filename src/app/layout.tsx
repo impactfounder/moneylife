@@ -1,8 +1,18 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import localFont from 'next/font/local'
 import { BottomNav } from '@/components/BottomNav'
 import { GoogleAdsense } from '@/components/GoogleAdsense'
 import './globals.css'
+
+// Next.js 폰트 최적화 - 자동 셀프 호스팅 및 캐싱
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: {
@@ -98,20 +108,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={pretendard.variable}>
       <head>
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-
-        {/* 로컬 폰트 프리로드 */}
-        <link
-          rel="preload"
-          href="/fonts/PretendardVariable.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
 
         {/* JSON-LD 구조화 데이터 */}
         <script
@@ -123,7 +124,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="antialiased pb-20 md:pb-0">
+      <body className={`${pretendard.className} antialiased pb-20 md:pb-0`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -152,11 +153,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* Kakao SDK - lazyOnload for non-critical script */}
-        <Script
-          src="https://developers.kakao.com/sdk/js/kakao.js"
-          strategy="lazyOnload"
-        />
+        {/* Kakao SDK는 필요한 페이지에서 동적 로드 (financial-diagnosis/result) */}
 
         {/* Google AdSense - 메인 페이지 제외 */}
         <GoogleAdsense />

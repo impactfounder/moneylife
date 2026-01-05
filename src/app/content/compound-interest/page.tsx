@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -126,6 +127,11 @@ export default function CompoundInterestGuide() {
           <p className="text-sm text-slate-500 mt-4">
             예시: 1,000만원을 연 7% 수익률로 투자하면, 약 10년 후 2,000만원, 20년 후 4,000만원, 30년 후 8,000만원!
           </p>
+        </section>
+
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 실전 시뮬레이션 */}
@@ -305,6 +311,11 @@ export default function CompoundInterestGuide() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 관련 계산기 */}

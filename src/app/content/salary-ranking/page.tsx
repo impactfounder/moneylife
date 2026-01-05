@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
+import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -124,6 +125,11 @@ export default function SalaryRanking() {
           </p>
         </section>
 
+        {/* 광고 - 중간 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
+        </section>
+
         {/* 연령대별 연봉 */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
           <h2 className="text-xl font-bold text-slate-900 mb-6">연령대별 연봉 중위값</h2>
@@ -201,6 +207,11 @@ export default function SalaryRanking() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* 광고 - 하단 */}
+        <section className="mb-8">
+          <AdUnit className="rounded-xl overflow-hidden" />
         </section>
 
         {/* 관련 계산기 */}

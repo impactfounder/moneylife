@@ -7,11 +7,8 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { formatNumber } from '@/lib/calculations'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, RadialLinearScale, PointElement, LineElement, Filler } from 'chart.js'
-import { Doughnut, Radar } from 'react-chartjs-2'
+import { DynamicDoughnut as Doughnut, DynamicRadar as Radar } from '@/components/charts/DynamicCharts'
 import html2canvas from 'html2canvas'
-
-ChartJS.register(ArcElement, Tooltip, Legend, RadialLinearScale, PointElement, LineElement, Filler)
 
 declare global {
   interface Window {

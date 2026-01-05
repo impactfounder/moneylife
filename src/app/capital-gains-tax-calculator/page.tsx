@@ -15,18 +15,7 @@ import {
   type CapitalGainsTaxResult
 } from '@/lib/capital-gains-tax-calculator'
 import { formatNumber } from '@/lib/calculations'
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from 'chart.js'
-import { Pie, Bar } from 'react-chartjs-2'
-
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement)
+import { DynamicPie as Pie, DynamicBar as Bar } from '@/components/charts/DynamicCharts'
 
 export default function CapitalGainsTaxCalculatorPage() {
   const [acquisitionPrice, setAcquisitionPrice] = useState('')
@@ -38,6 +27,7 @@ export default function CapitalGainsTaxCalculatorPage() {
   const [isLongTerm, setIsLongTerm] = useState(true)
   const [result, setResult] = useState<CapitalGainsTaxResult | null>(null)
   const [showResult, setShowResult] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleFormatInput = (value: string, setter: (v: string) => void) => {
     const numbers = value.replace(/[^0-9]/g, '')
@@ -50,6 +40,7 @@ export default function CapitalGainsTaxCalculatorPage() {
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
 
     const acquisition = parseInt(acquisitionPrice.replace(/,/g, '')) * 10000
     const transfer = parseInt(transferPrice.replace(/,/g, '')) * 10000
@@ -58,7 +49,7 @@ export default function CapitalGainsTaxCalculatorPage() {
     const period = parseInt(holdingPeriod) || 1
 
     if (!acquisition || !transfer) {
-      alert('취득가액과 양도가액을 입력해주세요')
+      setError('취득가액과 양도가액을 입력해주세요')
       return
     }
 
@@ -301,6 +292,16 @@ export default function CapitalGainsTaxCalculatorPage() {
                           <span className="text-slate-700 font-medium">장기보유특별공제 적용 (3년 이상)</span>
                         </label>
                       </div>
+
+                      {/* 에러 메시지 */}
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-center gap-2">
+                          <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                          </svg>
+                          <p className="text-red-600 text-sm font-medium">{error}</p>
+                        </div>
+                      )}
 
                       {/* 계산 버튼 */}
                       <button

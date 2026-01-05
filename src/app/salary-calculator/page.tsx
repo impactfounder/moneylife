@@ -7,22 +7,12 @@ import { Footer } from '@/components/Footer'
 import { AdUnit } from '@/components/AdUnit'
 import { RelatedGuides } from '@/components/ui/RelatedGuides'
 import { RelatedContentCTA } from '@/components/ui/RelatedContentCTA'
+import { HelpTooltip } from '@/components/ui/Tooltip'
+import { DynamicPie as Pie, DynamicBar as Bar } from '@/components/charts/DynamicCharts'
 import { getPostsByCalculator } from '@/data/posts'
 import { calculateSalary, getTaxExemptLimits } from '@/lib/salary-calculator'
 import { formatNumber } from '@/lib/calculations'
 import type { SalaryResult } from '@/types'
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from 'chart.js'
-import { Pie, Bar } from 'react-chartjs-2'
-
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement)
 
 export default function SalaryCalculatorPage() {
   const [grossSalary, setGrossSalary] = useState('')
@@ -30,6 +20,7 @@ export default function SalaryCalculatorPage() {
   const [childrenUnder20, setChildrenUnder20] = useState('0')
   const [result, setResult] = useState<SalaryResult | null>(null)
   const [showResult, setShowResult] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   // 상세 설정 (비과세 & 성과급)
   const [showAdvanced, setShowAdvanced] = useState(false)
@@ -53,10 +44,11 @@ export default function SalaryCalculatorPage() {
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
 
     const gross = parseInt(grossSalary.replace(/,/g, '')) * 10000 // 만원 -> 원
     if (!gross || gross <= 0) {
-      alert('세전 급여를 입력해주세요')
+      setError('세전 급여를 입력해주세요')
       return
     }
 
@@ -92,6 +84,7 @@ export default function SalaryCalculatorPage() {
     setDependents('1')
     setChildrenUnder20('0')
     setResult(null)
+    setError(null)
     // 상세 설정 초기화
     setMealAllowance('')
     setCarAllowance('')
@@ -202,37 +195,62 @@ export default function SalaryCalculatorPage() {
               <div className="w-full max-w-lg">
                 <div className="glass-effect rounded-3xl p-8 shadow-2xl border border-white/50 relative overflow-hidden bg-white/80 backdrop-blur-xl">
                   {!showResult ? (
-                    <form onSubmit={handleCalculate} className="space-y-6">
+                    <form onSubmit={handleCalculate} className="space-y-6" aria-label="급여 실수령액 계산기">
+                      {/* 에러 메시지 */}
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-center gap-2">
+                          <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                          </svg>
+                          <p className="text-red-600 text-sm font-medium">{error}</p>
+                        </div>
+                      )}
+
                       {/* 세전 급여 */}
                       <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                        <label htmlFor="grossSalary" className="block text-sm font-bold text-slate-700 mb-3 text-center">
                           세전 급여 (월)
+                          <HelpTooltip content="4대보험, 세금 공제 전 급여입니다" />
                         </label>
                         <div className="relative">
                           <input
+                            id="grossSalary"
                             type="text"
+                            inputMode="numeric"
                             value={grossSalary}
-                            onChange={(e) => handleFormatInput(e.target.value, setGrossSalary)}
+                            onChange={(e) => {
+                              handleFormatInput(e.target.value, setGrossSalary)
+                              if (error) setError(null)
+                            }}
                             placeholder="예: 350"
-                            className="w-full px-4 py-4 text-2xl font-bold text-center border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:ring-2 focus:ring-slate-200 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900"
+                            aria-describedby="grossSalaryHint"
+                            aria-invalid={error ? 'true' : 'false'}
+                            className={`w-full px-4 py-4 text-2xl font-bold text-center border-2 rounded-xl focus:ring-2 transition-all bg-slate-50 focus:bg-white placeholder-slate-300 text-slate-900 ${
+                              error
+                                ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
+                                : 'border-slate-200 focus:border-slate-900 focus:ring-slate-200'
+                            }`}
                           />
                           <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold">
                             만원
                           </div>
                         </div>
-                        <p className="text-xs text-slate-400 mt-2 text-center">
+                        <p id="grossSalaryHint" className="text-xs text-slate-400 mt-2 text-center">
                           예: 월 350만원 = 350
                         </p>
                       </div>
 
                       {/* 부양가족 수 */}
                       <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-3 text-center">
+                        <label htmlFor="dependents" className="block text-sm font-bold text-slate-700 mb-3 text-center">
                           부양가족 수 (본인 포함)
+                          <HelpTooltip content="본인을 포함한 부양가족 수입니다. 세금 공제 산정에 사용됩니다" />
                         </label>
                         <div className="relative">
                           <input
+                            id="dependents"
                             type="number"
+                            inputMode="numeric"
                             value={dependents}
                             onChange={(e) => setDependents(e.target.value)}
                             placeholder="1"
