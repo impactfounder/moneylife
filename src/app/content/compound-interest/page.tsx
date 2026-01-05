@@ -7,7 +7,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '복리 투자 시뮬레이션 | moneylife.kr',
-  description: '복리의 마법을 시뮬레이션으로 확인하세요. 월 얼마를, 몇 %로, 몇 년 투자하면 얼마가 될까? 2025년 최신 투자 전략까지.',
+  description: '복리의 마법을 시뮬레이션으로 확인하세요. 월 얼마를, 몇 %로, 몇 년 투자하면 얼마가 될까? 2026년 최신 투자 전략까지.',
   keywords: '복리, 복리계산, 복리투자, 장기투자, 복리 시뮬레이션, 재테크',
 }
 

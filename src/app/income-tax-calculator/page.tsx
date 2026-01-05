@@ -150,7 +150,7 @@ export default function IncomeTaxCalculatorPage() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  2025년 종합소득세율 적용
+                  2026년 종합소득세율 적용
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   종합소득세 계산기
@@ -542,7 +542,7 @@ export default function IncomeTaxCalculatorPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <div className="bg-slate-900 rounded-2xl p-8 text-white">
-              <h2 className="text-xl font-bold mb-6 text-center">2025년 종합소득세율표</h2>
+              <h2 className="text-xl font-bold mb-6 text-center">2026년 종합소득세율표</h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -565,7 +565,7 @@ export default function IncomeTaxCalculatorPage() {
                 </table>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 국세청 (2025년)
+                출처: 국세청 (2026년)
               </p>
             </div>
           </div>

@@ -513,7 +513,7 @@ export default function MinimumWageCalculatorPage() {
                 className="bg-white rounded-2xl p-6 hover:bg-slate-50 transition-colors border border-slate-200"
               >
                 <h3 className="font-bold text-slate-900 mb-2">종합소득세 계산기</h3>
-                <p className="text-sm text-slate-600">2025년 세율 기준</p>
+                <p className="text-sm text-slate-600">2026년 세율 기준</p>
               </Link>
             </div>
           </div>

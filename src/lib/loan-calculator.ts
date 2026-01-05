@@ -7,7 +7,7 @@ import type {
   LTVResult,
 } from '@/types'
 
-// 2025년 스트레스 금리 가산 기준
+// 2026년 스트레스 금리 가산 기준
 const STRESS_RATE_BY_TYPE = {
   fixed: 0,        // 고정금리: 가산 없음
   variable: 1.5,   // 변동금리: 1.5%p 가산
@@ -15,7 +15,7 @@ const STRESS_RATE_BY_TYPE = {
   periodic: 0.375, // 주기형 (금리 조정 주기): 0.375%p 가산
 }
 
-// 지역별 LTV 기준 (2025년 기준)
+// 지역별 LTV 기준 (2026년 기준)
 const LTV_BY_REGION: Record<LoanRegion, { base: number; firstHomeBonus: number; name: string }> = {
   gangnam: { base: 50, firstHomeBonus: 10, name: '투기과열지구 (강남/서초/송파/용산)' },
   seoul: { base: 50, firstHomeBonus: 10, name: '조정대상지역 (서울)' },
@@ -24,7 +24,7 @@ const LTV_BY_REGION: Record<LoanRegion, { base: number; firstHomeBonus: number; 
   custom: { base: 70, firstHomeBonus: 0, name: '직접 입력' },
 }
 
-// DSR 한도 (2025년 기준)
+// DSR 한도 (2026년 기준)
 const DSR_LIMIT = 40 // 40%
 
 export function calculateLoan(input: LoanInput): LoanResult {

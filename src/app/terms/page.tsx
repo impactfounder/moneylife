@@ -41,7 +41,7 @@ export default function TermsPage() {
 
                 <div className="mt-12 p-4 bg-gray-100 rounded-lg">
                     <p className="text-sm text-gray-600">
-                        본 약관은 2025년 1월 1일부터 시행됩니다.
+                        본 약관은 2026년 1월 1일부터 시행됩니다.
                     </p>
                 </div>
             </div>

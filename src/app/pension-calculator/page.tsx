@@ -177,7 +177,7 @@ export default function PensionCalculatorPage() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  2025년 국민연금 기준
+                  2026년 국민연금 기준
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   국민연금 계산기
@@ -577,7 +577,7 @@ export default function PensionCalculatorPage() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">2025년 국민연금 보험료율 9%</span>
+                    <span className="text-slate-300">2026년 국민연금 보험료율 9.5%</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
@@ -604,7 +604,7 @@ export default function PensionCalculatorPage() {
                 </div>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 국민연금공단 (2025년)
+                출처: 국민연금공단 (2026년)
               </p>
             </div>
           </div>

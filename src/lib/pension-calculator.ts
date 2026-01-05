@@ -1,6 +1,6 @@
 /**
  * 연금 계산기 라이브러리
- * 2025년 기준 국민연금 예상 수령액 계산
+ * 2026년 기준 국민연금 예상 수령액 계산
  */
 
 export interface PensionInput {
@@ -19,9 +19,9 @@ export interface PensionResult {
   monthlyContribution: number;         // 월 납부액
 }
 
-const PENSION_RATE = 0.09; // 국민연금 보험료율 9% (2025년 기준)
+const PENSION_RATE = 0.095; // 국민연금 보험료율 9.5% (2026년 기준, 2033년까지 매년 0.5%p 인상)
 const AVERAGE_LIFE_EXPECTANCY = 85; // 평균 수명
-const REPLACEMENT_RATE = 0.40; // 소득대체율 40% (2025년 기준)
+const REPLACEMENT_RATE = 0.40; // 소득대체율 40% (2026년 기준)
 
 /**
  * 국민연금 예상 수령액 계산
@@ -34,7 +34,7 @@ export function calculatePension(input: PensionInput): PensionResult {
     expectedRetirementAge
   } = input;
 
-  // 월 납부액 (소득의 9%, 본인 4.5% + 회사 4.5%)
+  // 월 납부액 (소득의 9.5%, 본인 4.75% + 회사 4.75%)
   const monthlyContribution = averageMonthlyIncome * PENSION_RATE;
 
   // 총 납부 예상액

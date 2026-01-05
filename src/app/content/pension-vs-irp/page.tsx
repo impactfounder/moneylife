@@ -6,8 +6,8 @@ import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '연금저축 vs IRP 비교 2025 | moneylife.kr',
-  description: '연금저축 vs IRP 완벽 비교 2025! 세액공제 한도, 수익률, 추천 대상까지 한눈에 정리. 어떤 연금이 나에게 유리할까?',
+  title: '연금저축 vs IRP 비교 2026 | moneylife.kr',
+  description: '연금저축 vs IRP 완벽 비교 2026! 세액공제 한도, 수익률, 추천 대상까지 한눈에 정리. 어떤 연금이 나에게 유리할까?',
   keywords: '연금저축, IRP, 개인형퇴직연금, 연금저축 세액공제, IRP 세액공제, 연금 비교',
 }
 
@@ -26,7 +26,7 @@ export default function PensionVsIRP() {
             연금저축 vs IRP 완벽 비교
           </h1>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            2025년 최신 기준으로 연금저축과 IRP를 비교합니다.
+            2026년 최신 기준으로 연금저축과 IRP를 비교합니다.
           </p>
         </section>
 
@@ -108,7 +108,7 @@ export default function PensionVsIRP() {
           </div>
 
           <p className="text-xs sm:text-sm text-slate-600 mt-3 sm:mt-4">
-            * 2025년 기준 / 총급여 5,500만원 이하 16.5%, 초과 13.2%
+            * 2026년 기준 / 총급여 5,500만원 이하 16.5%, 초과 13.2%
           </p>
         </section>
 

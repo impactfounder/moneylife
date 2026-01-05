@@ -54,7 +54,7 @@ export default function PrivacyPage() {
 
                 <div className="mt-12 p-4 bg-gray-100 rounded-lg">
                     <p className="text-sm text-gray-600">
-                        본 방침은 2025년 1월 1일부터 시행됩니다.
+                        본 방침은 2026년 1월 1일부터 시행됩니다.
                     </p>
                 </div>
             </div>

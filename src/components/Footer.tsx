@@ -14,7 +14,7 @@ export function Footer() {
             <p className="text-slate-500 text-xs mb-4">스마트 금융계산기</p>
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-md">
               복잡한 금융 계산을 쉽고 정확하게.<br />
-              2025년 최신 세법과 법령을 반영하여 신뢰할 수 있는 결과를 제공합니다.
+              2026년 최신 세법과 법령을 반영하여 신뢰할 수 있는 결과를 제공합니다.
             </p>
           </div>
 

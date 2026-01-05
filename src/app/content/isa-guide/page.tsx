@@ -7,7 +7,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'ISA 계좌 완벽 가이드 | moneylife.kr',
-  description: 'ISA 계좌의 모든 것. 가입 조건, 세제 혜택, 투자 전략까지 2025년 최신 정보로 정리했습니다.',
+  description: 'ISA 계좌의 모든 것. 가입 조건, 세제 혜택, 투자 전략까지 2026년 최신 정보로 정리했습니다.',
   keywords: 'ISA, 개인종합자산관리계좌, ISA 계좌, ISA 세제혜택, ISA 투자전략',
 }
 
@@ -26,7 +26,7 @@ export default function ISAGuide() {
             ISA 계좌 완벽 가이드
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
-            ISA는 대한민국 최강의 절세 계좌입니다. 2025년 기준 최신 정보로 똑똑하게 활용하세요.
+            ISA는 대한민국 최강의 절세 계좌입니다. 2026년 기준 최신 정보로 똑똑하게 활용하세요.
           </p>
         </section>
 

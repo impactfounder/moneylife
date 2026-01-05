@@ -1,6 +1,6 @@
 import type { SalaryInput, SalaryResult } from '@/types'
 
-// 비과세 한도 (2025년 기준)
+// 비과세 한도 (2026년 기준)
 const TAX_EXEMPT_LIMITS = {
   mealAllowance: 200000,      // 식대 월 20만원
   carAllowance: 200000,       // 자가운전보조금 월 20만원
@@ -22,7 +22,7 @@ const TAX_BRACKETS = [
 ]
 
 /**
- * 급여 계산 로직 (2025년 기준) - 고도화 버전
+ * 급여 계산 로직 (2026년 기준) - 고도화 버전
  */
 export function calculateSalary(input: SalaryInput): SalaryResult {
   const { grossSalary, dependents = 0, childrenUnder20 = 0, taxExempt, incentive } = input
@@ -41,10 +41,10 @@ export function calculateSalary(input: SalaryInput): SalaryResult {
   // 과세 대상 급여 (총 급여 - 비과세)
   const taxableGrossSalary = Math.max(grossSalary - monthlyTaxExempt, 0)
 
-  // 4대보험 계산 (과세 급여 기준)
-  const nationalPension = Math.min(taxableGrossSalary * 0.045, 265500) // 상한액 265,500원
-  const healthInsurance = taxableGrossSalary * 0.03545
-  const longTermCare = healthInsurance * 0.1295
+  // 4대보험 계산 (과세 급여 기준) - 2026년 요율 적용
+  const nationalPension = Math.min(taxableGrossSalary * 0.0475, 302575) // 상한액 302,575원 (기준소득월액 637만원 × 4.75%)
+  const healthInsurance = taxableGrossSalary * 0.03595 // 건강보험 7.19% × 50%
+  const longTermCare = healthInsurance * 0.1314 // 장기요양보험 13.14%
   const employmentInsurance = taxableGrossSalary * 0.009
 
   // 연간 과세 급여
@@ -104,10 +104,10 @@ export function calculateSalary(input: SalaryInput): SalaryResult {
     const incentiveTax = taxWithIncentive - yearlyIncomeTax
     const incentiveLocalTax = incentiveTax * 0.1
 
-    // 성과급에 대한 4대보험 추가 (성과급도 4대보험 대상)
-    const incentiveNationalPension = Math.min(incentive.amount * 0.045, 265500 * 12 - nationalPension * 12)
-    const incentiveHealthInsurance = incentive.amount * 0.03545
-    const incentiveLongTermCare = incentiveHealthInsurance * 0.1295
+    // 성과급에 대한 4대보험 추가 (성과급도 4대보험 대상) - 2026년 요율 적용
+    const incentiveNationalPension = Math.min(incentive.amount * 0.0475, 302575 * 12 - nationalPension * 12)
+    const incentiveHealthInsurance = incentive.amount * 0.03595
+    const incentiveLongTermCare = incentiveHealthInsurance * 0.1314
     const incentiveEmploymentInsurance = incentive.amount * 0.009
 
     const totalIncentiveDeduction =

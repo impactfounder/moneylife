@@ -7,7 +7,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '주택담보대출 갈아타기 체크리스트 | moneylife.kr',
-  description: '주담대 갈아타기로 이자 절감하는 방법. 전환 시기, 비용, 절차까지 2025년 최신 정보로 정리했습니다.',
+  description: '주담대 갈아타기로 이자 절감하는 방법. 전환 시기, 비용, 절차까지 2026년 최신 정보로 정리했습니다.',
   keywords: '주담대, 주택담보대출, 대출갈아타기, 대환대출, 금리인하, 대출전환',
 }
 
@@ -220,7 +220,7 @@ export default function MortgageRefinanceGuide() {
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-4">📌 2025년 주요 은행 금리 (예시)</h3>
+              <h3 className="text-xl font-semibold mb-4">📌 2026년 주요 은행 금리 (예시)</h3>
               <p className="text-sm text-slate-600 mb-4">
                 * 실제 금리는 신용점수, DSR, 우대조건에 따라 달라집니다.
               </p>
@@ -358,7 +358,7 @@ export default function MortgageRefinanceGuide() {
             <div className="border-l-4 border-yellow-500 bg-yellow-50 p-6 rounded-r-xl">
               <h3 className="font-semibold text-yellow-900 mb-3">DSR 규제 주의</h3>
               <p className="text-slate-700 mb-3 text-sm">
-                2025년 기준, 총부채원리금상환비율(DSR) 40% 초과 시 대출 제한
+                2026년 기준, 총부채원리금상환비율(DSR) 40% 초과 시 대출 제한
               </p>
               <div className="bg-white p-4 rounded text-sm">
                 <p className="font-semibold mb-2">DSR 계산 공식</p>

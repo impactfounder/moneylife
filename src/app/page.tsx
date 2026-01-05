@@ -44,7 +44,7 @@ const calculators = [
     id: 'salary-calculator',
     name: '급여 계산기',
     icon: '💰',
-    description: '2025년 4대보험, 소득세 적용 실수령액 정확 계산',
+    description: '2026년 4대보험, 소득세 적용 실수령액 정확 계산',
     href: '/salary-calculator',
     badge: '필수',
   },
@@ -74,7 +74,7 @@ const calculators = [
     id: 'pension-calculator',
     name: '국민연금 계산기',
     icon: '🏛️',
-    description: '2025년 기준 예상 월 연금 수령액과 손익분기 나이 계산',
+    description: '2026년 기준 예상 월 연금 수령액과 손익분기 나이 계산',
     href: '/pension-calculator',
   },
   {
@@ -88,7 +88,7 @@ const calculators = [
     id: 'income-tax-calculator',
     name: '종합소득세 계산기',
     icon: '📊',
-    description: '2025년 8단계 누진세율, 6가지 공제 항목 자동 계산',
+    description: '2026년 8단계 누진세율, 6가지 공제 항목 자동 계산',
     href: '/income-tax-calculator',
   },
   {
@@ -438,7 +438,7 @@ export default function Home() {
                 <div className="text-4xl mb-3">🎯</div>
                 <h3 className="font-bold text-slate-900 mb-1">정확한 계산</h3>
                 <p className="text-sm text-slate-500">
-                  2025년 최신 세법 반영
+                  2026년 최신 세법 반영
                 </p>
               </div>
               <div>

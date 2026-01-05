@@ -72,7 +72,7 @@ export default function AboutPage() {
                 <span className="text-teal-600 font-bold">✓</span>
                 <div>
                   <h4 className="font-semibold text-slate-900">급여 계산기</h4>
-                  <p className="text-slate-600 text-sm">2025년 최신 세율 적용, 4대보험 자동 계산</p>
+                  <p className="text-slate-600 text-sm">2026년 최신 세율 적용, 4대보험 자동 계산</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

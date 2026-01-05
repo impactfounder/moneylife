@@ -6,9 +6,9 @@ import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '연봉 1억 실수령액은 얼마? (2025년 최신) | moneylife.kr',
-  description: '2025년 기준 연봉 1억원의 실수령액은 약 7,200만원입니다. 4대보험과 세금을 제외한 월급과 연봉을 계산해드립니다.',
-  keywords: '연봉 1억, 실수령액, 연봉 계산, 2025년 연봉, 세후 급여, 연봉 1억 세금',
+  title: '연봉 1억 실수령액은 얼마? (2026년 최신) | moneylife.kr',
+  description: '2026년 기준 연봉 1억원의 실수령액은 약 7,200만원입니다. 4대보험과 세금을 제외한 월급과 연봉을 계산해드립니다.',
+  keywords: '연봉 1억, 실수령액, 연봉 계산, 2026년 연봉, 세후 급여, 연봉 1억 세금',
   alternates: {
     canonical: '/content/annual-salary-100m',
   },
@@ -29,7 +29,7 @@ export default function AnnualSalary100M() {
             연봉 1억 실수령액은?
           </h1>
           <p className="text-lg text-slate-600">
-            2025년 기준 4대보험, 세금 빼면 얼마?
+            2026년 기준 4대보험, 세금 빼면 얼마?
           </p>
         </section>
 

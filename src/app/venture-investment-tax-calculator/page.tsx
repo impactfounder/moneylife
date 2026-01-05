@@ -21,7 +21,7 @@ export default function VentureInvestmentTaxCalculator() {
                             벤처기업 투자 시 받을 수 있는 소득공제 혜택을 계산합니다
                         </p>
                         <p className="text-sm text-gray-500 mt-2">
-                            2025년 기준 | 벤처투자 소득공제 최대 100%
+                            2026년 기준 | 벤처투자 소득공제 최대 100%
                         </p>
                     </div>
 
@@ -52,7 +52,7 @@ export default function VentureInvestmentTaxCalculator() {
 
                     {/* 벤처투자 세제혜택 안내 */}
                     <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6">2025년 벤처투자 소득공제 혜택</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-6">2026년 벤처투자 소득공제 혜택</h2>
 
                         <div className="space-y-6">
                             <div className="p-4 bg-indigo-50 rounded-xl">

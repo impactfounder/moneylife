@@ -6,9 +6,9 @@ import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '내 연봉, 상위 몇 %? 2025년 연봉 순위표 | moneylife.kr',
-  description: '2025년 한국 근로자 연봉 순위표. 내 연봉이 상위 몇 %인지 확인하세요. 상위 50%, 30%, 10%, 1% 기준 공개.',
-  keywords: '연봉 순위, 상위 몇 퍼센트, 연봉 상위%, 평균 연봉, 중위 연봉, 2025년 연봉',
+  title: '내 연봉, 상위 몇 %? 2026년 연봉 순위표 | moneylife.kr',
+  description: '2026년 한국 근로자 연봉 순위표. 내 연봉이 상위 몇 %인지 확인하세요. 상위 50%, 30%, 10%, 1% 기준 공개.',
+  keywords: '연봉 순위, 상위 몇 퍼센트, 연봉 상위%, 평균 연봉, 중위 연봉, 2026년 연봉',
 }
 
 export default function SalaryRanking() {
@@ -26,7 +26,7 @@ export default function SalaryRanking() {
             내 연봉, 상위 몇 %?
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
-            2025년 한국 근로자 연봉 순위표
+            2026년 한국 근로자 연봉 순위표
           </p>
         </section>
 
@@ -64,7 +64,7 @@ export default function SalaryRanking() {
 
         {/* 연봉 순위표 */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
-          <h2 className="text-xl font-bold text-slate-900 mb-6">2025년 연봉 순위표</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-6">2026년 연봉 순위표</h2>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">

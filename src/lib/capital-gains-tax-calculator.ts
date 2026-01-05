@@ -1,6 +1,6 @@
 /**
  * 양도소득세 계산기 라이브러리
- * 2025년 기준 부동산 양도소득세 계산
+ * 2026년 기준 부동산 양도소득세 계산
  */
 
 export interface CapitalGainsTaxInput {
@@ -24,7 +24,7 @@ export interface CapitalGainsTaxResult {
   netProfit: number;            // 실제 수익 (양도차익 - 세금)
 }
 
-// 2025년 기준 양도소득세율 (누진세율)
+// 2026년 기준 양도소득세율 (누진세율)
 const TAX_BRACKETS = [
   { limit: 14000000, rate: 0.06 },
   { limit: 50000000, rate: 0.15 },

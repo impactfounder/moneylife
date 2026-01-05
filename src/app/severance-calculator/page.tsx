@@ -140,7 +140,7 @@ export default function SeveranceCalculatorPage() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  2025년 퇴직소득세 기준
+                  2026년 퇴직소득세 기준
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   퇴직금 계산기
@@ -526,7 +526,7 @@ export default function SeveranceCalculatorPage() {
                 </div>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 고용노동부, 국세청 퇴직소득세 기준 (2025년)
+                출처: 고용노동부, 국세청 퇴직소득세 기준 (2026년)
               </p>
             </div>
           </div>

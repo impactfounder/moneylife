@@ -181,7 +181,7 @@ export default function SalaryCalculatorPage() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  2025년 4대보험 요율 적용
+                  2026년 4대보험 요율 적용
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   급여 실수령액 계산기
@@ -539,7 +539,7 @@ export default function SalaryCalculatorPage() {
 
                 {/* 안내 문구 */}
                 <p className="text-center text-xs text-slate-400 mt-4">
-                  * 2025년 4대보험 요율 및 간이세액표 기준
+                  * 2026년 4대보험 요율 및 간이세액표 기준
                 </p>
               </div>
             </div>
@@ -612,15 +612,15 @@ export default function SalaryCalculatorPage() {
                   </div>
                   <div className="divide-y divide-slate-100">
                     <div className="px-6 py-4 flex justify-between">
-                      <span className="text-slate-600">국민연금 (4.5%)</span>
+                      <span className="text-slate-600">국민연금 (4.75%)</span>
                       <span className="font-medium text-slate-900">{formatNumber(result.nationalPension)}원</span>
                     </div>
                     <div className="px-6 py-4 flex justify-between">
-                      <span className="text-slate-600">건강보험 (3.545%)</span>
+                      <span className="text-slate-600">건강보험 (3.595%)</span>
                       <span className="font-medium text-slate-900">{formatNumber(result.healthInsurance)}원</span>
                     </div>
                     <div className="px-6 py-4 flex justify-between">
-                      <span className="text-slate-600">장기요양보험 (건보의 12.95%)</span>
+                      <span className="text-slate-600">장기요양보험 (건보의 13.14%)</span>
                       <span className="font-medium text-slate-900">{formatNumber(result.longTermCare)}원</span>
                     </div>
                     <div className="px-6 py-4 flex justify-between">
@@ -729,13 +729,13 @@ export default function SalaryCalculatorPage() {
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-slate-800 mb-4">
                   4대보험이란?
-                  <span className="text-sm font-normal text-slate-500 ml-2">(2025년 기준)</span>
+                  <span className="text-sm font-normal text-slate-500 ml-2">(2026년 기준)</span>
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   4대보험은 국민연금, 건강보험, 고용보험, 산재보험을 말합니다.
-                  <strong className="text-slate-800"> 국민연금(4.5%)</strong>,
-                  <strong className="text-slate-800"> 건강보험(3.545%)</strong>,
-                  <strong className="text-slate-800"> 장기요양보험(건강보험료의 12.95%)</strong>,
+                  <strong className="text-slate-800"> 국민연금(4.75%)</strong>,
+                  <strong className="text-slate-800"> 건강보험(3.595%)</strong>,
+                  <strong className="text-slate-800"> 장기요양보험(건강보험료의 13.14%)</strong>,
                   <strong className="text-slate-800"> 고용보험(0.9%)</strong>이 급여에서 공제됩니다.
                   산재보험은 회사가 전액 부담하므로 근로자 급여에서는 공제되지 않습니다.
                 </p>
@@ -745,7 +745,7 @@ export default function SalaryCalculatorPage() {
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-slate-800 mb-4">
                   소득세와 지방소득세
-                  <span className="text-sm font-normal text-slate-500 ml-2">(2025년 기준)</span>
+                  <span className="text-sm font-normal text-slate-500 ml-2">(2026년 기준)</span>
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   소득세는 과세표준에 따라 <strong className="text-slate-800">6~45%의 8단계 누진세율</strong>이 적용됩니다.
@@ -761,7 +761,7 @@ export default function SalaryCalculatorPage() {
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-slate-800 mb-4">
                   비과세 항목
-                  <span className="text-sm font-normal text-slate-500 ml-2">(2025년 기준)</span>
+                  <span className="text-sm font-normal text-slate-500 ml-2">(2026년 기준)</span>
                 </h3>
                 <ul className="space-y-2 text-slate-600">
                   <li className="flex items-start gap-2">
@@ -808,17 +808,17 @@ export default function SalaryCalculatorPage() {
                 <ul className="space-y-2 text-sm text-slate-600">
                   <li>
                     <a href="https://www.nps.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                      국민연금공단 - 국민연금 보험료 (2025년 상한액: 617만원)
+                      국민연금공단 - 국민연금 보험료 (2026년 상한액: 637만원, 보험료율 9.5%)
                     </a>
                   </li>
                   <li>
                     <a href="https://www.nhis.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                      국민건강보험공단 - 건강보험료 안내 (2025년 보수월액 3.545%)
+                      국민건강보험공단 - 건강보험료 안내 (2026년 보수월액 3.595%)
                     </a>
                   </li>
                   <li>
                     <a href="https://www.nts.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                      국세청 - 소득세법 및 세율표 (2025년 기준)
+                      국세청 - 소득세법 및 세율표 (2026년 기준)
                     </a>
                   </li>
                   <li>
@@ -828,7 +828,7 @@ export default function SalaryCalculatorPage() {
                   </li>
                 </ul>
                 <p className="text-xs text-slate-500 mt-4 italic">
-                  * 본 계산기는 2025년 보험료율 및 세법을 반영하였습니다. 간이세액표 기준으로 계산되며, 연말정산 시 실제 세액과 차이가 있을 수 있습니다.
+                  * 본 계산기는 2026년 보험료율 및 세법을 반영하였습니다. 간이세액표 기준으로 계산되며, 연말정산 시 실제 세액과 차이가 있을 수 있습니다.
                 </p>
               </div>
             </div>
@@ -844,15 +844,15 @@ export default function SalaryCalculatorPage() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">2025년 4대보험 요율 적용</span>
+                    <span className="text-slate-300">2026년 4대보험 요율 적용</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">국민연금 상한액: 월 617만원</span>
+                    <span className="text-slate-300">국민연금: 9.5% (근로자 4.75%), 상한액 637만원</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">건강보험료율: 7.09% (근로자 3.545%)</span>
+                    <span className="text-slate-300">건강보험료율: 7.19% (근로자 3.595%)</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
@@ -862,7 +862,7 @@ export default function SalaryCalculatorPage() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">장기요양보험료율: 건강보험의 12.95%</span>
+                    <span className="text-slate-300">장기요양보험료율: 건강보험의 13.14%</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
@@ -879,7 +879,7 @@ export default function SalaryCalculatorPage() {
                 </div>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 국민건강보험공단, 국세청 간이세액표 (2025년)
+                출처: 국민건강보험공단, 국세청 간이세액표 (2026년)
               </p>
             </div>
           </div>

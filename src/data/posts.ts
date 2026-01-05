@@ -15,25 +15,25 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: '2025-salary-net-income-table',
-    title: '2025년 연봉 실수령액 표 - 3000만원부터 1억까지 완벽 정리',
-    description: '2025년 4대보험 요율이 적용된 연봉별 실수령액을 한눈에 확인하세요. 연봉 3000만원부터 1억원까지 구간별 실수령액과 공제 내역을 상세히 정리했습니다.',
+    title: '2026년 연봉 실수령액 표 - 3000만원부터 1억까지 완벽 정리',
+    description: '2026년 4대보험 요율이 적용된 연봉별 실수령액을 한눈에 확인하세요. 연봉 3000만원부터 1억원까지 구간별 실수령액과 공제 내역을 상세히 정리했습니다.',
     thumbnail: '💰',
     category: '급여',
     relatedCalculator: '/salary-calculator',
     relatedCalculatorName: '급여 계산기',
-    publishedAt: '2025-01-15',
+    publishedAt: '2026-01-15',
     readTime: '5분',
     toc: [
-      { id: 'intro', title: '2025년 달라지는 것들' },
-      { id: 'insurance-rates', title: '2025년 4대보험 요율' },
+      { id: 'intro', title: '2026년 달라지는 것들' },
+      { id: 'insurance-rates', title: '2026년 4대보험 요율' },
       { id: 'salary-table', title: '연봉별 실수령액 표' },
       { id: 'deduction-details', title: '공제 항목 상세 설명' },
       { id: 'tips', title: '실수령액 늘리는 꿀팁' },
     ],
     content: `
-## 2025년 달라지는 것들 {#intro}
+## 2026년 달라지는 것들 {#intro}
 
-2025년에도 4대보험 요율과 소득세 기준이 일부 변경되었습니다. 특히 **국민연금 기준소득월액 상한이 590만원으로 인상**되면서 고소득자의 공제액이 증가했습니다.
+2026년에도 4대보험 요율과 소득세 기준이 일부 변경되었습니다. 특히 **국민연금 기준소득월액 상한이 590만원으로 인상**되면서 고소득자의 공제액이 증가했습니다.
 
 ### 주요 변경 사항
 - 국민연금 기준소득월액 상한: 553만원 → **590만원**
@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
 
 ---
 
-## 2025년 4대보험 요율 {#insurance-rates}
+## 2026년 4대보험 요율 {#insurance-rates}
 
 | 보험 종류 | 근로자 부담률 | 사업주 부담률 | 합계 |
 |----------|-------------|-------------|------|
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
 
 ## 연봉별 실수령액 표 {#salary-table}
 
-2025년 기준, 부양가족 1인(본인) 기준 월 실수령액입니다.
+2026년 기준, 부양가족 1인(본인) 기준 월 실수령액입니다.
 
 | 연봉 | 월 세전급여 | 4대보험 | 소득세 | 월 실수령액 | 연 실수령액 |
 |------|-----------|--------|--------|-----------|-----------|
@@ -121,13 +121,13 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'year-end-tax-adjustment-tips',
-    title: '연말정산 환급 극대화! 2025년 13월의 월급 만드는 법',
+    title: '연말정산 환급 극대화! 2026년 13월의 월급 만드는 법',
     description: '연말정산으로 100만원 이상 환급받는 꿀팁을 공개합니다. 신용카드, 의료비, 교육비 공제부터 연금저축까지 놓치기 쉬운 공제 항목을 총정리했습니다.',
     thumbnail: '🎁',
     category: '세금',
     relatedCalculator: '/income-tax-calculator',
     relatedCalculatorName: '종합소득세 계산기',
-    publishedAt: '2025-01-10',
+    publishedAt: '2026-01-10',
     readTime: '7분',
     toc: [
       { id: 'intro', title: '연말정산이란?' },
@@ -250,18 +250,18 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'ltv-dti-dsr-explained',
     title: 'LTV, DTI, DSR 완벽 정리 - 내 대출 한도는 얼마일까?',
-    description: '주택담보대출의 핵심 규제인 LTV, DTI, DSR의 개념과 계산 방법을 쉽게 설명합니다. 2025년 최신 규제 기준과 대출 한도 계산법까지 알아보세요.',
+    description: '주택담보대출의 핵심 규제인 LTV, DTI, DSR의 개념과 계산 방법을 쉽게 설명합니다. 2026년 최신 규제 기준과 대출 한도 계산법까지 알아보세요.',
     thumbnail: '🏠',
     category: '대출',
     relatedCalculator: '/mortgage-calculator',
     relatedCalculatorName: '주택담보대출 계산기',
-    publishedAt: '2025-01-12',
+    publishedAt: '2026-01-12',
     readTime: '6분',
     toc: [
       { id: 'ltv', title: 'LTV란?' },
       { id: 'dti', title: 'DTI란?' },
       { id: 'dsr', title: 'DSR이란?' },
-      { id: 'regulations', title: '2025년 규제 기준' },
+      { id: 'regulations', title: '2026년 규제 기준' },
       { id: 'calculation', title: '대출 한도 계산 예시' },
     ],
     content: `
@@ -275,7 +275,7 @@ export const blogPosts: BlogPost[] = [
 - 10억원 아파트, LTV 50% 적용 시
 - 최대 대출 가능액: **5억원**
 
-### 2025년 LTV 규제
+### 2026년 LTV 규제
 
 | 지역 | 규제지역 | 비규제지역 |
 |------|---------|-----------|
@@ -323,7 +323,7 @@ export const blogPosts: BlogPost[] = [
 
 ---
 
-## 2025년 규제 기준 {#regulations}
+## 2026년 규제 기준 {#regulations}
 
 ### 지역별 LTV 한도
 
@@ -395,7 +395,7 @@ LTV와 DSR 중 **낮은 금액**이 실제 대출 한도!
     category: '연금',
     relatedCalculator: '/severance-calculator',
     relatedCalculatorName: '퇴직금 계산기',
-    publishedAt: '2025-01-08',
+    publishedAt: '2026-01-08',
     readTime: '6분',
     toc: [
       { id: 'severance-tax', title: '퇴직소득세 계산 방법' },
@@ -520,13 +520,13 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
   },
   {
     slug: '30s-average-salary-korea',
-    title: '30대 평균 연봉은 얼마? 2025년 대한민국 소득 분석',
-    description: '2025년 30대 직장인의 평균 연봉과 중위 소득을 분석합니다. 상위 10%, 상위 1% 기준과 직종별, 성별 연봉 격차까지 상세히 알아보세요.',
+    title: '30대 평균 연봉은 얼마? 2026년 대한민국 소득 분석',
+    description: '2026년 30대 직장인의 평균 연봉과 중위 소득을 분석합니다. 상위 10%, 상위 1% 기준과 직종별, 성별 연봉 격차까지 상세히 알아보세요.',
     thumbnail: '📊',
     category: '연봉',
     relatedCalculator: '/salary-rank',
     relatedCalculatorName: '연봉 순위 계산기',
-    publishedAt: '2025-01-14',
+    publishedAt: '2026-01-14',
     readTime: '5분',
     toc: [
       { id: 'overview', title: '30대 연봉 현황' },
@@ -538,7 +538,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
     content: `
 ## 30대 연봉 현황 {#overview}
 
-2025년 국세청 자료 기준, 30대 직장인의 소득 현황입니다.
+2026년 국세청 자료 기준, 30대 직장인의 소득 현황입니다.
 
 ### 핵심 수치
 
@@ -663,7 +663,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
     category: '투자',
     relatedCalculator: '/compound-interest-calculator',
     relatedCalculatorName: '복리 계산기',
-    publishedAt: '2025-01-11',
+    publishedAt: '2026-01-11',
     readTime: '5분',
     toc: [
       { id: 'power-of-compound', title: '복리의 힘' },
@@ -745,17 +745,17 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
 ### 사례 1: S&P 500 ETF
 - 최근 10년 연평균 수익률: 약 12%
 - 2015년 1,000만원 투자 시
-- 2025년 현재: 약 **3,100만원**
+- 2026년 현재: 약 **3,100만원**
 
 ### 사례 2: 국내 주식 (KOSPI)
 - 최근 10년 연평균 수익률: 약 5%
 - 2015년 1,000만원 투자 시
-- 2025년 현재: 약 **1,630만원**
+- 2026년 현재: 약 **1,630만원**
 
 ### 사례 3: 예금
 - 평균 금리: 연 2%
 - 2015년 1,000만원 예치 시
-- 2025년 현재: 약 **1,220만원**
+- 2026년 현재: 약 **1,220만원**
 
 > **교훈**: 장기 투자일수록 주식형 자산의 복리 효과가 큼
 
@@ -800,7 +800,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
     category: '대출',
     relatedCalculator: '/loan-calculator',
     relatedCalculatorName: '대출 계산기',
-    publishedAt: '2025-01-09',
+    publishedAt: '2026-01-09',
     readTime: '6분',
     toc: [
       { id: 'methods', title: '상환 방식 비교' },
@@ -951,7 +951,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
     category: '연금',
     relatedCalculator: '/pension-calculator',
     relatedCalculatorName: '국민연금 계산기',
-    publishedAt: '2025-01-07',
+    publishedAt: '2026-01-07',
     readTime: '5분',
     toc: [
       { id: 'receive-age', title: '수령 나이' },
@@ -1031,7 +1031,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
 
 ### 예시: 20년 가입, 월평균 소득 300만원
 
-1. A값 (2025년): 약 280만원
+1. A값 (2026년): 약 280만원
 2. B값: 300만원
 3. 기본연금액: 약 70만원
 4. 20년 가입 기준 월 연금액: 약 **70만원**
@@ -1109,7 +1109,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
     category: '세금',
     relatedCalculator: '/capital-gains-tax-calculator',
     relatedCalculatorName: '양도소득세 계산기',
-    publishedAt: '2025-01-06',
+    publishedAt: '2026-01-06',
     readTime: '7분',
     toc: [
       { id: 'basics', title: '양도소득세 기초' },
@@ -1136,7 +1136,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
 >
 > **과세표준 × 세율 = 양도소득세**
 
-### 양도소득세율 (2025년)
+### 양도소득세율 (2026년)
 
 | 과세표준 | 세율 | 누진공제 |
 |---------|------|---------|
@@ -1223,7 +1223,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
 ### 장특공제 배제
 - 조정대상지역 다주택자는 장기보유특별공제 **적용 불가**
 
-### 중과 유예 (2025년 기준)
+### 중과 유예 (2026년 기준)
 - 정부 정책에 따라 일시적으로 중과 유예될 수 있음
 - 최신 정책 확인 필요
 
@@ -1269,7 +1269,7 @@ IRP에서 연 4%로 운용 시 10년 후 추가 이익 약 **1,500만원**
     category: '투자',
     relatedCalculator: '/compound-interest-calculator',
     relatedCalculatorName: '복리 계산기',
-    publishedAt: '2025-01-05',
+    publishedAt: '2026-01-05',
     readTime: '6분',
     toc: [
       { id: 'what-is-isa', title: 'ISA란?' },
@@ -1289,7 +1289,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
 - **손익통산** 가능
 - 3년 의무 보유 후 해지 가능
 
-### 2025년 ISA 업그레이드
+### 2026년 ISA 업그레이드
 - 납입한도: 연 2,000만원 → **4,000만원**
 - 비과세한도: 200~400만원 → **500~1,000만원**
 - 국내 상장주식 직접 투자 허용
@@ -1417,7 +1417,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
     category: '급여',
     relatedCalculator: '/salary-calculator',
     relatedCalculatorName: '급여 계산기',
-    publishedAt: '2025-01-14',
+    publishedAt: '2026-01-14',
     readTime: '6분',
     toc: [
       { id: 'intro', title: '왜 공제 항목을 알아야 할까?' },
@@ -1446,7 +1446,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
 
 ### 계산 방법
 - 월 급여의 **4.5%** (회사도 4.5% 부담)
-- 기준소득월액 상한: **590만원** (2025년)
+- 기준소득월액 상한: **590만원** (2026년)
 - 최대 납부액: 월 265,500원
 
 ### 예시
@@ -1499,7 +1499,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
 
 소득세는 근로소득에 부과되는 세금입니다.
 
-### 2025년 소득세율
+### 2026년 소득세율
 | 과세표준 | 세율 | 누진공제 |
 |---------|------|---------|
 | 1,400만원 이하 | 6% | 0원 |
@@ -1551,7 +1551,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
     category: '급여',
     relatedCalculator: '/salary-calculator',
     relatedCalculatorName: '급여 계산기',
-    publishedAt: '2025-01-13',
+    publishedAt: '2026-01-13',
     readTime: '5분',
     toc: [
       { id: 'intro', title: '연봉제 vs 월급제' },
@@ -1680,7 +1680,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
     category: '대출',
     relatedCalculator: '/loan-calculator',
     relatedCalculatorName: '대출 계산기',
-    publishedAt: '2025-01-12',
+    publishedAt: '2026-01-12',
     readTime: '6분',
     toc: [
       { id: 'intro', title: '상환방식의 중요성' },
@@ -1803,7 +1803,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
     category: '대출',
     relatedCalculator: '/loan-calculator',
     relatedCalculatorName: '대출 계산기',
-    publishedAt: '2025-01-11',
+    publishedAt: '2026-01-11',
     readTime: '5분',
     toc: [
       { id: 'intro', title: '중도상환이란?' },
@@ -1921,13 +1921,13 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
   },
   {
     slug: 'bank-loan-rate-comparison',
-    title: '2025년 은행별 신용대출 금리 비교',
-    description: '2025년 1월 기준 주요 은행별 신용대출 금리를 비교했습니다. 최저 금리 받는 조건과 우대금리 항목을 확인하세요.',
+    title: '2026년 은행별 신용대출 금리 비교',
+    description: '2026년 1월 기준 주요 은행별 신용대출 금리를 비교했습니다. 최저 금리 받는 조건과 우대금리 항목을 확인하세요.',
     thumbnail: '🏦',
     category: '대출',
     relatedCalculator: '/loan-calculator',
     relatedCalculatorName: '대출 계산기',
-    publishedAt: '2025-01-10',
+    publishedAt: '2026-01-10',
     readTime: '5분',
     toc: [
       { id: 'intro', title: '신용대출 금리 현황' },
@@ -1938,7 +1938,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
     content: `
 ## 신용대출 금리 현황 {#intro}
 
-2025년 1월 기준, 신용대출 평균 금리는 **연 4.5~7%** 수준입니다. 신용등급, 소득, 거래실적에 따라 최대 2~3%p 차이가 납니다.
+2026년 1월 기준, 신용대출 평균 금리는 **연 4.5~7%** 수준입니다. 신용등급, 소득, 거래실적에 따라 최대 2~3%p 차이가 납니다.
 
 ### 금리 결정 요소
 - 신용점수 (1등급~10등급)
@@ -1950,7 +1950,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
 
 ## 은행별 금리 비교 {#comparison}
 
-### 시중은행 (2025년 1월 기준)
+### 시중은행 (2026년 1월 기준)
 
 | 은행 | 최저 금리 | 최고 금리 | 특징 |
 |-----|----------|----------|------|
@@ -2048,13 +2048,13 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
   },
   {
     slug: 'mortgage-refinancing',
-    title: '2025년 주담대 갈아타기, 지금이 적기일까?',
+    title: '2026년 주담대 갈아타기, 지금이 적기일까?',
     description: '주택담보대출 대환대출(갈아타기)의 적정 시기와 절차를 안내합니다. 금리 인하 효과와 비용을 비교하여 유리한 결정을 내리세요.',
     thumbnail: '🔄',
     category: '대출',
     relatedCalculator: '/mortgage-calculator',
     relatedCalculatorName: '주택담보대출 계산기',
-    publishedAt: '2025-01-08',
+    publishedAt: '2026-01-08',
     readTime: '6분',
     toc: [
       { id: 'intro', title: '대환대출이란?' },
@@ -2200,7 +2200,7 @@ ISA(Individual Savings Account)는 **하나의 계좌에서 예금, 펀드, ETF 
     category: '대출',
     relatedCalculator: '/mortgage-calculator',
     relatedCalculatorName: '주택담보대출 계산기',
-    publishedAt: '2025-01-07',
+    publishedAt: '2026-01-07',
     readTime: '7분',
     toc: [
       { id: 'intro', title: '생애최초 주택구입자란?' },

@@ -8,7 +8,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '절세 전략 2025 | moneylife.kr',
-  description: '2025년 최신 세법 기준 절세 전략. 연말정산, 종합소득세, 양도소득세까지 합법적으로 세금 줄이는 모든 방법.',
+  description: '2026년 최신 세법 기준 절세 전략. 연말정산, 종합소득세, 양도소득세까지 합법적으로 세금 줄이는 모든 방법.',
   keywords: '절세, 절세전략, 연말정산, 종합소득세, 양도소득세, 세액공제, 소득공제',
 }
 
@@ -28,7 +28,7 @@ export default function TaxSavingGuide() {
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
             "합법적 절세는 권리입니다"<br />
-            2025년 최신 세법 기준으로 최대한 세금을 줄이는 모든 방법을 정리했습니다.
+            2026년 최신 세법 기준으로 최대한 세금을 줄이는 모든 방법을 정리했습니다.
           </p>
         </section>
 
@@ -61,7 +61,7 @@ export default function TaxSavingGuide() {
           </div>
 
           <div className="bg-white/20 backdrop-blur border-l-4 border-white/50 p-6 rounded-r-xl">
-            <h3 className="font-semibold mb-3">✅ 2025년 달라진 세법</h3>
+            <h3 className="font-semibold mb-3">✅ 2026년 달라진 세법</h3>
             <ul className="space-y-2 text-sm">
               <li>• <strong>근로소득 과세표준 조정</strong> - 세금 구간 8단계 유지</li>
               <li>• <strong>신용카드 소득공제 한도</strong> - 총급여 7천만원 이하 300만원, 초과 250만원</li>
@@ -564,7 +564,7 @@ export default function TaxSavingGuide() {
               <div className="text-3xl mb-3">💸</div>
               <h3 className="font-semibold text-lg mb-2">종합소득세 계산기</h3>
               <p className="text-sm text-slate-600">
-                2025년 세율표로 세금 계산
+                2026년 세율표로 세금 계산
               </p>
             </Link>
 
@@ -628,7 +628,7 @@ export default function TaxSavingGuide() {
             지금 바로 세금 계산해보세요
           </h2>
           <p className="text-lg text-slate-300 mb-8">
-            2025년 최신 세율표로 정확한 세금 확인!
+            2026년 최신 세율표로 정확한 세금 확인!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

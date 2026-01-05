@@ -1,6 +1,6 @@
 /**
  * 종합소득세 계산기 라이브러리
- * 2025년 기준 종합소득세 계산
+ * 2026년 기준 종합소득세 계산
  */
 
 export interface IncomeTaxInput {
@@ -33,7 +33,7 @@ export interface TaxBreakdown {
   tax: number;
 }
 
-// 2025년 기준 종합소득세율 (누진세율)
+// 2026년 기준 종합소득세율 (누진세율)
 const TAX_BRACKETS = [
   { limit: 14000000, rate: 0.06 },    // 1,400만원 이하: 6%
   { limit: 50000000, rate: 0.15 },    // 5,000만원 이하: 15%

@@ -5,9 +5,9 @@ import { CalculatorCTA } from '@/components/ui/CalculatorCTA'
 import { AdUnit } from '@/components/AdUnit'
 
 export const metadata = {
-  title: '월급 300만원의 현실 - 2025년 구매력 분석 | moneylife.kr',
-  description: '2025년 기준 월급 300만원의 실수령액, 생활비, 저축 가능 금액을 상세히 분석합니다. 서울/지방별 생활 수준 비교.',
-  keywords: '월급 300만원, 실수령액, 생활비, 저축, 2025년 급여',
+  title: '월급 300만원의 현실 - 2026년 구매력 분석 | moneylife.kr',
+  description: '2026년 기준 월급 300만원의 실수령액, 생활비, 저축 가능 금액을 상세히 분석합니다. 서울/지방별 생활 수준 비교.',
+  keywords: '월급 300만원, 실수령액, 생활비, 저축, 2026년 급여',
 }
 
 export default function Salary3MillionPage() {
@@ -27,10 +27,10 @@ export default function Salary3MillionPage() {
                 월급 300만원의 현실
               </h1>
               <p className="text-lg text-slate-600 mb-6">
-                2025년 기준 월급 300만원의 구매력과 생활 수준 분석
+                2026년 기준 월급 300만원의 구매력과 생활 수준 분석
               </p>
               <div className="flex items-center justify-center gap-4 text-sm text-slate-500">
-                <span>📅 2025년 1월 기준</span>
+                <span>📅 2026년 1월 기준</span>
                 <span>•</span>
                 <span>⏱️ 10분 소요</span>
               </div>
@@ -316,7 +316,7 @@ export default function Salary3MillionPage() {
                   💰 내 월급 실수령액 계산해보기
                 </h3>
                 <p className="text-white/90 mb-6">
-                  2025년 최신 4대보험, 소득세 적용
+                  2026년 최신 4대보험, 소득세 적용
                 </p>
                 <Link
                   href="/salary-calculator"

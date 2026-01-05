@@ -32,7 +32,7 @@ const contents = [
   {
     id: 1,
     title: '월급 300만원의 현실',
-    description: '2025년 기준 월급 300만원의 실수령액, 생활비, 저축 가능 금액을 상세히 분석합니다',
+    description: '2026년 기준 월급 300만원의 실수령액, 생활비, 저축 가능 금액을 상세히 분석합니다',
     icon: '💰',
     href: '/content/salary-3million',
     category: '급여'
@@ -40,14 +40,14 @@ const contents = [
   {
     id: 2,
     title: '내 연봉, 상위 몇 %?',
-    description: '2025년 한국 근로자 연봉 순위표. 내 연봉이 상위 몇 %인지 확인하세요',
+    description: '2026년 한국 근로자 연봉 순위표. 내 연봉이 상위 몇 %인지 확인하세요',
     icon: '📊',
     href: '/content/salary-ranking',
     category: '급여'
   },
   {
     id: 3,
-    title: '2025년 연봉별 실수령액 표',
+    title: '2026년 연봉별 실수령액 표',
     description: '연봉 3천만원부터 3억원까지 실수령액 한눈에 비교',
     icon: '💵',
     href: '/content/salary-table',
@@ -112,7 +112,7 @@ const contents = [
   {
     id: 11,
     title: '절세 전략 2025',
-    description: '2025년 최신 세법 기준 합법적 절세 방법 총정리',
+    description: '2026년 최신 세법 기준 합법적 절세 방법 총정리',
     icon: '💸',
     href: '/content/tax-saving',
     category: '세금'
@@ -143,7 +143,7 @@ const contents = [
   },
   {
     id: 15,
-    title: '2025년 연봉 실수령액 표',
+    title: '2026년 연봉 실수령액 표',
     description: '연봉별 4대보험, 세금, 실수령액 완벽 정리',
     icon: '💵',
     href: '/content/salary-table-2025',

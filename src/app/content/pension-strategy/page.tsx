@@ -8,7 +8,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '퇴직연금 운용 전략 | moneylife.kr',
-  description: 'DC형, DB형, IRP 퇴직연금 똑똑하게 운용하는 방법. 2025년 최신 절세 전략과 투자 포트폴리오까지.',
+  description: 'DC형, DB형, IRP 퇴직연금 똑똑하게 운용하는 방법. 2026년 최신 절세 전략과 투자 포트폴리오까지.',
   keywords: '퇴직연금, DC형, IRP, 퇴직연금 운용, 퇴직연금 절세, 퇴직연금 투자',
 }
 
@@ -399,7 +399,7 @@ export default function PensionStrategy() {
                 <div className="bg-white p-4 rounded text-sm">
                   <p className="font-semibold mb-2 text-slate-800">예시: 미래에셋 TDF 2050 (2050년 은퇴 예정자용)</p>
                   <ul className="space-y-1 text-slate-700">
-                    <li>• 현재 (2025년): 주식 90% + 채권 10%</li>
+                    <li>• 현재 (2026년): 주식 90% + 채권 10%</li>
                     <li>• 2040년: 주식 60% + 채권 40%</li>
                     <li>• 2050년 (은퇴): 주식 20% + 채권 80%</li>
                   </ul>

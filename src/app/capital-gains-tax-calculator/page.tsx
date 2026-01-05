@@ -159,7 +159,7 @@ export default function CapitalGainsTaxCalculatorPage() {
               {/* 타이틀 영역 */}
               <div className="text-center mb-10">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-6 border border-slate-200">
-                  2025년 양도소득세율 적용
+                  2026년 양도소득세율 적용
                 </div>
                 <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
                   양도소득세 계산기
@@ -597,7 +597,7 @@ export default function CapitalGainsTaxCalculatorPage() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
-                    <span className="text-slate-300">2025년 양도소득세율 적용</span>
+                    <span className="text-slate-300">2026년 양도소득세율 적용</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-bold">✓</span>
@@ -624,7 +624,7 @@ export default function CapitalGainsTaxCalculatorPage() {
                 </div>
               </div>
               <p className="text-sm text-slate-400 mt-6 text-center">
-                출처: 국세청 양도소득세 규정 (2025년)
+                출처: 국세청 양도소득세 규정 (2026년)
               </p>
             </div>
           </div>

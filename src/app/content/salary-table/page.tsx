@@ -6,9 +6,9 @@ import { AdUnit } from '@/components/AdUnit'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '2025년 연봉별 실수령액 표 (3천~3억) | moneylife.kr',
-  description: '2025년 연봉 3천만원부터 3억원까지 실수령액 한눈에 비교. 4대보험, 세금 제외한 월급과 연봉을 500만원 단위로 정리했습니다.',
-  keywords: '연봉 실수령액 표, 연봉별 실수령표, 2025년 실수령액, 세후 연봉, 월급 실수령액',
+  title: '2026년 연봉별 실수령액 표 (3천~3억) | moneylife.kr',
+  description: '2026년 연봉 3천만원부터 3억원까지 실수령액 한눈에 비교. 4대보험, 세금 제외한 월급과 연봉을 500만원 단위로 정리했습니다.',
+  keywords: '연봉 실수령액 표, 연봉별 실수령표, 2026년 실수령액, 세후 연봉, 월급 실수령액',
 }
 
 export default function SalaryTable2025() {
@@ -42,7 +42,7 @@ export default function SalaryTable2025() {
             급여
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
-            2025년 연봉별 실수령액 표
+            2026년 연봉별 실수령액 표
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
             연봉 3천만원부터 3억원까지 한눈에 비교
@@ -83,7 +83,7 @@ export default function SalaryTable2025() {
 
         {/* 연봉별 실수령액 표 */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
-          <h2 className="text-xl font-bold text-slate-900 mb-6">2025년 연봉별 실수령액 상세표</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-6">2026년 연봉별 실수령액 상세표</h2>
           
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -121,7 +121,7 @@ export default function SalaryTable2025() {
           </div>
 
           <div className="mt-6 space-y-2 text-sm text-slate-500">
-            <p>* 2025년 세율표 기준 (국민연금 4.5%, 건강보험 3.545%, 고용보험 0.9%, 소득세, 지방소득세)</p>
+            <p>* 2026년 세율표 기준 (국민연금 4.5%, 건강보험 3.545%, 고용보험 0.9%, 소득세, 지방소득세)</p>
             <p>* 단일 근로자, 부양가족 없음 가정</p>
             <p>* 실제 금액은 부양가족, 공제항목에 따라 다를 수 있음</p>
           </div>
@@ -225,7 +225,7 @@ export default function SalaryTable2025() {
 
             <Link href="/income-tax-calculator" className="block p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
               <h3 className="font-semibold text-slate-900 mb-1">종합소득세 계산기</h3>
-              <p className="text-sm text-slate-600">2025년 세율표로 계산</p>
+              <p className="text-sm text-slate-600">2026년 세율표로 계산</p>
             </Link>
 
             <Link href="/content/tax-saving" className="block p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
